@@ -1,0 +1,228 @@
+---
+status: draft
+---
+
+# Shared scaffold
+
+## Decision
+
+Thirty-one labs cannot each own a grader, a generator, a fault controller,
+and an evidence format. They share one implementation of each, and a lab
+contributes only its own declarative files. This document specifies those
+shared components and the boundary between shared and per-lab.
+
+The scaffold is the first thing built once `01-systems-labs.md` is `accepted`.
+Nothing else can be authored against a contract that does not exist: a lab
+written before the grader's history model is fixed will encode a different one.
+
+## Boundary
+
+Shared code holds everything that is identical across labs. A lab holds
+everything that names its own domain.
+
+| Concern | Shared | Per lab |
+|---------|--------|---------|
+| Invariant checking | the history model, the checkers, the report format | which checkers run, and over which identities |
+| Workload | the open-loop generator, the seed and rate model, the replay engine | the record schema and the generator parameters |
+| Faults | the controller with the recipe set compiled in, every injection mechanism, the digest | its seeded schedule recipes and their barriers |
+| Evidence | the run manifest, the histogram format, the report schema | which measurements the lab requires |
+| Environment | the Compose profile shape, health checks, network layout | which dependencies the profile starts |
+| Grading | the review runner and the prompt skeleton | the rubric, and the public invariants it cites |
+
+No shared component may contain anything solution-bearing. A helper that
+batches writes, coordinates a cache fill, or reconciles an offset with a
+transaction has answered a lab's question inside the scaffold, and every lab
+that imports it inherits the answer.
+
+## `shared/grader/`
+
+The grader observes public boundaries only. It never imports learner code, and
+it never reads a database the learner owns except through a contract the lab
+declares public.
+
+Its core is a **history**: an ordered log of observed events, each carrying a
+record identity, a boundary name, a wall-clock and a monotonic timestamp, and
+the observation site. Checkers are pure functions over a history. This is what
+makes the correctness rule enforceable — gates assert identities and histories,
+never counts alone.
+
+The checker set is small and shared:
+
+- **once** — every identity in the accepted input appears exactly once at the
+  effect boundary the lab names as single-effect;
+- **order** — identities appear in the order the lab declares, within the scope
+  the lab declares that order to hold;
+- **survives** — every acknowledged identity is present after a recovery point;
+- **never** — a forbidden state does not occur, such as a duplicate effect or a
+  record served after it was reported damaged;
+- **bounded** — a structural quantity stays inside a declared bound for the
+  whole run.
+
+A lab declares which checkers apply to which boundaries in its `lab.toml`. It
+does not write new checker code unless its invariant genuinely has no shared
+form, and a new checker is added to the shared set rather than to the lab.
+
+The grader emits a machine-readable result and a human-readable report. A
+failure names the identity, the boundary, and the expectation — never a
+suggested fix, which would name the solution.
+
+## `shared/workload/`
+
+One generator, parameterized per lab. It is Go, because it must hold an offered
+rate while the system under test is failing to keep up.
+
+It is **open-loop**: the schedule is computed in advance from the seed and the
+rate, and a slow system produces a growing backlog rather than a reduced
+offered rate. A generator that waits for a response before sending the next
+request measures the system's own pace and reports it as capacity, which is
+coordinated omission and the reason the rate-accurate replayer exists as a lab
+in its own right.
+
+Parameters come from the lab's TOML: seed, rate, burst shape, key skew,
+duplicate ratio, late-arrival distribution, malformed-record ratio, disconnect
+boundary, and cursor overlap. The same seed produces the same identities in the
+same order on every host, because the grader asserts histories against them.
+
+The replay engine handles cached recordings under the same interface: preserve
+original timing, scale time, or drive an open-loop rate. Recording is a
+separate command from replay, and no application request path ever reaches a
+provider.
+
+## `shared/faults/`
+
+One controller, driven by each lab's fault schedules, implementing the
+mechanisms fixed by the
+[fault injection contract](../01-systems-labs.md#fault-injection-contract):
+process lifecycle including freeze and thaw, network shaping and asymmetric
+partitions and a fault proxy, each dependency's own control surface, clock
+skew, and the fault block device.
+
+A scenario is declarative and names a trigger, a target, and an effect. The
+trigger is a **barrier**, not a time: an identity reaching a boundary. The
+controller and the grader therefore share the barrier vocabulary, which is what
+lets a failure land at the same point on every run.
+
+A schedule is never a readable artifact at rest, because a barrier name is an
+edge case stated in words. Each lab's seeded recipes are compiled into the
+controller binary — Go, per the language policy — rather than shipped as
+readable files beside it, so what the learner receives is an executable that
+produces the schedule, not a source that describes it. The recipe sources
+live with the author tree, excluded from the learner distribution by the same
+publish step that excludes `reference/` and `specs/`. Excluded is not
+withheld: the controller is conveyed as object code under GPL-3.0, so the
+learner distribution names the public source repository as the no-charge
+route to its complete corresponding source, recipe sources included, per the
+master spec's
+[licence contract](../01-systems-labs.md#licence-and-corresponding-source).
+`make fault`
+— exactly as available to the learner as every other target — materializes
+the schedule it runs, runs it, and removes it, so the readable form exists
+only while the run is in flight. This is deterrence rather than
+impossibility — a learner who disassembles the controller or fetches the
+recipe sources from the source repository has made a
+deliberate choice — and no readable schedule ships in the learner tree. A frozen
+aggregate digest over every schedule the controller materializes is checked
+under `make test-all`, so a recipe cannot drift without the change being
+declared; the digest check adds no Make target of its own.
+
+The block-device layer needs a privileged container. Its feasibility in the
+target environment is unproven, and the low-level track depends on it. Proving
+or replacing it is a prerequisite for phase 6, not a detail.
+
+## `shared/telemetry/`
+
+Available to every lab and required by few. It provides one histogram format
+and one trace contract so evidence reports are comparable across labs.
+
+Where a lab does not require instrumentation, this component still supplies the
+evidence report writer, because the report schema is shared even when the
+measurement method is the learner's choice.
+
+## `shared/grade/`
+
+The judgment reviewer described in the
+[grading contract](../01-systems-labs.md#grading-contract): a runner, a prompt
+skeleton, and the rules that bound it. It refuses to start until the mechanical
+gates pass. It reads the learner's `README.md`, `ARCHITECTURE.md`, code, and
+evidence report, and writes `evidence/review.md`.
+
+The prompt skeleton is shared; the rubric is per lab and cites only invariants
+already public in that lab's `README.md`. The reviewer never names a pattern, a
+schema, or a fix.
+
+## Teaching lint
+
+`make teaching-lint` is the mechanical enforcement of the
+[teaching contract](../01-systems-labs.md#teaching-contract), and CI runs it.
+It fails if any lab `README.md` contains a scenario barrier name, a
+`Neighbouring systems` product name, or any citation marked solution-bearing.
+It also fails if the name of a configuration parameter belonging to a
+dependency appears in any course-authored learner-facing text other than
+`HINTS.md`: a setting's name names a mechanism, and the task may state only
+the property the setting governs. And it fails if a mechanism name appears in
+any of those texts at all — prescribed, disclaimed, or merely mentioned.
+Excluding a candidate names it: a task that says no worker pool is required
+has told the learner what is in play, so a disclaimer fails the lint exactly
+as a prescription does.
+The check is cheap by construction: the barrier vocabulary is shared, each
+lab's neighbour names are listed in its own spec, every `Code pointers`
+bullet carries an explicit neutral or solution-bearing state, each lab's
+dependency set bounds the parameter vocabulary to scan for, and the
+mechanism vocabulary is one curriculum-wide list maintained with the lint,
+so the check stays a scan rather than a judgment. It is
+repository tooling, so it is Python per the language policy.
+
+## `template/`
+
+A complete lab directory that runs before any learner code exists. It is the
+executable form of the
+[per-lab directory shape](../01-systems-labs.md#repository-contract), with a
+trivial domain: one record type, one operation, one invariant, one fault.
+
+The template is CI-tested like a lab, and its worked pair lives where every
+lab's does: at repository root under `reference/template/`, never inside the
+lab directory. CI proves that `make up`, `make test-all`, `make fault`, and
+`make bench` all pass against the golden reference, and that the rotten
+reference fails exactly one contract — so a passing and a failing submission
+are both checked without a worked solution ever sitting beside the learner's
+`app/`. The publish step that produces the learner distribution excludes
+`reference/`. A new lab starts as a copy of the template, which is also how
+the scaffold's own regressions are caught.
+
+## Build order
+
+1. The history model and the checker set, because every other component and
+   every lab spec depends on their vocabulary.
+2. The template, driven by hand, proving the directory shape and the Make
+   targets against a trivial domain.
+3. The workload generator, validated by the rate-accuracy property that phase 6
+   later teaches.
+4. The fault controller, mechanism by mechanism, cheapest first. The block
+   device is proven or replaced here.
+5. The evidence report writer and the shared telemetry contract.
+6. The grade runner, last, because it cannot run until the gates it waits on
+   exist.
+
+Lab 01 is authored against the finished scaffold, not alongside it.
+
+## Open questions
+
+- Whether the fault block device can run in the target container environment,
+  and what the low-level track does if it cannot.
+- Whether the process freeze can land exactly at the barrier phase 2 needs —
+  the point where the runtime and every extension have completed and no
+  events are pending, which a returned response alone does not mark — on the
+  Lambda-compatible runner.
+  Every phase 2 failure schedule except the import lab's depends on that
+  barrier; the proposal is `BUGS.md` S1 and needs sign-off.
+- Whether the shared checker set survives contact with phases 7 and 8, whose
+  identities are chain transactions and documents rather than records.
+- Whether `template/` carries both supported starters or only Go, given that a
+  second starter doubles the surface the scaffold must keep passing.
+
+## Governing references
+
+- [`../01-systems-labs.md`](../01-systems-labs.md) — the contracts this
+  scaffold implements.
+- [`1-lab-selection.md`](1-lab-selection.md) — the scored selection.
+- [`../index.md`](../index.md) — authoritative list and lifecycle status.

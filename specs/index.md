@@ -1,0 +1,40 @@
+| Spec | Status | Summary |
+|------|--------|---------|
+| [01-systems-labs.md](01-systems-labs.md) | draft | Governing course spec: every cross-lab contract for scaffold, grading, faults, evidence, data, cost, and licensing |
+| [0/1-lab-selection.md](0/1-lab-selection.md) | reference | Twenty expanded candidates, scoring model, ten retained labs, and ten explicit cuts |
+| [0/2-low-level-track.md](0/2-low-level-track.md) | reference | Phase 6 in Rust and C: five specced kernel-quirk candidates with origination notes |
+| [0/3-blockchain-track.md](0/3-blockchain-track.md) | reference | Phase 7 on Solana and Ethereum: validator, chain data, program, and permissionless delivery |
+| [0/4-search-and-retrieval-track.md](0/4-search-and-retrieval-track.md) | reference | Phase 8 on OpenSearch: proteins, news, web crawl, spatial, and relevance evaluation |
+| [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one grader, generator, fault controller, evidence writer, and template that all 31 labs share, and the build order |
+| [0/6-serverless-contrast-track.md](0/6-serverless-contrast-track.md) | reference | Phase 2 paired against phase 1: what the execution model removes, which pairings earn a lab, and which model is useful where |
+| [1/1-resilient-quote-service.md](1/1-resilient-quote-service.md) | draft | Quote aggregation architecture under overload, partial provider failure, and shutdown |
+| [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Reservation fulfillment architecture using PostgreSQL, PL/pgSQL, and `LISTEN`/`NOTIFY` |
+| [1/3-order-activity-dashboard.md](1/3-order-activity-dashboard.md) | draft | Queryable, replayable order activity architecture in a Kafka environment |
+| [1/4-reliable-record-import.md](1/4-reliable-record-import.md) | draft | Batch import architecture in a self-run leased-delivery environment, where every submitted record has an explainable fate |
+| [1/5-auditable-transfer-service.md](1/5-auditable-transfer-service.md) | draft | Transfer and audit architecture spanning PostgreSQL and Kafka failure boundaries |
+| [2/1-metered-billing-api.md](2/1-metered-billing-api.md) | draft | Subscriptions, metered usage, and period-close invoicing on an execution environment that freezes between invocations |
+| [2/2-reliable-record-import.md](2/2-reliable-record-import.md) | draft | The same import product on functions, in a leased-delivery environment the learner configures but does not run |
+| [2/3-serverless-reservation-fulfillment.md](2/3-serverless-reservation-fulfillment.md) | draft | The same reservation product on functions, with a partitioned key-value store as the system of record |
+| [2/4-serverless-auditable-transfer.md](2/4-serverless-auditable-transfer.md) | draft | The same transfer product on functions, carrying the commit gap onto an environment where nothing runs between events |
+| [2/5-serverless-quote-aggregation.md](2/5-serverless-quote-aggregation.md) | draft | The same quote product on functions, where admission is a platform ceiling rather than the design's own decision |
+| [3/1-internet-route-observatory.md](3/1-internet-route-observatory.md) | draft | Route observations answered with the scope they rest on, where vantage points disagree and a burst is exploration |
+| [3/2-recoverable-route-analytics.md](3/2-recoverable-route-analytics.md) | draft | Stateful route analytics with checkpoint and history-based recovery requirements |
+| [4/1-market-history-api.md](4/1-market-history-api.md) | draft | Trade and candle query architecture over DynamoDB-compatible storage |
+| [4/2-low-latency-market-api.md](4/2-low-latency-market-api.md) | draft | Freshness-aware market API with Valkey and DynamoDB as available components |
+| [4/3-exact-trade-analytics.md](4/3-exact-trade-analytics.md) | draft | Exact aggregates over a growing trade history that duplicates and corrections must never distort |
+| [4/5-portable-market-ingestion.md](4/5-portable-market-ingestion.md) | draft | One ingestion contract across local Kubernetes and Lambda-shaped environments |
+| [6/1-bounded-memory-record-shipper.md](6/1-bounded-memory-record-shipper.md) | draft | Ordered record shipping to a stalled consumer inside a fixed memory ceiling |
+| [6/2-crash-safe-record-store.md](6/2-crash-safe-record-store.md) | draft | Record store whose acknowledgement survives power loss and a one-shot flush error |
+| [6/3-large-index-query-service.md](6/3-large-index-query-service.md) | draft | Query service over an index far larger than memory, where a pointer dereference is an I/O |
+| [6/4-steady-state-request-service.md](6/4-steady-state-request-service.md) | draft | Request service whose resident memory must not drift upward across a long run |
+| [6/5-rate-accurate-replayer.md](6/5-rate-accurate-replayer.md) | draft | Workload replayer that holds a declared rate and reports the latency the caller saw |
+| [7/1-validator-state-stream.md](7/1-validator-state-stream.md) | draft | Account and slot updates streamed out of a validator that pays for the plugin's latency |
+| [7/2-settlement-program-and-client.md](7/2-settlement-program-and-client.md) | draft | Settlement program and client bounded by the runtime rather than by their own logic |
+| [7/3-finality-aware-transfer-index.md](7/3-finality-aware-transfer-index.md) | draft | Transfer index whose settled view stays free of logs the chain later withdrew |
+| [7/4-reliable-transaction-dispatcher.md](7/4-reliable-transaction-dispatcher.md) | draft | Queued payments landed exactly once across two chains that disagree about retry |
+| [7/6-permissionless-application-hosting.md](7/6-permissionless-application-hosting.md) | draft | An application delivered with no server, domain, or account its publisher operates |
+| [8/1-protein-similarity-search.md](8/1-protein-similarity-search.md) | draft | Ranked sequence matches whose confidence belongs to the corpus, not to the match |
+| [8/2-news-aggregation-service.md](8/2-news-aggregation-service.md) | draft | Feed items grouped under a declared policy, with a freshness the system can actually vouch for |
+| [8/3-web-crawl-and-index.md](8/3-web-crawl-and-index.md) | draft | Polite bounded crawl whose real product is the revisit decision under a budget |
+| [8/4-spatial-query-service.md](8/4-spatial-query-service.md) | draft | Exact area and proximity answers where the spatial index is only a filter |
+| [8/5-relevance-evaluation-service.md](8/5-relevance-evaluation-service.md) | draft | A ranking plus the harness that proves a change to it survives unseen queries |
