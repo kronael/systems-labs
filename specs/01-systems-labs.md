@@ -41,7 +41,7 @@ Each section below fixes one thing. This list is the index, not a substitute.
 
 **Technology** — **Technology spine**: a fixed small set, the heavier tool per category, driven into the regime where its quirk fires or the dependency is unearned. **Zero-cost and AWS contract**: every required gate runs locally with no account.
 
-**Proof** — **Adversarial contract**: the learner predicts before the run; the grader detects no preferred pattern. **Data contract**: one adapter for real and generated input, decimals stay decimal, schedules name exact records. **Repository contract**: who owns which file, and what `README.md` may never say. **Verification contract**: one Make vocabulary, no hard-coded performance number. **Grading contract**: mechanical checks in `grader/`, judgment behind `make grade`, which never names the fix.
+**Proof** — **Adversarial contract**: the learner predicts before the run; verification detects no preferred pattern. **Data contract**: one adapter for real and generated input, decimals stay decimal, schedules name exact records. **Repository contract**: who owns which file, and what `README.md` may never say. **Verification contract**: one Make vocabulary, no hard-coded performance number. **Verification**: no grader binary — each lab describes its checks in an agent-run skill, and only the fault controller and generator stay compiled.
 
 **Provenance** — **Source placement**, **Licence and corresponding source**, **Research ledger**, **Per-lab source map**, **Sources deliberately excluded**: who is credited, what may be copied, and where a recipient obtains the complete source.
 
@@ -107,7 +107,7 @@ Each lab has three depth gates:
   operational tradeoff and one limitation that remains.
 
 Passing means all three gates pass. The starter contains protocols, dependency
-bootstrapping, data schemas, generators, and the black-box grader. It does not
+bootstrapping, data schemas, generators, and the verification skill. It does not
 contain an application topology or the path that connects input to output. The
 learner owns the architecture, service boundaries, state design, event
 handling, telemetry, and end-to-end tests.
@@ -162,9 +162,8 @@ A good task carries the lab; the grading apparatus does not. The measure of a
 brief is whether it sends the learner to the primary documentation, to a
 post-mortem, to their own experiment on the running system — and whether the
 first design they commit to teaches them something when it fails. A lab that
-needs an elaborate grader to be interesting has the wrong task. Effort belongs
-in the task and its quirk, and the grader stays small enough to be obviously
-correct.
+needs elaborate checking machinery to be interesting has the wrong task.
+Effort belongs in the task and its quirk.
 
 Every lab is hard, and the difficulty comes from the quirks of the system under
 study. The hard part is the boundary case where the obvious mental model is
@@ -231,7 +230,7 @@ lab teachable:
   must exist. Nothing about how, and nothing about where it breaks.
 - `HINTS.md` — the design reading, opened deliberately. Neighbouring systems,
   rejected designs, and the solution-bearing citations.
-- `grader/` and the fault schedules — the edge cases, as executable failure
+- The fault schedules — the edge cases, as executable failure
   schedules. The learner meets them by running `make fault`, after committing
   to a design. A schedule is never a readable artifact at rest: its seeded
   recipe is compiled into the fault controller binary — Go, per the language
@@ -282,8 +281,7 @@ standard scaffold contains:
   health checks, volumes, and telemetry wiring;
 - a learner-owned `compose.yml` for any application topology;
 - a Makefile, TOML configuration, generated contracts, data generators,
-  source replay, deterministic fault controller, black-box grader, and evidence
-  collector;
+  source replay, deterministic fault controller, and evidence collector;
 - the command vocabulary fixed by the
   [Verification contract](#verification-contract), which is the only list of
   Make targets in this specification.
@@ -317,7 +315,7 @@ runtime and the dependencies' own control surfaces.
 
 Faults fire at **named barriers**, never on a timer and never at random. A
 scenario says "when record 4711 is acknowledged, freeze the broker", so the
-failure lands at the same boundary on every run and the grader can assert an
+failure lands at the same boundary on every run and verification can assert an
 exact history. Random chaos proves nothing twice.
 
 The mechanisms, from most deterministic to most realistic:
@@ -370,7 +368,7 @@ that introduces it. The pairing is the subject: a phase 1 design becomes
 unavailable in phase 2, and what breaks names the part that was load-bearing.
 
 This is the single exception to the no-ports rule. A port across *languages* is
-forbidden, because it inherits the original's grader, failure schedule, and
+forbidden, because it inherits the original's checks, failure schedule, and
 answer while adding only a stricter compiler. A port across *execution models*
 is the opposite — it confiscates the answer. The product is held constant —
 the same public behaviour and the same invariants — while the execution model
@@ -380,7 +378,7 @@ deploys. The contrast is honest rather than controlled: it swaps one
 deployable shape for another and lets the same product expose the
 difference. The exception extends no
 further: no lab may be repeated in another language, and no phase 2 lab may
-reuse a phase 1 grader unchanged.
+reuse a phase 1 lab's checks unchanged.
 
 `1/3` has no serverless counterpart, and the reason is recorded in the
 [serverless contrast track](0/6-serverless-contrast-track.md). A recast must
@@ -406,10 +404,10 @@ through metered invocations is the same lesson at higher cost.
   `${PREFIX:-/srv}/data/systems-labs/sources/`, and never fetched per request.
 - Live-source adapters use bounded duration, identify themselves where the
   provider requires it, honor rate limits, record provenance, and surface
-  disconnection or truncation. CI and graders use generated or cached input.
+  disconnection or truncation. CI and verification use generated or cached input.
 - Each lab supplies two supported starters, Go and TypeScript. Both satisfy the
   same black-box HTTP, Kafka, SQL, and container contracts, so a starter is a
-  skeleton and a build file, never a second grader. Other languages remain
+  skeleton and a build file, never a second set of checks. Other languages remain
   possible for a learner and unsupported by the course.
 
 The Lambda environment is **required**, not offered, in the labs whose brief
@@ -467,8 +465,8 @@ must guarantee, not by taste.
   automation are Python, distributed as `uv`-managed projects and PEP 723
   single-file scripts.
 - **Go** owns everything that must keep time under load: the open-loop workload
-  generator, the fault controller, the deterministic provider simulators, and
-  the mechanical grader. A generator that slows down with the system under test
+  generator, the fault controller, and the deterministic provider simulators.
+  A generator that slows down with the system under test
   destroys the measurement these labs exist to teach, so this boundary is not
   negotiable.
 - **Go and TypeScript** are the two supported learner starters.
@@ -573,7 +571,7 @@ termination during work, and OpenTofu drift or a secret sentinel in state.
 
 Evidence contains the prediction, observed native and application state,
 explanation, any architecture revision, and the remaining limitation. The
-black-box grader accepts any design that satisfies the public contract; it
+verification accepts any design that satisfies the public contract; it
 does not detect a preferred pattern name or private code shape.
 
 ## Data contract
@@ -591,7 +589,7 @@ models the ugly cases that a small live sample might not contain. Its TOML
 parameters include seed, rate, burst shape, key skew, duplicate ratio,
 late-arrival distribution, malformed-record ratio, disconnect boundary, and
 cursor overlap. Every failure schedule names exact record identities, so the
-grader proves histories rather than aggregate counts.
+verification proves histories rather than aggregate counts.
 
 Recording and replay are separate commands. Recording is bounded by duration
 and byte count and writes an immutable checksummed object. Replay can preserve
@@ -645,13 +643,9 @@ keeping its unit-sized submission model:
   implementation, and no reference design exists for any lab, in the learner
   tree or outside it. A worked systems design answers every
   `Architecture questions` bullet at once, so authoring one creates a document
-  whose only protection is that nobody reads it. The grader needs no oracle:
+  whose only protection is that nobody reads it. Verification needs no oracle:
   it asserts invariants over observed histories rather than comparing output
   to a reference run.
-- The checkers have unit tests like any other code, over synthetic histories
-  written by hand rather than recorded from a fault run. That is the whole of
-  it: the grader is a small, boring component and the specification says
-  nothing more about proving it.
 - The fault schedules — duplicates, delayed acknowledgements, restarts,
   partitions, recovery — are not lab-directory files and not readable files
   anywhere in the learner distribution. Their seeded recipes are compiled
@@ -662,11 +656,9 @@ keeping its unit-sized submission model:
   network call on an application request path.
 - `workload/` generates schema-compatible large inputs from frozen seeds and
   replays bounded cached recordings without storing huge fixtures in Git.
-- `grader/` observes public boundaries. It does not import private application
-  functions. It holds the mechanical checks only: invariant assertions over
-  observed histories, plus the run manifest. Judgment lives in the review
-  prompt described in the [Grading contract](#grading-contract), not in a
-  grading framework.
+- `.claude/skills/verify/SKILL.md` describes how to check this lab, for an
+  agent to run. There is no grader binary. See the
+  [Verification](#verification) section.
 - `infra/compose/dependencies.yml` starts only the fixed external systems,
   simulators, and telemetry services. Specialized labs add prepared Kubernetes
   and OpenTofu sandboxes under `infra/`; neither contains a solved application.
@@ -685,7 +677,6 @@ NN-solution-neutral-name/
   app/
   tests/
   starter/
-  grader/
   sources/
   workload/
   infra/
@@ -698,7 +689,7 @@ NN-solution-neutral-name/
 ```
 
 The service boundary is language-neutral. The initial scaffolds use Go for
-small services and graders, SQL and PL/pgSQL for database work, and Java only
+small services, SQL and PL/pgSQL for database work, and Java only
 for the Flink job. Starter code handles protocol generation, dependency
 startup, and fixture decoding. The learner still writes the complete path from
 input to useful output; a submission cannot pass by editing one isolated
@@ -742,9 +733,6 @@ Every lab exposes the same root vocabulary:
 - `make test-all` runs the local integration suite used by CI.
 - `make fault` runs deterministic failure and recovery scenarios.
 - `make bench` runs seeded load, checks invariants, and writes evidence.
-- `make grade` runs the judgment review described in the
-  [Grading contract](#grading-contract). It refuses to run until the
-  mechanical gates pass against a real implementation.
 - `make teaching-lint` enforces the teaching contract mechanically: it fails
   if any lab `README.md` contains a scenario barrier name, a `Neighbouring
   systems` product name, any citation marked solution-bearing, the name of
@@ -801,36 +789,34 @@ CI runs `make test-all` — which carries the fault-recipe digest check — and
 release checks, not as arbitrary pull-request pass/fail timers. Cloud smoke
 checks never run on untrusted pull requests.
 
-## Grading contract
+## Verification
 
-A lab produces two kinds of check, and they are graded by different means.
+There is no grader binary and no grading framework. Verification is described
+rather than implemented, and an agent runs it.
 
-**Mechanical checks are deterministic.** They live in `grader/`, run under
-`make test-all`, `make fault`, and `make bench`, and assert exact record
-identities and histories. A machine decides them; no judgment is involved.
+Each lab carries `.claude/skills/verify/SKILL.md`: the procedure for checking
+that lab's invariants against a completed run. It names the observable
+boundaries — HTTP responses, SQL state, a provider's request log, consumer
+positions, the evidence report — the invariant each one must satisfy, and the
+record identities to check. It describes **only what is not obvious**. An agent
+does not need to be told to run the tests or read the error.
 
-**Judgment checks are not mechanizable.** Whether `ARCHITECTURE.md` explains
-state ownership, whether the evidence supports the capacity claim, whether the
-stated residual limitation is the real one — a deterministic checker cannot
-score these without prescribing the answer it wants.
+The skill never names the failure schedule, a mechanism, or a design. It states
+what must be true, exactly as `README.md` does, and where to look for it.
 
-`make grade` therefore hands the submission to a language-model reviewer. The
-harness stays deliberately small: a prompt, a per-lab rubric file listing only
-the invariants already public in `README.md`, and a command that a coding agent
-can invoke directly. There is no grading framework, no scoring service, and no
-model training. The reviewer reads `README.md`, `ARCHITECTURE.md`, the learner
-code, and the generated evidence report, then writes findings to
-`evidence/review.md`.
+This is honest about how these labs will be used. A learner working them has an
+agent, will use it both to build and to check, and is better served by a
+verification standard they can read than by a binary they cannot.
 
-Two hard rules bound it:
+Two things stay compiled, because neither can be described away: the fault
+controller, which must fire at exact barriers, and the workload generator,
+which must hold an offered rate under load. The run therefore stays
+reproducible even though the judgement over it does not.
 
-- **Grade only what runs.** `make grade` refuses to start until the mechanical
-  gates pass against a real implementation. Judging prose about a system that
-  does not run rewards writing over engineering.
-- **The reviewer never supplies the solution.** It names the architecture
-  question left unanswered, the claim the evidence does not support, and the
-  limit the submission failed to state. It does not name the pattern, the
-  schema, or the fix.
+That is the cost, and it is real: two agent runs can disagree where a compiled
+checker could not. A lab whose correctness cannot be stated clearly enough for
+that judgement to be reliable has an unclear invariant, which is a defect in
+the lab rather than a reason to build a framework.
 
 ## Source placement and attribution
 
@@ -969,8 +955,6 @@ and inherit the same citation-only policy.
   ledger.
 - `systems-labs/Makefile` — stable root test, fault, benchmark, smoke, and clean
   contract.
-- `systems-labs/shared/grader/` — black-box invariants, run manifests, and
-  evidence schema shared by labs.
 - `systems-labs/shared/workload/` — seeded open-loop generators and cached data
   handling.
 - `systems-labs/shared/telemetry/` — one trace and histogram contract across
@@ -998,7 +982,7 @@ and inherit the same citation-only policy.
   — the OpenSearch catalog for retrieval and spatial quirks, recorded and not
   yet selected.
 - [`specs/0/5-shared-scaffold.md`](0/5-shared-scaffold.md) — the shared
-  grader, generator, fault controller, evidence writer, and the build order.
+  generator, fault controller, evidence writer, and the build order.
 - [`specs/0/6-serverless-contrast-track.md`](0/6-serverless-contrast-track.md)
   — the phase 1 and phase 2 pairing catalog and the rejected pairing.
 - [`docs/cloud-access.md`](../docs/cloud-access.md) — how to obtain the

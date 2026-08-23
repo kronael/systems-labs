@@ -43,13 +43,13 @@ Two things stand in its place:
   a vendor limit. That citation is the lab's ground truth. Fetch the page and
   confirm it says what you claim; a URL recalled from memory is not a citation.
   NEVER invent a quirk and then look for a source.
-- **A small grader.** It asserts invariants over observed histories and needs no
-  oracle. Its checkers get unit tests over hand-written synthetic histories, and
-  that is all. Do not build machinery to prove the grader; a lab that needs an
-  elaborate grader to be interesting has the wrong task.
+- **A described check.** `.claude/skills/verify/SKILL.md` states what must hold
+  and where to look, for an agent to run. No grader binary, no framework, no
+  fixtures proving the checker. A lab that needs elaborate checking machinery to
+  be interesting has the wrong task.
 
-The grader needs no oracle: it asserts invariants over observed histories rather
-than comparing output to a reference run.
+Verification needs no oracle: it asserts invariants over observed histories
+rather than comparing output to a reference run.
 
 `template/` is the one exception, and it is not a lab. It carries a working
 implementation of a trivial domain — one record type, one operation, one
@@ -136,9 +136,8 @@ to roughly 150 to 250 focused hours.
 **The task carries the lab.** Judge a brief by whether it sends the learner to
 the primary documentation, to a post-mortem, to their own experiment on the
 running system — and by whether the first design they commit to teaches them
-something when it fails. A lab that needs an elaborate grader to be interesting
-has the wrong task. Spend the effort there, and keep the grader small enough to
-be obviously correct.
+something when it fails. A lab that needs elaborate checking machinery to be
+interesting has the wrong task. Spend the effort there.
 
 Difficulty comes from the quirk of the system under study — a notification that
 never replays, a lease that is not a deadline, an index that is not yet
@@ -160,7 +159,7 @@ not earned its dependency and the scale target is too low.
 
 A scenario says "when record 4711 is acknowledged, freeze the broker" — never on
 a timer, never at random — so the failure lands at the same boundary on every
-run and the grader asserts an exact history. Random chaos proves nothing twice.
+run and verification asserts an exact history. Random chaos proves nothing twice.
 Every scenario declares what must remain true after recovery; a fault the system
 survives with nothing to check is entertainment, not a gate.
 
@@ -175,7 +174,7 @@ NN-solution-neutral-name/
   compose.yml       learner-owned application topology
   app/  tests/      learner-owned
   starter/          generated clients, contracts, empty seams, no product path
-  grader/           mechanical checks over public boundaries only
+  .claude/skills/verify/SKILL.md   how an agent checks this lab
   sources/          provider adapters and provenance manifests
   workload/         seeded generators and bounded cached replay
   infra/compose/dependencies.yml   fixed external systems only
@@ -183,8 +182,8 @@ NN-solution-neutral-name/
   evidence/         generated, gitignored
 ```
 
-`grader/` observes only public boundaries and never imports private application
-functions. `starter/` contains no end-to-end path.
+The verify skill names only public boundaries. `starter/` contains no end-to-end
+path.
 
 ## Verification contract
 
@@ -197,7 +196,6 @@ make test       unit and contract tests, under five seconds
 make test-all   local integration suite, what CI runs
 make fault      deterministic failure and recovery scenarios
 make bench      seeded load, invariant check, evidence output
-make grade      language-model judgment review, only after the gates pass
 make teaching-lint   fail on any solution leak in a lab README; CI runs it
 make source     record bounded real data
 make smoke      live cloud check, the only target that leaves the workstation
@@ -207,17 +205,24 @@ make clean      remove generated artifacts, keep cached source data
 Correctness gates assert exact record identities and histories, never counts
 alone. Performance gates NEVER hard-code a number.
 
-Mechanical checks are deterministic and live in `grader/`. Judgment checks go to
-a language-model reviewer behind `make grade`: a prompt plus a per-lab rubric,
-no framework. It refuses to start until the mechanical gates pass, and it never
-names the solution.
+**There is no grader binary.** Each lab carries
+`.claude/skills/verify/SKILL.md` — the procedure an agent follows to check that
+lab against a completed run. It names the observable boundaries, the invariant
+each must satisfy, and the identities to check, and it describes only what is
+not obvious. It never names the failure schedule, a mechanism, or a design.
+
+Only two things stay compiled, because neither can be described away: the fault
+controller, which must fire at exact barriers, and the workload generator, which
+must hold an offered rate under load. The run stays reproducible; the judgement
+over it does not, and a lab whose correctness cannot be stated clearly enough
+for that to be reliable has an unclear invariant.
 
 ## Languages
 
 - **Python** — tooling: fixtures, TOML, evidence reports, the grading runner,
   repository automation. `uv` projects and PEP 723 scripts.
 - **Go** — anything that must keep time under load: the open-loop generator,
-  fault controller, provider simulators, mechanical grader. NEVER move these to
+  fault controller, provider simulators. NEVER move these to
   Python; a generator that slows with the system under test destroys the
   measurement the labs teach.
 - **Go and TypeScript** — learner starters for the core phases; **Rust and C**
@@ -262,8 +267,8 @@ RDS, and ElastiCache are excluded — each bills continuously.
 5. Mark each `Code pointers` citation neutral or solution-bearing. Solution-
    bearing ones land in `HINTS.md` and never in `README.md`.
 6. Copy `template/` to the lab directory and remove its implementation. Write
-   `grader/histories/`: one accepted and one rejected synthetic history per
-   checker. NEVER write a worked solution.
+   `.claude/skills/verify/SKILL.md` — only what is not obvious. NEVER write a
+   worked solution.
 7. Add the fault schedule recipe to the controller, update the frozen aggregate
    digest, and confirm `make fault` materializes and removes it.
 8. Run `make teaching-lint`. Add a row to the core catalog in `specs/index.md`.
@@ -289,7 +294,7 @@ streaming; 4 NoSQL, analytics, portability; 6 low-level; 7 blockchain;
 **Phase 1 runs software the learner operates; phase 2 runs an execution model
 the learner cannot.** That is why phase 2 exists, and it is the one place a
 product may be repeated. A port across languages stays forbidden — it inherits
-the original's grader, failure schedule, and answer. A port across execution
+the original's checks, failure schedule, and answer. A port across execution
 models confiscates the answer.
 
 Phases 6, 7, and 8 are **separate catalogs**, not ports. Each track's labs must

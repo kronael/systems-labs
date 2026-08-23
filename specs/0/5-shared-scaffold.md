@@ -6,14 +6,14 @@ status: draft
 
 ## Decision
 
-Thirty-one labs cannot each own a grader, a generator, a fault controller,
+Thirty-one labs cannot each own a generator, a fault controller,
 and an evidence format. They share one implementation of each, and a lab
 contributes only its own declarative files. This document specifies those
 shared components and the boundary between shared and per-lab.
 
 The scaffold is the first thing built once `01-systems-labs.md` is `accepted`.
 Nothing else can be authored against a contract that does not exist: a lab
-written before the grader's history model is fixed will encode a different one.
+written before the history vocabulary is fixed will encode a different one.
 
 ## Boundary
 
@@ -22,49 +22,42 @@ everything that names its own domain.
 
 | Concern | Shared | Per lab |
 |---------|--------|---------|
-| Invariant checking | the history model, the checkers, the report format | which checkers run, and over which identities |
+| Verification | the history vocabulary and its five invariant shapes | its verify skill, and the identities it checks |
 | Workload | the open-loop generator, the seed and rate model, the replay engine | the record schema and the generator parameters |
 | Faults | the controller with the recipe set compiled in, every injection mechanism, the digest | its seeded schedule recipes and their barriers |
 | Evidence | the run manifest, the histogram format, the report schema | which measurements the lab requires |
 | Environment | the Compose profile shape, health checks, network layout | which dependencies the profile starts |
-| Grading | the review runner and the prompt skeleton | the rubric, and the public invariants it cites |
 
 No shared component may contain anything solution-bearing. A helper that
 batches writes, coordinates a cache fill, or reconciles an offset with a
 transaction has answered a lab's question inside the scaffold, and every lab
 that imports it inherits the answer.
 
-## `shared/grader/`
+## Verification, described not built
 
-The grader observes public boundaries only. It never imports learner code, and
-it never reads a database the learner owns except through a contract the lab
-declares public.
+There is no shared grader. Each lab carries
+`.claude/skills/verify/SKILL.md`, the procedure an agent follows to check that
+lab against a completed run, as fixed by the
+[verification section](../01-systems-labs.md#verification).
 
-Its core is a **history**: an ordered log of observed events, each carrying a
+What the scaffold still owes every lab is the **vocabulary** those skills are
+written in, so thirty-one labs describe their checks the same way. That
+vocabulary is a *history*: an ordered log of observed events, each carrying a
 record identity, a boundary name, a wall-clock and a monotonic timestamp, and
-the observation site. Checkers are pure functions over a history. This is what
-makes the correctness rule enforceable — gates assert identities and histories,
-never counts alone.
+the observation site. The fault controller and the evidence writer emit
+histories in this shape; a verify skill reads one and states what must hold
+over it.
 
-The checker set is small and shared:
+Five recurring shapes cover almost every lab invariant, and a skill names the
+one it means rather than inventing a phrasing: **once** — an identity appears
+exactly once at the effect boundary; **order** — identities appear in a
+declared order, within a declared scope; **survives** — an acknowledged
+identity is present after a recovery point; **never** — a forbidden state does
+not occur; **bounded** — a quantity stays inside a declared bound for the whole
+run.
 
-- **once** — every identity in the accepted input appears exactly once at the
-  effect boundary the lab names as single-effect;
-- **order** — identities appear in the order the lab declares, within the scope
-  the lab declares that order to hold;
-- **survives** — every acknowledged identity is present after a recovery point;
-- **never** — a forbidden state does not occur, such as a duplicate effect or a
-  record served after it was reported damaged;
-- **bounded** — a structural quantity stays inside a declared bound for the
-  whole run.
-
-A lab declares which checkers apply to which boundaries in its `lab.toml`. It
-does not write new checker code unless its invariant genuinely has no shared
-form, and a new checker is added to the shared set rather than to the lab.
-
-The grader emits a machine-readable result and a human-readable report. A
-failure names the identity, the boundary, and the expectation — never a
-suggested fix, which would name the solution.
+That is a shared vocabulary, not shared code. Nothing here is compiled, and no
+lab imports it.
 
 ## `shared/workload/`
 
@@ -81,7 +74,7 @@ in its own right.
 Parameters come from the lab's TOML: seed, rate, burst shape, key skew,
 duplicate ratio, late-arrival distribution, malformed-record ratio, disconnect
 boundary, and cursor overlap. The same seed produces the same identities in the
-same order on every host, because the grader asserts histories against them.
+same order on every host, because verification asserts histories against them.
 
 The replay engine handles cached recordings under the same interface: preserve
 original timing, scale time, or drive an open-loop rate. Recording is a
@@ -99,7 +92,7 @@ skew, and the fault block device.
 
 A scenario is declarative and names a trigger, a target, and an effect. The
 trigger is a **barrier**, not a time: an identity reaching a boundary. The
-controller and the grader therefore share the barrier vocabulary, which is what
+controller and the verify skills therefore share the barrier vocabulary, which is what
 lets a failure land at the same point on every run.
 
 A schedule is never a readable artifact at rest, because a barrier name is an
@@ -138,18 +131,6 @@ Where a lab does not require instrumentation, this component still supplies the
 evidence report writer, because the report schema is shared even when the
 measurement method is the learner's choice.
 
-## `shared/grade/`
-
-The judgment reviewer described in the
-[grading contract](../01-systems-labs.md#grading-contract): a runner, a prompt
-skeleton, and the rules that bound it. It refuses to start until the mechanical
-gates pass. It reads the learner's `README.md`, `ARCHITECTURE.md`, code, and
-evidence report, and writes `evidence/review.md`.
-
-The prompt skeleton is shared; the rubric is per lab and cites only invariants
-already public in that lab's `README.md`. The reviewer never names a pattern, a
-schema, or a fix.
-
 ## Teaching lint
 
 `make teaching-lint` is the mechanical enforcement of the
@@ -182,21 +163,21 @@ trivial domain: one record type, one operation, one invariant, one fault.
 The template carries a working implementation of its trivial domain, and it
 is the only one in the repository. It is the scaffold's regression test rather
 than a lab: CI proves `make up`, `make test-all`, `make fault`, and `make bench`
-all run end to end against it, so a broken generator, controller, or checker
+all run end to end against it, so a broken generator, controller, or evidence
+writer
 fails before any lab does.
 
 No lab has an equivalent. A challenge has one correct answer, so a worked
 reference is well defined; a systems lab admits many correct designs, so no
 implementation is canonical and a "rotten" one is merely one of countless ways
 to be wrong. What anchors a lab instead is the cited source that documents the
-real reported behaviour its quirk rests on, and the grader's own history
-fixtures. A new lab starts as a copy of the template with the implementation
+real reported behaviour its quirk rests on. A new lab starts as a copy of the template with the implementation
 removed.
 
 ## Build order
 
-1. The history model and the checker set, because every other component and
-   every lab spec depends on their vocabulary.
+1. The history vocabulary, because every other component and every lab spec
+   depends on it.
 2. The template, driven by hand, proving the directory shape and the Make
    targets against a trivial domain.
 3. The workload generator, validated by the rate-accuracy property that phase 6
@@ -204,8 +185,6 @@ removed.
 4. The fault controller, mechanism by mechanism, cheapest first. The block
    device is proven or replaced here.
 5. The evidence report writer and the shared telemetry contract.
-6. The grade runner, last, because it cannot run until the gates it waits on
-   exist.
 
 Lab 01 is authored against the finished scaffold, not alongside it.
 
@@ -219,7 +198,7 @@ Lab 01 is authored against the finished scaffold, not alongside it.
   Lambda-compatible runner.
   Every phase 2 failure schedule except the import lab's depends on that
   barrier; the proposal is `BUGS.md` S1 and needs sign-off.
-- Whether the shared checker set survives contact with phases 7 and 8, whose
+- Whether the five invariant shapes survive contact with phases 7 and 8, whose
   identities are chain transactions and documents rather than records.
 - Whether `template/` carries both supported starters or only Go, given that a
   second starter doubles the surface the scaffold must keep passing.
