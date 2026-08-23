@@ -33,7 +33,7 @@ Each section below fixes one thing. This list is the index, not a substitute.
 
 **Rationale** — **Decision**: sixteen core labs, three further catalogs under `0/`, GPL-3.0, sources cited and never copied. **Problem**: bounded exercises cannot teach boundary failure. **Critique**: the first draft rewarded tool exposure; the fix gave each technology room for its failure model.
 
-**Pedagogy** — **Learning model**: predict, build, test, break, inspect, correct, prove, across three gates whose sum is less than the lab's budget, because the redesign between them is the teaching. **Lab brief contract**: one system, no mechanism named even to disclaim it, difficulty from the quirk, a scale target that is not a pass threshold, named neighbouring systems. **Teaching contract**: five artifacts hold task, hints, the check in words, executable edge cases, and author reasoning; an assistant must be asked twice.
+**Pedagogy** — **Learning model**: predict, build, test, break, inspect, correct, prove, across three gates whose sum is less than the lab's budget, because the redesign between them is the teaching. **Lab brief contract**: one system, no mechanism named even to disclaim it, difficulty from the quirk, a scale target that is not a pass threshold, named neighbouring systems. **Teaching contract**: separate files hold the task, the hints, the answer key, and the author reasoning, so a learner can avoid the answer without effort; an assistant must be asked twice.
 
 **Harness** — **Standard laboratory scaffold**: one dependency-only Compose profile, runnable before learner code exists; specialized labs extend it. **Fault injection contract**: one shared controller, faults at named barriers only, every scenario declaring what must survive.
 
@@ -204,12 +204,15 @@ those modes are excluded, because every premise the serverless labs rest on
 holds only for the standard mode.
 
 Every lab names its **neighbouring systems**: the two or three technologies a
-practitioner would reasonably have reached for instead, and the one thing each
-does differently at the boundary the lab is about. The lab does not compare
-them for the learner and does not run them. It names them, states the axis of
-difference in a sentence, and points at their public documentation, because a
-learner who never learns what the alternatives guarantee cannot defend the
-choice the lab forced on them.
+practitioner would reasonably have reached for instead. The lab does not
+compare them for the learner and does not run them.
+
+The naming and the comparison separate. The task carries the names and the
+documentation links, because a learner who never learns what the alternatives
+are cannot defend the choice the lab forced on them, and a name on its own
+solves nothing. The one thing each neighbour does differently at this lab's
+boundary is the comparison, and it points straight at the quirk, so it belongs
+to `HINTS.md`.
 
 This is also where excluded technologies belong. RabbitMQ, NATS, Cassandra, and
 the rest stay out of the dependency set and appear here as reading. A named
@@ -227,10 +230,15 @@ solution-bearing guidance.
 Five artifacts hold five different things, and the separation is what makes the
 lab teachable:
 
-- `README.md` — the task. What the product does, what must hold, what evidence
-  must exist. Nothing about how, and nothing about where it breaks.
-- `HINTS.md` — the design reading, opened deliberately. Neighbouring systems,
-  rejected designs, and the solution-bearing citations.
+- `README.md` — the task and the landscape, and that is all. What the product
+  does, what must hold, what evidence must exist, and the names of the two or
+  three technologies a practitioner would have reached for instead, with links
+  to their documentation. Nothing about how, and nothing about where it breaks.
+  Naming a neighbour orients; saying what it does differently at this lab's
+  boundary points at the quirk, so that sentence stays in `HINTS.md`.
+- `HINTS.md` — the design reading, opened deliberately. What each neighbouring
+  system does differently at this lab's boundary, rejected designs, and the
+  solution-bearing citations.
 - `EVALUATION.md` — what a strong solution looks like and how to check one,
   opened deliberately. It is the answer key: the properties a good design
   holds, the boundaries to observe, the independently computed results a check
@@ -745,7 +753,7 @@ Every lab exposes the same root vocabulary:
   observed history that verification reads.
 - `make teaching-lint` enforces the teaching contract mechanically: it fails
   if any lab `README.md` contains a scenario barrier name, a `Neighbouring
-  systems` product name, any citation marked solution-bearing, the name of
+  systems` boundary-difference sentence, any citation marked solution-bearing, the name of
   a configuration parameter belonging to a dependency — a setting's name
   names a mechanism, and the task may state only the property the setting
   governs — or a mechanism name at all, whether prescribed, disclaimed, or

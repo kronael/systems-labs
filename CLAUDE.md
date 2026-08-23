@@ -73,37 +73,65 @@ The standard is deterrence, not impossibility. The learner owns the machine and
 can disassemble the controller or fetch the recipe sources from the public
 source repository — each a deliberate act, like opening `HINTS.md`.
 
-## README vs HINTS — never spoil the lab
+## Four files, four audiences — never spoil the lab
 
-- **`README.md`** states the task, invariants, limits, interfaces, scale target,
-  and acceptance evidence. It carries nothing else. It must not name, describe,
-  compare, or rule out any solution method. The ban imports the `challenges/`
-  categories verbatim: techniques, data structures, memory orderings,
-  recurrences, invariants, implementation shapes, failed strategies, naive or
-  brute-force approaches, complexity analysis of candidate approaches, and
-  phrases such as "the trick", "the trap", "the catch", or "the hard part".
-  State the input limits without explaining how an approach behaves at them.
-  The banned invariants are a design's internal ones; the product invariants the
-  task must hold are the task itself.
-- **Names are part of the prompt.** Lab titles, directory slugs, catalog rows,
-  and source labels are solution-neutral too.
-- **`HINTS.md`** holds architecture guidance, rejected designs, and
-  solution-bearing citations. Opened by choice, never by default. Nothing in
-  `README.md` summarizes it.
-- **`EVALUATION.md`** is the answer key and is solution-bearing by choice,
-  exactly like `HINTS.md`. It may state what a strong design holds, what a weak
-  one gets wrong, and the independently computed result a check compares
-  against. The ban does not bind it. Its only protection is that a learner who
-  wants the exercise does not open it.
-- Fixed wording, never paraphrased: every `HINTS.md` opens with the exact line
-  `> Spoilers. Open only when stuck.` and every `README.md` ends with the exact
-  line ``Stuck? See `HINTS.md`.``
+One rule governs everything below: **a learner who wants the exercise must be
+able to avoid the answer without effort.** That is why these are separate files
+and never sections of one. Anything solution-bearing that lands in `README.md`
+cannot be unseen.
+
+| file | holds | opened |
+|------|-------|--------|
+| `README.md` | the task and the landscape | by default |
+| `HINTS.md` | the design reading | by choice, when stuck |
+| `EVALUATION.md` | the answer key | by choice, when checking |
+| `ARCHITECTURE.md` | the learner's own reasoning | written, not read |
+
+**`README.md` carries the requirements and the technology landscape, and that
+is all.** The requirements: what the product does, the invariants that must
+hold, the limits, the public interface, the scale target, and the acceptance
+evidence. The landscape: the names of the two or three technologies a
+practitioner would have reached for instead, with links to their documentation.
+
+Naming a neighbour orients a learner who would otherwise not know the
+alternatives exist, and a name alone solves nothing. Saying what that neighbour
+does *differently at this lab's boundary* is the comparison, and it points
+straight at the quirk — that sentence belongs in `HINTS.md`.
+
+Beyond the task and the landscape, `README.md` must not name, describe,
+compare, or rule out any solution method. The ban imports the `challenges/`
+categories verbatim: techniques, data structures, memory orderings, recurrences,
+invariants, implementation shapes, failed strategies, naive or brute-force
+approaches, complexity analysis of candidate approaches, and phrases such as
+"the trick", "the trap", "the catch", or "the hard part". State the input limits
+without explaining how an approach behaves at them. The banned invariants are a
+design's internal ones; the product invariants the task must hold are the task.
+
+**Names are part of the prompt.** Lab titles, directory slugs, catalog rows, and
+source labels are solution-neutral too.
+
+**`HINTS.md`** holds the architecture guidance, the neighbour boundary
+differences, the rejected designs, and the solution-bearing citations. Nothing
+in `README.md` summarizes it.
+
+**`EVALUATION.md`** is the answer key. It states what a strong design holds,
+what a weak one gets wrong, the boundaries to observe, and any independently
+computed result a check compares against. The ban does not bind it.
+
+`HINTS.md` and `EVALUATION.md` are solution-bearing **by choice**, and that
+choice is their only protection. Do not add secrecy machinery around them, and
+do not weaken them to make them safe to open early — a hint that spoils nothing
+is a hint that helps nobody.
+
+Fixed wording, never paraphrased: every `HINTS.md` opens with the exact line
+`> Spoilers. Open only when stuck.` and every `README.md` ends with the exact
+line ``Stuck? See `HINTS.md`.``
 
 `make teaching-lint` enforces this and runs in CI: it fails on a mechanism name
 — prescribed, disclaimed, or merely mentioned — a barrier name, a neighbour
-product name, a dependency configuration-parameter name, or a solution-bearing
-citation in any course-authored learner-facing text other than `HINTS.md` and
-`EVALUATION.md`, which are solution-bearing by choice.
+boundary-difference sentence, a dependency configuration-parameter name, or a
+solution-bearing citation in any course-authored learner-facing text other than
+`HINTS.md` and `EVALUATION.md`.
 
 ## The brief — what, never how
 
