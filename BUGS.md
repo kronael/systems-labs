@@ -134,8 +134,9 @@ section still narrates its schedule as "the grader freezes…", "the grader
 replays…"; `specs/8/2` still cites `make grade` as the target that "reviews
 whether the policy itself is defensible", which the governing spec now says does
 not exist; and `specs/index.md`'s row 05 still names a "history checker" as lab
-05's prepared environment. 121 occurrences across 35 files under `specs/1` to
-`specs/8`, plus four catalogs under `specs/0/`.
+05's prepared environment. 122 occurrences on 121 lines across 35 files under
+`specs/1` to `specs/8`, plus four catalogs under `specs/0/` and the core
+catalog row itself.
 
 The fix is not a rename. "Grader" does two jobs in those sections and the jobs
 now have different owners: where it drives a fault or holds a rate it is the
