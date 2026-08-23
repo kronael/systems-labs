@@ -231,13 +231,12 @@ lab teachable:
   must exist. Nothing about how, and nothing about where it breaks.
 - `HINTS.md` — the design reading, opened deliberately. Neighbouring systems,
   rejected designs, and the solution-bearing citations.
-- `.claude/skills/verify/SKILL.md` — the check, in words: what must hold at
-  each observable boundary and where to look for it, for an agent to run. It
-  is learner-facing, so the ban that binds `README.md` binds it too — no
-  mechanism, no design, no barrier, no schedule, and no record identity. It
-  states the property and where to observe it, never the way a design reaches
-  it, and the [Verification](#verification) section fixes the rest of its
-  shape.
+- `EVALUATION.md` — what a strong solution looks like and how to check one,
+  opened deliberately. It is the answer key: the properties a good design
+  holds, the boundaries to observe, the independently computed results a check
+  needs, and what separates a working demo from a reliable system. It is
+  protected exactly as `HINTS.md` is — by the learner choosing not to open it
+  while they are still solving — and by nothing else.
 - The fault schedules — the edge cases, as executable failure
   schedules. The learner meets them by running `make fault`, after committing
   to a design. A schedule is never a readable artifact at rest: its seeded
@@ -663,9 +662,10 @@ keeping its unit-sized submission model:
   network call on an application request path.
 - `workload/` generates schema-compatible large inputs from frozen seeds and
   replays bounded cached recordings without storing huge fixtures in Git.
-- `.claude/skills/verify/SKILL.md` describes how to check this lab, for an
-  agent to run. There is no grader binary. See the
-  [Verification](#verification) section.
+- `EVALUATION.md` is the answer key: what a strong solution holds, how to check
+  it, and the independently computed results a check needs. Opened by choice,
+  like `HINTS.md`. There is no grader binary. See
+  [Verification](#verification).
 - `infra/compose/dependencies.yml` starts only the fixed external systems,
   simulators, and telemetry services. Specialized labs add prepared Kubernetes
   and OpenTofu sandboxes under `infra/`; neither contains a solved application.
@@ -680,12 +680,12 @@ NN-solution-neutral-name/
   README.md
   ARCHITECTURE.md
   HINTS.md
+  EVALUATION.md
   lab.toml
   compose.yml
   app/
   tests/
   starter/
-  .claude/skills/verify/SKILL.md
   sources/
   workload/
   infra/
@@ -752,8 +752,8 @@ Every lab exposes the same root vocabulary:
   merely mentioned. Ruling a candidate out names it as surely as ruling it
   in, so "no worker pool is required" fails the lint exactly as "use a
   worker pool" does. The same checks cover every course-authored
-  learner-facing text — `.claude/skills/verify/SKILL.md` included — except
-  `HINTS.md`, which is solution-bearing by choice. The check is cheap by construction, because every `Code pointers`
+  learner-facing text except `HINTS.md` and `EVALUATION.md`, which are
+  solution-bearing by choice. The check is cheap by construction, because every `Code pointers`
   bullet carries an explicit neutral or solution-bearing state, each lab's
   dependency set bounds the parameter vocabulary to scan for, and the
   mechanism vocabulary is one curriculum-wide list maintained with the lint.
@@ -803,31 +803,28 @@ checks never run on untrusted pull requests.
 
 ## Verification
 
-There is no grader binary and no grading framework. Verification is described
-rather than implemented, and an agent runs it.
+There is no grader binary and no grading framework, and there is no skill. Each
+lab carries `EVALUATION.md`, and whoever is checking the work reads it — the
+learner, a reviewer, or an agent the learner points at it.
 
-Each lab carries `.claude/skills/verify/SKILL.md`: the procedure for checking
-that lab's invariants against a completed run. It names the observable
-boundaries — HTTP responses, SQL state, a provider's request log, consumer
-positions, the evidence report — and the invariant each one must satisfy. It
-describes **only what is not obvious**, and everything it adds over `README.md`
-is where to observe, never what to conclude. An agent does not need to be told
-to run the tests or read the error.
+`EVALUATION.md` is the answer key and is written as one. It states what a
+strong solution holds and how to see that it holds: the observable boundaries,
+the invariant each must satisfy, the record selectors a check ranges over, and
+— where a lab needs one — the independently computed result a check compares
+against, which no invariant shape can supply. It may say what a weak solution
+typically gets wrong, because that is the reviewer's job and this file is not
+the task.
 
-The skill names no record identity. A failure schedule selects exact records,
-so a static file listing the records whose history needs checking publishes
-that selection to anyone who opens the lab — and an agent opens the skill by
-default, which makes the disclosure accidental rather than the deliberate act
-the teaching contract's standard rests on. The skill names the selector its
-invariant ranges over; the completed run's own history supplies the identities
-that were touched.
-
-The skill never names the failure schedule, a mechanism, or a design. It states
-what must be true, exactly as `README.md` does, and where to look for it.
+**A skill was the wrong shape.** An agent loads a skill by default, so a
+verification skill discloses its contents to anyone working in the directory,
+without the learner ever choosing to see them. `EVALUATION.md` is a file, and
+opening it is an act. That is the same standard `HINTS.md` has always had, and
+it is the only protection either file gets or needs: a learner who wants the
+exercise does not open them.
 
 This is honest about how these labs will be used. A learner working them has an
-agent, will use it both to build and to check, and is better served by a
-verification standard they can read than by a binary they cannot.
+agent, will use it to build and to check, and is better served by an evaluation
+standard they can read than by a binary they cannot.
 
 No part of the judgement is compiled. Two parts of the run still are, because
 neither can be described away: the fault controller, which must fire at exact
@@ -835,10 +832,10 @@ barriers, and the workload generator, which must hold an offered rate under
 load. The run therefore stays reproducible even though the judgement over it
 does not.
 
-That is the cost, and it is real: two agent runs can disagree where a compiled
-checker could not. A lab whose correctness cannot be stated clearly enough for
-that judgement to be reliable has an unclear invariant, which is a defect in
-the lab rather than a reason to build a framework.
+That is the cost, and it is real: two reviews can disagree where a compiled
+checker could not. A lab whose correctness cannot be stated clearly enough in
+`EVALUATION.md` for that judgement to be reliable has an unclear invariant,
+which is a defect in the lab rather than a reason to build a framework.
 
 ## Source placement and attribution
 

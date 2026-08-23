@@ -1,11 +1,23 @@
 # Bugs
 
-## S19 — the checks lost their independent producer, their coverage check, and their regression fixtures (2026-08-23, proposed)
+## ✅ FIXED 2026-08-23 — S19 — the checks lost their independent producer (2026-08-23, fixed)
 
-`S16` and the verification restructure removed three jobs that were not the
-grader's incidental machinery but its reason for existing. Each is now unowned.
+Resolved by `EVALUATION.md`. Four labs check by comparing against an
+independently computed answer — `2/1` invoice lines, `6/5` a latency
+distribution, `7/2` a balance replay, `8/5` recomputed scores — and none of
+those is once, order, survives, never, or bounded. With no grader and only a
+verification skill bound by the task's ban, an agent would have had to derive
+that answer from the learner's own implementation: a grader reconstituted per
+run, unaudited, different every time.
 
-**Independent computation.** Four labs require the check to derive the answer
+`EVALUATION.md` is the answer key and is solution-bearing by choice, so it
+simply carries the independently computed result. The owner's framing settles
+it: the file is protected the way `HINTS.md` is — a learner who wants the
+exercise does not open it — and by nothing else.
+
+The original entry is kept below.
+
+Four labs require the check to derive the answer
 itself rather than assert a shape over a history. `2/1` compares "every invoice
 line against an independently computed answer derived from the acknowledged
 input under the supplied rating rules"; `6/5` requires the reported percentiles

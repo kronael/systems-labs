@@ -43,10 +43,10 @@ Two things stand in its place:
   a vendor limit. That citation is the lab's ground truth. Fetch the page and
   confirm it says what you claim; a URL recalled from memory is not a citation.
   NEVER invent a quirk and then look for a source.
-- **A described check.** `.claude/skills/verify/SKILL.md` states what must hold
-  and where to look, for an agent to run. No grader binary, no framework, no
-  fixtures proving a checker. A lab that needs elaborate checking machinery to
-  be interesting has the wrong task.
+- **`EVALUATION.md`.** The answer key: what a strong solution holds, how to
+  check it, and any independently computed result a check needs. Opened by
+  choice, like `HINTS.md`. No grader binary, no framework. A lab that needs
+  elaborate checking machinery to be interesting has the wrong task.
 
 Verification needs no oracle: it asserts invariants over observed histories
 rather than comparing output to a reference run.
@@ -90,12 +90,11 @@ source repository — each a deliberate act, like opening `HINTS.md`.
 - **`HINTS.md`** holds architecture guidance, rejected designs, and
   solution-bearing citations. Opened by choice, never by default. Nothing in
   `README.md` summarizes it.
-- **`.claude/skills/verify/SKILL.md`** is learner-facing too, so the same ban
-  binds it: no mechanism, no design, no barrier, no schedule, and no record
-  identity. A schedule selects exact records, and an agent opens the skill by
-  default, so a listed identity leaks the schedule by accident. The skill
-  names the property, the selector, and where to observe — never how a design
-  reaches the property.
+- **`EVALUATION.md`** is the answer key and is solution-bearing by choice,
+  exactly like `HINTS.md`. It may state what a strong design holds, what a weak
+  one gets wrong, and the independently computed result a check compares
+  against. The ban does not bind it. Its only protection is that a learner who
+  wants the exercise does not open it.
 - Fixed wording, never paraphrased: every `HINTS.md` opens with the exact line
   `> Spoilers. Open only when stuck.` and every `README.md` ends with the exact
   line ``Stuck? See `HINTS.md`.``
@@ -103,8 +102,8 @@ source repository — each a deliberate act, like opening `HINTS.md`.
 `make teaching-lint` enforces this and runs in CI: it fails on a mechanism name
 — prescribed, disclaimed, or merely mentioned — a barrier name, a neighbour
 product name, a dependency configuration-parameter name, or a solution-bearing
-citation in any course-authored learner-facing text other than `HINTS.md` — a
-lab `README.md` and its `.claude/skills/verify/SKILL.md` alike.
+citation in any course-authored learner-facing text other than `HINTS.md` and
+`EVALUATION.md`, which are solution-bearing by choice.
 
 ## The brief — what, never how
 
@@ -181,7 +180,7 @@ NN-solution-neutral-name/
   compose.yml       learner-owned application topology
   app/  tests/      learner-owned
   starter/          generated clients, contracts, empty seams, no product path
-  .claude/skills/verify/SKILL.md   how an agent checks this lab
+  EVALUATION.md     the answer key, opened by choice
   sources/          provider adapters and provenance manifests
   workload/         seeded generators and bounded cached replay
   infra/compose/dependencies.yml   fixed external systems only
@@ -189,8 +188,8 @@ NN-solution-neutral-name/
   evidence/         generated, gitignored
 ```
 
-The verify skill names only public boundaries. `starter/` contains no end-to-end
-path.
+Checks observe public boundaries only, never private application functions.
+`starter/` contains no end-to-end path.
 
 ## Verification contract
 
@@ -212,12 +211,16 @@ make clean      remove generated artifacts, keep cached source data
 Correctness gates assert exact record identities and histories, never counts
 alone. Performance gates NEVER hard-code a number.
 
-**There is no grader binary.** Each lab carries
-`.claude/skills/verify/SKILL.md` — the procedure an agent follows to check that
-lab against a completed run. It names the observable boundaries and the
-invariant each must satisfy, and it describes only what is not obvious. It
-never names the failure schedule, a mechanism, a design, or a record identity;
-the completed run's history supplies the identities that were touched.
+**There is no grader binary and no verification skill.** Each lab carries
+`EVALUATION.md` — the answer key, read by whoever checks the work. It states
+what a strong solution holds, the boundaries to observe, the selectors a check
+ranges over, and the independently computed result a check needs where no
+invariant shape supplies one.
+
+A skill was the wrong shape: an agent loads one by default, so it discloses
+itself without the learner ever choosing to see it. A file is opened by an act
+— the same standard `HINTS.md` has always had, and the only protection either
+file gets or needs.
 
 No part of the judgement is compiled. Two parts of the run still are, because
 neither can be described away: the fault controller, which must fire at exact
@@ -276,8 +279,8 @@ RDS, and ElastiCache are excluded — each bills continuously.
 5. Mark each `Code pointers` citation neutral or solution-bearing. Solution-
    bearing ones land in `HINTS.md` and never in `README.md`.
 6. Copy `template/` to the lab directory and remove its implementation. Write
-   `.claude/skills/verify/SKILL.md` — only what is not obvious. NEVER write a
-   worked solution.
+   `EVALUATION.md`. NEVER write a worked solution — the answer key describes
+   what a strong design holds, it does not implement one.
 7. Add the fault schedule recipe to the controller, update the frozen aggregate
    digest, and confirm `make fault` materializes and removes it.
 8. Run `make teaching-lint`. Add a row to the core catalog in `specs/index.md`.

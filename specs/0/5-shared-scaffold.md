@@ -36,8 +36,7 @@ that imports it inherits the answer.
 ## Verification, described not built
 
 There is no shared grader. Each lab carries
-`.claude/skills/verify/SKILL.md`, the procedure an agent follows to check that
-lab against a completed run, as fixed by the
+`EVALUATION.md`, the answer key whoever checks the work reads, as fixed by the
 [verification section](../01-systems-labs.md#verification).
 
 What the scaffold still owes every lab is the **vocabulary** those skills are
@@ -144,8 +143,8 @@ measurement method is the learner's choice.
 [teaching contract](../01-systems-labs.md#teaching-contract), and CI runs it.
 It fails if a scenario barrier name, a `Neighbouring systems` product name, or
 any citation marked solution-bearing appears in any course-authored
-learner-facing text other than `HINTS.md` — a lab `README.md` and its
-`.claude/skills/verify/SKILL.md` alike. It also fails if the name of a
+learner-facing text other than `HINTS.md` and `EVALUATION.md`, which are
+solution-bearing by choice. It also fails if the name of a
 configuration parameter belonging to a dependency appears in those texts: a
 setting's name names a mechanism, and the task may state only the property the
 setting governs. And it fails if a mechanism name appears in them at all —
