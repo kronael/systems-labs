@@ -1,6 +1,34 @@
 # Bugs
 
-## S20 — phase 1 misses two dimensions, and `1/2` and `1/4` overlap (2026-08-23, proposed)
+## ✅ FIXED 2026-08-23 — S20 — phase 1 misses two dimensions, and `1/2` and `1/4` overlap (2026-08-23, fixed)
+
+Signed off and shipped in two parts. The merge landed first: `1/4` folded into
+`1/2`, whose falsified belief is now that a lease is not a lock, and `2/2` kept
+the model contrast instead of a product pairing. The two missing dimensions
+then landed as new labs on the numbers the merge freed —
+`specs/1/4-uninterrupted-catalog-service.md` for change against live traffic,
+and `specs/1/6-shared-budget-service.md` for work the store declines to
+complete. Both are PostgreSQL-only, both quirk pages were fetched and quoted
+again before being cited, and both citations are marked solution-bearing.
+`1/4` also cites the explicit-locking page, because `ALTER TABLE` alone does
+not establish that a waiting change stops the readers queued behind it.
+
+The risk the proposal named survived scrutiny. `1/6` sits beside `1/2` and
+stays distinct because the two ask opposite questions of the same store.
+`1/2`'s invariant is one the store can be made to refuse at write time, so its
+lesson is what a delivery lease does not promise. `1/6`'s invariant is an
+aggregate over a set that no single write can be judged against, so the store's
+answer under concurrency is a refusal to complete the unit of work, and
+everything after that refusal — the boundary, the bound on attempts, the answer
+the client already holds — belongs to the application. `1/6` runs no broker and
+has no asynchronous work at all.
+
+Phase 1 now holds six labs and the core catalog seventeen. `specs/index.md` was
+renumbered 01 to 17, the per-lab source map in `01-systems-labs.md` followed
+it, and the phase 1 README's delivery-model and JetStream prose was corrected
+to what the merge left behind.
+
+The original entry is kept below.
 
 Phase 1's five labs separate cleanly on one axis — who owns progress, and what
 happens when it is lost. `1/1` has no durable state, `1/2` has a notification
