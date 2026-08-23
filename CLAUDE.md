@@ -43,13 +43,10 @@ Two things stand in its place:
   a vendor limit. That citation is the lab's ground truth. Fetch the page and
   confirm it says what you claim; a URL recalled from memory is not a citation.
   NEVER invent a quirk and then look for a source.
-- **`grader/histories/`.** Synthetic observed histories, at least one that each
-  checker must accept and one that each checker must reject. Written by hand
-  against the history model, never recorded from a fault run, naming no barrier.
-  A history exhibiting a doubled effect states the failure the `README.md`
-  invariant already forbids, so it reveals nothing about the design that avoids
-  it. These prove the grader works. Nothing proves a design does — that is the
-  learner's job and `make grade`'s.
+- **A small grader.** It asserts invariants over observed histories and needs no
+  oracle. Its checkers get unit tests over hand-written synthetic histories, and
+  that is all. Do not build machinery to prove the grader; a lab that needs an
+  elaborate grader to be interesting has the wrong task.
 
 The grader needs no oracle: it asserts invariants over observed histories rather
 than comparing output to a reference run.
@@ -136,6 +133,13 @@ to roughly 150 to 250 focused hours.
 
 ## Difficulty, scale, and the earned dependency
 
+**The task carries the lab.** Judge a brief by whether it sends the learner to
+the primary documentation, to a post-mortem, to their own experiment on the
+running system — and by whether the first design they commit to teaches them
+something when it fails. A lab that needs an elaborate grader to be interesting
+has the wrong task. Spend the effort there, and keep the grader small enough to
+be obviously correct.
+
 Difficulty comes from the quirk of the system under study — a notification that
 never replays, a lease that is not a deadline, an index that is not yet
 consistent. NEVER make a lab hard through input formats, parsing chores, or
@@ -172,7 +176,6 @@ NN-solution-neutral-name/
   app/  tests/      learner-owned
   starter/          generated clients, contracts, empty seams, no product path
   grader/           mechanical checks over public boundaries only
-  grader/histories/ synthetic accept/reject fixtures that validate the checkers
   sources/          provider adapters and provenance manifests
   workload/         seeded generators and bounded cached replay
   infra/compose/dependencies.yml   fixed external systems only

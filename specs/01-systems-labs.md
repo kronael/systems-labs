@@ -158,6 +158,14 @@ them, not even to exclude it. Where a lab needs a second dependency, that
 dependency belongs to the fixed environment, not to a second product the
 learner must build.
 
+A good task carries the lab; the grading apparatus does not. The measure of a
+brief is whether it sends the learner to the primary documentation, to a
+post-mortem, to their own experiment on the running system — and whether the
+first design they commit to teaches them something when it fails. A lab that
+needs an elaborate grader to be interesting has the wrong task. Effort belongs
+in the task and its quirk, and the grader stays small enough to be obviously
+correct.
+
 Every lab is hard, and the difficulty comes from the quirks of the system under
 study. The hard part is the boundary case where the obvious mental model is
 wrong: a notification that never replays, a lease that is not a deadline, an
@@ -640,13 +648,10 @@ keeping its unit-sized submission model:
   whose only protection is that nobody reads it. The grader needs no oracle:
   it asserts invariants over observed histories rather than comparing output
   to a reference run.
-- `grader/histories/` holds the grader's own validation fixtures: synthetic
-  observed histories, at least one that each checker must accept and one that
-  each checker must reject. They are written by hand against the history
-  model, never recorded from a fault run, and they name no barrier. A history
-  exhibiting a doubled effect states the failure the `README.md` invariant
-  already forbids, so it reveals nothing about the design that avoids it.
-  These fixtures prove the grader works; nothing proves a design does.
+- The checkers have unit tests like any other code, over synthetic histories
+  written by hand rather than recorded from a fault run. That is the whole of
+  it: the grader is a small, boring component and the specification says
+  nothing more about proving it.
 - The fault schedules — duplicates, delayed acknowledgements, restarts,
   partitions, recovery — are not lab-directory files and not readable files
   anywhere in the learner distribution. Their seeded recipes are compiled
@@ -681,7 +686,6 @@ NN-solution-neutral-name/
   tests/
   starter/
   grader/
-    histories/
   sources/
   workload/
   infra/
