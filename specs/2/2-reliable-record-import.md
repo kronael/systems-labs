@@ -151,8 +151,9 @@ produced.
 - [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
 - [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
   the pairing this lab belongs to and what the platform supplies instead.
-- [`../1/4-reliable-record-import.md`](../1/4-reliable-record-import.md) — the
-  local lab this one recasts.
+- [`../1/2-reservation-fulfillment.md`](../1/2-reservation-fulfillment.md) —
+  the self-run form of the leased-delivery model this lab receives as a hosted
+  contract. The products differ; the delivery model is the contrast.
 - [Visibility timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
   — delivery is at-least-once even inside the visibility window, extension
   stops at a hard twelve-hour limit measured from first receipt, and a

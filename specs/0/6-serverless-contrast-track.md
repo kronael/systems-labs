@@ -66,12 +66,20 @@ at all.
 |-------|-----------|---------------------------|-------------------------------------|
 | [1/1 quote service](../1/1-resilient-quote-service.md) | [2/5 quote aggregation](../2/5-serverless-quote-aggregation.md) | The long-lived process, its shared connections, and admission control the design owns | External shared state, a concurrency ceiling declared to the platform, and a degradation policy for throttling rather than queueing |
 | [1/2 reservation fulfillment](../1/2-reservation-fulfillment.md) | [2/3 serverless reservation](../2/3-serverless-reservation-fulfillment.md) | The commit-time listener, the worker pool, and a store able to enforce non-overlap itself | A hand-built exclusion rule over a store that cannot express one, and an event-driven fulfillment path |
-| [1/4 record import](../1/4-reliable-record-import.md) | [2/2 reliable record import](../2/2-reliable-record-import.md) | The self-run broker, and the receive loop the learner writes and tunes | A hosted poller that delivers batches, and a partial batch outcome contract |
 | [1/5 auditable transfer](../1/5-auditable-transfer-service.md) | [2/4 serverless transfer](../2/4-serverless-auditable-transfer.md) | Any process that outlives a request to carry committed state downstream | A commit gap closed by events, across a freeze that can strand the publish |
 
 [2/1 metered billing](../2/1-metered-billing-api.md) has no phase 1 partner by
 design. It comes first and teaches the execution model on an unfamiliar
 product, so the recasts that follow vary one thing rather than two.
+
+[2/2 reliable record import](../2/2-reliable-record-import.md) lost its partner
+when phase 1 merged the standalone import lab into
+[1/2](../1/2-reservation-fulfillment.md). No phase 1 lab now holds that product.
+What survives is the model contrast, which was always the point of the pairing:
+`1/2` runs a leased delivery the learner operates, and `2/2` receives the same
+model as a hosted contract with the poller and the batch outcome supplied. The
+product is no longer held constant there, so `2/2` is a model contrast rather
+than a recast, and the table above is the set of true recasts.
 
 The import pairing also revisits the selection record's cut of the NATS
 candidate. That cut reasoned that a third messaging product adds vocabulary

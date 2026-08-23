@@ -8,9 +8,8 @@ architecture pressure it applies, and the environment prepared for it.
 | # | Spec | System to design | Architecture pressure | Prepared environment |
 |---|------|------------------|-----------------------|----------------------|
 | 01 | [Resilient quote service](1/1-resilient-quote-service.md) | Quote aggregation API | Overload, partial provider failure, cancellation, shutdown | Provider simulators, telemetry, load generator |
-| 02 | [Reservation fulfillment service](1/2-reservation-fulfillment.md) | Reservation API with asynchronous fulfillment | Transactional rules, notification delivery, worker recovery | PostgreSQL, fault controller, large dataset |
+| 02 | [Reservation fulfillment service](1/2-reservation-fulfillment.md) | Reservation API with leased asynchronous fulfillment | A lease that is not a lock, a database-enforced invariant, worker recovery | PostgreSQL, NATS JetStream, fault controller, large dataset |
 | 03 | [Order activity dashboard](1/3-order-activity-dashboard.md) | Replayable order and customer views | Ordering, progress versus effect, rebuild, skew | Kafka, PostgreSQL, generated producers |
-| 04 | [Reliable record import](1/4-reliable-record-import.md) | Batch normalization and query service | Visibility, partial failure, poison work, duplicate delivery | NATS JetStream, PostgreSQL, generated records |
 | 05 | [Auditable transfer service](1/5-auditable-transfer-service.md) | Money ledger with a downstream audit product | Cross-system commit gaps, contention, replay | PostgreSQL, Kafka, history checker |
 | 06 | [Metered billing API](2/1-metered-billing-api.md) | Subscriptions, metered usage, period-close invoicing | Frozen execution environments, reuse, work that outlives a response, a close larger than one invocation | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
 | 07 | [Reliable record import, serverless](2/2-reliable-record-import.md) | The same import product on functions | A lease timer the learner does not own, partial batch outcomes | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
@@ -44,9 +43,8 @@ curriculum only after the core is `accepted`.
 | [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 31 labs share, the verification vocabulary their skills are written in, and the build order |
 | [0/6-serverless-contrast-track.md](0/6-serverless-contrast-track.md) | reference | Phase 2 paired against phase 1: what the execution model removes, which pairings earn a lab, and which model is useful where |
 | [1/1-resilient-quote-service.md](1/1-resilient-quote-service.md) | draft | Quote aggregation architecture under overload, partial provider failure, and shutdown |
-| [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Reservation fulfillment architecture using PostgreSQL, PL/pgSQL, and `LISTEN`/`NOTIFY` |
+| [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Reservation architecture whose asynchronous fulfillment arrives on a lease that expires while work is still in flight |
 | [1/3-order-activity-dashboard.md](1/3-order-activity-dashboard.md) | draft | Queryable, replayable order activity architecture in a Kafka environment |
-| [1/4-reliable-record-import.md](1/4-reliable-record-import.md) | draft | Batch import architecture in a self-run leased-delivery environment, where every submitted record has an explainable fate |
 | [1/5-auditable-transfer-service.md](1/5-auditable-transfer-service.md) | draft | Transfer and audit architecture spanning PostgreSQL and Kafka failure boundaries |
 | [2/1-metered-billing-api.md](2/1-metered-billing-api.md) | draft | Subscriptions, metered usage, and period-close invoicing on an execution environment that freezes between invocations |
 | [2/2-reliable-record-import.md](2/2-reliable-record-import.md) | draft | The same import product on functions, in a leased-delivery environment the learner configures but does not run |

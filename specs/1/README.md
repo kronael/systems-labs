@@ -28,11 +28,10 @@ replay — is the phase's closing subject.
   aggregation API that stays predictable under overload and partial provider
   failure.
 - [Reservation fulfillment](2-reservation-fulfillment.md) — a reservation API
-  with asynchronous fulfillment that recovers accepted work after restarts.
+  whose asynchronous fulfillment arrives on a lease, recovering accepted work
+  after worker, broker, or database restarts.
 - [Order activity dashboard](3-order-activity-dashboard.md) — replayable order
   and customer views that can be rebuilt while staying available.
-- [Reliable record import](4-reliable-record-import.md) — a batch import and
-  query service in which every submitted record has an explainable fate.
 - [Auditable transfer service](5-auditable-transfer-service.md) — a
   money-transfer system with a durable ledger and a separately queryable audit
   product that survives independent failures of either side.

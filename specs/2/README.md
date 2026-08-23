@@ -41,7 +41,8 @@ failure the original could not. The reasoning is in the
   usage, and period-close invoicing, where the environment freezes between
   invocations.
 - [Reliable record import](2-reliable-record-import.md) — the import product
-  from `1/4`, on a hosted queue with a poller the learner does not write.
+  on a hosted queue with a poller the learner does not write, contrasting the
+  self-run leased delivery inside `1/2`.
 - [Serverless reservation fulfillment](3-serverless-reservation-fulfillment.md)
   — the reservation product from `1/2`, with a partitioned key-value store as
   the system of record.
