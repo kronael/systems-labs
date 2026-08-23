@@ -332,6 +332,10 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
 - Phases 3, 4, 6, 7, 8 — 21 specs, drafted; their briefs still carry the
   disclaimed-mechanism enumerations this file now forbids (`S14` in `BUGS.md`)
   and gate-sum hour budgets (`S11`).
+- Every lab spec still narrates the removed grader (`S17`), and the
+  verification restructure left the history vocabulary under-specified and the
+  independent-answer producer unowned (`S18`, `S19`). All three are queued in
+  `BUGS.md`, not fixed; `S18` and `S19` need sign-off before anything ships.
 - No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`.
 
 # Project Memory

@@ -1,5 +1,166 @@
 # Bugs
 
+## S19 — the checks lost their independent producer, their coverage check, and their regression fixtures (2026-08-23, proposed)
+
+`S16` and the verification restructure removed three jobs that were not the
+grader's incidental machinery but its reason for existing. Each is now unowned.
+
+**Independent computation.** Four labs require the check to derive the answer
+itself rather than assert a shape over a history. `2/1` compares "every invoice
+line against an independently computed answer derived from the acknowledged
+input under the supplied rating rules"; `6/5` requires the reported percentiles
+to match an independently computed distribution; `7/2` replays the accepted
+settlement stream into an independent balance model; `8/5` recomputes every
+reported score from the accepted inputs named in the report's lineage. None of
+those is `once`, `order`, `survives`, `never`, or `bounded`. An agent asked to
+do them at the stated scale will write throwaway checking code, most cheaply by
+reusing the learner's own implementation — which reproduces a grader, once per
+run, unaudited. This is the load-bearing thing the removal cut.
+
+**Coverage.** A verify skill can omit a lab's hardest requirement and still read
+as complete. The grader could not diverge from what a lab declared, because the
+declaration and the checkers were the same artifact. `make teaching-lint` scans
+a skill for leaks; nothing compares it to the `README.md` it is supposed to
+check.
+
+**Regression.** `grader/histories/` held hand-written accept and reject fixtures
+per checker — the thing that proved a check discriminates without any design
+existing. It went with the grader. `template/` proves the targets run against
+one trivial domain; nothing proves a lab's check rejects a run that should
+fail. CI now demonstrates that the scaffold executes, not that it decides.
+
+**Fault proof.** The frozen aggregate digest proves a recipe has not drifted. It
+does not prove the barrier was reached or the effect applied. A run whose fault
+silently never fired is indistinguishable from one the design survived, and the
+grader's exact-history assertion was what separated them.
+
+**The performance bar.** The verification contract permits a learner-recorded
+baseline or a learner-declared SLO, and nothing arbitrates a deliberately slow
+baseline or a trivial SLO. This one predates the removal; the removal took away
+the party that would have caught it.
+
+### Proposal, needs sign-off
+
+- Keep course-owned expected-value producers for the four labs whose contract is
+  arithmetic over accepted input, as declarative oracle data or a seeded
+  generator, and state plainly that they are not a worked design: they compute
+  the product rule, never the architecture that must satisfy it.
+- Give every public invariant a stable identifier in the lab spec, publish those
+  identifiers in `README.md`, and require the verify skill to carry the same
+  set. CI asserts set equality — a syntactic check, but it catches the omission.
+- Restore hand-authored accept and reject histories per invariant shape, outside
+  any lab directory. They are fixtures for the check, not implementations of the
+  lab, and `S16`'s reasoning against worked solutions does not reach them.
+- Make the controller fail the run when a barrier is not reached or an effect
+  not applied, and record requested, applied, and observed for each.
+- Say who owns the performance bar, or drop the learner-declared SLO as a gate
+  form.
+
+- **Severity:** high
+- **Scope:** verification, shared scaffold, fault injection, CI, per-lab authoring
+- **Affected:** `specs/01-systems-labs.md`, `specs/0/5-shared-scaffold.md`,
+  `specs/2/1-metered-billing-api.md`, `specs/6/5-rate-accurate-replayer.md`,
+  `specs/7/2-settlement-program-and-client.md`,
+  `specs/8/5-relevance-evaluation-service.md`
+- **Source:** codex critique of the restructure, verified against the files,
+  2026-08-23
+- **Status:** proposed
+- **Fix:**
+
+## S18 — the history vocabulary cannot express two of its own five shapes (2026-08-23, proposed)
+
+`0/5` makes the history the one thing the scaffold still owes every lab, and the
+build order makes it item 1 "because every other component and every lab spec
+depends on it". As specified it does not hold.
+
+**The record has no room for two of the shapes.** An event carries "a record
+identity, a boundary name, a wall-clock and a monotonic timestamp, and the
+observation site". `never` is defined over "a forbidden state" and `bounded`
+over "a quantity"; the record has no state, no outcome, no value, and no unit.
+Two of five shapes have nothing to range over.
+
+**"Ordered" has no cross-process rule.** The history is called an ordered log and
+timestamped with a monotonic clock. Monotonic clocks are not comparable across
+the fault controller, the evidence writer, the application processes, a second
+host, or a restart — which is exactly the set of emitters a lab has, and exactly
+the boundary `order` and `survives` are asserted across. Nothing gives a run
+identifier, an emitter identifier, a clock domain, a per-emitter sequence, or a
+merge rule.
+
+**Nothing produces it at the boundaries that matter.** `0/5` says the fault
+controller and the evidence writer emit histories. The `Verification` section
+names the observable boundaries as HTTP responses, SQL state, a provider's
+request log, consumer positions, and the evidence report. No component turns
+those five into history events, and `Planned repository boundaries` has no entry
+for a history at all — every other build-order item has a directory
+(`shared/workload/`, `shared/faults/`, `shared/telemetry/`, `template/`); item
+one has none.
+
+**The five shapes are admitted to be incomplete.** `0/5` says they cover "almost
+every" lab invariant and leaves phases 7 and 8 as an open question, while `S19`
+lists four current labs whose contract none of the five expresses. Building the
+vocabulary before classifying all 31 acceptance contracts against it will build
+the wrong one.
+
+### Proposal, needs sign-off
+
+- Specify a versioned event schema: run identifier, emitter identifier,
+  per-emitter sequence, clock domain, boundary name, record identity, event type
+  and outcome, and typed observed values with units. Define the merge rule that
+  makes a multi-emitter history ordered, and say plainly where it is only
+  partially ordered.
+- Name `systems-labs/shared/history/` in `Planned repository boundaries` as its
+  home, and name the course-owned observation adapters that emit from each of
+  the five boundaries.
+- Classify all 31 labs' acceptance contracts against the five shapes before the
+  vocabulary is built, and add the shapes the classification demands rather than
+  the ones that read well.
+
+- **Severity:** high
+- **Scope:** shared scaffold, verification, repository boundaries
+- **Affected:** `specs/0/5-shared-scaffold.md`, `specs/01-systems-labs.md`
+- **Source:** codex critique of the restructure, verified against the files,
+  2026-08-23
+- **Status:** proposed
+- **Fix:**
+
+## S17 — 35 lab and phase files still describe the removed grader (2026-08-23, open)
+
+The restructure removed the grader binary, `make grade`, the per-lab `grader/`
+directory, and `shared/grader/` from every governing contract. The lab specs
+were not touched. Every `Prepared scaffold` section still lists "the black-box
+grader" among the components the course supplies; every `Adversarial evaluation`
+section still narrates its schedule as "the grader freezes…", "the grader
+replays…"; `specs/8/2` still cites `make grade` as the target that "reviews
+whether the policy itself is defensible", which the governing spec now says does
+not exist; and `specs/index.md`'s row 05 still names a "history checker" as lab
+05's prepared environment. 121 occurrences across 35 files under `specs/1` to
+`specs/8`, plus four catalogs under `specs/0/`.
+
+The fix is not a rename. "Grader" does two jobs in those sections and the jobs
+now have different owners: where it drives a fault or holds a rate it is the
+fault controller and the workload generator, both still compiled; where it
+observes and asserts it is that lab's verify skill, which is prose, may not name
+a barrier, and after this review may not name a record identity either. A single
+substitution would flatten the distinction and hand every lab a component that
+no longer exists. `8/2` needs a decision rather than a substitution, and the four
+labs in `S19` need an expected-value producer before their sections can be
+rewritten at all.
+
+Recorded rather than changed, matching `S11`'s and `S14`'s treatment of the same
+kind of drift: the reviewed scope was the governing documents, and this is 35
+files of per-lab prose.
+
+- **Severity:** high
+- **Scope:** all lab specs, phase READMEs, track catalogs, core catalog
+- **Affected:** `specs/1/1`–`1/5`, `2/1`–`2/5`, `3/1`–`3/2`, `4/1`–`4/3`, `4/5`,
+  `6/1`–`6/5`, `7/1`–`7/4`, `7/6`, `8/1`–`8/5`, the phase READMEs of 4, 6, 7,
+  and 8, `specs/0/1`, `0/2`, `0/3`, `0/6`, and `specs/index.md`
+- **Source:** refinement pass and codex critique after the grader removal,
+  2026-08-23
+- **Status:** open
+- **Fix:**
+
 ## S16 — S3's resolution is superseded: no lab has a worked solution (2026-08-23, fixed)
 
 `S3` moved each lab's `golden/` and `rotten/` out of the lab directory to a
@@ -22,6 +183,11 @@ recorded from a fault run, which prove the grader works without any design
 existing. `template/` keeps a working implementation because it is the
 scaffold's regression test and not a lab.
 
+**Superseded in part, 2026-08-23.** The verification restructure removed the
+grader itself, and `grader/histories/` went with it, so this entry's second
+replacement no longer exists. Nothing now proves a check discriminates before a
+design exists; that gap is `S19`.
+
 - **Severity:** high
 - **Scope:** repository contract, shared scaffold, per-lab authoring
 - **Affected:** `specs/01-systems-labs.md`, `specs/0/5-shared-scaffold.md`,
@@ -38,10 +204,10 @@ scaffold's regression test and not a lab.
 `01-systems-labs.md` states that if the naive small tool would pass the same
 gates at the same scale, the lab has not earned its dependency and the scale
 target is too low. Nothing checks it. `make teaching-lint` catches solution
-leaks in a README; CI proves the golden reference passes every gate and the
-rotten reference fails exactly one contract. Neither establishes that a
-single-process, single-store design would fail this lab's scale target, so the
-rule is an author's promise rather than a gate.
+leaks in learner-facing text; CI proves the scaffold's targets run end to end
+against `template/`. Neither establishes that a single-process, single-store
+design would fail this lab's scale target, so the rule is an author's promise
+rather than a gate.
 
 `challenges/` solved the same problem executably: `rotten/` must pass the small
 suite and time out on every generated large case, and `make sys-rotten` enforces
