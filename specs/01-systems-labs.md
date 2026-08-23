@@ -14,14 +14,16 @@ actual learning loop here: run a system, put it under load, break part of it,
 recover it, and explain the evidence. The name also leaves room for independent
 practice outside a course.
 
-The core curriculum contains sixteen original, end-to-end labs. Ten came from a
-scored selection over twenty expanded candidates; two were added afterwards
-where the catalog had a gap; four more arrived with the local–serverless split —
-three serverless recasts of phase 1 products and one local rewrite of the
-import lab. The selection record preserves the rejected
-candidates and reasons, so breadth is cut by evidence rather than taste. Three
-separate catalogs — low-level, blockchain, and retrieval — are recorded under
-`specs/0/` and enter only after the core is `accepted`.
+The core curriculum contains seventeen original, end-to-end labs. Ten came from
+a scored selection over twenty expanded candidates; two were added afterwards
+where the catalog had a gap; three more arrived with the local–serverless split
+as serverless recasts of phase 1 products; and two more close the dimensions a
+phase 1 orthogonality review found missing — a record shape that changes under
+live traffic, and conflicting work the store declines to complete. The
+selection record preserves the rejected candidates and reasons, so breadth is
+cut by evidence rather than taste. Three separate catalogs — low-level,
+blockchain, and retrieval — are recorded under `specs/0/` and enter only after
+the core is `accepted`.
 
 The repository is GPL-3.0, matching `challenges/`. External sources supply
 concepts and tool documentation. They do not supply copied assignments,
@@ -31,13 +33,13 @@ solutions, fixtures, or checks.
 
 Each section below fixes one thing. This list is the index, not a substitute.
 
-**Rationale** — **Decision**: sixteen core labs, three further catalogs under `0/`, GPL-3.0, sources cited and never copied. **Problem**: bounded exercises cannot teach boundary failure. **Critique**: the first draft rewarded tool exposure; the fix gave each technology room for its failure model.
+**Rationale** — **Decision**: seventeen core labs, three further catalogs under `0/`, GPL-3.0, sources cited and never copied. **Problem**: bounded exercises cannot teach boundary failure. **Critique**: the first draft rewarded tool exposure; the fix gave each technology room for its failure model.
 
 **Pedagogy** — **Learning model**: predict, build, test, break, inspect, correct, prove, across three gates whose sum is less than the lab's budget, because the redesign between them is the teaching. **Lab brief contract**: one system, no mechanism named even to disclaim it, difficulty from the quirk, a scale target that is not a pass threshold, named neighbouring systems. **Teaching contract**: separate files hold the task, the hints, the answer key, and the author reasoning, so a learner can avoid the answer without effort; an assistant must be asked twice.
 
 **Harness** — **Standard laboratory scaffold**: one dependency-only Compose profile, runnable before learner code exists; specialized labs extend it. **Fault injection contract**: one shared controller, faults at named barriers only, every scenario declaring what must survive.
 
-**Catalog** — **Selected labs**: sixteen labs, four phases, catalog in `index.md`. **Local and serverless phases**: phase 2 rebuilds phase 1 products on an execution model the learner cannot operate. **Scope boundaries**: no consensus implementation, no console navigation, no parity claim; Lambda only where the brief fixes that shape.
+**Catalog** — **Selected labs**: seventeen labs, four phases, catalog in `index.md`. **Local and serverless phases**: phase 2 rebuilds phase 1 products on an execution model the learner cannot operate. **Scope boundaries**: no consensus implementation, no console navigation, no parity claim; Lambda only where the brief fixes that shape.
 
 **Technology** — **Technology spine**: a fixed small set, the heavier tool per category, driven into the regime where its quirk fires or the dependency is unearned. **Zero-cost and AWS contract**: every required gate runs locally with no account.
 
@@ -78,7 +80,7 @@ weaknesses:
   notification. It also omitted access-pattern-first and memory-bound NoSQL.
 
 The corrected design cut the catalog to ten labs at that time — it has since
-grown to sixteen, as the Decision section records — and gave each retained
+grown to seventeen, as the Decision section records — and gave each retained
 technology enough space for its native failure model. Every lab produces a
 small complete product and discovers one system's non-obvious contract by
 forcing the case where the obvious mental model fails.
@@ -129,11 +131,12 @@ The three gates time the passes: the product slice, the falsification run, and
 the evidence run. A lab's budget is larger than their sum, because the pedagogy
 is the redesign between them — the naive design is falsified and rebuilt,
 sometimes more than once — and that loop is where most of the hours go.
-Individual labs run six to twenty-five focused hours, so the sixteen core labs
-run to roughly 150 to 250 focused hours. The first four establish runtime and
-delivery semantics; the fifth makes those semantics span two systems that cannot commit
-together; the five serverless labs rebuild four of those products on an
-execution model the learner cannot operate; the rest integrate them into
+Individual labs run six to twenty-five focused hours, so the seventeen core
+labs run to roughly 150 to 250 focused hours. The first four establish runtime,
+delivery, and change semantics; the fifth makes those semantics span two
+systems that cannot commit together; the sixth turns inward, to work the store
+declines to complete; the five serverless labs rebuild four of those products
+on an execution model the learner cannot operate; the rest integrate them into
 real-data, NoSQL, analytical, and portable products.
 
 ## Lab brief contract
@@ -365,7 +368,7 @@ gate.
 
 ## Selected labs
 
-The core curriculum is sixteen labs across four phases: five local, five
+The core curriculum is seventeen labs across four phases: six local, five
 serverless, two on real Internet streaming, and four on NoSQL, analytics, and
 portability. Phase 5 no longer exists and its lab became `4/5`; the gap stays
 open on purpose.
@@ -934,26 +937,28 @@ policy for the repository.
 | Labs | Sources that belong in their HINTS or README |
 |------|----------------------------------------------|
 | 01 | OpenTelemetry, HdrHistogram |
-| 02 | PostgreSQL concurrency, PL/pgSQL, `NOTIFY`, BusTub, BenchBase |
+| 02 | PostgreSQL concurrency, PL/pgSQL, NATS JetStream, BusTub, BenchBase |
 | 03 | Kafka, PostgreSQL |
-| 04 | NATS JetStream, PostgreSQL |
+| 04 | PostgreSQL, BenchBase |
 | 05 | PostgreSQL, Kafka, FoundationDB, Jepsen |
-| 06 | ElasticMQ, DynamoDB Local, AWS Lambda error handling, AWS pricing |
-| 07 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS Lambda error handling |
-| 08 | DynamoDB Local |
-| 09 | DynamoDB Local, ElasticMQ, Lambda with SQS |
-| 10 | OpenTelemetry, HdrHistogram |
-| 11 | RIPE RIS Live, Kafka, OpenTelemetry, HdrHistogram |
-| 12 | RIPE RIS Live, Kafka, Flink Training, PostgreSQL |
-| 13 | Kraken recent trades, DynamoDB Local, AWS pricing |
-| 14 | DynamoDB Local, Valkey, HdrHistogram, OpenTelemetry |
-| 15 | Kraken recent trades |
-| 16 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS pricing, OpenTofu, Terraform license, Kubernetes, OpenTelemetry |
+| 06 | PostgreSQL concurrency, FoundationDB, BenchBase |
+| 07 | ElasticMQ, DynamoDB Local, AWS Lambda error handling, AWS pricing |
+| 08 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS Lambda error handling |
+| 09 | DynamoDB Local |
+| 10 | DynamoDB Local, ElasticMQ, Lambda with SQS |
+| 11 | OpenTelemetry, HdrHistogram |
+| 12 | RIPE RIS Live, Kafka, OpenTelemetry, HdrHistogram |
+| 13 | RIPE RIS Live, Kafka, Flink Training, PostgreSQL |
+| 14 | Kraken recent trades, DynamoDB Local, AWS pricing |
+| 15 | DynamoDB Local, Valkey, HdrHistogram, OpenTelemetry |
+| 16 | Kraken recent trades |
+| 17 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS pricing, OpenTofu, Terraform license, Kubernetes, OpenTelemetry |
 
 Sources consulted after this ledger's date — the JetStream pages, the Lambda
-lifecycle, concurrency, and quota pages, the DynamoDB transaction pages, and
-the ClickHouse documentation — are carried in each lab's own `Code pointers`
-and inherit the same citation-only policy.
+lifecycle, concurrency, and quota pages, the DynamoDB transaction pages, the
+ClickHouse documentation, and the PostgreSQL `ALTER TABLE`, explicit-locking,
+and transaction-isolation pages — are carried in each lab's own
+`Code pointers` and inherit the same citation-only policy.
 
 ## Sources deliberately excluded
 
@@ -972,7 +977,7 @@ and inherit the same citation-only policy.
 ## Planned repository boundaries
 
 - `systems-labs/README.md` — course entry point, paths, prerequisites, and the
-  sixteen-lab core catalog.
+  seventeen-lab core catalog.
 - `systems-labs/LICENSE` — the complete GPL-3.0 text, copied by the publish
   step into the root of every learner distribution together with the pointer
   to the source repository fixed by the
@@ -1015,7 +1020,7 @@ and inherit the same citation-only policy.
 - [`docs/cloud-access.md`](../docs/cloud-access.md) — how to obtain the
   optional cloud account, the verified free-tier allowances, and the
   zero-spend guardrail that comes before the first deployed function.
-- The sixteen entries in the [core catalog](index.md#core-catalog) are the
+- The seventeen entries in the [core catalog](index.md#core-catalog) are the
   governing lab specs. Implementation pointers do not exist while they
   remain `draft`.
 

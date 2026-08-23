@@ -2,7 +2,7 @@
 
 ## Core catalog
 
-The sixteen core labs, in course order. Each row names the lab's system, the
+The seventeen core labs, in course order. Each row names the lab's system, the
 architecture pressure it applies, and the environment prepared for it.
 
 | # | Spec | System to design | Architecture pressure | Prepared environment |
@@ -10,22 +10,24 @@ architecture pressure it applies, and the environment prepared for it.
 | 01 | [Resilient quote service](1/1-resilient-quote-service.md) | Quote aggregation API | Overload, partial provider failure, cancellation, shutdown | Provider simulators, telemetry, load generator |
 | 02 | [Reservation fulfillment service](1/2-reservation-fulfillment.md) | Reservation API with leased asynchronous fulfillment | A lease that is not a lock, a database-enforced invariant, worker recovery | PostgreSQL, NATS JetStream, fault controller, large dataset |
 | 03 | [Order activity dashboard](1/3-order-activity-dashboard.md) | Replayable order and customer views | Ordering, progress versus effect, rebuild, skew | Kafka, PostgreSQL, generated producers |
+| 04 | [Uninterrupted catalog service](1/4-uninterrupted-catalog-service.md) | Catalog API that serves through changes to its record shape | A shape change against live traffic, two shapes coexisting, an interrupted change resumed | PostgreSQL, declared shape changes, request recorder, 25-million-item catalog |
 | 05 | [Auditable transfer service](1/5-auditable-transfer-service.md) | Money ledger with a downstream audit product | Cross-system commit gaps, contention, replay | PostgreSQL, Kafka, history checker |
-| 06 | [Metered billing API](2/1-metered-billing-api.md) | Subscriptions, metered usage, period-close invoicing | Frozen execution environments, reuse, work that outlives a response, a close larger than one invocation | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
-| 07 | [Reliable record import, serverless](2/2-reliable-record-import.md) | The same import product on functions | A lease timer the learner does not own, partial batch outcomes | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
-| 08 | [Serverless reservation fulfillment](2/3-serverless-reservation-fulfillment.md) | The same reservation product on functions | An invariant no store enforces, fulfillment without a worker | Lambda runtime emulator, DynamoDB Local |
-| 09 | [Serverless auditable transfer](2/4-serverless-auditable-transfer.md) | The same transfer product on functions | A commit gap with nothing running between events, a freeze that strands the publish | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
-| 10 | [Serverless quote aggregation](2/5-serverless-quote-aggregation.md) | The same quote product on functions | Admission as a platform ceiling, cold starts, state outside the process | Lambda runtime emulator, provider simulators, external store |
-| 11 | [Internet route observatory](3/1-internet-route-observatory.md) | Observed routes, churn, and collector health | Observation scope, vantage-point disagreement, convergence versus change | Kafka, RIPE-compatible input, store profiles |
-| 12 | [Recoverable route analytics](3/2-recoverable-route-analytics.md) | Stateful routing views with two recovery paths | Checkpoints, external effects, reconstruction, schema change | Kafka, Flink, PostgreSQL, checkpoint storage |
-| 13 | [Market history API](4/1-market-history-api.md) | Recent trades and candle queries | Access patterns, hot symbols, pagination, retention | DynamoDB Local, generated and Kraken data |
-| 14 | [Low-latency market API](4/2-low-latency-market-api.md) | Freshness-aware accelerated market queries | Cache authority, eviction, stampede, degradation | Valkey, DynamoDB Local, two-replica load |
-| 15 | [Exact trade analytics](4/3-exact-trade-analytics.md) | Exact aggregates over full trade history | Background merges, asynchronous mutation, insert frequency, freshness | ClickHouse, trade generator, cached recordings |
-| 16 | [Portable market ingestion](4/5-portable-market-ingestion.md) | One domain contract across two compute environments | Lifecycle, delivery, rollout, drift, secrets, cost | Compose, `kind`, Lambda runner, OpenTofu |
+| 06 | [Shared budget service](1/6-shared-budget-service.md) | Shared spending budgets under concurrent claims | An invariant no single write can be judged against, work the store declines to complete, a retry boundary the application owns | PostgreSQL, overlap-profiled claim workload, fault controller |
+| 07 | [Metered billing API](2/1-metered-billing-api.md) | Subscriptions, metered usage, period-close invoicing | Frozen execution environments, reuse, work that outlives a response, a close larger than one invocation | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
+| 08 | [Reliable record import, serverless](2/2-reliable-record-import.md) | The same import product on functions | A lease timer the learner does not own, partial batch outcomes | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
+| 09 | [Serverless reservation fulfillment](2/3-serverless-reservation-fulfillment.md) | The same reservation product on functions | An invariant no store enforces, fulfillment without a worker | Lambda runtime emulator, DynamoDB Local |
+| 10 | [Serverless auditable transfer](2/4-serverless-auditable-transfer.md) | The same transfer product on functions | A commit gap with nothing running between events, a freeze that strands the publish | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
+| 11 | [Serverless quote aggregation](2/5-serverless-quote-aggregation.md) | The same quote product on functions | Admission as a platform ceiling, cold starts, state outside the process | Lambda runtime emulator, provider simulators, external store |
+| 12 | [Internet route observatory](3/1-internet-route-observatory.md) | Observed routes, churn, and collector health | Observation scope, vantage-point disagreement, convergence versus change | Kafka, RIPE-compatible input, store profiles |
+| 13 | [Recoverable route analytics](3/2-recoverable-route-analytics.md) | Stateful routing views with two recovery paths | Checkpoints, external effects, reconstruction, schema change | Kafka, Flink, PostgreSQL, checkpoint storage |
+| 14 | [Market history API](4/1-market-history-api.md) | Recent trades and candle queries | Access patterns, hot symbols, pagination, retention | DynamoDB Local, generated and Kraken data |
+| 15 | [Low-latency market API](4/2-low-latency-market-api.md) | Freshness-aware accelerated market queries | Cache authority, eviction, stampede, degradation | Valkey, DynamoDB Local, two-replica load |
+| 16 | [Exact trade analytics](4/3-exact-trade-analytics.md) | Exact aggregates over full trade history | Background merges, asynchronous mutation, insert frequency, freshness | ClickHouse, trade generator, cached recordings |
+| 17 | [Portable market ingestion](4/5-portable-market-ingestion.md) | One domain contract across two compute environments | Lifecycle, delivery, rollout, drift, secrets, cost | Compose, `kind`, Lambda runner, OpenTofu |
 
 The [selection record](0/1-lab-selection.md) expands all twenty candidates,
 scores them, and preserves the ten cuts. ClickHouse was named there as the
-strongest first addition and became entry 15. CRDTs remain the strongest
+strongest first addition and became entry 16. CRDTs remain the strongest
 alternative conceptual branch, still out.
 
 Phases 6, 7, and 8 are separate catalogs recorded under `0/`. They enter the
@@ -40,12 +42,14 @@ curriculum only after the core is `accepted`.
 | [0/2-low-level-track.md](0/2-low-level-track.md) | reference | Phase 6 in Rust and C: five specced kernel-quirk candidates with origination notes |
 | [0/3-blockchain-track.md](0/3-blockchain-track.md) | reference | Phase 7 on Solana and Ethereum: validator, chain data, program, and permissionless delivery |
 | [0/4-search-and-retrieval-track.md](0/4-search-and-retrieval-track.md) | reference | Phase 8 on OpenSearch: proteins, news, web crawl, spatial, and relevance evaluation |
-| [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 31 labs share, the verification vocabulary their skills are written in, and the build order |
+| [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 32 labs share, the verification vocabulary their skills are written in, and the build order |
 | [0/6-serverless-contrast-track.md](0/6-serverless-contrast-track.md) | reference | Phase 2 paired against phase 1: what the execution model removes, which pairings earn a lab, and which model is useful where |
 | [1/1-resilient-quote-service.md](1/1-resilient-quote-service.md) | draft | Quote aggregation architecture under overload, partial provider failure, and shutdown |
 | [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Reservation architecture whose asynchronous fulfillment arrives on a lease that expires while work is still in flight |
 | [1/3-order-activity-dashboard.md](1/3-order-activity-dashboard.md) | draft | Queryable, replayable order activity architecture in a Kafka environment |
+| [1/4-uninterrupted-catalog-service.md](1/4-uninterrupted-catalog-service.md) | draft | Catalog architecture that keeps answering while the shape of its records changes, with no maintenance window |
 | [1/5-auditable-transfer-service.md](1/5-auditable-transfer-service.md) | draft | Transfer and audit architecture spanning PostgreSQL and Kafka failure boundaries |
+| [1/6-shared-budget-service.md](1/6-shared-budget-service.md) | draft | Shared budget architecture whose conflicting decisions the store declines to complete, leaving the retry boundary to the application |
 | [2/1-metered-billing-api.md](2/1-metered-billing-api.md) | draft | Subscriptions, metered usage, and period-close invoicing on an execution environment that freezes between invocations |
 | [2/2-reliable-record-import.md](2/2-reliable-record-import.md) | draft | The same import product on functions, in a leased-delivery environment the learner configures but does not run |
 | [2/3-serverless-reservation-fulfillment.md](2/3-serverless-reservation-fulfillment.md) | draft | The same reservation product on functions, with a partitioned key-value store as the system of record |

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Curriculum of end-to-end systems labs. Each lab prompts a complete, useful
 product that a learner designs, breaks, recovers, and defends with evidence.
-31 labs across seven phases; sixteen are the core.
+32 labs across seven phases; seventeen are the core.
 
 **Today the repository holds specifications only** — no code, no `Makefile`, no
 lab directory. Every target below is specified, not implemented. Do not report a
@@ -162,8 +162,8 @@ than their sum, because the redesign between them is the teaching.
 | failure | 2–4 h | a deterministic scenario that falsifies the naive design and forces the stated invariant to hold |
 | evidence | 1–2 h | a load or deployment run recording the operational tradeoff and one remaining limitation |
 
-Individual labs run six to twenty-five focused hours. The sixteen core labs run
-to roughly 150 to 250 focused hours.
+Individual labs run six to twenty-five focused hours. The seventeen core labs
+run to roughly 150 to 250 focused hours.
 
 ## Difficulty, scale, and the earned dependency
 
@@ -359,7 +359,9 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
 
 ## State of the repo
 
-- Phases 1 and 2 — ten specs, reviewed and released as `v0.1.0`.
+- Phases 1 and 2 — eleven specs. Ten were reviewed and released as `v0.1.0`;
+  the import lab has since merged into `1/2`, and phase 1 gained two labs from
+  an orthogonality review (`S20`).
 - Phases 3, 4, 6, 7, 8 — 21 specs, drafted; their briefs still carry the
   disclaimed-mechanism enumerations this file now forbids (`S14` in `BUGS.md`)
   and gate-sum hour budgets (`S11`).

@@ -40,7 +40,7 @@ There is no shared grader. Each lab carries
 [verification section](../01-systems-labs.md#verification).
 
 What the scaffold still owes every lab is the **vocabulary** those skills are
-written in, so thirty-one labs describe their checks the same way. That
+written in, so thirty-two labs describe their checks the same way. That
 vocabulary is a *history*: an ordered log of observed events, each carrying a
 record identity, a boundary name, a wall-clock and a monotonic timestamp, and
 the observation site. The fault controller and the evidence writer emit

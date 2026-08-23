@@ -9,18 +9,20 @@ the learner tree; any learner-facing orientation is derived from it later.
 
 ## What this phase is about
 
-The five labs in this phase put a running process under pressure it cannot
+The six labs in this phase put a running process under pressure it cannot
 design away: demand above capacity, a dependency that slows or dies, a restart
-in the middle of accepted work. Alongside that runtime pressure they introduce
-three delivery models with different promises — a transactional notification
-that is ephemeral, a retained log that can be replayed, and a leased queue
-that redelivers on a timer — and each lab forces the learner to state
-precisely what its model does and does not guarantee. The closing lab carries
-that pressure across a system boundary: a successful API response must mean a
-monetary effect is durable and its audit record cannot be lost, even though
-the database and the event system fail independently. The commit gap between
-two systems — with contention on hot accounts, duplicate resubmission, and
-replay — is the phase's closing subject.
+in the middle of accepted work, a record shape that changes while the system
+is serving, and a store that hands work back instead of completing it.
+Alongside that runtime pressure two of them introduce delivery models with
+different promises — a leased queue that redelivers on a timer, and a retained
+log that can be replayed — and each forces the learner to state precisely what
+its model does and does not guarantee. One lab carries the pressure across a
+system boundary: a successful API response must mean a monetary effect is
+durable and its audit record cannot be lost, even though the database and the
+event system fail independently. The last one carries it inward, to the case
+where the store refuses: the invariant is an aggregate that no single write
+can be judged against, conflicting work is declined rather than completed, and
+what happens next belongs to the application.
 
 ## The labs
 
@@ -32,9 +34,15 @@ replay — is the phase's closing subject.
   after worker, broker, or database restarts.
 - [Order activity dashboard](3-order-activity-dashboard.md) — replayable order
   and customer views that can be rebuilt while staying available.
+- [Uninterrupted catalog service](4-uninterrupted-catalog-service.md) — a
+  catalog API that keeps answering while the shape of its records changes,
+  with no maintenance window and no half-changed answer.
 - [Auditable transfer service](5-auditable-transfer-service.md) — a
   money-transfer system with a durable ledger and a separately queryable audit
   product that survives independent failures of either side.
+- [Shared budget service](6-shared-budget-service.md) — shared spending
+  budgets that are never overspent under concurrent claims the store declines
+  to complete, where every decision is final.
 
 ## The technologies
 
@@ -47,10 +55,12 @@ it; one local command brings up the whole laboratory. Documentation:
 **PostgreSQL** is a relational database with full transactions, constraints, a
 procedural language (PL/pgSQL), and commit-time notifications
 (`LISTEN`/`NOTIFY`). The learner meets it in the reservation lab as the
-system of record, in the dashboard lab as the query store, and in the
-transfer lab as the required ledger store. The phase chooses it because one
-system holds both a real transaction boundary and a notification channel, and
-the exact guarantee of each is the study.
+system of record, in the dashboard lab as the query store, in the catalog lab
+as the store whose record shape changes under live traffic, in the transfer
+lab as the required ledger store, and in the budget lab as the store that
+declines conflicting work. The phase chooses it because one system holds a
+real transaction boundary, a declared record shape, and an answer to
+concurrent conflicting writes, and the exact guarantee of each is the study.
 Documentation: <https://www.postgresql.org/docs/current/>.
 
 **Apache Kafka** is a distributed event log: partitioned topics, consumer
@@ -63,15 +73,15 @@ Documentation: <https://kafka.apache.org/43/>.
 
 **NATS JetStream** is a persistence and delivery layer over NATS with
 per-message acknowledgement, timed redelivery, and stream retention. The
-learner meets it in the import lab as the queue environment. The phase chooses
-it because it carries the leased delivery model — the third of the phase's
-three delivery promises — as software the learner runs and tunes.
+learner meets it in the reservation lab as the queue environment. The phase
+chooses it because it carries the leased delivery model — one of the phase's
+two delivery promises — as software the learner runs and tunes.
 Documentation:
 <https://docs.nats.io/learn/jetstream/acknowledgment>.
 
 **OpenTelemetry** is a vendor-neutral observability framework for traces,
-metrics, and logs. Every scaffold except the import lab's ships its collection
-wired up. The phase
+metrics, and logs. Every scaffold in the phase ships its collection wired up.
+The phase
 chooses it because the quote lab's evidence must separate waiting to execute
 from executing, and OpenTelemetry gives that measurement one format across
 processes without fixing the service topology. Documentation:
@@ -94,7 +104,8 @@ phase.
 Each lab's `Neighbouring systems` section names the two or three technologies
 a practitioner would have reached for instead — Envoy, HAProxy, resilience4j,
 RabbitMQ, Temporal, Kafka Streams, Flink, Amazon SQS, ActiveMQ with XA
-transactions, CockroachDB — and the one thing each does differently at that
+transactions, CockroachDB, MongoDB, MySQL with InnoDB, FoundationDB,
+DynamoDB transactions — and the one thing each does differently at that
 lab's boundary. They appear as reading with
 documentation pointers, never as dependencies, so the exclusion costs the
 learner the operation of a second system but not the comparison.
