@@ -26,21 +26,38 @@ or a vague "I'm stuck". Before that threshold: ask guiding questions, name a
 concept worth reviewing, or explain why a proposed approach fails. Never write
 the solving code.
 
-## Golden rule — worked solutions ONLY in reference/
+## No worked solutions — the source is the ground truth
 
-Every lab's worked pair lives at repository root under `reference/<lab>/`,
-never inside the lab directory beside the learner's `app/`.
+**No lab has a golden or rotten implementation.** Not in the lab directory, not
+at repository root, not anywhere. A challenge has one correct answer, so a
+worked reference is well defined. A systems lab admits many correct designs, so
+no implementation is canonical, and a "rotten" one is only one of countless ways
+to be wrong. Authoring a worked design would also answer every
+`Architecture questions` bullet at once, in a document whose only protection is
+that nobody reads it.
 
-- **`reference/<lab>/golden/`** — the maintainer reference. Passes `make up`,
-  `make test-all`, `make fault`, and `make bench`.
-- **`reference/<lab>/rotten/`** — a plausible design that passes product sanity
-  checks and fails **exactly one** deterministic correctness, recovery, or
-  performance contract. It proves the grader separates a working demo from a
-  reliable system. Keep it the shortest honest formulation of the obvious
-  design; never sabotage it with sleeps, wrong answers, or input sniffing.
+Two things stand in its place:
 
-An explicit publish step produces the learner distribution and excludes
-`reference/` and `specs/`. NEVER put a worked design in the lab directory.
+- **The cited source.** Every lab names the public document describing the real
+  reported behaviour its quirk rests on — a manual page, a post-mortem, a paper,
+  a vendor limit. That citation is the lab's ground truth. Fetch the page and
+  confirm it says what you claim; a URL recalled from memory is not a citation.
+  NEVER invent a quirk and then look for a source.
+- **`grader/histories/`.** Synthetic observed histories, at least one that each
+  checker must accept and one that each checker must reject. Written by hand
+  against the history model, never recorded from a fault run, naming no barrier.
+  A history exhibiting a doubled effect states the failure the `README.md`
+  invariant already forbids, so it reveals nothing about the design that avoids
+  it. These prove the grader works. Nothing proves a design does — that is the
+  learner's job and `make grade`'s.
+
+The grader needs no oracle: it asserts invariants over observed histories rather
+than comparing output to a reference run.
+
+`template/` is the one exception, and it is not a lab. It carries a working
+implementation of a trivial domain — one record type, one operation, one
+invariant, one fault — as the scaffold's regression test, so a broken generator,
+controller, or checker fails before any lab does.
 
 ## Never leak the failure schedule
 
@@ -155,6 +172,7 @@ NN-solution-neutral-name/
   app/  tests/      learner-owned
   starter/          generated clients, contracts, empty seams, no product path
   grader/           mechanical checks over public boundaries only
+  grader/histories/ synthetic accept/reject fixtures that validate the checkers
   sources/          provider adapters and provenance manifests
   workload/         seeded generators and bounded cached replay
   infra/compose/dependencies.yml   fixed external systems only
@@ -240,9 +258,9 @@ RDS, and ElastiCache are excluded — each bills continuously.
    rewrite it until it names only the property.
 5. Mark each `Code pointers` citation neutral or solution-bearing. Solution-
    bearing ones land in `HINTS.md` and never in `README.md`.
-6. Copy `template/` to the lab directory. Write the golden reference first,
-   verify it passes every gate, then the rotten reference, and verify it passes
-   product sanity and fails exactly one contract.
+6. Copy `template/` to the lab directory and remove its implementation. Write
+   `grader/histories/`: one accepted and one rejected synthetic history per
+   checker. NEVER write a worked solution.
 7. Add the fault schedule recipe to the controller, update the frozen aggregate
    digest, and confirm `make fault` materializes and removes it.
 8. Run `make teaching-lint`. Add a row to the core catalog in `specs/index.md`.

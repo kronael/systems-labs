@@ -231,7 +231,7 @@ lab teachable:
   removes it, so a readable form exists only while the run is in flight. What
   the learner receives is an executable that produces the schedule, never a
   source that describes it; the recipe sources stay outside the learner
-  distribution with `specs/` and `reference/`, published in the source
+  distribution with `specs/`, published in the source
   repository that the
   [licence contract](#licence-and-corresponding-source) requires the
   distribution to name. What this achieves is
@@ -296,7 +296,7 @@ effect. Each lab's seeded schedule recipes are compiled into the controller
 binary rather than shipped as readable files beside it: the learner
 distribution carries an executable that produces a schedule, not a source
 that describes one. The recipe sources live outside that distribution,
-excluded by the same publish step that excludes `reference/` and `specs/`,
+excluded by the same publish step that excludes `specs/`,
 and remain published in the source repository, which the
 [licence contract](#licence-and-corresponding-source) requires the
 distribution to name as the route to the controller's corresponding source.
@@ -633,14 +633,20 @@ keeping its unit-sized submission model:
 - `starter/` contains generated clients, public contracts, dependency wiring,
   and deliberately empty application seams; it contains no end-to-end product
   path.
-- `reference/` at repository root holds each lab's worked pair, outside the
-  learner tree. `reference/<lab>/golden/` is the maintainer reference that
-  passes every local check; `reference/<lab>/rotten/` passes product sanity
-  checks and fails exactly one deterministic correctness, recovery, or
-  performance contract, which proves the grader distinguishes a plausible
-  demo from a reliable system. The worked solution is never shown to the
-  solver: an explicit publish step produces the learner distribution and
-  excludes `reference/`, the same step that excludes `specs/`.
+- **No lab has a worked solution.** No golden implementation, no rotten
+  implementation, and no reference design exists for any lab, in the learner
+  tree or outside it. A worked systems design answers every
+  `Architecture questions` bullet at once, so authoring one creates a document
+  whose only protection is that nobody reads it. The grader needs no oracle:
+  it asserts invariants over observed histories rather than comparing output
+  to a reference run.
+- `grader/histories/` holds the grader's own validation fixtures: synthetic
+  observed histories, at least one that each checker must accept and one that
+  each checker must reject. They are written by hand against the history
+  model, never recorded from a fault run, and they name no barrier. A history
+  exhibiting a doubled effect states the failure the `README.md` invariant
+  already forbids, so it reveals nothing about the design that avoids it.
+  These fixtures prove the grader works; nothing proves a design does.
 - The fault schedules — duplicates, delayed acknowledgements, restarts,
   partitions, recovery — are not lab-directory files and not readable files
   anywhere in the learner distribution. Their seeded recipes are compiled
@@ -675,6 +681,7 @@ NN-solution-neutral-name/
   tests/
   starter/
   grader/
+    histories/
   sources/
   workload/
   infra/
@@ -836,8 +843,8 @@ The attribution model is stricter than a source pool:
 5. No source marked "citation only" contributes copied prose, code, fixtures,
    tests, or diagrams.
 
-All lab prose, graders, fixtures, workload generators, golden systems, and
-rotten systems are original GPL-3.0 work. Apache-2.0, MIT, MIT-0,
+All lab prose, graders, fixtures, and workload generators are original
+GPL-3.0 work. Apache-2.0, MIT, MIT-0,
 BSD-2-Clause, CC0,
 MPL-2.0, and PostgreSQL-licensed dependencies remain under their own licenses.
 Their notices stay with distributed copies.
@@ -852,7 +859,7 @@ publish step copies that file into the root of every learner distribution.
 
 **The source repository is the complete corresponding source** for everything
 the curriculum conveys — prose, graders, fixtures, workloads, the fault
-controller and its seeded recipe sources, `reference/`, and `specs/` — and it
+controller and its seeded recipe sources, and `specs/` — and it
 is public under GPL-3.0 in its entirety. The publish step's exclusions decide
 which tree a file lands in, never whether it is published.
 
@@ -876,7 +883,7 @@ policy for the repository.
 
 | Source | What it contributes | License evidence | Repository use |
 |--------|---------------------|------------------|----------------|
-| `challenges/` | Runnable stubs, problem versus hints split, golden/rotten proof, deterministic large workloads | GPL-3.0 and its source-project `NOTICE` | Adapt the repository pattern with attribution; do not copy individual tasks |
+| `challenges/` | Runnable stubs, the problem versus hints split, the README ban list, deterministic seeded workloads, and ephemeral adversarial fixtures | GPL-3.0 and its source-project `NOTICE` | Adapt the repository pattern with attribution; do not copy individual tasks |
 | [Cambridge Distributed Systems notes](https://www.cl.cam.ac.uk/teaching/2021/ConcDisSys/dist-sys-handout.pdf) | Failure models, clocks, replication, consistency, transactions, collaboration | Page 1 says [CC BY-SA](https://martin.kleppmann.com/2020/11/18/distributed-systems-and-elliptic-curves.html), but gives no version | Citation only; original explanations avoid an unclear ShareAlike boundary |
 | [MIT 6.5840](https://pdos.csail.mit.edu/6.824/schedule.html) | Pedagogical progression from local service to replication and sharding | No reuse license found; the [collaboration policy](https://pdos.csail.mit.edu/6.824/labs/collab.html) restricts solution sharing | Sequence inspiration only; no assignment text, code, tests, or solution structure |
 | [CMU BusTub](https://github.com/cmu-db/bustub) | Educational database decomposition and grader discipline | [MIT](https://github.com/cmu-db/bustub/blob/master/LICENSE); README asks users not to publish student solutions | Conceptual reference only; every database lab and grader is original |
@@ -968,11 +975,11 @@ and inherit the same citation-only policy.
   seeded schedule recipes compiled in, the recipe sources that the publish
   step excludes from the learner distribution, and the frozen aggregate
   digest over the schedules the controller materializes.
-- `systems-labs/reference/` — every lab's golden and rotten trees. The
-  explicit publish step that produces the learner distribution excludes this
-  directory and `specs/`.
 - `systems-labs/template/` — runnable dependency skeleton, public contracts,
-  and empty application seams.
+  and empty application seams. Its trivial domain carries a working
+  implementation, because the template is the scaffold's own regression test
+  and is not a lab. The publish step excludes `specs/` from the learner
+  distribution.
 
 ## Code pointers
 

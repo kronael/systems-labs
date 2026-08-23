@@ -1,5 +1,38 @@
 # Bugs
 
+## S16 — S3's resolution is superseded: no lab has a worked solution (2026-08-23, fixed)
+
+`S3` moved each lab's `golden/` and `rotten/` out of the lab directory to a
+repository-root `reference/` tree excluded by the publish step. That was
+deterrence, and it left the underlying problem: a worked systems design answers
+every `Architecture questions` bullet at once.
+
+The owner's position closes it properly — labs have no worked solution at all.
+The reasoning is that a challenge has one correct answer, so a golden reference
+is well defined, while a systems lab admits many correct designs, so no
+implementation is canonical and "rotten" is one of countless ways to be wrong.
+`golden/` was never load-bearing here as it is in `challenges/`, where
+`make bench` runs it as the oracle for expected output; this grader asserts
+invariants over observed histories and needs no oracle.
+
+Two things replace it. The cited source documenting the real reported behaviour
+is the lab's ground truth. `grader/histories/` holds synthetic accept and reject
+fixtures per checker, written by hand against the history model and never
+recorded from a fault run, which prove the grader works without any design
+existing. `template/` keeps a working implementation because it is the
+scaffold's regression test and not a lab.
+
+- **Severity:** high
+- **Scope:** repository contract, shared scaffold, per-lab authoring
+- **Affected:** `specs/01-systems-labs.md`, `specs/0/5-shared-scaffold.md`,
+  `CLAUDE.md`
+- **Source:** owner decision, 2026-08-23
+- **Status:** fixed
+- **Fix:** `reference/` removed from the repository contract, planned
+  boundaries, licence, teaching, and fault contracts; `grader/histories/` added
+  to the per-lab shape; `0/5` template section rewritten; `CLAUDE.md` golden
+  rule replaced, 2026-08-23
+
 ## S15 — nothing enforces the earned-dependency rule (2026-08-23, open)
 
 `01-systems-labs.md` states that if the naive small tool would pass the same
@@ -11,10 +44,16 @@ single-process, single-store design would fail this lab's scale target, so the
 rule is an author's promise rather than a gate.
 
 `challenges/` solved the same problem executably: `rotten/` must pass the small
-suite and time out on every generated large case, and `make sys-rotten`
-enforces that contract at the root. The analogue here is a second reference
-that is not merely a wrong design but the *simpler* design, required to fail
-the scale target.
+suite and time out on every generated large case, and `make sys-rotten` enforces
+that contract at the root. That route is closed here — `S16` removed worked
+implementations from labs, so there is no simple design to run and time.
+
+What remains is an authoring check rather than a gate: each lab spec states,
+in `Scope`, what a single-process single-store design would fail at this scale
+target, and a reviewer confirms the claim is specific enough to be wrong. If
+no such sentence can be written, the dependency is unearned. Whether that is
+enough, or whether the rule should be dropped rather than left unenforceable,
+is the open question.
 
 - **Severity:** medium
 - **Scope:** verification contract, shared scaffold, per-lab authoring

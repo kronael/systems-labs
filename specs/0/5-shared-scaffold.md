@@ -108,7 +108,7 @@ controller binary — Go, per the language policy — rather than shipped as
 readable files beside it, so what the learner receives is an executable that
 produces the schedule, not a source that describes it. The recipe sources
 live with the author tree, excluded from the learner distribution by the same
-publish step that excludes `reference/` and `specs/`. Excluded is not
+publish step that excludes `specs/`. Excluded is not
 withheld: the controller is conveyed as object code under GPL-3.0, so the
 learner distribution names the public source repository as the no-charge
 route to its complete corresponding source, recipe sources included, per the
@@ -179,15 +179,19 @@ executable form of the
 [per-lab directory shape](../01-systems-labs.md#repository-contract), with a
 trivial domain: one record type, one operation, one invariant, one fault.
 
-The template is CI-tested like a lab, and its worked pair lives where every
-lab's does: at repository root under `reference/template/`, never inside the
-lab directory. CI proves that `make up`, `make test-all`, `make fault`, and
-`make bench` all pass against the golden reference, and that the rotten
-reference fails exactly one contract — so a passing and a failing submission
-are both checked without a worked solution ever sitting beside the learner's
-`app/`. The publish step that produces the learner distribution excludes
-`reference/`. A new lab starts as a copy of the template, which is also how
-the scaffold's own regressions are caught.
+The template carries a working implementation of its trivial domain, and it
+is the only one in the repository. It is the scaffold's regression test rather
+than a lab: CI proves `make up`, `make test-all`, `make fault`, and `make bench`
+all run end to end against it, so a broken generator, controller, or checker
+fails before any lab does.
+
+No lab has an equivalent. A challenge has one correct answer, so a worked
+reference is well defined; a systems lab admits many correct designs, so no
+implementation is canonical and a "rotten" one is merely one of countless ways
+to be wrong. What anchors a lab instead is the cited source that documents the
+real reported behaviour its quirk rests on, and the grader's own history
+fixtures. A new lab starts as a copy of the template with the implementation
+removed.
 
 ## Build order
 
