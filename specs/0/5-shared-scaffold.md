@@ -22,7 +22,7 @@ everything that names its own domain.
 
 | Concern | Shared | Per lab |
 |---------|--------|---------|
-| Verification | the history vocabulary and its five invariant shapes | its verify skill, and the identities it checks |
+| Verification | the history vocabulary and its five invariant shapes | its verify skill, and the boundaries it checks |
 | Workload | the open-loop generator, the seed and rate model, the replay engine | the record schema and the generator parameters |
 | Faults | the controller with the recipe set compiled in, every injection mechanism, the digest | its seeded schedule recipes and their barriers |
 | Evidence | the run manifest, the history format, the histogram format, the report schema | which measurements the lab requires |

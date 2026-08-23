@@ -90,6 +90,12 @@ source repository — each a deliberate act, like opening `HINTS.md`.
 - **`HINTS.md`** holds architecture guidance, rejected designs, and
   solution-bearing citations. Opened by choice, never by default. Nothing in
   `README.md` summarizes it.
+- **`.claude/skills/verify/SKILL.md`** is learner-facing too, so the same ban
+  binds it: no mechanism, no design, no barrier, no schedule, and no record
+  identity. A schedule selects exact records, and an agent opens the skill by
+  default, so a listed identity leaks the schedule by accident. The skill
+  names the property, the selector, and where to observe — never how a design
+  reaches the property.
 - Fixed wording, never paraphrased: every `HINTS.md` opens with the exact line
   `> Spoilers. Open only when stuck.` and every `README.md` ends with the exact
   line ``Stuck? See `HINTS.md`.``
@@ -208,15 +214,17 @@ alone. Performance gates NEVER hard-code a number.
 
 **There is no grader binary.** Each lab carries
 `.claude/skills/verify/SKILL.md` — the procedure an agent follows to check that
-lab against a completed run. It names the observable boundaries, the invariant
-each must satisfy, and the identities to check, and it describes only what is
-not obvious. It never names the failure schedule, a mechanism, or a design.
+lab against a completed run. It names the observable boundaries and the
+invariant each must satisfy, and it describes only what is not obvious. It
+never names the failure schedule, a mechanism, a design, or a record identity;
+the completed run's history supplies the identities that were touched.
 
-Only two things stay compiled, because neither can be described away: the fault
-controller, which must fire at exact barriers, and the workload generator, which
-must hold an offered rate under load. The run stays reproducible; the judgement
-over it does not, and a lab whose correctness cannot be stated clearly enough
-for that to be reliable has an unclear invariant.
+No part of the judgement is compiled. Two parts of the run still are, because
+neither can be described away: the fault controller, which must fire at exact
+barriers, and the workload generator, which must hold an offered rate under
+load. The run stays reproducible; the judgement over it does not, and a lab
+whose correctness cannot be stated clearly enough for that to be reliable has
+an unclear invariant.
 
 ## Languages
 

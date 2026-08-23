@@ -33,7 +33,7 @@ Each section below fixes one thing. This list is the index, not a substitute.
 
 **Rationale** — **Decision**: sixteen core labs, three further catalogs under `0/`, GPL-3.0, sources cited and never copied. **Problem**: bounded exercises cannot teach boundary failure. **Critique**: the first draft rewarded tool exposure; the fix gave each technology room for its failure model.
 
-**Pedagogy** — **Learning model**: predict, build, test, break, inspect, correct, prove, across three gates whose sum is less than the lab's budget, because the redesign between them is the teaching. **Lab brief contract**: one system, no mechanism named even to disclaim it, difficulty from the quirk, a scale target that is not a pass threshold, named neighbouring systems. **Teaching contract**: four artifacts hold task, hints, executable edge cases, and author reasoning; an assistant must be asked twice.
+**Pedagogy** — **Learning model**: predict, build, test, break, inspect, correct, prove, across three gates whose sum is less than the lab's budget, because the redesign between them is the teaching. **Lab brief contract**: one system, no mechanism named even to disclaim it, difficulty from the quirk, a scale target that is not a pass threshold, named neighbouring systems. **Teaching contract**: five artifacts hold task, hints, the check in words, executable edge cases, and author reasoning; an assistant must be asked twice.
 
 **Harness** — **Standard laboratory scaffold**: one dependency-only Compose profile, runnable before learner code exists; specialized labs extend it. **Fault injection contract**: one shared controller, faults at named barriers only, every scenario declaring what must survive.
 
@@ -224,13 +224,20 @@ solution-bearing guidance.
 
 ## Teaching contract
 
-Four artifacts hold four different things, and the separation is what makes the
+Five artifacts hold five different things, and the separation is what makes the
 lab teachable:
 
 - `README.md` — the task. What the product does, what must hold, what evidence
   must exist. Nothing about how, and nothing about where it breaks.
 - `HINTS.md` — the design reading, opened deliberately. Neighbouring systems,
   rejected designs, and the solution-bearing citations.
+- `.claude/skills/verify/SKILL.md` — the check, in words: what must hold at
+  each observable boundary and where to look for it, for an agent to run. It
+  is learner-facing, so the ban that binds `README.md` binds it too — no
+  mechanism, no design, no barrier, no schedule, and no record identity. It
+  states the property and where to observe it, never the way a design reaches
+  it, and the [Verification](#verification) section fixes the rest of its
+  shape.
 - The fault schedules — the edge cases, as executable failure
   schedules. The learner meets them by running `make fault`, after committing
   to a design. A schedule is never a readable artifact at rest: its seeded
@@ -570,9 +577,9 @@ concurrent misses, Flink recovery beside an external sink, Kubernetes
 termination during work, and OpenTofu drift or a secret sentinel in state.
 
 Evidence contains the prediction, observed native and application state,
-explanation, any architecture revision, and the remaining limitation. The
-verification accepts any design that satisfies the public contract; it
-does not detect a preferred pattern name or private code shape.
+explanation, any architecture revision, and the remaining limitation.
+Verification accepts any design that satisfies the public contract; it does not
+detect a preferred pattern name or private code shape.
 
 ## Data contract
 
@@ -588,7 +595,7 @@ The generated source implements the same adapter contract and deliberately
 models the ugly cases that a small live sample might not contain. Its TOML
 parameters include seed, rate, burst shape, key skew, duplicate ratio,
 late-arrival distribution, malformed-record ratio, disconnect boundary, and
-cursor overlap. Every failure schedule names exact record identities, so the
+cursor overlap. Every failure schedule names exact record identities, so
 verification proves histories rather than aggregate counts.
 
 Recording and replay are separate commands. Recording is bounded by duration
@@ -802,9 +809,18 @@ rather than implemented, and an agent runs it.
 Each lab carries `.claude/skills/verify/SKILL.md`: the procedure for checking
 that lab's invariants against a completed run. It names the observable
 boundaries — HTTP responses, SQL state, a provider's request log, consumer
-positions, the evidence report — the invariant each one must satisfy, and the
-record identities to check. It describes **only what is not obvious**. An agent
-does not need to be told to run the tests or read the error.
+positions, the evidence report — and the invariant each one must satisfy. It
+describes **only what is not obvious**, and everything it adds over `README.md`
+is where to observe, never what to conclude. An agent does not need to be told
+to run the tests or read the error.
+
+The skill names no record identity. A failure schedule selects exact records,
+so a static file listing the records whose history needs checking publishes
+that selection to anyone who opens the lab — and an agent opens the skill by
+default, which makes the disclosure accidental rather than the deliberate act
+the teaching contract's standard rests on. The skill names the selector its
+invariant ranges over; the completed run's own history supplies the identities
+that were touched.
 
 The skill never names the failure schedule, a mechanism, or a design. It states
 what must be true, exactly as `README.md` does, and where to look for it.
@@ -813,10 +829,11 @@ This is honest about how these labs will be used. A learner working them has an
 agent, will use it both to build and to check, and is better served by a
 verification standard they can read than by a binary they cannot.
 
-Two things stay compiled, because neither can be described away: the fault
-controller, which must fire at exact barriers, and the workload generator,
-which must hold an offered rate under load. The run therefore stays
-reproducible even though the judgement over it does not.
+No part of the judgement is compiled. Two parts of the run still are, because
+neither can be described away: the fault controller, which must fire at exact
+barriers, and the workload generator, which must hold an offered rate under
+load. The run therefore stays reproducible even though the judgement over it
+does not.
 
 That is the cost, and it is real: two agent runs can disagree where a compiled
 checker could not. A lab whose correctness cannot be stated clearly enough for
