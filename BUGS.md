@@ -1,5 +1,90 @@
 # Bugs
 
+## S20 — phase 1 misses two dimensions, and `1/2` and `1/4` overlap (2026-08-23, proposed)
+
+Phase 1's five labs separate cleanly on one axis — who owns progress, and what
+happens when it is lost. `1/1` has no durable state, `1/2` has a notification
+nobody retains, `1/3` a consumer-owned position, `1/4` a broker-owned lease,
+`1/5` a gap neither system can close alone.
+
+Two dimensions are absent, and this was checked rather than recalled.
+
+**Change over time.** No lab in the sixteen makes "the shape changed while the
+system was running" its subject. Every lab is built once and never altered.
+`grep` for schema change or migration across phases 1 to 4 returns `3/2`, where
+it is one pressure among several in a Flink job, and one hit in `1/2` that is
+scaffold plumbing rather than a lesson.
+
+**Contention the database hands back.** The technology spine advertises "MVCC
+and isolation, locks, deadlocks, serialization failures". `grep` for isolation
+level, serialization failure, and deadlock across phases 1 to 4 returns
+**nothing**. `1/2` has contention, but there the database enforces the
+invariant; no lab teaches the opposite case, where the database refuses the
+transaction and returns the problem to the application.
+
+**`1/2` and `1/4` are the phase's weakest orthogonality claim.** Both read
+"accept work, do it later, survive restart". They fail in opposite directions —
+`1/2` risks losing work, `1/4` risks doubling it — but the products are close.
+
+### Proposal, needs sign-off
+
+**Merge `1/2` and `1/4` into one lab: reservation fulfillment whose fulfillment
+work is leased.** One product, PostgreSQL plus the self-run broker, and one
+falsified belief: *a lease is not a lock*. The lease expires while a worker
+still holds a half-finished reservation, and the duplicate meets a database
+invariant that refuses it. That belief needs both systems, so the second
+dependency is earned rather than stacked.
+
+A naive merge is wrong. Phase 1's spine is three delivery models — a
+notification that never replays, a retained log, a lease on a timer — and
+folding `1/4` into `1/2` deletes one of the three unless the merged lab keeps
+the lease. It does. What the merge costs is `LISTEN`/`NOTIFY` as a required
+mechanism, which leaves phase 1 entirely.
+
+**Add two labs on the missing dimensions.** Both are local, both use a
+dependency phase 1 already runs, and both quirks are documented.
+
+- *Change against live traffic.* A shape change lands while the system serves
+  requests, with old and new records coexisting and no window where either
+  fails. Source, fetched 2026-08-23:
+  [ALTER TABLE](https://www.postgresql.org/docs/current/sql-altertable.html) —
+  "An `ACCESS EXCLUSIVE` lock is acquired unless explicitly noted", and
+  "Adding a column with a volatile `DEFAULT` ... will cause the entire table
+  and its indexes to be rewritten." Solution-bearing: the same page lists the
+  subforms taking weaker locks, so it belongs in `HINTS.md`.
+- *Refused transactions.* The product stays correct under concurrent
+  conflicting writes that the database declines to serialize, and the learner
+  owns the retry boundary. Source, fetched 2026-08-23:
+  [Transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
+  — "ERROR: could not serialize access due to read/write dependencies among
+  transactions", and "When an application receives this error message, it
+  should abort the current transaction and retry the whole transaction from
+  the beginning." Solution-bearing: that second sentence is the answer, so it
+  belongs in `HINTS.md`.
+
+Result is six phase 1 labs: admission, lease-versus-lock, retained log,
+cross-system gap, change against live traffic, refused transactions.
+
+### Risk, not papered over
+
+The refused-transactions lab sits close to the merged `1/2`: both put
+concurrent conflicting writes against PostgreSQL. The distinction is that one
+lets the database enforce an invariant and the other makes the application
+handle a refusal. That is real but thin, and it is the part of this proposal
+most likely to be wrong. If it does not survive scrutiny, the change-over-time
+lab stands on its own and the phase lands at five.
+
+- **Severity:** medium
+- **Scope:** phase 1, curriculum structure
+- **Affected:** `specs/1/2-reservation-fulfillment.md`,
+  `specs/1/4-reliable-record-import.md`, `specs/1/README.md`,
+  `specs/index.md`, `specs/01-systems-labs.md`,
+  `specs/0/6-serverless-contrast-track.md` (the `1/4`↔`2/2` pairing)
+- **Source:** orthogonality review of phase 1, 2026-08-23; both quirk sources
+  fetched and quoted the same day
+- **Status:** proposed (redesign, needs sign-off)
+- **Fix:**
+
 ## ✅ FIXED 2026-08-23 — S19 — the checks lost their independent producer (2026-08-23, fixed)
 
 Resolved by `EVALUATION.md`. Four labs check by comparing against an
