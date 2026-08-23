@@ -815,9 +815,6 @@ The attribution model is stricter than a source pool:
    upstream revision, copyright notice, and license.
 5. No source marked "citation only" contributes copied prose, code, fixtures,
    tests, or diagrams.
-6. Each lab spec carries its own quirk sources in its `Code pointers`, and
-   those sources inherit the same citation-only policy. No per-lab source list
-   is kept in this document, because a second copy drifts.
 
 All lab prose, graders, fixtures, workload generators, golden systems, and
 rotten systems are original GPL-3.0 work. Apache-2.0, MIT, MIT-0,
@@ -899,6 +896,32 @@ policy for the repository.
 | [RIPE NCC RIS Live](https://ris-live.ripe.net/manual/) | Public WebSocket stream of BGP updates and a real source for route-state and event-time behavior | RIPE NCC service terms; no redistribution license claimed here | Citation plus opt-in bounded recording; no captured feed is committed or redistributed |
 | [Kraken recent trades](https://docs.kraken.com/api/docs/rest-api/get-recent-trades/) | Public paginated trade ticks and a real source for cursor, rate-limit, precision, and duplicate behavior | Kraken service terms vary by region; no redistribution license claimed | Citation plus opt-in bounded recording for personal use; generated data is the distributable default |
 
+## Per-lab source map
+
+| Labs | Sources that belong in their HINTS or README |
+|------|----------------------------------------------|
+| 01 | OpenTelemetry, HdrHistogram |
+| 02 | PostgreSQL concurrency, PL/pgSQL, `NOTIFY`, BusTub, BenchBase |
+| 03 | Kafka, PostgreSQL |
+| 04 | NATS JetStream, PostgreSQL |
+| 05 | PostgreSQL, Kafka, FoundationDB, Jepsen |
+| 06 | ElasticMQ, DynamoDB Local, AWS Lambda error handling, AWS pricing |
+| 07 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS Lambda error handling |
+| 08 | DynamoDB Local |
+| 09 | DynamoDB Local, ElasticMQ, Lambda with SQS |
+| 10 | OpenTelemetry, HdrHistogram |
+| 11 | RIPE RIS Live, Kafka, OpenTelemetry, HdrHistogram |
+| 12 | RIPE RIS Live, Kafka, Flink Training, PostgreSQL |
+| 13 | Kraken recent trades, DynamoDB Local, AWS pricing |
+| 14 | DynamoDB Local, Valkey, HdrHistogram, OpenTelemetry |
+| 15 | Kraken recent trades |
+| 16 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS pricing, OpenTofu, Terraform license, Kubernetes, OpenTelemetry |
+
+Sources consulted after this ledger's date — the JetStream pages, the Lambda
+lifecycle, concurrency, and quota pages, the DynamoDB transaction pages, and
+the ClickHouse documentation — are carried in each lab's own `Code pointers`
+and inherit the same citation-only policy.
+
 ## Sources deliberately excluded
 
 - **DeathStarBench** is not a derivation source because its visible licensing
@@ -962,7 +985,8 @@ policy for the repository.
   optional cloud account, the verified free-tier allowances, and the
   zero-spend guardrail that comes before the first deployed function.
 - The sixteen entries in the [core catalog](index.md#core-catalog) are the
-  governing lab specs. Implementation pointers do not exist while they remain `draft`.
+  governing lab specs. Implementation pointers do not exist while they
+  remain `draft`.
 
 ## Approval boundary
 
