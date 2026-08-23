@@ -223,7 +223,7 @@ ETH for free from faucets"; Sepolia is the recommended default testnet for
 application development
 ([ethereum.org networks](https://ethereum.org/en/developers/docs/networks/)).
 No mainnet funds are ever used in this curriculum: no lab buys, holds, or
-transfers tokens with monetary value, and nothing in any grader depends on
+transfers tokens with monetary value, and no lab's verification depends on
 a funded mainnet account.
 
 ## Sources

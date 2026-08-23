@@ -25,7 +25,7 @@ separate catalogs — low-level, blockchain, and retrieval — are recorded unde
 
 The repository is GPL-3.0, matching `challenges/`. External sources supply
 concepts and tool documentation. They do not supply copied assignments,
-solutions, fixtures, or graders.
+solutions, fixtures, or checks.
 
 ## Contracts at a glance
 
@@ -106,9 +106,10 @@ Each lab has three depth gates:
 - **Evidence gate** — a one-to-two-hour load or deployment run records the
   operational tradeoff and one limitation that remains.
 
-Passing means all three gates pass. The starter contains protocols, dependency
-bootstrapping, data schemas, generators, and the verification skill. It does not
-contain an application topology or the path that connects input to output. The
+Passing means all three gates pass. The prepared material contains protocols,
+dependency bootstrapping, data schemas, generators, and the verification skill.
+It does not contain an application topology or the path that connects input to
+output. The
 learner owns the architecture, service boundaries, state design, event
 handling, telemetry, and end-to-end tests.
 
@@ -461,8 +462,7 @@ Course-owned code follows one rule: the language is chosen by what the code
 must guarantee, not by taste.
 
 - **Python** is the tooling language. Fixture generation, TOML handling,
-  evidence reports, provenance manifests, the grading runner, and repository
-  automation are Python, distributed as `uv`-managed projects and PEP 723
+  evidence reports, provenance manifests, and repository automation are Python, distributed as `uv`-managed projects and PEP 723
   single-file scripts.
 - **Go** owns everything that must keep time under load: the open-loop workload
   generator, the fault controller, and the deterministic provider simulators.
@@ -663,7 +663,8 @@ keeping its unit-sized submission model:
   simulators, and telemetry services. Specialized labs add prepared Kubernetes
   and OpenTofu sandboxes under `infra/`; neither contains a solved application.
 - `evidence/` is generated and ignored. It contains the run manifest, traces,
-  latency histogram, throughput, resource peaks, and invariant report.
+  latency histogram, throughput, resource peaks, and the observed history that
+  a verify skill reads.
 
 Proposed shape:
 
@@ -677,6 +678,7 @@ NN-solution-neutral-name/
   app/
   tests/
   starter/
+  .claude/skills/verify/SKILL.md
   sources/
   workload/
   infra/
@@ -732,7 +734,8 @@ Every lab exposes the same root vocabulary:
 - `make test` runs unit and contract tests in under five seconds.
 - `make test-all` runs the local integration suite used by CI.
 - `make fault` runs deterministic failure and recovery scenarios.
-- `make bench` runs seeded load, checks invariants, and writes evidence.
+- `make bench` runs seeded load and writes the evidence report and the
+  observed history that verification reads.
 - `make teaching-lint` enforces the teaching contract mechanically: it fails
   if any lab `README.md` contains a scenario barrier name, a `Neighbouring
   systems` product name, any citation marked solution-bearing, the name of
@@ -742,8 +745,8 @@ Every lab exposes the same root vocabulary:
   merely mentioned. Ruling a candidate out names it as surely as ruling it
   in, so "no worker pool is required" fails the lint exactly as "use a
   worker pool" does. The same checks cover every course-authored
-  learner-facing text except `HINTS.md`, which is solution-bearing by
-  choice. The check is cheap by construction, because every `Code pointers`
+  learner-facing text — `.claude/skills/verify/SKILL.md` included — except
+  `HINTS.md`, which is solution-bearing by choice. The check is cheap by construction, because every `Code pointers`
   bullet carries an explicit neutral or solution-bearing state, each lab's
   dependency set bounds the parameter vocabulary to scan for, and the
   mechanism vocabulary is one curriculum-wide list maintained with the lint.
@@ -758,12 +761,14 @@ Every lab exposes the same root vocabulary:
   than the service, so a design can pass every local gate and still violate a
   production limit.
 
-Both targets read a conventional TOML path — `source.toml`, and `cloud.toml`
-with `keys.toml` alongside it — and both fail with that path named when it is
-absent. The path is a default inside the Makefile, never an argument the caller
-types; a target that needs a parameter to do its own job has the wrong name.
 - `make clean` removes named generated artifacts without touching cached source
   data.
+
+`make source` and `make smoke` read a conventional TOML path — `source.toml`,
+and `cloud.toml` with `keys.toml` alongside it — and both fail with that path
+named when it is absent. The path is a default inside the Makefile, never an
+argument the caller types; a target that needs a parameter to do its own job
+has the wrong name.
 
 Correctness gates use exact identities and histories, not counts alone.
 Acknowledged records must appear exactly once where the contract says one
@@ -833,8 +838,8 @@ The attribution model is stricter than a source pool:
 5. No source marked "citation only" contributes copied prose, code, fixtures,
    tests, or diagrams.
 
-All lab prose, graders, fixtures, and workload generators are original
-GPL-3.0 work. Apache-2.0, MIT, MIT-0,
+All lab prose, verification skills, fixtures, and workload generators are
+original GPL-3.0 work. Apache-2.0, MIT, MIT-0,
 BSD-2-Clause, CC0,
 MPL-2.0, and PostgreSQL-licensed dependencies remain under their own licenses.
 Their notices stay with distributed copies.
@@ -848,8 +853,8 @@ repository carries the complete GPLv3 text in a root `LICENSE`, and the
 publish step copies that file into the root of every learner distribution.
 
 **The source repository is the complete corresponding source** for everything
-the curriculum conveys — prose, graders, fixtures, workloads, the fault
-controller and its seeded recipe sources, and `specs/` — and it
+the curriculum conveys — prose, verification skills, fixtures, workloads, the
+fault controller and its seeded recipe sources, and `specs/` — and it
 is public under GPL-3.0 in its entirety. The publish step's exclusions decide
 which tree a file lands in, never whether it is published.
 
@@ -876,7 +881,7 @@ policy for the repository.
 | `challenges/` | Runnable stubs, the problem versus hints split, the README ban list, deterministic seeded workloads, and ephemeral adversarial fixtures | GPL-3.0 and its source-project `NOTICE` | Adapt the repository pattern with attribution; do not copy individual tasks |
 | [Cambridge Distributed Systems notes](https://www.cl.cam.ac.uk/teaching/2021/ConcDisSys/dist-sys-handout.pdf) | Failure models, clocks, replication, consistency, transactions, collaboration | Page 1 says [CC BY-SA](https://martin.kleppmann.com/2020/11/18/distributed-systems-and-elliptic-curves.html), but gives no version | Citation only; original explanations avoid an unclear ShareAlike boundary |
 | [MIT 6.5840](https://pdos.csail.mit.edu/6.824/schedule.html) | Pedagogical progression from local service to replication and sharding | No reuse license found; the [collaboration policy](https://pdos.csail.mit.edu/6.824/labs/collab.html) restricts solution sharing | Sequence inspiration only; no assignment text, code, tests, or solution structure |
-| [CMU BusTub](https://github.com/cmu-db/bustub) | Educational database decomposition and grader discipline | [MIT](https://github.com/cmu-db/bustub/blob/master/LICENSE); README asks users not to publish student solutions | Conceptual reference only; every database lab and grader is original |
+| [CMU BusTub](https://github.com/cmu-db/bustub) | Educational database decomposition and grader discipline | [MIT](https://github.com/cmu-db/bustub/blob/master/LICENSE); README asks users not to publish student solutions | Conceptual reference only; every database lab and its verification is original |
 | [PostgreSQL concurrency control](https://www.postgresql.org/docs/current/mvcc.html) | Transactions, MVCC, isolation, locks, deadlocks, serialization failures | [PostgreSQL License](https://www.postgresql.org/about/licence/) | Tool documentation and citation; PostgreSQL runs as an unmodified dependency |
 | [PostgreSQL PL/pgSQL](https://www.postgresql.org/docs/current/plpgsql.html) and [`NOTIFY`](https://www.postgresql.org/docs/current/sql-notify.html) | Stored functions, trigger behavior, plan caching, commit-time notifications, payload and queue limits | [PostgreSQL License](https://www.postgresql.org/about/licence/) | Tool documentation and citation; lab code and explanations are original |
 | [FoundationDB](https://github.com/apple/foundationdb) | Transaction conflict reasoning, distributed storage, deterministic failure testing | [Apache-2.0](https://github.com/apple/foundationdb/blob/main/LICENSE) | Conceptual reference; no simulator or implementation copied |
@@ -885,7 +890,7 @@ policy for the repository.
 | [NATS JetStream](https://github.com/nats-io/nats-server) | Self-run leased delivery: streams, consumers, acknowledgement, timed redelivery, bounded attempts | [Apache-2.0](https://github.com/nats-io/nats-server/blob/main/LICENSE) for the server; documentation cited without copying | Unmodified dependency plus documentation citations; added 2026-08-14 with the local rewrite of the import lab |
 | [Apache Flink Training](https://github.com/apache/flink-training) | Stateful enrichment, windows, timers, exercise-and-test structure | [Apache-2.0](https://github.com/apache/flink-training/blob/master/LICENSE) | API and teaching reference; original domain, jobs, tests, and solutions |
 | [Automerge](https://github.com/automerge/automerge) | CRDT-backed JSON state and sync behavior considered for the workspace candidate | [MIT](https://github.com/automerge/automerge/blob/main/LICENSE) | Candidate reference only; the workspace lab is not in the selected catalog |
-| [Jepsen](https://github.com/jepsen-io/jepsen) | Histories, fault injection, and invariant checking | The module declares [EPL-1.0](https://github.com/jepsen-io/jepsen/blob/main/jepsen/project.clj); no root license file was found | Citation only; the repository uses an original narrow history checker |
+| [Jepsen](https://github.com/jepsen-io/jepsen) | Histories, fault injection, and invariant checking | The module declares [EPL-1.0](https://github.com/jepsen-io/jepsen/blob/main/jepsen/project.clj); no root license file was found | Citation only; the repository states its invariants over observed histories in an original, narrow vocabulary |
 | [CloudEvents specification](https://github.com/cloudevents/spec) | Portable event envelope across HTTP, Kafka, functions, and containers | [Apache-2.0](https://github.com/cloudevents/spec/blob/main/LICENSE) | Public specification and unmodified SDK dependency |
 | [AWS Serverless Patterns](https://github.com/aws-samples/serverless-patterns) | Lambda event sources, queues, retries, DLQs, and infrastructure examples | [MIT-0](https://github.com/aws-samples/serverless-patterns/blob/main/LICENSE) | Pattern reference; infrastructure and examples are independently written |
 | [AWS Lambda asynchronous error handling](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-error-handling.html) | Current retry and duplicate-delivery behavior | AWS site terms; no open reuse license claimed | Citation only; behavior is verified in optional live smoke tests |

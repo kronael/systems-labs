@@ -45,7 +45,7 @@ Two things stand in its place:
   NEVER invent a quirk and then look for a source.
 - **A described check.** `.claude/skills/verify/SKILL.md` states what must hold
   and where to look, for an agent to run. No grader binary, no framework, no
-  fixtures proving the checker. A lab that needs elaborate checking machinery to
+  fixtures proving a checker. A lab that needs elaborate checking machinery to
   be interesting has the wrong task.
 
 Verification needs no oracle: it asserts invariants over observed histories
@@ -54,7 +54,7 @@ rather than comparing output to a reference run.
 `template/` is the one exception, and it is not a lab. It carries a working
 implementation of a trivial domain — one record type, one operation, one
 invariant, one fault — as the scaffold's regression test, so a broken generator,
-controller, or checker fails before any lab does.
+controller, or evidence writer fails before any lab does.
 
 ## Never leak the failure schedule
 
@@ -97,7 +97,8 @@ source repository — each a deliberate act, like opening `HINTS.md`.
 `make teaching-lint` enforces this and runs in CI: it fails on a mechanism name
 — prescribed, disclaimed, or merely mentioned — a barrier name, a neighbour
 product name, a dependency configuration-parameter name, or a solution-bearing
-citation in any lab `README.md`.
+citation in any course-authored learner-facing text other than `HINTS.md` — a
+lab `README.md` and its `.claude/skills/verify/SKILL.md` alike.
 
 ## The brief — what, never how
 
@@ -195,8 +196,8 @@ make            format, build, lint, fast test
 make test       unit and contract tests, under five seconds
 make test-all   local integration suite, what CI runs
 make fault      deterministic failure and recovery scenarios
-make bench      seeded load, invariant check, evidence output
-make teaching-lint   fail on any solution leak in a lab README; CI runs it
+make bench      seeded load, evidence report, observed history
+make teaching-lint   fail on any solution leak in learner-facing text; CI runs it
 make source     record bounded real data
 make smoke      live cloud check, the only target that leaves the workstation
 make clean      remove generated artifacts, keep cached source data
@@ -219,8 +220,8 @@ for that to be reliable has an unclear invariant.
 
 ## Languages
 
-- **Python** — tooling: fixtures, TOML, evidence reports, the grading runner,
-  repository automation. `uv` projects and PEP 723 scripts.
+- **Python** — tooling: fixtures, TOML, evidence reports, provenance
+  manifests, repository automation. `uv` projects and PEP 723 scripts.
 - **Go** — anything that must keep time under load: the open-loop generator,
   fault controller, provider simulators. NEVER move these to
   Python; a generator that slows with the system under test destroys the

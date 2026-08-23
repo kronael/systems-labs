@@ -25,7 +25,7 @@ everything that names its own domain.
 | Verification | the history vocabulary and its five invariant shapes | its verify skill, and the identities it checks |
 | Workload | the open-loop generator, the seed and rate model, the replay engine | the record schema and the generator parameters |
 | Faults | the controller with the recipe set compiled in, every injection mechanism, the digest | its seeded schedule recipes and their barriers |
-| Evidence | the run manifest, the histogram format, the report schema | which measurements the lab requires |
+| Evidence | the run manifest, the history format, the histogram format, the report schema | which measurements the lab requires |
 | Environment | the Compose profile shape, health checks, network layout | which dependencies the profile starts |
 
 No shared component may contain anything solution-bearing. A helper that
@@ -92,8 +92,15 @@ skew, and the fault block device.
 
 A scenario is declarative and names a trigger, a target, and an effect. The
 trigger is a **barrier**, not a time: an identity reaching a boundary. The
-controller and the verify skills therefore share the barrier vocabulary, which is what
-lets a failure land at the same point on every run.
+controller and the evidence writer therefore share the barrier vocabulary,
+which is what lets a failure land at the same point on every run and lets the
+history record where it landed.
+
+A verify skill does not share it. The skill is learner-facing text, and the
+[verification section](../01-systems-labs.md#verification) forbids it from
+naming the failure schedule. A skill names the boundaries it observes and
+reads the barrier out of the history at run time; the teaching lint fails on a
+barrier name written into the file.
 
 A schedule is never a readable artifact at rest, because a barrier name is an
 edge case stated in words. Each lab's seeded recipes are compiled into the
@@ -135,13 +142,14 @@ measurement method is the learner's choice.
 
 `make teaching-lint` is the mechanical enforcement of the
 [teaching contract](../01-systems-labs.md#teaching-contract), and CI runs it.
-It fails if any lab `README.md` contains a scenario barrier name, a
-`Neighbouring systems` product name, or any citation marked solution-bearing.
-It also fails if the name of a configuration parameter belonging to a
-dependency appears in any course-authored learner-facing text other than
-`HINTS.md`: a setting's name names a mechanism, and the task may state only
-the property the setting governs. And it fails if a mechanism name appears in
-any of those texts at all — prescribed, disclaimed, or merely mentioned.
+It fails if a scenario barrier name, a `Neighbouring systems` product name, or
+any citation marked solution-bearing appears in any course-authored
+learner-facing text other than `HINTS.md` — a lab `README.md` and its
+`.claude/skills/verify/SKILL.md` alike. It also fails if the name of a
+configuration parameter belonging to a dependency appears in those texts: a
+setting's name names a mechanism, and the task may state only the property the
+setting governs. And it fails if a mechanism name appears in them at all —
+prescribed, disclaimed, or merely mentioned.
 Excluding a candidate names it: a task that says no worker pool is required
 has told the learner what is in play, so a disclaimer fails the lint exactly
 as a prescription does.
@@ -164,15 +172,14 @@ The template carries a working implementation of its trivial domain, and it
 is the only one in the repository. It is the scaffold's regression test rather
 than a lab: CI proves `make up`, `make test-all`, `make fault`, and `make bench`
 all run end to end against it, so a broken generator, controller, or evidence
-writer
-fails before any lab does.
+writer fails before any lab does.
 
 No lab has an equivalent. A challenge has one correct answer, so a worked
 reference is well defined; a systems lab admits many correct designs, so no
 implementation is canonical and a "rotten" one is merely one of countless ways
 to be wrong. What anchors a lab instead is the cited source that documents the
-real reported behaviour its quirk rests on. A new lab starts as a copy of the template with the implementation
-removed.
+real reported behaviour its quirk rests on. A new lab starts as a copy of the
+template with the implementation removed.
 
 ## Build order
 

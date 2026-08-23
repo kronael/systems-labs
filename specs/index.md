@@ -36,12 +36,12 @@ curriculum only after the core is `accepted`.
 
 | Spec | Status | Summary |
 |------|--------|---------|
-| [01-systems-labs.md](01-systems-labs.md) | draft | Governing course spec: every cross-lab contract for scaffold, grading, faults, evidence, data, cost, and licensing |
+| [01-systems-labs.md](01-systems-labs.md) | draft | Governing course spec: every cross-lab contract for scaffold, verification, faults, evidence, data, cost, and licensing |
 | [0/1-lab-selection.md](0/1-lab-selection.md) | reference | Twenty expanded candidates, scoring model, ten retained labs, and ten explicit cuts |
 | [0/2-low-level-track.md](0/2-low-level-track.md) | reference | Phase 6 in Rust and C: five specced kernel-quirk candidates with origination notes |
 | [0/3-blockchain-track.md](0/3-blockchain-track.md) | reference | Phase 7 on Solana and Ethereum: validator, chain data, program, and permissionless delivery |
 | [0/4-search-and-retrieval-track.md](0/4-search-and-retrieval-track.md) | reference | Phase 8 on OpenSearch: proteins, news, web crawl, spatial, and relevance evaluation |
-| [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one grader, generator, fault controller, evidence writer, and template that all 31 labs share, and the build order |
+| [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 31 labs share, the verification vocabulary their skills are written in, and the build order |
 | [0/6-serverless-contrast-track.md](0/6-serverless-contrast-track.md) | reference | Phase 2 paired against phase 1: what the execution model removes, which pairings earn a lab, and which model is useful where |
 | [1/1-resilient-quote-service.md](1/1-resilient-quote-service.md) | draft | Quote aggregation architecture under overload, partial provider failure, and shutdown |
 | [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Reservation fulfillment architecture using PostgreSQL, PL/pgSQL, and `LISTEN`/`NOTIFY` |
