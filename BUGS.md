@@ -1,5 +1,29 @@
 # Bugs
 
+## S15 — nothing enforces the earned-dependency rule (2026-08-23, open)
+
+`01-systems-labs.md` states that if the naive small tool would pass the same
+gates at the same scale, the lab has not earned its dependency and the scale
+target is too low. Nothing checks it. `make teaching-lint` catches solution
+leaks in a README; CI proves the golden reference passes every gate and the
+rotten reference fails exactly one contract. Neither establishes that a
+single-process, single-store design would fail this lab's scale target, so the
+rule is an author's promise rather than a gate.
+
+`challenges/` solved the same problem executably: `rotten/` must pass the small
+suite and time out on every generated large case, and `make sys-rotten`
+enforces that contract at the root. The analogue here is a second reference
+that is not merely a wrong design but the *simpler* design, required to fail
+the scale target.
+
+- **Severity:** medium
+- **Scope:** verification contract, shared scaffold, per-lab authoring
+- **Affected:** `specs/01-systems-labs.md`, `specs/0/5-shared-scaffold.md`,
+  `CLAUDE.md`
+- **Source:** review of the gates against the `challenges/` model, 2026-08-23
+- **Status:** open
+- **Fix:**
+
 ## S14 — phase 3–8 briefs still carry disclaimed-mechanism enumerations (2026-08-14, open)
 
 The S12 rule — a brief states the categories of decision the learner owns and

@@ -27,6 +27,26 @@ The repository is GPL-3.0, matching `challenges/`. External sources supply
 concepts and tool documentation. They do not supply copied assignments,
 solutions, fixtures, or graders.
 
+## Contracts at a glance
+
+Each section below fixes one thing. This list is the index, not a substitute.
+
+**Rationale** — **Decision**: sixteen core labs, three further catalogs under `0/`, GPL-3.0, sources cited and never copied. **Problem**: bounded exercises cannot teach boundary failure. **Critique**: the first draft rewarded tool exposure; the fix gave each technology room for its failure model.
+
+**Pedagogy** — **Learning model**: predict, build, test, break, inspect, correct, prove, across three gates whose sum is less than the lab's budget, because the redesign between them is the teaching. **Lab brief contract**: one system, no mechanism named even to disclaim it, difficulty from the quirk, a scale target that is not a pass threshold, named neighbouring systems. **Teaching contract**: four artifacts hold task, hints, executable edge cases, and author reasoning; an assistant must be asked twice.
+
+**Harness** — **Standard laboratory scaffold**: one dependency-only Compose profile, runnable before learner code exists; specialized labs extend it. **Fault injection contract**: one shared controller, faults at named barriers only, every scenario declaring what must survive.
+
+**Catalog** — **Selected labs**: sixteen labs, four phases, catalog in `index.md`. **Local and serverless phases**: phase 2 rebuilds phase 1 products on an execution model the learner cannot operate. **Scope boundaries**: no consensus implementation, no console navigation, no parity claim; Lambda only where the brief fixes that shape.
+
+**Technology** — **Technology spine**: a fixed small set, the heavier tool per category, driven into the regime where its quirk fires or the dependency is unearned. **Zero-cost and AWS contract**: every required gate runs locally with no account.
+
+**Proof** — **Adversarial contract**: the learner predicts before the run; the grader detects no preferred pattern. **Data contract**: one adapter for real and generated input, decimals stay decimal, schedules name exact records. **Repository contract**: who owns which file, and what `README.md` may never say. **Verification contract**: one Make vocabulary, no hard-coded performance number. **Grading contract**: mechanical checks in `grader/`, judgment behind `make grade`, which never names the fix.
+
+**Provenance** — **Source placement**, **Licence and corresponding source**, **Research ledger**, **Per-lab source map**, **Sources deliberately excluded**: who is credited, what may be copied, and where a recipient obtains the complete source.
+
+**Gate** — **Planned repository boundaries**, **Code pointers**, and the **Approval boundary** that blocks implementation while this spec is `draft`.
+
 ## Problem
 
 `challenges/` teaches bounded algorithmic and concurrent problems well, but a
@@ -824,41 +844,30 @@ Their notices stay with distributed copies.
 
 ## Licence and corresponding source
 
-The GPL-3.0 declaration carries obligations the publish step must satisfy,
-and this section fixes them. The licence text itself travels with every form
-of the work: the source repository carries the complete GPLv3 text in a root
-`LICENSE` file, and the publish step copies that file into the root of every
-learner distribution. Declaring the licence without conveying its text is not
-publication.
+The repository is GPL-3.0, and three rules discharge that licence.
 
-Two artifacts reach recipients, and each has a defined source route:
+**The licence text travels with every form of the work.** The source
+repository carries the complete GPLv3 text in a root `LICENSE`, and the
+publish step copies that file into the root of every learner distribution.
 
-- **The source repository** is the complete corresponding source for
-  everything the curriculum conveys: prose, graders, fixtures, workloads, the
-  fault controller and its seeded recipe sources, `reference/`, and `specs/`.
-  It is public under GPL-3.0 in its entirety. Nothing the publish step
-  excludes from the learner distribution is withheld from publication: the
-  exclusions decide which tree a file lands in, never whether the file is
-  published.
-- **The learner distribution** is a derived artifact of the publish step, and
-  it conveys object code: the fault controller binary with each lab's seeded
-  schedule recipes compiled in. Under GPLv3 sections 1 and 6 its recipients
-  must get access to that binary's complete corresponding source, which
-  includes the recipe sources the distribution deliberately omits. The
-  distribution therefore names the public source repository — at its root,
-  in the same place that states the licence — as the no-charge route to the
-  complete corresponding source of everything it contains, the compiled
-  recipes included. That route must stay equivalent in access to the
-  distribution itself: whoever can obtain the learner tree can obtain the
-  source repository the same way, at no further charge.
+**The source repository is the complete corresponding source** for everything
+the curriculum conveys — prose, graders, fixtures, workloads, the fault
+controller and its seeded recipe sources, `reference/`, and `specs/` — and it
+is public under GPL-3.0 in its entirety. The publish step's exclusions decide
+which tree a file lands in, never whether it is published.
 
-The teaching contract survives this because its standard is deterrence rather
-than impossibility. No failure schedule is readable inside the learner tree,
-and nothing hands one over by accident; fetching the source repository to
-read a recipe is a deliberate act, exactly like opening `HINTS.md`, reading a
-materialized schedule mid-run, or disassembling the controller. A publish
-step that severed the source route would not strengthen the teaching
-contract; it would violate the licence.
+**The learner distribution names that repository.** It conveys object code —
+the fault controller binary with each lab's recipes compiled in — so under
+GPLv3 sections 1 and 6 its recipients must reach that binary's complete
+corresponding source, the omitted recipes included. The distribution therefore
+names the source repository at its root, beside the licence, as the no-charge
+route, and that route stays equivalent in access to the distribution itself.
+
+The teaching contract survives this because its standard is deterrence, not
+impossibility. No failure schedule is readable inside the learner tree, and
+fetching the source repository to read a recipe is a deliberate act, exactly
+like opening `HINTS.md`. A publish step that severed the source route would
+not strengthen the teaching contract; it would violate the licence.
 
 ## Research ledger
 
