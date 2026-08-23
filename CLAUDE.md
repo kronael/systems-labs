@@ -129,9 +129,10 @@ no hosted-service emulator.
 the learner cannot.** That split is the reason phase 2 exists, and it is the one
 place a product may be repeated. A port across languages is still forbidden.
 
-The Selected labs table in `specs/01-systems-labs.md` holds each lab's system,
-architecture pressure, and prepared environment. Read it there; do not restate
-it elsewhere, because a second copy drifts.
+The core catalog in `specs/index.md` holds each lab's system, architecture
+pressure, and prepared environment. Read it there; do not restate it elsewhere,
+because a second copy drifts. `01-systems-labs.md` specifies the contracts every
+lab shares and carries no per-lab detail.
 
 ## Naming rule — read before editing any link
 
@@ -139,8 +140,8 @@ Lab files carry **solution-neutral product names**. The file name states what
 the product does, never the technology that solves it. `1/2` is
 `reservation-fulfillment`, not `postgres-durable-jobs`.
 
-Both `specs/index.md` and the Selected labs table in `specs/01-systems-labs.md`
-now carry the product names, and every internal link resolves. Before editing a
+`specs/index.md` carries the product names in both its core catalog and its
+full specification list, and every internal link resolves. Before editing a
 link, read the real file name from disk rather than copying one from a table.
 
 ## Teaching mode — no free solutions

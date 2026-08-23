@@ -117,8 +117,11 @@ the design:
   transport and the platform difference hides behind a second stateful
   system.
 - **Pulumi** and **CDK** describe infrastructure in a general-purpose
-  language rather than declarative HCL, which moves state and drift questions
-  into a program's runtime; both are excluded from this course by policy.
+  language rather than declarative HCL, so the set of resources is computed
+  while the program runs rather than declared before it does. This lab grades
+  drift and rollout, which rest on a plan that states every change in advance,
+  and a general-purpose language would also put infrastructure in the same
+  languages as the application it must stay separable from.
 
 Read their documentation on lifecycle, delivery, and state. The lab does not
 run them.

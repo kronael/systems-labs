@@ -324,29 +324,15 @@ gate.
 
 ## Selected labs
 
-| # | Spec | System to design | Architecture pressure | Prepared environment |
-|---|------|------------------|-----------------------|----------------------|
-| 01 | [Resilient quote service](1/1-resilient-quote-service.md) | Quote aggregation API | Overload, partial provider failure, cancellation, shutdown | Provider simulators, telemetry, load generator |
-| 02 | [Reservation fulfillment service](1/2-reservation-fulfillment.md) | Reservation API with asynchronous fulfillment | Transactional rules, notification delivery, worker recovery | PostgreSQL, fault controller, large dataset |
-| 03 | [Order activity dashboard](1/3-order-activity-dashboard.md) | Replayable order and customer views | Ordering, progress versus effect, rebuild, skew | Kafka, PostgreSQL, generated producers |
-| 04 | [Reliable record import](1/4-reliable-record-import.md) | Batch normalization and query service | Visibility, partial failure, poison work, duplicate delivery | NATS JetStream, PostgreSQL, generated records |
-| 05 | [Auditable transfer service](1/5-auditable-transfer-service.md) | Money ledger with a downstream audit product | Cross-system commit gaps, contention, replay | PostgreSQL, Kafka, history checker |
-| 06 | [Metered billing API](2/1-metered-billing-api.md) | Subscriptions, metered usage, period-close invoicing | Frozen execution environments, reuse, work that outlives a response, a close larger than one invocation | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
-| 07 | [Reliable record import, serverless](2/2-reliable-record-import.md) | The same import product on functions | A lease timer the learner does not own, partial batch outcomes | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
-| 08 | [Serverless reservation fulfillment](2/3-serverless-reservation-fulfillment.md) | The same reservation product on functions | An invariant no store enforces, fulfillment without a worker | Lambda runtime emulator, DynamoDB Local |
-| 09 | [Serverless auditable transfer](2/4-serverless-auditable-transfer.md) | The same transfer product on functions | A commit gap with nothing running between events, a freeze that strands the publish | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
-| 10 | [Serverless quote aggregation](2/5-serverless-quote-aggregation.md) | The same quote product on functions | Admission as a platform ceiling, cold starts, state outside the process | Lambda runtime emulator, provider simulators, external store |
-| 11 | [Internet route observatory](3/1-internet-route-observatory.md) | Observed routes, churn, and collector health | Observation scope, vantage-point disagreement, convergence versus change | Kafka, RIPE-compatible input, store profiles |
-| 12 | [Recoverable route analytics](3/2-recoverable-route-analytics.md) | Stateful routing views with two recovery paths | Checkpoints, external effects, reconstruction, schema change | Kafka, Flink, PostgreSQL, checkpoint storage |
-| 13 | [Market history API](4/1-market-history-api.md) | Recent trades and candle queries | Access patterns, hot symbols, pagination, retention | DynamoDB Local, generated and Kraken data |
-| 14 | [Low-latency market API](4/2-low-latency-market-api.md) | Freshness-aware accelerated market queries | Cache authority, eviction, stampede, degradation | Valkey, DynamoDB Local, two-replica load |
-| 15 | [Exact trade analytics](4/3-exact-trade-analytics.md) | Exact aggregates over full trade history | Background merges, asynchronous mutation, insert frequency, freshness | ClickHouse, trade generator, cached recordings |
-| 16 | [Portable market ingestion](4/5-portable-market-ingestion.md) | One domain contract across two compute environments | Lifecycle, delivery, rollout, drift, secrets, cost | Compose, `kind`, Lambda runner, OpenTofu |
+The core curriculum is sixteen labs across four phases: five local, five
+serverless, two on real Internet streaming, and four on NoSQL, analytics, and
+portability. Phase 5 no longer exists and its lab became `4/5`; the gap stays
+open on purpose.
 
-The [selection record](0/1-lab-selection.md) expands all twenty candidates,
-scores them, and preserves the ten cuts. ClickHouse was named there as the
-strongest first addition and became entry 15. CRDTs remain the strongest
-alternative conceptual branch, still out.
+[`index.md`](index.md#core-catalog) is the single catalog. It names every lab
+with its system, architecture pressure, and prepared environment, together
+with the selection record that produced it. That mapping is written there and
+nowhere else, because a second copy drifts.
 
 ## Local and serverless phases
 
@@ -829,6 +815,9 @@ The attribution model is stricter than a source pool:
    upstream revision, copyright notice, and license.
 5. No source marked "citation only" contributes copied prose, code, fixtures,
    tests, or diagrams.
+6. Each lab spec carries its own quirk sources in its `Code pointers`, and
+   those sources inherit the same citation-only policy. No per-lab source list
+   is kept in this document, because a second copy drifts.
 
 All lab prose, graders, fixtures, workload generators, golden systems, and
 rotten systems are original GPL-3.0 work. Apache-2.0, MIT, MIT-0,
@@ -910,32 +899,6 @@ policy for the repository.
 | [RIPE NCC RIS Live](https://ris-live.ripe.net/manual/) | Public WebSocket stream of BGP updates and a real source for route-state and event-time behavior | RIPE NCC service terms; no redistribution license claimed here | Citation plus opt-in bounded recording; no captured feed is committed or redistributed |
 | [Kraken recent trades](https://docs.kraken.com/api/docs/rest-api/get-recent-trades/) | Public paginated trade ticks and a real source for cursor, rate-limit, precision, and duplicate behavior | Kraken service terms vary by region; no redistribution license claimed | Citation plus opt-in bounded recording for personal use; generated data is the distributable default |
 
-## Per-lab source map
-
-| Labs | Sources that belong in their HINTS or README |
-|------|----------------------------------------------|
-| 01 | OpenTelemetry, HdrHistogram |
-| 02 | PostgreSQL concurrency, PL/pgSQL, `NOTIFY`, BusTub, BenchBase |
-| 03 | Kafka, PostgreSQL |
-| 04 | NATS JetStream, PostgreSQL |
-| 05 | PostgreSQL, Kafka, FoundationDB, Jepsen |
-| 06 | ElasticMQ, DynamoDB Local, AWS Lambda error handling, AWS pricing |
-| 07 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS Lambda error handling |
-| 08 | DynamoDB Local |
-| 09 | DynamoDB Local, ElasticMQ, Lambda with SQS |
-| 10 | OpenTelemetry, HdrHistogram |
-| 11 | RIPE RIS Live, Kafka, OpenTelemetry, HdrHistogram |
-| 12 | RIPE RIS Live, Kafka, Flink Training, PostgreSQL |
-| 13 | Kraken recent trades, DynamoDB Local, AWS pricing |
-| 14 | DynamoDB Local, Valkey, HdrHistogram, OpenTelemetry |
-| 15 | Kraken recent trades |
-| 16 | CloudEvents, ElasticMQ, Lambda with SQS, DynamoDB Local, AWS pricing, OpenTofu, Terraform license, Kubernetes, OpenTelemetry |
-
-Sources consulted after this ledger's date — the JetStream pages, the Lambda
-lifecycle, concurrency, and quota pages, the DynamoDB transaction pages, and
-the ClickHouse documentation — are carried in each lab's own `Code pointers`
-and inherit the same citation-only policy.
-
 ## Sources deliberately excluded
 
 - **DeathStarBench** is not a derivation source because its visible licensing
@@ -998,8 +961,8 @@ and inherit the same citation-only policy.
 - [`docs/cloud-access.md`](../docs/cloud-access.md) — how to obtain the
   optional cloud account, the verified free-tier allowances, and the
   zero-spend guardrail that comes before the first deployed function.
-- The sixteen entries under [Selected labs](#selected-labs) are the governing
-  lab specs. Implementation pointers do not exist while they remain `draft`.
+- The sixteen entries in the [core catalog](index.md#core-catalog) are the
+  governing lab specs. Implementation pointers do not exist while they remain `draft`.
 
 ## Approval boundary
 

@@ -1,3 +1,39 @@
+# Specification index
+
+## Core catalog
+
+The sixteen core labs, in course order. Each row names the lab's system, the
+architecture pressure it applies, and the environment prepared for it.
+
+| # | Spec | System to design | Architecture pressure | Prepared environment |
+|---|------|------------------|-----------------------|----------------------|
+| 01 | [Resilient quote service](1/1-resilient-quote-service.md) | Quote aggregation API | Overload, partial provider failure, cancellation, shutdown | Provider simulators, telemetry, load generator |
+| 02 | [Reservation fulfillment service](1/2-reservation-fulfillment.md) | Reservation API with asynchronous fulfillment | Transactional rules, notification delivery, worker recovery | PostgreSQL, fault controller, large dataset |
+| 03 | [Order activity dashboard](1/3-order-activity-dashboard.md) | Replayable order and customer views | Ordering, progress versus effect, rebuild, skew | Kafka, PostgreSQL, generated producers |
+| 04 | [Reliable record import](1/4-reliable-record-import.md) | Batch normalization and query service | Visibility, partial failure, poison work, duplicate delivery | NATS JetStream, PostgreSQL, generated records |
+| 05 | [Auditable transfer service](1/5-auditable-transfer-service.md) | Money ledger with a downstream audit product | Cross-system commit gaps, contention, replay | PostgreSQL, Kafka, history checker |
+| 06 | [Metered billing API](2/1-metered-billing-api.md) | Subscriptions, metered usage, period-close invoicing | Frozen execution environments, reuse, work that outlives a response, a close larger than one invocation | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
+| 07 | [Reliable record import, serverless](2/2-reliable-record-import.md) | The same import product on functions | A lease timer the learner does not own, partial batch outcomes | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
+| 08 | [Serverless reservation fulfillment](2/3-serverless-reservation-fulfillment.md) | The same reservation product on functions | An invariant no store enforces, fulfillment without a worker | Lambda runtime emulator, DynamoDB Local |
+| 09 | [Serverless auditable transfer](2/4-serverless-auditable-transfer.md) | The same transfer product on functions | A commit gap with nothing running between events, a freeze that strands the publish | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
+| 10 | [Serverless quote aggregation](2/5-serverless-quote-aggregation.md) | The same quote product on functions | Admission as a platform ceiling, cold starts, state outside the process | Lambda runtime emulator, provider simulators, external store |
+| 11 | [Internet route observatory](3/1-internet-route-observatory.md) | Observed routes, churn, and collector health | Observation scope, vantage-point disagreement, convergence versus change | Kafka, RIPE-compatible input, store profiles |
+| 12 | [Recoverable route analytics](3/2-recoverable-route-analytics.md) | Stateful routing views with two recovery paths | Checkpoints, external effects, reconstruction, schema change | Kafka, Flink, PostgreSQL, checkpoint storage |
+| 13 | [Market history API](4/1-market-history-api.md) | Recent trades and candle queries | Access patterns, hot symbols, pagination, retention | DynamoDB Local, generated and Kraken data |
+| 14 | [Low-latency market API](4/2-low-latency-market-api.md) | Freshness-aware accelerated market queries | Cache authority, eviction, stampede, degradation | Valkey, DynamoDB Local, two-replica load |
+| 15 | [Exact trade analytics](4/3-exact-trade-analytics.md) | Exact aggregates over full trade history | Background merges, asynchronous mutation, insert frequency, freshness | ClickHouse, trade generator, cached recordings |
+| 16 | [Portable market ingestion](4/5-portable-market-ingestion.md) | One domain contract across two compute environments | Lifecycle, delivery, rollout, drift, secrets, cost | Compose, `kind`, Lambda runner, OpenTofu |
+
+The [selection record](0/1-lab-selection.md) expands all twenty candidates,
+scores them, and preserves the ten cuts. ClickHouse was named there as the
+strongest first addition and became entry 15. CRDTs remain the strongest
+alternative conceptual branch, still out.
+
+Phases 6, 7, and 8 are separate catalogs recorded under `0/`. They enter the
+curriculum only after the core is `accepted`.
+
+## All specifications
+
 | Spec | Status | Summary |
 |------|--------|---------|
 | [01-systems-labs.md](01-systems-labs.md) | draft | Governing course spec: every cross-lab contract for scaffold, grading, faults, evidence, data, cost, and licensing |

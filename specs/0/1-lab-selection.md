@@ -8,7 +8,7 @@ status: reference
 
 This record selected ten labs from twenty expanded candidates. The catalog has
 since grown to twelve; the two later additions are recorded in the
-[Selected labs](../01-systems-labs.md#selected-labs) table, which is
+[core catalog](../index.md#core-catalog) table, which is
 authoritative.
 Selection favors durable system judgment over product count: every survivor
 produces a useful end-to-end system, exposes a false mental model through a
