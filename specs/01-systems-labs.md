@@ -681,8 +681,8 @@ keeping its unit-sized submission model:
   simulators, and telemetry services. Specialized labs add prepared Kubernetes
   and OpenTofu sandboxes under `infra/`; neither contains a solved application.
 - `evidence/` is generated and ignored. It contains the run manifest, traces,
-  latency histogram, throughput, resource peaks, and the observed history that
-  a verify skill reads.
+  latency histogram, throughput, resource peaks, and the observed history a
+  check reads.
 
 Proposed shape:
 

@@ -22,7 +22,7 @@ everything that names its own domain.
 
 | Concern | Shared | Per lab |
 |---------|--------|---------|
-| Verification | the history vocabulary and its five invariant shapes | its verify skill, and the boundaries it checks |
+| Verification | the history vocabulary and its five invariant shapes | its `EVALUATION.md`, and the boundaries it checks |
 | Workload | the open-loop generator, the seed and rate model, the replay engine | the record schema and the generator parameters |
 | Faults | the controller with the recipe set compiled in, every injection mechanism, the digest | its seeded schedule recipes and their barriers |
 | Evidence | the run manifest, the history format, the histogram format, the report schema | which measurements the lab requires |
@@ -44,7 +44,7 @@ written in, so thirty-two labs describe their checks the same way. That
 vocabulary is a *history*: an ordered log of observed events, each carrying a
 record identity, a boundary name, a wall-clock and a monotonic timestamp, and
 the observation site. The fault controller and the evidence writer emit
-histories in this shape; a verify skill reads one and states what must hold
+histories in this shape; `EVALUATION.md` names one and states what must hold
 over it.
 
 Five recurring shapes cover almost every lab invariant, and a skill names the
@@ -95,10 +95,10 @@ controller and the evidence writer therefore share the barrier vocabulary,
 which is what lets a failure land at the same point on every run and lets the
 history record where it landed.
 
-A verify skill does not share it. The skill is learner-facing text, and the
-[verification section](../01-systems-labs.md#verification) forbids it from
-naming the failure schedule. A skill names the boundaries it observes and
-reads the barrier out of the history at run time; the teaching lint fails on a
+`README.md` does not share it. The task is learner-facing text, and the
+[teaching contract](../01-systems-labs.md#teaching-contract) forbids it from
+naming the failure schedule. It names the boundaries the product exposes, and
+the barrier is read out of the history at run time; the teaching lint fails on a
 barrier name written into the file.
 
 A schedule is never a readable artifact at rest, because a barrier name is an
