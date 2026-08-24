@@ -192,7 +192,31 @@ the party that would have caught it.
 - **Status:** proposed
 - **Fix:**
 
-## S18 — the history vocabulary cannot express two of its own five shapes (2026-08-23, proposed)
+## ✅ FIXED 2026-08-24 — S18 — the history vocabulary cannot express two of its own five shapes (2026-08-23, fixed)
+
+Resolved by cutting the claim rather than building the schema. The finding was
+correct on every point: the record had no field for `never` or `bounded` to
+range over, "ordered" had no cross-emitter rule, nothing produced the history at
+the boundaries that matter, and build-order item one had no directory while
+every other item did.
+
+The proposal answered it with a versioned event schema, clock domains, a merge
+rule, observation adapters, and a classification of all 31 acceptance contracts.
+That is machinery for a compiled checker, and `S16` and the grader removal
+deleted the checker. Building it now would be the over-engineering the owner
+ruled out.
+
+What the scaffold owes is vocabulary, not a data format. The five shapes stay as
+words an answer key uses. Each ranges over whatever that lab's own observable
+boundaries expose, so `never` and `bounded` need no record field. Where a check
+depends on ordering across processes, the lab states which ordering it means and
+over what scope — the spec now says plainly that no clock is comparable across
+the fault controller, the application, and a restart, so only the lab knows.
+Where a contract is none of the five, the answer key carries the computation
+directly; the five are a convenience for common cases, never a ceiling. Build
+order item one is now a page of prose that ships no directory.
+
+The original entry is kept below.
 
 `0/5` makes the history the one thing the scaffold still owes every lab, and the
 build order makes it item 1 "because every other component and every lab spec
@@ -287,7 +311,7 @@ files of per-lab prose.
 - **Status:** open
 - **Fix:**
 
-## S16 — S3's resolution is superseded: no lab has a worked solution (2026-08-23, fixed)
+## ✅ FIXED 2026-08-23 — S16 — S3's resolution is superseded: no lab has a worked solution (2026-08-23, fixed)
 
 `S3` moved each lab's `golden/` and `rotten/` out of the lab directory to a
 repository-root `reference/` tree excluded by the publish step. That was
@@ -325,7 +349,25 @@ design exists; that gap is `S19`.
   to the per-lab shape; `0/5` template section rewritten; `CLAUDE.md` golden
   rule replaced, 2026-08-23
 
-## S15 — nothing enforces the earned-dependency rule (2026-08-23, open)
+## ✅ FIXED 2026-08-24 — S15 — nothing enforces the earned-dependency rule (2026-08-23, fixed)
+
+Closed by decision rather than by machinery. `S16` removed worked
+implementations and the grader removal deleted the checker, so there is no
+simple design left to run and time — the executable route `challenges/` uses is
+gone, and rebuilding one would be exactly the checking machinery the owner ruled
+out with "the task carries the lab, not the grader".
+
+The rule therefore stands as an authoring check, and both governing documents
+now carry it. `CLAUDE.md`'s Adding a lab procedure makes it step 3: name the
+scale target, then state what a single-process single-store design would fail
+at. If no specific sentence can be written, the dependency is unearned and
+either the scale target rises or the dependency goes. Each lab's `Scope` carries
+that sentence; `1/2` and `1/6` are the worked examples.
+
+This is honestly weaker than a gate, and the entry is closed saying so rather
+than claiming otherwise.
+
+The original entry is kept below.
 
 `01-systems-labs.md` states that if the naive small tool would pass the same
 gates at the same scale, the lab has not earned its dependency and the scale
@@ -488,7 +530,19 @@ a subject, or the invariant moves to where it is falsified.
 - **Fix:** in-tree edit to `specs/2/1-metered-billing-api.md` Adversarial
   evaluation, 2026-08-14 (no git in this repository)
 
-## S8 — the concurrency-ceiling standard is applied inconsistently (2026-08-14, open)
+## ✅ FIXED 2026-08-24 — S8 — the concurrency-ceiling standard is applied inconsistently (2026-08-14, fixed)
+
+Resolved by stating the rule the two cases were already following. The scale
+target contract in `01-systems-labs.md` now says the lab fixes an admission
+ceiling when the ceiling is an environment fact needed to guarantee the regime —
+the offered rate must provably exceed what is admitted, and a learner free to
+raise it could make the pressure disappear — and the learner declares it when
+choosing it is the design decision the lab is about, with the admitted fraction
+required in evidence so a ceiling chosen to dodge the problem is visible. `2/3`
+and `2/4` are the first case, `2/5` the second. A phase may hold both; what it
+may not hold is two labs of the same kind disagreeing.
+
+The original entry is kept below.
 
 `2/3` and `2/4` now fix a concurrency ceiling in lab configuration, 32 and 64
 environments, so the offered rate provably exceeds what the platform admits.

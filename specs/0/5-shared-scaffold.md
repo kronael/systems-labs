@@ -13,7 +13,7 @@ shared components and the boundary between shared and per-lab.
 
 The scaffold is the first thing built once `01-systems-labs.md` is `accepted`.
 Nothing else can be authored against a contract that does not exist: a lab
-written before the history vocabulary is fixed will encode a different one.
+written before the five invariant shapes are fixed will encode different words.
 
 ## Boundary
 
@@ -35,28 +35,39 @@ that imports it inherits the answer.
 
 ## Verification, described not built
 
-There is no shared grader. Each lab carries
-`EVALUATION.md`, the answer key whoever checks the work reads, as fixed by the
+There is no shared grader. Each lab carries `EVALUATION.md`, the answer key
+whoever checks the work reads, as fixed by the
 [verification section](../01-systems-labs.md#verification).
 
-What the scaffold still owes every lab is the **vocabulary** those skills are
-written in, so thirty-two labs describe their checks the same way. That
-vocabulary is a *history*: an ordered log of observed events, each carrying a
-record identity, a boundary name, a wall-clock and a monotonic timestamp, and
-the observation site. The fault controller and the evidence writer emit
-histories in this shape; `EVALUATION.md` names one and states what must hold
-over it.
+What the scaffold owes every lab here is **vocabulary**, so thirty-two answer
+keys describe their checks the same way rather than each inventing a phrasing.
+Five recurring shapes cover most lab invariants, and a key names the one it
+means:
 
-Five recurring shapes cover almost every lab invariant, and a skill names the
-one it means rather than inventing a phrasing: **once** — an identity appears
-exactly once at the effect boundary; **order** — identities appear in a
-declared order, within a declared scope; **survives** — an acknowledged
-identity is present after a recovery point; **never** — a forbidden state does
-not occur; **bounded** — a quantity stays inside a declared bound for the whole
-run.
+- **once** — an identity appears exactly once at the effect boundary the lab
+  names as single-effect;
+- **order** — identities appear in the order the lab declares, within the scope
+  the lab declares that order to hold;
+- **survives** — every acknowledged identity is present after a recovery point;
+- **never** — a forbidden state does not occur;
+- **bounded** — a quantity stays inside a declared bound for the whole run.
 
-That is a shared vocabulary, not shared code. Nothing here is compiled, and no
-lab imports it.
+Each shape ranges over what that lab's own observable boundaries expose — an
+HTTP response, SQL state, a provider's request log, a consumer position, the
+evidence report. The lab names the boundary; the shape names what must hold
+there. Nothing is compiled, no lab imports anything, and there is no event
+schema: a typed multi-emitter log with clock domains and a merge rule is
+machinery for a checker this curriculum does not build.
+
+Two consequences follow, and both are stated rather than hidden. Where a check
+depends on ordering across processes, the lab says which ordering it means and
+over what scope, because no wall clock or monotonic clock is comparable across
+the fault controller, the application, and a restart — only the lab knows which
+order is the one its invariant needs. And where a lab's contract is not one of
+the five — `2/1` compares invoice lines against an independently computed
+answer, `6/5` a latency distribution, `7/2` a balance replay, `8/5` recomputed
+scores — the answer key carries that computation directly. The five are a
+convenience for the common cases, never a ceiling on what a lab may require.
 
 ## `shared/workload/`
 
@@ -182,8 +193,9 @@ template with the implementation removed.
 
 ## Build order
 
-1. The history vocabulary, because every other component and every lab spec
-   depends on it.
+1. The five invariant shapes, written down before anything else, because every
+   lab's answer key uses their words. This is a page of prose, not a component,
+   and it ships no directory.
 2. The template, driven by hand, proving the directory shape and the Make
    targets against a trivial domain.
 3. The workload generator, validated by the rate-accuracy property that phase 6

@@ -12,7 +12,7 @@ since grown to twelve; the two later additions are recorded in the
 authoritative.
 Selection favors durable system judgment over product count: every survivor
 produces a useful end-to-end system, exposes a false mental model through a
-deterministic failure, and fits into three to eight focused hours with supplied
+deterministic failure, and fits into six to twenty-five focused hours with supplied
 dependency scaffolding.
 
 The scoring dimensions are conceptual leverage, fit with the stated learning

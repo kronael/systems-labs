@@ -189,6 +189,16 @@ structural, or learner-declared, because absolute latency numbers flake across
 machines. The scale target says how much work the system faces; the gate says
 how well it must behave while facing it.
 
+Where a lab runs against an admission ceiling, one rule decides who sets it.
+**The lab fixes the ceiling when the ceiling is an environment fact** it needs
+in order to guarantee the regime — the offered rate must provably exceed what
+is admitted, and a learner free to raise the ceiling could make the pressure
+disappear. **The learner declares the ceiling when choosing it is the design
+decision the lab is about**, and then the evidence must report the admitted
+fraction, so a ceiling chosen to dodge the problem is visible rather than
+rewarded. A phase may contain both; what it may not contain is two labs of the
+same kind disagreeing.
+
 Some labs additionally fix the **execution shape**. Where the environment makes
 the constraint the lesson, a brief may require the product to run as
 event-driven functions that keep state in an external store, with no long-lived
