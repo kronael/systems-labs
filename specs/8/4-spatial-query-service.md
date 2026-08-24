@@ -21,9 +21,10 @@ answer states the edit horizon it reflects.
 
 The assignment is the whole service: the query API, what each prepared store
 holds and when, the path that applies edits while queries run, and end-to-end
-tests. The prompt does not prescribe an index type, a coordinate system
-choice, a query plan, a rule for keeping the stores consistent, or a schema.
-Reading the map format is not part of the problem; the extract arrives loaded.
+tests. What each store holds and computes, how the two stay honestly
+consistent as edits arrive, and the coordinate and distance model behind every
+answer are the learner's decisions. Reading the map format is not part of the
+problem; the extract arrives loaded.
 
 ## Prepared scaffold
 
@@ -32,7 +33,7 @@ empty OpenSearch, the feature and edit generator, the source replay for cached
 OpenStreetMap extracts, and the fault controller. The generator produces a
 seeded world-spanning extract and a continuous edit stream — creates,
 modifications, and deletions at declared ratios — and every feature carries a
-stable identity and version so the grader can assert histories. The seed
+stable identity and version so verification can assert histories. The seed
 deterministically places the boundary clusters the schedules name: features
 straddling the antimeridian and features above 80° latitude.
 
@@ -99,7 +100,7 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader replays the seeded extract and edit schedule, then issues queries
+Verification replays the seeded extract and edit schedule, then issues queries
 whose answers it has computed independently with a geodesic implementation
 that shares no code with either store. Correctness is exact feature
 identities, never counts alone, and every answer is judged against the horizon
@@ -122,7 +123,7 @@ random:
 - the spatial store, and in a separate scenario the search engine, is
   restarted while a named query is in flight.
 
-The grader does not inspect private functions and does not require a named
+Verification does not inspect private functions and does not require a named
 index, projection, store role, or consistency mechanism.
 
 ## Acceptance evidence
@@ -143,9 +144,10 @@ residual limitation.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **MongoDB** interprets GeoJSON on the WGS84 sphere through its `2dsphere`
   index, so the degrees-are-not-metres trap never arises — the store fixes the
@@ -167,9 +169,11 @@ The lab does not run them.
 
 ## Scope and data
 
-The expected focused time is eight to twelve hours; phase 8 labs are
+The expected focused time is eighteen to twenty-two hours; phase 8 labs are
 deliberately denser because the interaction between the search engine and the
-domain store is the lesson. The learner builds the query service, the content
+domain store is the lesson, and three query classes each demanding exact
+answers under antimeridian and high-latitude placements, held against a
+continuously edited store, price out well above a phase 1-5 lab. The learner builds the query service, the content
 and upkeep of the search engine, the edit application path, and the tests.
 PostGIS, OpenSearch, the loaded extract, the generator, and the fault
 schedules are prepared. Map rendering, tile serving, routing, and cartography
@@ -181,9 +185,8 @@ derived from an extract carries share-alike obligations. Real extracts —
 per-region `.osm.pbf` files such as Geofabrik publishes — are opt-in through
 `make source`, bounded, checksummed, cached under
 `${PREFIX:-/srv}/data/systems-labs/sources/`, never redistributed by this
-repository, and never fetched on a request path. CI and the graders use
-generated seeded input only. Every required gate runs locally with no cloud
-account.
+repository, and never fetched on a request path. CI and every required gate
+use generated seeded input only and run locally with no cloud account.
 
 ## Code pointers
 

@@ -18,9 +18,10 @@ see from them.
 The required pipeline uses Kafka and accepts the supplied RIPE RIS
 Live-compatible record contract; envelope decoding is prepared, and BGP wire
 formats are not learner work. A bounded real RIS recording is optional; the
-deterministic generator proves every requirement. The prompt does not prescribe
-topic structure, record key, state representation, scope model, settling
-criterion, materializer topology, or query store.
+deterministic generator proves every requirement. The data layout, how
+observation state and scope are represented, how a settled change is told
+apart from transient churn, the process decomposition, and the choice of
+query store are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -28,7 +29,7 @@ The supplied Compose stack starts Kafka, OpenTelemetry collection, a query-
 store slot, and the fault controller. It includes generated multi-collector
 BGP observations, an opt-in bounded RIS recorder, immutable replay, provenance
 manifests, session-flap, divergent-vantage, and convergence-burst scenarios,
-broker inspection, and the black-box grader.
+and broker inspection.
 
 The learner selects the supported query store from the prepared PostgreSQL or
 embedded persistent-store profiles and owns all application services and their
@@ -88,18 +89,18 @@ distribution.
 
 ## Adversarial evaluation
 
-The grader drops a named peer session after a named update is acknowledged
-and restores it later, withdraws a prefix at one collector while a second
-collector still announces it, replays a convergence burst at a named prefix
-whose transient paths must not surface as routing changes, sends malformed
-paths, kills processing at a named Kafka offset mid-stream, and disconnects
-the optional recorder. Every fault fires at a named barrier, never on a timer
-and never at random.
+The failure schedule drops a named peer session after a named update is
+acknowledged and restores it later, withdraws a prefix at one collector while
+a second collector still announces it, replays a convergence burst at a named
+prefix whose transient paths must not surface as routing changes, sends
+malformed paths, kills processing at a named Kafka offset mid-stream, and
+disconnects the optional recorder. Every fault fires at a named barrier, never
+on a timer and never at random.
 
-Evaluation uses source and API contracts, Kafka-visible identities, queryable
+Checks observe source and API contracts, Kafka-visible identities, queryable
 state, scope statements, traces, freshness, lag, resource bounds, and exact
-accepted histories. No particular database schema or streaming framework is
-required.
+accepted histories. They do not require a particular database schema or
+streaming framework.
 
 ## Acceptance evidence
 
@@ -120,30 +121,35 @@ freshness. It documents the limits of what the vantage points can support.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
-- **RouteViews** operates a second, independently peered collector fleet —
-  over a thousand peers at exchange points and partner networks — published
-  as MRT dumps on a schedule. The same prefix can look different there than
-  from RIS, because coverage is a property of the peer population, not of the
-  prefix.
-- **CAIDA BGPStream** merges archived dumps and live collectors behind one
-  programming interface, which answers the replay-versus-live question in the
-  toolchain instead of in the pipeline.
-- **RIPE Atlas** observes from probes hosted in roughly 3,300 of the more
-  than 70,000 ASes and measures what packets actually do, where a route
-  collector records what a few hundred peering ASes announce; each is a
-  sample with its own bias, and neither is the Internet.
+- **RouteViews** — [documentation](https://www.routeviews.org/routeviews/).
+  Operates a second, independently peered collector fleet — over a thousand
+  peers at exchange points and partner networks — published as MRT dumps on
+  a schedule; the same prefix can look different there than from RIS,
+  because coverage is a property of the peer population, not of the prefix.
+- **CAIDA BGPStream** — [documentation](https://bgpstream.caida.org/).
+  Merges archived dumps and live collectors behind one programming
+  interface, which answers the replay-versus-live question in the toolchain
+  instead of in the pipeline.
+- **RIPE Atlas** — [documentation](https://atlas.ripe.net/docs/). Observes
+  from probes hosted in roughly 3,300 of the more than 70,000 ASes and
+  measures what packets actually do, where a route collector records what a
+  few hundred peering ASes announce; each is a sample with its own bias, and
+  neither is the Internet.
 
-Read their documentation on peer populations, data merging, and probe
-coverage. The lab does not run them.
+The lab does not run them.
 
 ## Scope and data
 
-The expected focused time is five to seven hours. Kafka, data sources,
-telemetry, store profiles, workloads, and faults are prepared. Implementing
+The expected focused time is ten to fourteen hours. Kafka, data sources,
+telemetry, store profiles, workloads, and faults are prepared, but the scope
+model, settling criterion, and process decomposition are not, and a first
+design that treats a collector's view as ground truth is falsified and
+rebuilt at least once against the supplied vantage-point set. Implementing
 BGP, decoding MRT or BGP wire formats, RPKI validation, global anomaly
 verdicts, alert delivery, and a map UI is outside the problem.
 

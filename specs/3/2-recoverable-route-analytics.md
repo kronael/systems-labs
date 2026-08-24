@@ -12,17 +12,17 @@ reconstruction from the retained event history. Both paths must produce the
 same externally visible route and churn results.
 
 Kafka is the required source, Flink is the required stateful processing engine,
-and PostgreSQL is the required query store. The prompt does not prescribe
-operator graph, keying, checkpoint settings, sink coordination, table design,
-generation model, schema migration, or activation protocol.
+and PostgreSQL is the required query store. The internal state model, the
+data layout, the checkpoint and reconstruction path, and the process
+decomposition between the two recovery routes are the learner's decisions.
 
 ## Prepared scaffold
 
 The supplied Compose stack starts Kafka, a local Flink cluster, PostgreSQL,
 OpenTelemetry collection, checkpoint storage, and the fault controller. It
 includes generated and cached route observations, compatible schema versions,
-checkpoint inspection, retention fixtures, exact crash barriers, a query API
-shell, and the black-box grader.
+checkpoint inspection, retention fixtures, exact crash barriers, and a query
+API shell.
 
 The learner owns the Flink job, query-serving integration, database design,
 recovery controls, and application Compose layer. Standard Make targets run a
@@ -70,14 +70,14 @@ At least two sink or activation designs must be compared. Naming an
 
 ## Adversarial evaluation
 
-The grader kills a task around a PostgreSQL effect and checkpoint, removes the
-newest saved state, restarts workers during rebalance, introduces old and new
-event versions, delays events across watermarks, and supplies a history with an
-insufficient retention prefix.
+The failure schedule kills a task around a PostgreSQL effect and checkpoint,
+removes the newest saved state, restarts workers during rebalance, introduces
+old and new event versions, delays events across watermarks, and supplies a
+history with an insufficient retention prefix.
 
-Evaluation observes APIs, Kafka positions, Flink checkpoints and metrics,
+Checks observe APIs, Kafka positions, Flink checkpoints and metrics,
 PostgreSQL state, attempt histories, activation behavior, and reconstruction
-checksums. The grader does not require a named connector or sink pattern.
+checksums. They do not require a named connector or sink pattern.
 
 ## Acceptance evidence
 
@@ -93,29 +93,35 @@ comparison between recovery paths.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
-- **Kafka Streams** keeps its processing state in changelog topics on the
-  broker it already reads from, so restoring saved state and reprocessing
-  history are one mechanism rather than two paths to reconcile.
-- **Spark Structured Streaming** binds a query to its checkpoint location and
-  permits only limited query changes across restarts, so an upgrade is a
-  rebuild by default rather than a compatibility decision.
-- **Materialize** keeps the derived views inside the same system that computes
-  them, so there is no external query store to keep consistent across
-  recovery — and no independent second recovery path to compare against.
+- **Kafka Streams** — [documentation](https://kafka.apache.org/documentation/streams/).
+  Keeps its processing state in changelog topics on the broker it already
+  reads from, so restoring saved state and reprocessing history are one
+  mechanism rather than two paths to reconcile.
+- **Spark Structured Streaming** — [documentation](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html).
+  Binds a query to its checkpoint location and permits only limited query
+  changes across restarts, so an upgrade is a rebuild by default rather than
+  a compatibility decision.
+- **Materialize** — [documentation](https://materialize.com/docs/). Keeps
+  the derived views inside the same system that computes them, so there is
+  no external query store to keep consistent across recovery — and no
+  independent second recovery path to compare against.
 
-Read their documentation on state stores, checkpoint compatibility, and view
-maintenance. The lab does not run them.
+The lab does not run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. Kafka, Flink, PostgreSQL,
-input, telemetry, checkpoint storage, and faults are prepared. Custom
-connectors, hosted stream services, data lakes, multi-cluster Kafka, and RPKI
-logic are outside the problem.
+The expected focused time is fifteen to twenty hours. Kafka, Flink,
+PostgreSQL, input, telemetry, checkpoint storage, and faults are prepared,
+but reconciling two independent recovery paths to the same exact result is
+not, and a first design usually passes restore before it is falsified on
+reconstruction, or the reverse, forcing at least one rebuild of the
+activation boundary. Custom connectors, hosted stream services, data lakes,
+multi-cluster Kafka, and RPKI logic are outside the problem.
 
 ## Code pointers
 

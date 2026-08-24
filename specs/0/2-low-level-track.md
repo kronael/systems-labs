@@ -11,7 +11,7 @@ the machine: I/O readiness and completion, durability, virtual memory, memory
 allocation, and time. It is not a translation of phases 1 to 5.
 
 A port is not a low-level lab. Rewriting the quote service in Rust inherits the
-original's grader, failure schedule, and answer; the learner reimplements a
+original's checks, failure schedule, and answer; the learner reimplements a
 known solution under a stricter compiler and learns nothing new about the
 machine. Every candidate below exposes a failure the high-level catalog cannot
 reach.
@@ -24,7 +24,7 @@ catalog is `accepted`.
 Each candidate is grounded in a documented, publicly reported behavior rather
 than an invented puzzle. The source column records where the quirk is
 described. Every source here is *cited*: no prose, code, fixture, or test is
-copied from it, and each lab's failure schedule and grader are original.
+copied from it, and each lab's failure schedule and checks are original.
 
 | # | Candidate | Quirk it falsifies | Origination |
 |---|-----------|--------------------|-------------|

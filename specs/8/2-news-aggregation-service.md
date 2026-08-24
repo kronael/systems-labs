@@ -28,9 +28,10 @@ the publisher's history is not on offer.
 
 The assignment is the whole service: ingestion path, the grouping decision
 and its declared policy, the layout of the index and the durable store, the
-ranked view, and end-to-end tests. The prompt does not prescribe a similarity
-measure, a hashing or fingerprinting scheme, a clustering algorithm, a
-threshold, a ranking function, or a schema. Feed parsing is prepared work,
+ranked view, and end-to-end tests. How two items are judged to report the
+same event, how that judgment holds up as the retained corpus grows, the
+layout of the index and the durable store, and how the ranking weighs a match
+against currency are the learner's decisions. Feed parsing is prepared work,
 not learner work; the difficulty of this lab lives entirely in the grouping
 decision and its history, never in feed formats.
 
@@ -46,8 +47,8 @@ a raw checksum.
 
 The generator emits verbatim reprints under different identifiers, edited
 syndicated copies, follow-ups, in-place edits, and timestamp regressions at
-declared ratios, and every item carries a stable harness identity so the
-grader can assert exact histories.
+declared ratios, and every item carries a stable harness identity so
+verification can assert exact histories.
 
 The learner owns the ingestion service, the grouping decision, the layout of
 both stores, the ranking, and the query API. No cloud account is required.
@@ -62,7 +63,7 @@ matches three reprints of one story returns one result, not three.
 
 The learner declares a clustering policy in `ARCHITECTURE.md`: what makes
 two items the same story, stated in falsifiable terms, and what each error
-direction costs the reader. The policy is the contract the grader holds the
+direction costs the reader. The policy is the contract verification holds the
 system to. A policy that cannot be checked against an observed grouping is
 not a policy.
 
@@ -125,8 +126,8 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader replays a seeded feed schedule through the harness and fires
-every fault at a named barrier, never on a timer and never at random:
+The failure schedule replays a seeded feed schedule through the harness and
+fires every fault at a named barrier, never on a timer and never at random:
 
 - after article `wire-4711` has been grouped and served, the harness
   republishes it edited in place under the same identifier;
@@ -137,17 +138,18 @@ every fault at a named barrier, never on a timer and never at random:
 - the harness kills the ingestion service after item `wire-5000` is
   acknowledged and restarts it mid-feed.
 
-The grader queries during ingest, immediately after a burst, and after the
+Verification queries during ingest, immediately after a burst, and after the
 system has been idle, and it drives the burst while the view is being read.
 
-Because the grouping decision is a product decision, the grader judges it
+Because the grouping decision is a product decision, verification judges it
 against the learner's declared policy, never against a fixed answer key. The
 schedule carries anchor pairs whose grouping any coherent policy fixes — a
 verbatim reprint is the same story, two unrelated events are not — and
-continuum pairs where the grader checks only that the outcome is consistent
-with the declared policy. `make grade` reviews whether the policy itself is
-defensible. The grader does not inspect private functions and does not
-require any named similarity technique.
+continuum pairs where verification checks only that the outcome is consistent
+with the declared policy. Whether the policy itself is defensible is a
+judgment call weighed against `EVALUATION.md` by whoever checks the work.
+Verification does not inspect private functions and does not require any
+named similarity technique.
 
 ## Acceptance evidence
 
@@ -172,9 +174,10 @@ calibrated during warm-up, structural, or learner-declared.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **PostgreSQL full-text search** keeps retrieval inside the transactional
   store, so a committed write is searchable immediately under ordinary MVCC
@@ -198,9 +201,11 @@ pgvector.
 
 ## Scope and data
 
-The expected focused time is eight hours; phase 8 labs sit at the dense end
-of the catalog because the interaction between the search engine and the
-durable store is the lesson. The learner builds the ingestion service, the
+The expected focused time is twenty to twenty-four hours; phase 8 labs sit at
+the dense end of the catalog because the interaction between the search
+engine and the durable store is the lesson, and this lab carries the added
+cost of a product decision with no fixed answer, defended and re-defended as
+the falsification schedule finds the policy's blind spots. The learner builds the ingestion service, the
 grouping decision, the store layouts, and the query API. OpenSearch,
 PostgreSQL, the feed harness, the parsers, and the fault schedules are
 prepared.

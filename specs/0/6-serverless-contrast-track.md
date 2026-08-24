@@ -19,7 +19,7 @@ removed it.
 
 This is the one place in the curriculum where reusing a product is deliberate.
 Everywhere else a repeated problem is forbidden, because a port inherits the
-original's grader, failure schedule, and answer. A port across *languages*
+original's checks, failure schedule, and answer. A port across *languages*
 inherits the answer and adds a stricter compiler. A port across *execution
 models* confiscates the answer. What is held constant is the product — the same
 public behaviour and the same invariants. What changes is the execution model

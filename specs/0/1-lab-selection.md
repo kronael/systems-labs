@@ -181,7 +181,7 @@ would contradict the course's evidence standard.
 The product attributes syscall and network latency to the services in another
 lab. Kernel version, privileges, BTF availability, container nesting, and
 platform-specific fallbacks expose real limits. Those same constraints make a
-portable grader fragile, while OpenTelemetry already supplies the mandatory
+portable check fragile, while OpenTelemetry already supplies the mandatory
 cross-platform evidence path. eBPF fits a Linux-specific follow-on course.
 
 ### 18. Cassandra or Scylla time series — cut

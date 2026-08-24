@@ -16,16 +16,16 @@ a corrected trade must not leave its earlier version in the result. The service
 states the age of the data behind each answer.
 
 The assignment is the whole service: ingestion path, table design, write
-policy, query path, correction handling, and end-to-end tests. The prompt does
-not prescribe a table engine, a key, a deduplication strategy, a batching rule,
-a materialized view, or a query rewrite.
+policy, query path, correction handling, and end-to-end tests. The data
+layout, the write path, and how exactness is produced against storage that
+has not yet reconciled are the learner's decisions.
 
 ## Prepared scaffold
 
 The supplied Compose stack starts ClickHouse, the trade generator, the source
 replay for cached Kraken recordings, and the fault controller. The generator
 emits duplicates, late arrivals, and corrections at declared ratios, and every
-record carries a stable identity so the grader can assert histories.
+record carries a stable identity so checks can assert exact histories.
 
 The learner owns the ingestion service, the schema, and the query API. No cloud
 account is required.
@@ -76,14 +76,14 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader replays a trade stream containing exact duplicates, out-of-order
-arrivals, and corrections at named identities, then queries during ingest,
-immediately after a burst, and after the store has been idle. It drives insert
-frequency into the regime where the store rejects work, restarts the ingestion
-service mid-batch, and restarts the store itself.
+The failure schedule replays a trade stream containing exact duplicates,
+out-of-order arrivals, and corrections at named identities, then queries
+during ingest, immediately after a burst, and after the store has been idle.
+It drives insert frequency into the regime where the store rejects work,
+restarts the ingestion service mid-batch, and restarts the store itself.
 
-The grader does not inspect private functions or require a named table engine.
-It compares every aggregate against an independently computed exact answer
+Checks do not inspect private functions or require a named table engine. They
+compare every aggregate against an independently computed exact answer
 derived from the accepted input.
 
 ## Acceptance evidence
@@ -101,31 +101,38 @@ names the point at which exactness would have to be traded for latency.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
-- **PostgreSQL** enforces uniqueness in the write path, so the duplicate
-  problem never reaches the reader — and pays for it with write cost and a
-  table size this workload would not tolerate.
-- **Apache Druid** and **Apache Pinot** target the same interactive analytical
-  queries but organize ingestion around segments and real-time versus
-  historical nodes, which moves the freshness question into the topology.
-- **Elasticsearch or OpenSearch** would make the top-N and recent-window
-  queries easy and the exactness guarantee harder, because scoring and refresh
-  intervals sit between a write and its visibility.
+- **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/).
+  Enforces uniqueness in the write path, so the duplicate problem never
+  reaches the reader — and pays for it with write cost and a table size
+  this workload would not tolerate.
+- **Apache Druid** — [documentation](https://druid.apache.org/docs/latest/design/)
+  and **Apache Pinot** — [documentation](https://docs.pinot.apache.org/).
+  Target the same interactive analytical queries but organize ingestion
+  around segments and real-time versus historical nodes, which moves the
+  freshness question into the topology.
+- **Elasticsearch or OpenSearch** — [documentation](https://opensearch.org/docs/latest/).
+  Would make the top-N and recent-window queries easy and the exactness
+  guarantee harder, because scoring and refresh intervals sit between a
+  write and its visibility.
 
-Read their documentation on uniqueness, visibility, and update semantics. The
-lab does not run them.
+The lab does not run them.
 
 ## Scope and data
 
-The expected focused time is six to eight hours. The learner builds the
-ingestion service, the schema, and the query API. ClickHouse, the generator,
-the cached recordings, and the fault schedules are prepared. Real Kraken
-recordings are opt-in, bounded, and cached; CI uses generated input only.
-Dashboards, alerting, multi-node replication, and cluster operations are
-outside the problem.
+The expected focused time is fourteen to eighteen hours. The learner builds
+the ingestion service, the schema, and the query API. ClickHouse, the
+generator, the cached recordings, and the fault schedules are prepared, but
+producing an exact answer against a store whose deduplication is background
+work is not, and a first design that trusts the store's own reconciliation
+is falsified the moment the insert rate outruns merging, forcing a rebuild
+of the write and query path. Real Kraken recordings are opt-in, bounded, and
+cached; CI uses generated input only. Dashboards, alerting, multi-node
+replication, and cluster operations are outside the problem.
 
 ## Code pointers
 

@@ -33,7 +33,7 @@ enter the catalog only after the core catalog is `accepted`.
 ## Origination
 
 Each quirk below is documented publicly. Every source is *cited*: no prose,
-code, fixture, or test is copied, and each lab's failure schedule and grader
+code, fixture, or test is copied, and each lab's failure schedule and checks
 are original.
 
 | # | Candidate | Shape | Quirk it falsifies | Origination |

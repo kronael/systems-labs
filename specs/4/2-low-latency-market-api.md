@@ -11,17 +11,16 @@ with DynamoDB-compatible storage and Valkey available. The service must
 preserve durable market history and explain its freshness when Valkey is cold,
 full, slow, restarted, or unavailable.
 
-Valkey and DynamoDB Local are required dependencies. The prompt does not
-prescribe cache keys, read/write policy, TTLs, invalidation, fill coordination,
-locking, stale-data policy, replication, or application-process count.
+Valkey and DynamoDB Local are required dependencies. The cache policy, the
+coordination between concurrent application replicas, and the recovery path
+when Valkey cannot answer are the learner's decisions.
 
 ## Prepared scaffold
 
 The supplied Compose stack starts Valkey, DynamoDB Local, OpenTelemetry
 collection, two optional application slots, and the fault controller. It
 includes a deterministic market-history loader, hot-key and working-set
-generators, memory-pressure controls, cache inspection, latency measurement,
-and the black-box grader.
+generators, memory-pressure controls, cache inspection, and latency measurement.
 
 The learner owns the API, cache policy, application topology, and application
 Compose layer. Standard Make targets load durable market data, run cold and warm
@@ -70,15 +69,15 @@ At least two cache policies must be compared with the supplied access pattern.
 
 ## Adversarial evaluation
 
-The grader aligns expirations, evicts a popular entry before its TTL, drives a
-same-key burst through two replicas, kills one instance during a fill, slows
-DynamoDB, makes Valkey time out, restarts Valkey empty, and changes the source
-generation.
+The failure schedule aligns expirations, evicts a popular entry before its
+TTL, drives a same-key burst through two replicas, kills one instance during
+a fill, slows DynamoDB, makes Valkey time out, restarts Valkey empty, and
+changes the source generation.
 
-Evaluation observes public responses, freshness metadata, dependency requests,
+Checks observe public responses, freshness metadata, dependency requests,
 Valkey state and memory, traces, metrics, and exact comparison with the
-durable dataset. It does not require a named cache-aside, lock, or stale-
-while-revalidate pattern.
+durable dataset. They do not require a named cache-aside, lock, or
+stale-while-revalidate pattern.
 
 ## Acceptance evidence
 
@@ -95,31 +94,35 @@ dependency-failure runs. It ties each result to the chosen policy.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
-- **Memcached** is a cache and nothing more — multithreaded, no persistence,
-  no rich values — and manages memory in per-size slab classes, so eviction
-  pressure lands within an item's size class rather than across the whole
-  keyspace.
-- **groupcache** and similar in-process caches keep hot entries inside each
-  application replica, removing the network hop and the shared store; every
-  replica then holds a private view, and coherence between replicas becomes
-  the design problem.
-- **Amazon ElastiCache** runs the same engine as a managed service with
-  failover, so a cache loss arrives as an empty replacement node on the
-  provider's schedule; it is excluded from this course by cost policy.
+- **Memcached** — [documentation](https://memcached.org/). A cache and
+  nothing more — multithreaded, no persistence, no rich values — and
+  manages memory in per-size slab classes, so eviction pressure lands
+  within an item's size class rather than across the whole keyspace.
+- **groupcache** — [documentation](https://github.com/golang/groupcache).
+  Keeps hot entries inside each application replica, removing the network
+  hop and the shared store; every replica then holds a private view, and
+  coherence between replicas becomes the design problem.
+- **Amazon ElastiCache** — [documentation](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/WhatIs.html).
+  Runs the same engine as a managed service with failover, so a cache loss
+  arrives as an empty replacement node on the provider's schedule; it is
+  excluded from this course by cost policy.
 
-Read their documentation on eviction, expiry, and failover. The lab does not
-run them.
+The lab does not run them.
 
 ## Scope
 
-The expected focused time is four to six hours. Valkey, DynamoDB Local, market
-data, two-replica topology, telemetry, workload, and faults are prepared.
-Valkey Cluster, Sentinel, a distributed write lock, CDN, durable queue, and
-ElastiCache are outside the problem.
+The expected focused time is eight to twelve hours. Valkey, DynamoDB Local,
+market data, two-replica topology, telemetry, workload, and faults are
+prepared, but the cache policy and cross-replica fill coordination are not,
+and a first policy that passes warm and cold traffic is routinely the one
+the same-key burst across two replicas falsifies. Valkey Cluster, Sentinel, a
+distributed write lock, CDN, durable queue, and ElastiCache are outside the
+problem.
 
 ## Code pointers
 

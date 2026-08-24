@@ -28,10 +28,11 @@ ranking cannot be reproduced from the published scoring rules fails the
 contract even when it looks plausible.
 
 The assignment is the whole service: ingestion path, index and store design,
-query path, scoring, confidence, and end-to-end tests. The prompt does not
-prescribe how sequences are decomposed for retrieval, how the index is mapped
-onto the engine, how candidates become scored matches, how work is spread
-across the corpus, or how the confidence is computed.
+query path, scoring, confidence, and end-to-end tests. How retrieval candidates
+are found and turned into scored matches, how the index and the durable store
+divide the work and stay honest with each other, how ingestion work is spread
+across a growing corpus, and how confidence is computed are the learner's
+decisions.
 
 ## Prepared scaffold
 
@@ -45,7 +46,7 @@ poorly under the published rules.
 The scaffold fixes the scoring rules as data — a substitution table over the
 alphabet and gap costs — so scores are comparable across implementations and
 choosing them stays outside the problem. Every sequence carries a stable
-accession so the grader can assert exact identities and score histories.
+accession so verification can assert exact identities and score histories.
 
 The learner owns the ingestion service, the index and store design, and the
 query API. No cloud account is required.
@@ -115,14 +116,14 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader queries with the planted fixtures and asserts that the true match
+Verification queries with the planted fixtures and asserts that the true match
 outranks every decoy: a design that trusts fast candidate retrieval and skips
-recomputable scoring produces the inverted ranking, and the grader detects it
+recomputable scoring produces the inverted ranking, and verification detects it
 by recomputing scores from the published rules.
 
 Faults fire at named barriers, never on a timer and never at random:
 
-- **Growth barrier.** The grader issues a fixture query, then loads the named
+- **Growth barrier.** The failure schedule issues a fixture query, then loads the named
   batch that carries the corpus past 20 million sequences, then issues the
   identical query again. Matches present in both answers must keep identical
   regions and scores; every confidence must be weaker in the second answer;
@@ -139,8 +140,8 @@ Faults fire at named barriers, never on a timer and never at random:
   discrepancy rather than presenting a confident ranking that silently omits
   its best match.
 
-The grader observes public boundaries only. It does not inspect private
-functions, does not require a named engine feature, and compares every score
+Checks observe public boundaries only. They do not inspect private
+functions, do not require a named engine feature, and compare every score
 against an independent recomputation from the published scoring rules.
 
 ## Acceptance evidence
@@ -162,9 +163,10 @@ to trade answer completeness for latency, and one residual limitation.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **NCBI BLAST+** is the reference product as a batch command: the database is
   built once and frozen, and significance is computed against that snapshot,
@@ -187,9 +189,11 @@ lab does not run them.
 
 ## Scope and data
 
-The expected focused time is eight to ten hours; this track is deliberately
-denser than phases 1 to 5 because the interaction between the search engine
-and the durable store is the lesson. The learner builds the ingestion service,
+The expected focused time is sixteen to twenty hours; this track is
+deliberately denser than phases 1 to 5 because the interaction between the
+search engine and the durable store is the lesson, and the redesign loop
+across ingestion, index/store consistency, and significance recomputation
+prices out well above a phase 1-5 lab. The learner builds the ingestion service,
 the index and store design, and the query API. OpenSearch, PostgreSQL, the
 generator, the scoring rules, the planted fixtures, and the fault schedules
 are prepared.

@@ -22,10 +22,10 @@ tell the difference — the ranking it serves is the subject under measurement,
 not the achievement.
 
 The assignment is the whole service: serving path, judgement intake, evaluation
-runs, run lineage, verdicts, reports, and end-to-end tests. The prompt does not
-prescribe the quality measure, the way the judged queries are divided, the test
-for whether a difference between two scores is real, the report schema, or an
-experiment framework. Each of those choices is the lab's actual question, and
+runs, run lineage, verdicts, reports, and end-to-end tests. The quality
+measure, how judged queries are divided between shaping a change and judging
+it, how a real difference between two rankers is told from noise, and what a
+report must contain to be trusted are the lab's actual questions, and
 `ARCHITECTURE.md` must defend them.
 
 ## Prepared scaffold
@@ -33,7 +33,7 @@ experiment framework. Each of those choices is the lab's actual question, and
 The supplied Compose stack starts OpenSearch, PostgreSQL, the corpus and
 judgement generator, and the fault controller. The generator produces a seeded
 document corpus, a query stream, a graded judgement set, and a set of candidate
-ranking configurations whose true effects are declared to the grader and hidden
+ranking configurations whose true effects are known to verification and hidden
 from the harness: at least one genuine improvement, at least one change that
 reorders results without helping anyone, and at least one built to help exactly
 the queries it was tuned against and nothing else. Candidates exercise the
@@ -41,7 +41,7 @@ engine's ranking surface — text analysis, per-field weighting, and the scoring
 function — so a candidate is a real change to how the engine ranks, not a label.
 
 Every document, query, judgement, and candidate carries a stable identity, so
-the grader can assert exact histories rather than counts. The learner owns the
+verification can assert exact histories rather than counts. The learner owns the
 service, its state design in the durable store, and the report format. No cloud
 account is required.
 
@@ -119,7 +119,7 @@ modes and one residual limitation.
 ## Adversarial evaluation
 
 Faults fire at named barriers — a named query–document pair, a named run
-boundary — never on a timer and never at random. The grader:
+boundary — never on a timer and never at random. Verification:
 
 - evaluates the same candidate against the same corpus and judgement versions
   twice and requires the identical reported score;
@@ -140,7 +140,7 @@ boundary — never on a timer and never at random. The grader:
 - restarts the harness mid-run and requires the run ledger to contain either
   the completed run under its exact identity or no run presented as complete.
 
-The grader does not inspect private functions and does not require a named
+Verification does not inspect private functions and does not require a named
 measure, a named division of queries, or a named statistical test. It accepts
 any harness whose reports are reproducible, exact about lineage, and honest
 about the overfit candidate.
@@ -166,9 +166,10 @@ improvement claim this harness still cannot check.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **trec_eval** is the TREC community's standard scorer: it judges a frozen run
   file against a frozen judgement file, so the engine, the corpus, and serving
@@ -189,9 +190,12 @@ The lab does not run them.
 
 ## Scope and data
 
-The expected focused time is seven to nine hours, denser than a phase 1–5 lab
-by design: the interaction between the engine and the durable store is the
-lesson. The learner builds the service; OpenSearch, PostgreSQL, the generator,
+The expected focused time is twenty to twenty-four hours, denser than a phase
+1-5 lab by design: the interaction between the engine and the durable store is
+the lesson, and the statistical rigor a defensible verdict requires — real
+difference from noise, reproducible lineage across a 200-run ledger, an
+overfit candidate that must be caught rather than rewarded — prices out well
+above the gates alone. The learner builds the service; OpenSearch, PostgreSQL, the generator,
 and the fault schedules are prepared, and every required gate runs locally with
 no cloud account.
 

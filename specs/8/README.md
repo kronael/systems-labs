@@ -60,8 +60,8 @@ explicit earth model. Documentation:
 [postgis.net/documentation](https://postgis.net/documentation/).
 
 **Docker Compose** carries the scaffold, as in every phase: the engine and
-the stores, the corpus and feed harnesses, the generators, the fault
-controller, and the graders. Documentation:
+the stores, the corpus and feed harnesses, the generators, and the fault
+controller. Documentation:
 [docs.docker.com/compose](https://docs.docker.com/compose/).
 
 **The corpora** are real and licensed: UniProt protein sequences

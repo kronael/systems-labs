@@ -13,10 +13,11 @@ same accepted record and query contract, but the architecture must account for
 their different lifecycle, delivery, scaling, and cost behavior.
 
 CloudEvents is the required input envelope, DynamoDB is the required result
-API, Kubernetes and Lambda are the required compute models, and OpenTofu is the
-required infrastructure tool. The prompt does not prescribe shared code
-boundaries, adapters, deployment units, queue handling, rollout policy,
-resource graph, module layout, or configuration mapping.
+API, Kubernetes and Lambda are the required compute models, and OpenTofu is
+the required infrastructure tool. The process decomposition, what is
+genuinely shared between the two platforms and what belongs to each, the
+delivery and recovery path on each transport, and the infrastructure module
+layout are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -78,16 +79,18 @@ At least two application-decomposition or deployment designs must be compared.
 
 ## Adversarial evaluation
 
-The grader sends identical event histories through both environments, kills a
-Kubernetes worker around a record boundary, sends SIGTERM under load, deploys a
-version that fails readiness, rolls back with backlog present, expires an SQS
-lease, fails one batch item, repeats invocations, changes a managed Kubernetes
-field outside OpenTofu, and scans plan and state for supplied secret sentinels.
+The failure schedule sends identical event histories through both
+environments, kills a Kubernetes worker around a record boundary, sends
+SIGTERM under load, deploys a version that fails readiness, rolls back with
+backlog present, expires an SQS lease, fails one batch item, repeats
+invocations, changes a managed Kubernetes field outside OpenTofu, and scans
+plan and state for supplied secret sentinels.
 
-Evaluation uses public input and query contracts, transport-visible histories,
-DynamoDB results, Kubernetes rollout state, Lambda-shaped responses, OpenTofu
-plans and state, traces, resource use, and cost evidence. No fixed application
-process count or adapter pattern is required.
+Checks observe public input and query contracts, transport-visible
+histories, DynamoDB results, Kubernetes rollout state, Lambda-shaped
+responses, OpenTofu plans and state, traces, resource use, and cost
+evidence. No fixed application process count or adapter pattern is
+required.
 
 ## Acceptance evidence
 
@@ -104,34 +107,42 @@ runner and `kind` cluster cannot prove about AWS or managed Kubernetes.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
-- **Knative** runs event-driven, scale-to-zero workloads on Kubernetes
-  itself, so both execution shapes share one platform and the lifecycle split
-  this lab studies never appears — at the price of operating the machinery
-  that hides it.
-- **Temporal** moves redelivery, retries, and progress into a workflow
-  engine's durable execution, so acknowledgement stops depending on the
-  transport and the platform difference hides behind a second stateful
-  system.
-- **Pulumi** and **CDK** describe infrastructure in a general-purpose
-  language rather than declarative HCL, so the set of resources is computed
-  while the program runs rather than declared before it does. This lab grades
-  drift and rollout, which rest on a plan that states every change in advance,
-  and a general-purpose language would also put infrastructure in the same
+- **Knative** — [documentation](https://knative.dev/docs/). Runs
+  event-driven, scale-to-zero workloads on Kubernetes itself, so both
+  execution shapes share one platform and the lifecycle split this lab
+  studies never appears — at the price of operating the machinery that
+  hides it.
+- **Temporal** — [documentation](https://docs.temporal.io/). Moves
+  redelivery, retries, and progress into a workflow engine's durable
+  execution, so acknowledgement stops depending on the transport and the
+  platform difference hides behind a second stateful system.
+- **Pulumi** — [documentation](https://www.pulumi.com/docs/) and
+  **CDK** — [documentation](https://docs.aws.amazon.com/cdk/v2/guide/home.html).
+  Describe infrastructure in a general-purpose language rather than
+  declarative HCL, so the set of resources is computed while the program
+  runs rather than declared before it does. This lab checks drift and
+  rollout, which rest on a plan that states every change in advance, and a
+  general-purpose language would also put infrastructure in the same
   languages as the application it must stay separable from.
 
-Read their documentation on lifecycle, delivery, and state. The lab does not
-run them.
+The lab does not run them.
 
 ## Scope and cost
 
-The expected focused time is six to eight hours. Compose dependencies, `kind`,
-the Lambda-compatible runner, base OpenTofu sandboxes, telemetry, workload, and
-faults are prepared. MSK, EKS, NAT gateways, RDS, ElastiCache, API Gateway,
-multi-region deployment, and mandatory AWS access are outside the problem.
+The expected focused time is eighteen to twenty-four hours. Compose
+dependencies, `kind`, the Lambda-compatible runner, base OpenTofu sandboxes,
+telemetry, workload, and faults are prepared, but two full deployments of
+one domain contract are not, and the design is falsified and rebuilt at
+least twice: once when the shared code boundary leaks a platform-specific
+assumption, and again when the infrastructure module layout does not
+account for an out-of-band change. MSK, EKS, NAT gateways, RDS, ElastiCache,
+API Gateway, multi-region deployment, and mandatory AWS access are outside
+the problem.
 
 ## Code pointers
 

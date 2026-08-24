@@ -112,8 +112,8 @@ next plan, and secrets must never appear in state or plan text. Elsewhere it
 is only the optional bounded sandbox for the hosted smoke resources the cost
 contract allows. Documentation: [opentofu.org/docs](https://opentofu.org/docs/).
 
-**Kraken recent trades** is the opt-in real data source. CI and graders use
-generated seeded input; a real recording is bounded, checksummed, and cached,
+**Kraken recent trades** is the opt-in real data source. CI and verification
+use generated seeded input; a real recording is bounded, checksummed, and cached,
 and changes provenance rather than the pass criteria. Documentation:
 [Kraken API — recent trades](https://docs.kraken.com/api/docs/rest-api/get-recent-trades/).
 

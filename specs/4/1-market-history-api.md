@@ -12,17 +12,16 @@ ingestion health. The product handles a few quiet symbols and a highly active
 symbol without losing records, corrupting aggregates, or hiding stale results.
 
 DynamoDB is the required data model and API. The mandatory system uses
-DynamoDB Local; a bounded hosted smoke run is optional. The prompt does not
-prescribe tables, partition or sort keys, secondary indexes, sharding, aggregate
-layout, conditional-write scheme, or pagination strategy.
+DynamoDB Local; a bounded hosted smoke run is optional. The data layout, the
+aggregate representation, the write path, and the process decomposition
+between ingestion and serving are the learner's decisions.
 
 ## Prepared scaffold
 
 The supplied Compose stack starts DynamoDB Local, OpenTelemetry collection, and
 the fault controller. It includes a deterministic million-trade generator, an
 opt-in bounded Kraken recent-trades recorder, provenance and replay tools,
-DynamoDB inspection, hot-symbol and cursor-overlap scenarios, and the black-box
-grader.
+and DynamoDB inspection, hot-symbol and cursor-overlap scenarios.
 
 The learner owns ingestion, serving, data design, and the application Compose
 layer. Standard Make targets start the database, generate or replay input,
@@ -71,14 +70,15 @@ symbol distribution and public queries.
 
 ## Adversarial evaluation
 
-The grader sends a concentrated symbol burst, overlaps provider cursors,
-repeats identities, kills ingestion around a durable write, forces multi-page
-queries, reads through a secondary access path immediately after a write,
-retains physically expired items, and introduces malformed precision data.
+The failure schedule sends a concentrated symbol burst, overlaps provider
+cursors, repeats identities, kills ingestion around a durable write, forces
+multi-page queries, reads through a secondary access path immediately after
+a write, retains physically expired items, and introduces malformed
+precision data.
 
-Evaluation observes public APIs, DynamoDB requests and items, source histories,
+Checks observe public APIs, DynamoDB requests and items, source histories,
 telemetry, key distribution, request counts, and exact candle reconciliation.
-It does not require a particular single-table or multi-table pattern.
+They do not require a particular single-table or multi-table pattern.
 
 ## Acceptance evidence
 
@@ -95,30 +95,36 @@ hosted-capacity estimate clearly separated from local evidence.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
-- **Apache Cassandra** and **ScyllaDB** partition by key in the same way but
-  let a partition grow without bound and degrade instead of throttling, which
-  turns the hot-key problem from a provider quota into an operator's tail
-  latency.
-- **MongoDB** can index any field after the fact, so access patterns need not
-  be fixed before the data exists — and the same skew returns later as the
-  choice of shard key.
-- **PostgreSQL** would answer every query in this lab from one node with
-  ordinary indexes and no key design at all, and pays with a vertical ceiling
-  in place of a partition limit.
+- **Apache Cassandra** — [documentation](https://cassandra.apache.org/doc/latest/)
+  and **ScyllaDB** — [documentation](https://docs.scylladb.com/). Partition
+  by key in the same way but let a partition grow without bound and degrade
+  instead of throttling, which turns the hot-key problem from a provider
+  quota into an operator's tail latency.
+- **MongoDB** — [documentation](https://www.mongodb.com/docs/manual/). Can
+  index any field after the fact, so access patterns need not be fixed
+  before the data exists — and the same skew returns later as the choice of
+  shard key.
+- **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/).
+  Would answer every query in this lab from one node with ordinary indexes
+  and no key design at all, and pays with a vertical ceiling in place of a
+  partition limit.
 
-Read their documentation on partitioning, secondary indexes, and consistency.
 The lab does not run them.
 
 ## Scope and cost
 
-The expected focused time is five to seven hours. DynamoDB Local, data
-generation, Kraken recording, telemetry, faults, and inspection are prepared.
-Order placement, accounts, streaming WebSockets, DAX, global tables, PartiQL,
-and production AWS are outside the problem.
+The expected focused time is ten to fourteen hours. DynamoDB Local, data
+generation, Kraken recording, telemetry, faults, and inspection are prepared,
+but the access-pattern map and key design are not, and a key design that
+serves the public queries cleanly is routinely the one the hot-symbol share
+falsifies, forcing a redesign before it holds at the ingest target. Order
+placement, accounts, streaming WebSockets, DAX, global tables, PartiQL, and
+production AWS are outside the problem.
 
 ## Code pointers
 

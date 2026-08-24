@@ -23,11 +23,11 @@ disallowed path is never fetched, ever, under any failure.
 
 The assignment is the whole system: fetching, page identity, storage, indexing,
 the revisit decision, the search API, the staleness statement, and end-to-end
-tests. The prompt does not prescribe how unvisited pages are tracked, how the
-next fetch is chosen, what makes two URLs one page, how repeated content is
-detected, how the index is laid out, or where any piece of state lives.
-Extracting text and links from fetched HTML is prepared, not learner work;
-none of the difficulty is parsing.
+tests. The state that tracks crawl progress, the scheduling of the next fetch
+against the declared budget, what makes two URLs one page, and the layout of
+the index and the durable store are the learner's decisions. Extracting text
+and links from fetched HTML is prepared, not learner work; none of the
+difficulty is parsing.
 
 ## Prepared scaffold
 
@@ -37,7 +37,8 @@ touches the live Internet.
 
 The site harness serves twenty seeded local sites totalling 200,000 pages. It
 enforces a per-host request rate and records every request it receives in a
-ledger, which is the grader's ground truth. Its `robots.txt` files exercise
+ledger, which is the ground truth verification checks against. Its
+`robots.txt` files exercise
 the standard's edges: wildcard and end-anchor rules, longest-match precedence,
 groups that must be merged for the crawler's own product token, one file large
 enough that a parser truncating before the standard's minimum misses a rule
@@ -117,7 +118,7 @@ modes and one residual limitation.
 ## Adversarial evaluation
 
 Faults fire at named barriers, never on a timer and never at random, so every
-run produces the same history and the grader asserts exact URL identities
+run produces the same history and verification asserts exact URL identities
 against the harness ledger.
 
 - When a named page is acknowledged as indexed, the harness rewrites its
@@ -139,7 +140,7 @@ against the harness ledger.
   wholesale refetch, and the staleness statement remains honest across the
   gap.
 
-The grader does not inspect private functions and does not look for a named
+Verification does not inspect private functions and does not look for a named
 design. It reads the harness ledger, the index history per URL, and the
 answers of the public search API, and compares them against the declared
 schedule of content changes.
@@ -164,9 +165,10 @@ the product guarantees about them, and it names one residual limitation.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **Apache Nutch** ships the entire crawl loop — pending-URL state, fetch
   scheduling, parsing, and indexing into Solr or Elasticsearch — as a
@@ -188,7 +190,10 @@ them.
 
 ## Scope and data
 
-The expected focused time is six to eight hours. The learner builds the crawl,
+The expected focused time is sixteen to nineteen hours; extraction and robots
+parsing are prepared, but strict RFC 9309 compliance under fault, crash-safe
+crawl state, and the revisit-versus-discover budget still price out well above
+a phase 1-5 lab. The learner builds the crawl,
 the state, the index, the search API, and the staleness statement. OpenSearch,
 PostgreSQL, the site harness, the extraction library, and the fault schedules
 are prepared.
