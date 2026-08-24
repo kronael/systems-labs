@@ -25,19 +25,20 @@ head and may change, and a settled view that contains finalized history and
 never changes. The fast view must never contaminate the settled one.
 
 The assignment is the whole service: ingestion from the node, state, the
-query API, recovery, and end-to-end tests. The prompt does not prescribe a
-storage layout, a table split, a reorg-handling rule, a checkpoint strategy,
-or a query rewrite.
+query API, recovery, and end-to-end tests. The storage layout, how the fast
+and settled views are separated and reconciled, the reorg-handling rule, the
+checkpoint and recovery strategy, and the query path are the learner's
+decisions.
 
 ## Prepared scaffold
 
 The supplied Compose stack starts a local Ethereum development node with
-token contracts already deployed, the transfer workload driver, the fault
-controller, and the black-box grader. The node's control surface can mint
-blocks on command, fork the head at a named height, and advance or halt
-finality, so every schedule lands on the same boundary in every run. The
-workload driver records each transfer it submits, and the grader computes
-the exact surviving balances and histories from the node's own chain.
+token contracts already deployed, the transfer workload driver, and the
+fault controller. The node's control surface can mint blocks on command,
+fork the head at a named height, and advance or halt finality, so every
+schedule lands on the same boundary in every run. The workload driver
+records each transfer it submits, and verification computes the exact
+surviving balances and histories from the node's own chain.
 
 The learner owns the indexing service, its state, the query API, and their
 Compose layer. Standard Make targets start the environment, replay
@@ -103,17 +104,17 @@ chosen design.
 ## Adversarial evaluation
 
 Every fault fires at a named barrier through the node's own control surface,
-never on a timer and never at random. The grader forks the head at a named
-block and mints a competing branch one block longer, so a named transfer the
-index has already served returns marked `removed: true` and a competing
-transfer takes its place. It repeats the fork at depth 32, past the safe
-head and short of the finalized boundary. It delivers one named transfer,
-waits until the fast view serves it, withdraws it, and asserts that no
-settled answer ever contained it. It kills the indexer at a named block
-mid-range and restarts it. It halts finality while the head keeps growing,
-then queries the settled view. Balance and history queries run against both
-views in every window: before the fork, inside the contested range, and
-after finality passes it.
+never on a timer and never at random. The failure schedule forks the head at
+a named block and mints a competing branch one block longer, so a named
+transfer the index has already served returns marked `removed: true` and a
+competing transfer takes its place. It repeats the fork at depth 32, past
+the safe head and short of the finalized boundary. It delivers one named
+transfer, waits until the fast view serves it, and withdraws it; verification
+asserts that no settled answer ever contained it. The schedule kills the
+indexer at a named block mid-range and restarts it, and halts finality while
+the head keeps growing, then verification queries the settled view. Balance
+and history queries run against both views in every window: before the fork,
+inside the contested range, and after finality passes it.
 
 Evaluation compares every answer with balances and histories computed
 independently from the node's surviving chain. Counts alone prove nothing: a
@@ -141,9 +142,10 @@ on.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **The Graph** moves the reorganization into the framework: `graph-node`
   reverts a subgraph's entities automatically inside a configured reorg
@@ -161,8 +163,8 @@ answers. The lab does not run them.
 
 ## Scope and data
 
-The expected focused time is five to seven hours. The node, token contracts,
-workload driver, fault schedules, and grader are prepared; the learner
+The expected focused time is fourteen to eighteen hours. The node, token
+contracts, workload driver, and fault schedules are prepared; the learner
 builds the indexing service and the query API. Every required gate runs
 against the local node with no mainnet funds and no cloud account. A bounded
 recording from a public RPC endpoint is opt-in, checksummed, cached under

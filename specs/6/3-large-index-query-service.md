@@ -14,9 +14,9 @@ level, and resident memory stays inside a fixed ceiling while queries run on
 every available core.
 
 The assignment is the whole service: file access, memory policy, I/O
-scheduling, concurrency, latency accounting, and end-to-end tests. The prompt
-does not prescribe an access method, a caching design, a readahead rule, a
-thread model, or an eviction strategy.
+scheduling, concurrency, latency accounting, and end-to-end tests. The
+file-access strategy, the memory policy, and the concurrency model are the
+learner's decisions.
 
 ## Prepared scaffold
 
@@ -29,8 +29,8 @@ protocol defines the outcome a retired record must receive.
 
 The course supplies the segment format, the query protocol, the open-loop
 load generator, a tool that records the host device's read capacity as a
-baseline, scenario files, and the black-box grader. The learner owns the
-service and its tests. No cloud account is required.
+baseline, and scenario files. The learner owns the service and its tests. No
+cloud account is required.
 
 ## Requirements
 
@@ -84,19 +84,18 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader drives uniformly random point queries over the whole keyspace
-until the touched data far exceeds resident memory and holds full load
-through that transition. It starts range scans beside the point load, raises
-the stream count to every available core, truncates a named retired segment
-while queries against it are in flight, queries records appended after
-startup at the declared visibility bound, and sends SIGTERM under full load
-before restarting the service against a cold memory state. The harness
+The failure schedule drives uniformly random point queries over the whole
+keyspace until the touched data far exceeds resident memory and holds full
+load through that transition. It starts range scans beside the point load,
+raises the stream count to every available core, truncates a named retired
+segment while queries against it are in flight, queries records appended
+after startup at the declared visibility bound, and sends SIGTERM under full
+load before restarting the service against a cold memory state. The harness
 appends and seals segments throughout.
 
-The grader does not inspect private functions or require a named access
-method. It compares every answer against the generator's seeded truth and
-observes per-class latency, resident memory over time, and the reported
-evidence.
+Checks do not inspect private functions or require a named access method.
+They compare every answer against the generator's seeded truth and observe
+per-class latency, resident memory over time, and the reported evidence.
 
 ## Acceptance evidence
 
@@ -116,9 +115,10 @@ class that would miss its service level first under further growth.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each answers the
-question of who moves bytes between storage and memory differently, and each
-is worth reading before defending the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **LMDB** maps the whole database and returns answers straight out of the
   mapping — and buys survival by mapping read-only by default, serializing
@@ -131,16 +131,15 @@ is worth reading before defending the design:
   direct I/O, because an application that schedules its own I/O decides which
   page an eviction costs and when a device wait happens.
 
-Read their documentation on caching and file access. The lab does not run
-them.
+The lab does not run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. The learner builds the query
-service and its tests. The segment format, data harness, load generator,
-device baseline, and fault schedules are prepared. Durability of writes,
-compaction, compression, secondary indexes, replication, and networked
-storage are outside the problem.
+The expected focused time is sixteen to twenty-two hours. The learner builds
+the query service and its tests. The segment format, data harness, load
+generator, device baseline, and fault schedules are prepared. Durability of
+writes, compaction, compression, secondary indexes, replication, and
+networked storage are outside the problem.
 
 ## Code pointers
 

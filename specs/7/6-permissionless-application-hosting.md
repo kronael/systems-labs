@@ -29,9 +29,9 @@ which can be done exactly once and never undone. Each of these has to be
 established deliberately and proved, not assumed.
 
 The assignment is the whole system: the program, the interface releases, the
-publishing path, and end-to-end tests. The prompt does not prescribe a
-replication or pinning strategy, a pointer design, a release process, a key
-custody scheme, or a client architecture.
+publishing path, and end-to-end tests. The replication and pinning strategy,
+the pointer design, the release process, the key-custody scheme, and the
+client architecture are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -65,9 +65,8 @@ program again.
 The course supplies the release plan and payload generator, which emits each
 release's seeded asset payloads at the sizes and deltas the scale target
 names; the user agent fleet, which drives any submission through a fixed
-manifest contract included in the starter; the fault controller with
-declarative scenario files; and the black-box grader, which observes only
-through the user-side node and the validator's RPC.
+manifest contract included in the starter; and the fault controller with
+declarative scenario files.
 
 The learner owns the program, in Rust; the interface bundle and its manifest,
 in TypeScript; the publishing path; and `ARCHITECTURE.md`. No cloud account,
@@ -168,7 +167,7 @@ schedule includes:
 - after the terminal release, the harness attempts a program upgrade with the
   same credentials the run used, and then uses the application.
 
-The grader observes only the user-side node and the validator's RPC. It
+Verification observes only the user-side node and the validator's RPC. It
 records, for every agent and every fetch, the release identity presented and
 a checksum of the bytes delivered, and it compares the board's final state
 against an independently computed one. It does not inspect the publishing
@@ -201,9 +200,10 @@ one; the report is graded on naming it, not on pretending it is absent.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **Static hosting behind a CDN**, GitHub Pages being the plainest case,
   makes availability an operator's obligation instead of the publisher's
@@ -230,19 +230,19 @@ the ENS contenthash specification. The lab does not run them.
 
 ## Scope and cost
 
-The expected focused time is six to eight hours. The learner builds the
-program, the interface bundle and manifest, and the publishing path. The
+The expected focused time is twenty to twenty-five hours. The learner builds
+the program, the interface bundle and manifest, and the publishing path. The
 validator, the name registry, the four-node content network, the user agent
-fleet, the release plan and payload generator, the fault schedules, and the
-grader are prepared.
+fleet, the release plan and payload generator, and the fault schedules are
+prepared.
 
 Every required gate runs locally at zero cost and with no account of any
 kind: no cloud account, no domain registrar, no pinning-service subscription,
 and no wallet holding real funds. The lab's subject is removing the accounts,
 so it must not require one. Optional use of the public content network, a
 public pinning service, or public RPC is opt-in, bounded, cached under the
-shared source directory, and never on a request path; CI and the grader use
-the local environment only.
+shared source directory, and never on a request path; CI and verification
+use the local environment only.
 
 Program runtime limits belong to the settlement lab, transaction dispatch
 reliability to the dispatcher lab. DNS and real domains, TLS and public

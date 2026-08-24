@@ -24,9 +24,10 @@ a parameter change.
 
 The assignment is the whole system: the program's account model, the
 instruction set, the client's submission and recovery behavior, the query
-path, and end-to-end tests. The prompt does not prescribe an account layout,
-an instruction decomposition, a batching or splitting strategy, an addressing
-scheme, or a client retry design.
+path, and end-to-end tests. The account layout, the instruction
+decomposition, how a settlement that spans several transactions is split and
+tracked, the addressing scheme, and the client's submission and retry design
+are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -34,8 +35,7 @@ The supplied Compose profile extends the standard scaffold with a local
 `solana-test-validator` whose ledger persists across restarts. The course
 supplies the settlement generator, which emits seeded participant
 registrations and settlement batches whose sizes are chosen to cross each
-runtime limit; the fault controller with declarative scenario files; and the
-black-box grader, which observes the chain only through the RPC boundary.
+runtime limit; and the fault controller with declarative scenario files.
 
 The runtime limits are environment facts, current as of 2026-08-14: a
 transaction may consume at most 1,400,000 compute units, and an instruction
@@ -124,7 +124,7 @@ Faults fire at named barriers, never on a timer and never at random. The
 schedule includes:
 
 - the settlement whose leg count first drives a single-transaction execution
-  past the per-transaction compute unit budget; the grader asserts it still
+  past the per-transaction compute unit budget; verification asserts it still
   applies exactly once with exact balances;
 - the settlement whose account list cannot fit one serialized transaction;
 - the growth step that first requires more than 10,240 new bytes of account
@@ -139,8 +139,8 @@ schedule includes:
 - a validator restart at a named settlement barrier with the ledger
   preserved.
 
-The grader replays the accepted settlement stream into an independent balance
-computation and compares exact per-participant balances and the full
+Verification replays the accepted settlement stream into an independent
+balance computation and compares exact per-participant balances and the full
 settlement history against chain state read over RPC. It does not inspect
 program internals and does not require a named account layout.
 
@@ -166,9 +166,10 @@ shape, and the runtime limit that would bind next beyond the scale target.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **Ethereum (an EVM contract)** prices compute instead of capping it per
   slot of work: the caller buys gas up to a block gas limit that moves by
@@ -193,11 +194,11 @@ run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. The learner builds the
-program and the client. The validator, generator, fault controller, scenario
-files, and grader are prepared. Token standards, program upgrades, priority
-fee markets under real contention, multi-validator clusters, off-chain
-indexers, and any mainnet or public-RPC dependency are outside the problem.
+The expected focused time is sixteen to twenty-two hours. The learner builds
+the program and the client. The validator, generator, fault controller, and
+scenario files are prepared. Token standards, program upgrades, priority fee
+markets under real contention, multi-validator clusters, off-chain indexers,
+and any mainnet or public-RPC dependency are outside the problem.
 
 ## Code pointers
 

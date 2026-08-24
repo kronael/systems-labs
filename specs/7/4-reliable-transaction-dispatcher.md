@@ -15,9 +15,9 @@ every identity — landed, with the transaction that carried it, or failed, with
 a reason that stays true after the report is written.
 
 Both chains belong to the fixed environment and one service drives both. The
-prompt does not prescribe the submission pipeline, the account and ordering
-strategy, the fee policy, the abandonment rule, the crash-recovery design, or
-how a landed effect is recognized.
+submission pipeline, the account and ordering strategy, the fee policy, the
+abandonment rule, the crash-recovery design, and how a landed effect is
+recognized are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -25,9 +25,9 @@ The supplied Compose stack starts `solana-test-validator` and a local Ethereum
 development node configured for block-interval mining and real fee ordering,
 with the funding accounts pre-funded on both chains. It includes the seeded
 payment-order generator, an RPC fault proxy in front of each node, chain
-inspection tooling, deterministic barriers named after payment identities, and
-the black-box grader. Fault scenarios are declarative files driven by the
-course-wide fault controller.
+inspection tooling, and deterministic barriers named after payment
+identities. Fault scenarios are declarative files driven by the course-wide
+fault controller.
 
 The learner owns the dispatcher, its public outcome surface, the application
 Compose layer, and `ARCHITECTURE.md`. The supported starters are Rust and Go.
@@ -95,8 +95,8 @@ payment and the transactions that carry it.
 
 ## Adversarial evaluation
 
-The grader runs the fault schedule at named barriers, never on a timer and
-never at random:
+The failure schedule fires at named barriers, never on a timer and never at
+random:
 
 - it holds the submission of a named Solana payment at the RPC boundary until
   the blockhash it carries has expired, then releases it, so the dispatcher
@@ -107,7 +107,7 @@ never at random:
 - it raises the Ethereum node's minimum inclusion price after a named
   payment's transaction enters the pool, leaving that transaction priced
   below inclusion and every later transaction from its account queued behind
-  it; after the dispatcher reports recovery, the grader lowers the price
+  it; after the dispatcher reports recovery, the schedule lowers the price
   again, so a transaction that was merely forgotten rather than displaced
   becomes minable;
 - it restarts each node with its ledger intact while payments are in flight.
@@ -137,9 +137,10 @@ resubmission means on each chain and why the safe moment to give up differs.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **OpenZeppelin Relayer** moves signing, nonce assignment, fee bumping, and
   resubmission behind an API, so the question this lab asks — when a
@@ -160,8 +161,8 @@ ownership. The lab does not run them.
 
 ## Scope and data
 
-The expected focused time is six to eight hours. Both nodes, funded accounts,
-the order generator, the fault schedules, chain inspection, and the grader are
+The expected focused time is sixteen to twenty-two hours. Both nodes, funded
+accounts, the order generator, the fault schedules, and chain inspection are
 prepared. Payments use each chain's native transfer; authoring an on-chain
 program, token standards, contract calls, MEV, multi-node clusters, and
 cross-chain atomicity are outside the problem — the last belongs to the
@@ -169,7 +170,7 @@ cross-chain settlement audit candidate.
 
 No step requires mainnet funds or a cloud account. Public RPC endpoints are
 opt-in, bounded, cached under the shared source directory, and never on a
-request path. CI and the grader use the local nodes only.
+request path. CI and checks use the local nodes only.
 
 ## Code pointers
 

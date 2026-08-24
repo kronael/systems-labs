@@ -15,9 +15,9 @@ tail-latency bound and a declared resident-memory ceiling across a run measured
 in hours, through a peak that multiplies live data and then subsides.
 
 The assignment is the whole service: connection handling, workspace state,
-request path, memory accounting, shutdown, and end-to-end tests. The prompt
-does not prescribe a memory strategy, a data layout, a thread model, a request
-pipeline, or an accounting scheme.
+request path, memory accounting, shutdown, and end-to-end tests. The memory
+strategy, the data layout, the concurrency model, and the accounting scheme
+are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -29,9 +29,8 @@ heavy-tailed distribution, and changes phase at named workspace identities.
 The service container runs under a memory limit set to the declared ceiling,
 so exceeding it ends the run.
 
-The course supplies the request protocol, the generator, scenario files, and
-the black-box grader. The learner owns the service and its tests. No cloud
-account is required.
+The course supplies the request protocol, the generator, and scenario files.
+The learner owns the service and its tests. No cloud account is required.
 
 ## Requirements
 
@@ -83,18 +82,19 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader opens a cohort of long-lived workspaces before anything else and
-keeps them open across the entire run, reading their entries throughout. At a
-named workspace identity it starts the peak: a flood of short-lived
-workspaces with large entries that opens, fills, reads, and closes until live
-data reaches its stated peak, then ends at a second named identity. The steady
-phase that follows uses small entries only. Every read is verified byte for
-byte against what was stored. The grader sends SIGTERM at a named identity
-while requests are in flight and expects a clean drain.
+The failure schedule opens a cohort of long-lived workspaces before anything
+else and keeps them open across the entire run, reading their entries
+throughout. At a named workspace identity it starts the peak: a flood of
+short-lived workspaces with large entries that opens, fills, reads, and
+closes until live data reaches its stated peak, then ends at a second named
+identity. The steady phase that follows uses small entries only. Every read
+is verified byte for byte against what was stored, and the schedule sends
+SIGTERM at a named identity while requests are in flight and expects a clean
+drain.
 
-The grader does not inspect private functions or require a named memory
-strategy. It observes responses, resident memory over time, the live data
-implied by the request history, and the response-time distribution per phase.
+Checks do not inspect private functions or require a named memory strategy.
+They observe responses, resident memory over time, the live data implied by
+the request history, and the response-time distribution per phase.
 
 ## Acceptance evidence
 
@@ -114,9 +114,10 @@ states the residual limitation.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **jemalloc** makes returning memory a scheduled policy rather than a side
   effect: unused dirty pages decay along a curve over roughly ten seconds and
@@ -130,12 +131,11 @@ the design:
   delay it exposes as a first-class option, keeping the address ranges while
   shrinking residency.
 
-Read their documentation on when released memory reaches the operating
-system. The lab does not run them.
+The lab does not run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. The learner builds the
+The expected focused time is sixteen to twenty hours. The learner builds the
 service and its tests. The workload generator, protocol, telemetry, and fault
 schedules are prepared. The environment fixes the platform's default
 allocation facility; swapping it for another is outside the problem, as are

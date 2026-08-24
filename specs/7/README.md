@@ -83,8 +83,8 @@ actually guarantees is the lab's subject. Documentation:
 [docs.ipfs.tech](https://docs.ipfs.tech/).
 
 **Docker Compose** still carries the scaffold: the validator and the
-Ethereum node, the content network, generators, the fault controller, and
-the graders. Documentation:
+Ethereum node, the content network, generators, and the fault controller.
+Documentation:
 [docs.docker.com/compose](https://docs.docker.com/compose/).
 
 ## What this phase does not use, and why that is interesting

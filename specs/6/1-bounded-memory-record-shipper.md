@@ -14,9 +14,9 @@ a fixed ceiling for the whole run, and the service must resume from its last
 acknowledged position after a restart.
 
 The assignment is the whole service: readiness handling, buffer ownership,
-progress accounting, flow control, shutdown, and end-to-end tests. The prompt
-does not prescribe an event loop, an I/O interface, a buffer strategy, a thread
-model, or a batching rule.
+progress accounting, flow control, shutdown, and end-to-end tests. The I/O
+model, the buffer-ownership strategy, the flow-control policy, and the
+concurrency model are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -26,8 +26,8 @@ controller. The consumer can stall, read one byte at a time, close mid-record,
 and reset the connection at a named record boundary.
 
 The course supplies the wire framing, the record generator, the acknowledgement
-protocol, scenario files, and the black-box grader. The learner owns the
-shipper and its tests. No cloud account is required.
+protocol, and scenario files. The learner owns the shipper and its tests. No
+cloud account is required.
 
 ## Requirements
 
@@ -76,14 +76,15 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader stalls the consumer for a fixed interval at an exact record
-boundary, resumes it at a byte-per-read rate, closes the connection mid-record,
-resets the connection after acknowledging a known position, and sends SIGTERM
-while a submission is outstanding. It grows the input file during every stall.
+The failure schedule stalls the consumer for a fixed interval at an exact
+record boundary, resumes it at a byte-per-read rate, closes the connection
+mid-record, resets the connection after acknowledging a known position, and
+sends SIGTERM while a submission is outstanding. It grows the input file
+during every stall.
 
-The grader does not inspect private functions or require a named I/O
-interface. It observes the received byte stream, the acknowledgement sequence,
-the resume position after restart, resident memory over time, and telemetry.
+Checks do not inspect private functions or require a named I/O interface.
+They observe the received byte stream, the acknowledgement sequence, the
+resume position after restart, resident memory over time, and telemetry.
 
 ## Acceptance evidence
 
@@ -100,9 +101,10 @@ rather than to an observed maximum.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **epoll** signals readiness rather than completion: an event says the
   descriptor is ready for the requested I/O, the application still performs
@@ -118,15 +120,14 @@ the design:
   socket's send buffer, and a successful return carries no indication of
   delivery to the peer.
 
-Read their documentation on readiness, completion, and buffer ownership. The
-lab does not run them.
+The lab does not run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. The learner builds the shipper
-and its tests. The consumer harness, framing, generator, telemetry, and fault
-schedules are prepared. Encryption, compression, multiple consumers, and
-distributed coordination are outside the problem.
+The expected focused time is twelve to sixteen hours. The learner builds the
+shipper and its tests. The consumer harness, framing, generator, telemetry,
+and fault schedules are prepared. Encryption, compression, multiple consumers,
+and distributed coordination are outside the problem.
 
 ## Code pointers
 

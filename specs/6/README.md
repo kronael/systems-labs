@@ -9,10 +9,10 @@ status: reference
 Phase 6 is a separate catalog in Rust and C whose quirks live in the kernel
 rather than in a database or broker: I/O readiness and completion,
 durability, virtual memory, memory allocation, and time. A port of a phase
-1–5 lab is not a low-level lab, because it inherits the original's grader,
-failure schedule, and answer; every lab here exposes a failure the other
-tracks cannot reach, and each is grounded in a documented, publicly reported
-behavior recorded in the [track record](../0/2-low-level-track.md).
+1–5 lab is not a low-level lab, because it inherits the original's
+checks, failure schedule, and answer; every lab here exposes a failure
+the other tracks cannot reach, and each is grounded in a documented, publicly
+reported behavior recorded in the [track record](../0/2-low-level-track.md).
 
 ## The labs
 

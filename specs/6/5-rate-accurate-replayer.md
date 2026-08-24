@@ -21,21 +21,20 @@ trustworthy at its far tail, because the far tail is the reason the run exists.
 
 The assignment is the whole tool: pacing, transport, in-flight accounting,
 timeout policy, measurement, the report, shutdown, and end-to-end tests. The
-prompt does not prescribe a timing interface, a concurrency model, a connection
-strategy, a data structure for the distribution, or a report format.
+pacing strategy, the concurrency model, the connection strategy, and the
+measurement design are the learner's decisions.
 
 ## Prepared scaffold
 
 The supplied Compose stack starts a target harness whose per-event service time
-follows a seeded script known to the grader, a recording generator, telemetry
-collection, and the fault controller. The harness acknowledges each delivered
-event by identity, and it can stall for a fixed interval starting at a named
-event, raise its service time across a named span, and refuse new connections
-at a named boundary.
+follows a seeded script used for verification, a recording generator,
+telemetry collection, and the fault controller. The harness acknowledges each
+delivered event by identity, and it can stall for a fixed interval starting at
+a named event, raise its service time across a named span, and refuse new
+connections at a named boundary.
 
-The course supplies the wire protocol, the recordings, scenario files, and the
-black-box grader. The learner owns the replayer and its tests. No cloud account
-is required.
+The course supplies the wire protocol, the recordings, and scenario files.
+The learner owns the replayer and its tests. No cloud account is required.
 
 ## Requirements
 
@@ -97,19 +96,19 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader first runs the replayer against an instantly answering target to
-calibrate its schedule fidelity. It then replays the same configuration under
-faults: the target stalls for ten seconds beginning when a named event is
-acknowledged, raises its service time a hundredfold across a named span of
-events, and refuses new connections at a named boundary; the harness steps the
-container's wall clock at a named event; and SIGTERM arrives while events are
-in flight.
+Verification first runs the replayer against an instantly answering target to
+calibrate its schedule fidelity. The failure schedule then replays the same
+configuration under faults: the target stalls for ten seconds beginning when a
+named event is acknowledged, raises its service time a hundredfold across a
+named span of events, and refuses new connections at a named boundary; the
+harness steps the container's wall clock at a named event; and SIGTERM arrives
+while events are in flight.
 
-The grader does not inspect private functions or require a named timing
-interface, concurrency model, or distribution format. It observes the time
-every event actually left the replayer, the harness's own receive and
-acknowledgement log, resident memory, and the report. From its scripted service
-times it independently computes the distribution a client arriving on the
+Checks do not inspect private functions or require a named timing interface,
+concurrency model, or distribution format. They observe the time every event
+actually left the replayer, the harness's own receive and acknowledgement log,
+resident memory, and the report. From the harness's scripted service times,
+verification independently computes the distribution a client arriving on the
 declared schedule would have observed, and compares the report against it.
 
 ## Acceptance evidence
@@ -118,8 +117,8 @@ Every event in the recording appears exactly once, by identity, across the
 acknowledgement log, the timed-out list, and the refused list. The send
 schedule under every fault matches the calibration run within the tolerance
 calibration established, including through the stall and the clock step. The
-reported percentiles match the grader's independently computed distribution
-within the declared value precision at every reported quantile, including
+reported percentiles match the independently computed distribution within the
+declared value precision at every reported quantile, including
 p99.99 and the maximum of the stall run. Resident memory stays inside the
 ceiling through the stall. The report produced after SIGTERM accounts for every
 event that had fallen due.
@@ -129,14 +128,15 @@ send-deviation distribution, the latency distribution per scenario at the
 declared precision, the outcome of every event, peak in-flight count, and
 resident memory over time. It states the schedule tolerance and the value
 precision as declared bounds and shows both held, and it names the largest
-disagreement between the report and the grader's truth and explains where it
-comes from.
+disagreement between the report and the independently computed truth and
+explains where it comes from.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **wrk** saturates a fixed set of threads and connections and reports the
   latency of the requests it managed to issue; its command line fixes threads,
@@ -150,14 +150,13 @@ the design:
   offered load survives a slow target is decided in test design rather than by
   the tool.
 
-Read their documentation on what their load models hold constant and what their
-latency numbers measure. The lab does not run them.
+The lab does not run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. The learner builds the
-replayer and its tests. The target harness, wire protocol, recordings, scenario
-files, and grader are prepared. Multi-host load generation, protocol realism
+The expected focused time is fourteen to eighteen hours. The learner builds
+the replayer and its tests. The target harness, wire protocol, recordings,
+and scenario files are prepared. Multi-host load generation, protocol realism
 beyond the supplied framing, TLS, retries, response-body validation, and live
 capture of new recordings are outside the problem.
 

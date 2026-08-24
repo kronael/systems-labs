@@ -13,9 +13,9 @@ arbitrary instant, and it must state exactly which acknowledged records are
 guaranteed to be present after that recovery.
 
 The assignment is the whole store: on-disk layout, write path, acknowledgement
-rule, recovery procedure, error policy, and end-to-end tests. The prompt does
-not prescribe a file format, a journal design, a checksum scheme, a batching
-rule, or a directory layout.
+rule, recovery procedure, error policy, and end-to-end tests. The on-disk data
+layout, the durability strategy, the integrity-checking scheme, and the
+directory layout are the learner's decisions.
 
 ## Prepared scaffold
 
@@ -26,8 +26,8 @@ and truncate a file between two operations. The fault controller triggers each
 event at a named record boundary.
 
 The course supplies the record generator, the client protocol, the crash
-harness, scenario files, and the black-box grader. The learner owns the store
-and its tests. No cloud account is required.
+harness, and scenario files. The learner owns the store and its tests. No
+cloud account is required.
 
 ## Requirements
 
@@ -77,14 +77,14 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader kills the process and the backing device at exact record boundaries,
-drops unflushed data on resume, returns one I/O error to a flush call and then
-resumes normal behavior, truncates the tail of a file, and flips bytes inside a
-stored record. It then restarts the store and replays the full client history
-against what the store serves.
+The failure schedule kills the process and the backing device at exact record
+boundaries, drops unflushed data on resume, returns one I/O error to a flush
+call and then resumes normal behavior, truncates the tail of a file, and flips
+bytes inside a stored record, then restarts the store. Verification replays
+the full client history against what the store serves.
 
-The grader does not inspect private functions or require a named on-disk
-format. It observes acknowledgements, served records, recovery duration, and
+Checks do not inspect private functions or require a named on-disk format.
+They observe acknowledgements, served records, recovery duration, and
 reported errors.
 
 ## Acceptance evidence
@@ -102,9 +102,10 @@ cannot prove about real hardware.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **SQLite** in WAL mode makes commit durability a configuration choice: with
   `synchronous=NORMAL` a committed transaction may roll back after a power
@@ -120,14 +121,13 @@ the design:
   loses nothing, while a machine crash can lose the last updates unless the
   write asked for a sync.
 
-Read their documentation on commit, sync, and recovery semantics. The lab
-does not run them.
+The lab does not run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. The learner builds the store
-and its tests. The crash harness, fault device, generator, protocol, and
-telemetry are prepared. Replication, secondary indexes, compaction across
+The expected focused time is fourteen to eighteen hours. The learner builds
+the store and its tests. The crash harness, fault device, generator, protocol,
+and telemetry are prepared. Replication, secondary indexes, compaction across
 generations, transactions over multiple records, and networked clients are
 outside the problem.
 

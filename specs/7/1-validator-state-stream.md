@@ -24,9 +24,11 @@ kept.
 
 The assignment is the whole system: the plugin body, the path from
 notification to durable state, the query API, the staleness bound, cold start
-against a validator that is already running, and end-to-end tests. The prompt
-does not prescribe a buffering strategy, a queue, a schema, a
-commitment-tracking design, a cold-start mechanism, or a process layout.
+against a validator that is already running, and end-to-end tests. The data
+layout, how updates move from notification to durable state, how commitment
+is tracked and reconciled across the account and slot-status streams, the
+cold-start recovery approach, and the process decomposition are the
+learner's decisions.
 
 ## Prepared scaffold
 
@@ -34,16 +36,16 @@ The supplied stack starts a local `solana-test-validator` configured to load
 a plugin library from a fixed path, PostgreSQL as the store, a seeded
 transaction generator that drives transfers across a declared set of
 accounts, and the fault controller. The generator names exact accounts,
-amounts, and ordering, so the grader can derive the expected history of every
+amounts, and ordering, so checks can derive the expected history of every
 account at every commitment level from the seed and the observed slot stream.
 The stack preserves the validator's ledger across restarts within a run.
 
 The course supplies the plugin loading configuration, a starter crate with
 the plugin entry point and empty seams, a fault hook on the notification path
-that the controller uses to inject a stall at a named barrier, scenario
-files, and the black-box grader. The learner owns the plugin, the store
-contents, the query API, and the tests, all in Rust. The environment is fully
-local; no public RPC endpoint, cloud account, or mainnet funds are involved.
+that the controller uses to inject a stall at a named barrier, and scenario
+files. The learner owns the plugin, the store contents, the query API, and
+the tests, all in Rust. The environment is fully local; no public RPC
+endpoint, cloud account, or mainnet funds are involved.
 
 ## Requirements
 
@@ -122,14 +124,15 @@ transfers. When the update for account 4711 at slot S arrives, the fault hook
 delays every subsequent notification by a fixed interval, so the plugin
 itself is the slow party. When the update for account 4711 at slot S has been
 delivered, the controller freezes the validator long enough that slots in the
-frozen window are skipped when it resumes; the grader reads the slot-status
-stream to learn which slots were skipped or marked dead and asserts that no
-confirmed answer ever reflected them. The controller also kills the validator
-after a named slot is rooted and restarts it against the preserved ledger,
-kills the learner's store-side path mid-write, and starts the whole system
-with an empty store against a validator holding prior state.
+frozen window are skipped when it resumes; verification reads the
+slot-status stream to learn which slots were skipped or marked dead and
+asserts that no confirmed answer ever reflected them. The controller also
+kills the validator after a named slot is rooted and restarts it against the
+preserved ledger, kills the learner's store-side path mid-write, and starts
+the whole system with an empty store against a validator holding prior
+state.
 
-The grader queries at moments named relative to the notification stream:
+Verification queries at moments named relative to the notification stream:
 after an account update arrives but before any status for its slot, between
 a slot's processed and confirmed statuses, and after the root. It does not
 inspect private functions or require a named design. It compares every
@@ -156,9 +159,10 @@ than to an observed maximum.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **Yellowstone gRPC (Dragon's Mouth)** consumes the same plugin interface
   but immediately turns it into a filtered gRPC subscription service, moving
@@ -178,9 +182,10 @@ The lab does not run them.
 
 ## Scope
 
-The expected focused time is six to eight hours. The learner builds the
-plugin, the store contents, the query API, and the tests. The validator, the
-store, the generator, the fault hook, and the fault schedules are prepared.
+The expected focused time is eighteen to twenty-four hours. The learner
+builds the plugin, the store contents, the query API, and the tests. The
+validator, the store, the generator, the fault hook, and the fault schedules
+are prepared.
 The environment is fully local; public RPC use is not part of the lab, and
 where a learner consults one anyway it is opt-in, bounded, cached, and never
 on a request path. Transaction and block streaming, multiple validators,
