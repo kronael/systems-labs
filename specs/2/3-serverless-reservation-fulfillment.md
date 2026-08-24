@@ -37,7 +37,7 @@ also starts
 the same fulfillment provider the local lab prepared: an endpoint outside the
 learner's handlers that accepts a fulfillment request for a reservation
 identity, records it in an inspectable log, and acknowledges it. That log is
-the observable boundary of the fulfillment effect — the grader reads it, and
+the observable boundary of the fulfillment effect — checks read it, and
 an effect applied twice is two recorded requests for one reservation. Beyond
 client traffic, the runner supports the platform's documented invocation
 sources, declared in the lab config; whether the design uses any of them is
@@ -47,7 +47,7 @@ The fault controller freezes the environment at the freeze barrier and thaws
 it on the next invocation, destroys an environment between invocations, holds
 concurrent conflicting requests at one resource, and delays a store response
 past a handler's remaining time. The course supplies the client protocol,
-the fault schedules behind `make fault`, and the black-box grader. The learner owns the handlers and
+and the fault schedules behind `make fault`. The learner owns the handlers and
 their tests. No cloud account is required.
 
 ## Requirements
@@ -125,7 +125,7 @@ property the local version had that this one cannot recover.
 
 ## Adversarial evaluation
 
-The grader drives many clients at one resource with deliberately overlapping
+The failure schedule drives many clients at one resource with deliberately overlapping
 intervals, then reads the final reservation set and asserts that no two live
 reservations for that resource overlap. It freezes environments at the freeze
 barrier with fulfillment outstanding, destroys environments between
@@ -134,7 +134,7 @@ request long after its first acceptance, drives offered load past what the
 configured ceiling admits, and delays a store response until a handler
 runs out of time.
 
-The grader does not require a named item layout or serialization mechanism. It
+Checks do not require a named item layout or serialization mechanism. They
 observes HTTP, store-visible state, invocation counts, and the submitted
 evidence.
 
@@ -182,7 +182,7 @@ lab does not run them.
 
 The expected focused time is ten to fifteen hours. The learner builds the
 handlers and their tests. The runtime, store, generator, fault schedules, and
-grader are prepared. Multi-region behavior, authentication, capacity
+are prepared. Multi-region behavior, authentication, capacity
 provisioning, and a second product surface are outside the problem.
 
 The local reservation lab is a prerequisite, and its artifacts must be

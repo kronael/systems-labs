@@ -34,7 +34,7 @@ the handler's remaining time, throttles above the declared ceiling, and freezes
 an environment at the freeze barrier — the point where the runtime and every
 extension have completed with no events pending — with a provider call
 outstanding. The course supplies the provider protocol, the fault schedules
-behind `make fault`, and the black-box grader. The learner owns the handler and its tests. No cloud account is required.
+behind `make fault`. The learner owns the handler and its tests. No cloud account is required.
 
 ## Requirements
 
@@ -90,13 +90,13 @@ The document must compare the local design and this one directly.
 
 ## Adversarial evaluation
 
-The grader drives offered load several times the declared ceiling, runs the
+The failure schedule drives offered load several times the declared ceiling, runs the
 provider latency schedule including a sustained slow interval and a hard
 failure, destroys environments to force first-invocation latency inside a
 measured window, freezes an environment with a provider call outstanding, and
 holds a provider past the handler's maximum run time.
 
-The grader does not require a named cache or rejection mechanism. It observes
+Checks do not require a named cache or rejection mechanism. They observe
 the public API, provider-side request traffic, invocation and throttle counts,
 telemetry, and the submitted evidence.
 
@@ -141,7 +141,7 @@ not run them.
 
 The expected focused time is six to nine hours. The learner builds the handler
 and its tests. The runtime, provider simulators, store, load generator, fault
-schedules, and grader are prepared. Authentication, provider onboarding,
+and schedules are prepared. Authentication, provider onboarding,
 billing, and multi-region routing are outside the problem.
 
 The local quote lab is a prerequisite, and its artifacts must be retained: its

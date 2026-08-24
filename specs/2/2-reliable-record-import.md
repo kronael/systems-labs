@@ -28,8 +28,7 @@ store that environment is normally paired with.
 The supplied Compose stack starts ElasticMQ, DynamoDB Local, the
 Lambda-compatible invocation harness, OpenTelemetry collection, and the fault
 controller. It includes generated valid and poison records, a query client,
-queue and table inspection, deterministic timing barriers, and the black-box
-grader.
+queue and table inspection, and deterministic timing barriers.
 
 The learner owns the importer, query boundary, application topology, and
 application Compose layer. The standard Makefile runs Lambda-envelope
@@ -87,7 +86,7 @@ The document must compare at least two acknowledgement or idempotency designs.
 
 ## Adversarial evaluation
 
-The grader expires a lease while work is active, kills an invocation around
+The failure schedule expires a lease while work is active, kills an invocation around
 its durable effect, repeats source identities, fails one item inside a mixed batch,
 injects temporary DynamoDB errors, submits a persistent poison record, and
 reintroduces a terminal record after its fix.

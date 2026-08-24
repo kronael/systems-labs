@@ -20,7 +20,7 @@ the service divides into processes are the learner's decisions.
 The supplied Compose stack starts two deterministic provider simulators,
 OpenTelemetry collection, a metrics backend, and the fault controller. The
 course also supplies generated API types, an open-loop load generator, HDR
-histogram output, the fault schedules behind `make fault`, and the black-box grader.
+histogram output, and the fault schedules behind `make fault`.
 
 The learner owns the application services and their Compose layer. The common
 Makefile starts dependencies, validates scaffold health, runs tests, injects
@@ -66,13 +66,13 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader applies a sustained latency increase to one provider at an exact
+The failure schedule applies a sustained latency increase to one provider at an exact
 request boundary, injects provider errors, drives a burst above measured
 capacity, cancels clients, and sends SIGTERM while work is active. It runs both
 open-loop and closed-loop traffic.
 
-The grader does not inspect private functions or require a named concurrency
-pattern. It observes API behavior, process lifecycle, traces, metrics, queue or
+Checks do not inspect private functions or require a named concurrency
+pattern. They observe API behavior, process lifecycle, traces, metrics, queue or
 admission state exposed by the design, and resource use.
 
 ## Acceptance evidence

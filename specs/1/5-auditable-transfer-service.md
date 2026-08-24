@@ -22,7 +22,7 @@ systems, and the downstream consumption are the learner's decisions.
 The supplied Compose stack starts PostgreSQL, Kafka, OpenTelemetry collection,
 and a deterministic fault controller. It includes generated accounts and
 transfers, concurrent and duplicate workloads, Kafka and SQL inspection,
-history checking, exact crash barriers, and the black-box grader.
+history checking, and exact crash barriers.
 
 The learner owns all application processes, database schema, event schema, and
 application Compose layer. Standard Make targets start dependencies, seed
@@ -72,14 +72,14 @@ alone do not count as analysis.
 
 ## Adversarial evaluation
 
-The grader kills processes immediately before and after database commit,
+The failure schedule kills processes immediately before and after database commit,
 broker acknowledgement, local publication progress, downstream effect, and
 consumer progress. It repeats client requests, runs concurrent transfers
 against hot accounts, delays Kafka, restarts PostgreSQL, and rebuilds the audit
 product.
 
-The grader observes public APIs, SQL and Kafka state, exact histories,
-telemetry, process lifecycle, and resource bounds. It does not require a named
+Checks observe public APIs, SQL and Kafka state, exact histories,
+telemetry, process lifecycle, and resource bounds. They do not require a named
 outbox, transaction coordinator, relay topology, or consumer framework.
 
 ## Acceptance evidence

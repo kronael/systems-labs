@@ -51,7 +51,7 @@ because the lifecycle is the subject.
 The rating rules are part of the supplied product definition, published with
 the lab: the plan catalog and what each plan costs, how a mid-period plan
 change prorates the split period, the rounding rule, and what constitutes an
-invoice line. The grader's independently computed answer and the learner's
+invoice line. The independently computed answer and the learner's
 invoices both derive from these published rules and the acknowledged input.
 The arithmetic is deliberately not this lab's difficulty, and none of it is
 secret.
@@ -123,7 +123,7 @@ modes and one residual limitation.
 
 ## Adversarial evaluation
 
-The grader replays a scripted history against the public API and the queue
+The failure schedule replays a scripted history against the public API and the queue
 while firing faults at named barriers: it freezes the environment at the
 freeze barrier following the response for invoice 4711, with work observably
 outstanding; recycles the environment between the two requests of one logical
@@ -134,9 +134,9 @@ contract is another lab's subject, and the redelivery is an environment fact
 here that the invariant must survive. It then closes a period under continued
 traffic and reads every invoice.
 
-The grader observes public responses, queue histories, and store contents. It
-does not inspect private functions and does not require a named pattern. It
-compares every invoice line against an independently computed answer derived
+Checks observe public responses, queue histories, and store contents. They
+do not inspect private functions and do not require a named pattern. They
+compare every invoice line against an independently computed answer derived
 from the acknowledged input under the supplied rating rules.
 
 ## Acceptance evidence
@@ -179,8 +179,7 @@ does not run them.
 
 The expected focused time is fifteen to twenty-five hours. The learner builds
 the functions, the state design, the queue usage, and the tests. The runner, the
-queue, the store, the generator, the fault schedules, and the grader are
-prepared. Every required gate runs locally with no AWS account. The optional
+queue, the store, the generator, and the fault schedules are prepared. Every required gate runs locally with no AWS account. The optional
 smoke run behind `make smoke` uses Lambda,
 SQS, DynamoDB on-demand, and short-retention logs only, with a stated
 invocation and dollar ceiling; provisioned concurrency is excluded by the

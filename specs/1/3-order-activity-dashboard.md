@@ -22,7 +22,7 @@ The supplied Compose stack starts Kafka, PostgreSQL, OpenTelemetry collection,
 and the fault controller. Generated producers emit deterministic valid,
 duplicate, conflicting, hot-key, and schema-versioned activity. The scaffold
 also contains client contracts, broker inspection, lag capture, scenario
-barriers, and the black-box grader.
+barriers.
 
 The learner owns every application process and the application Compose layer.
 The standard Makefile starts dependencies, verifies connectivity, runs the
@@ -85,7 +85,7 @@ declared scope.
 
 ## Adversarial evaluation
 
-The grader repeats events, uses keys that challenge the stated ordering model,
+The failure schedule repeats events, uses keys that challenge the stated ordering model,
 kills processing immediately before and after durable effects, triggers
 rebalances, skews traffic toward one customer, introduces a compatible schema
 version, and shortens available history in a rebuild fixture. One schedule

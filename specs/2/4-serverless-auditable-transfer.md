@@ -33,7 +33,7 @@ The fault controller freezes the environment at the freeze barrier with audit
 publication outstanding, destroys an environment between invocations, fails the
 queue while the ledger stays healthy, fails the store while the queue stays
 healthy, and replays a delivered audit message. The course supplies the client
-protocol, the history checker, the fault schedules behind `make fault`, and the black-box grader. The
+protocol, the history checker, and the fault schedules behind `make fault`. The
 learner owns the handlers and their tests. No cloud account is required.
 
 ## Requirements
@@ -110,7 +110,7 @@ guarantee that became weaker.
 
 ## Adversarial evaluation
 
-The grader freezes the environment between the ledger write and the audit
+The failure schedule freezes the environment between the ledger write and the audit
 publication, destroys environments between invocations, fails the queue while
 the ledger stays healthy and the reverse, resubmits transfers with the same and
 with altered payloads, replays delivered audit messages, and drives the hot
@@ -119,7 +119,7 @@ against balances and the audit product, and requires an audit view rebuilt
 after the loss of its store to match the acknowledged transfer set by
 identity.
 
-The grader does not require a named publication mechanism. It observes HTTP,
+Checks do not require a named publication mechanism. They observe HTTP,
 store-visible state, queue traffic, invocation counts, and the submitted
 evidence.
 
@@ -165,7 +165,7 @@ guarantees. The lab does not run them.
 
 The expected focused time is twelve to eighteen hours. The learner builds the
 handlers and their tests. The runtime, store, queue, generator, history
-checker, and grader are prepared. Multi-currency support, authentication,
+and checker are prepared. Multi-currency support, authentication,
 reversals, and multi-region replication are outside the problem.
 
 The local transfer lab is a prerequisite, and its artifacts must be retained:

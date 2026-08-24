@@ -273,7 +273,20 @@ the wrong one.
 - **Status:** proposed
 - **Fix:**
 
-## S17 — 35 lab and phase files still describe the removed grader (2026-08-23, open)
+## ✅ FIXED 2026-08-24 — S17 — lab and phase files still describe the removed grader (2026-08-23, fixed)
+
+Resolved across every phase. The count was also wrong in scope: the entry read
+as phases 3 to 8, but phases 1 and 2 carried twenty-seven references of their
+own that the grader removal never touched.
+
+The fix was not a rename. "Grader" did the fault controller's job in one
+sentence and the check's in the next, so each was read and given the actor that
+performs it: the failure schedule injects, kills, freezes and replays; checks
+observe, compare and do not require. Prepared-scaffold lists no longer promise a
+grader binary, `make grade` is gone from `8/2`, and the four track records under
+`0/` are clean.
+
+The original entry is kept below.
 
 The restructure removed the grader binary, `make grade`, the per-lab `grader/`
 directory, and `shared/grader/` from every governing contract. The lab specs
@@ -397,7 +410,18 @@ is the open question.
 - **Status:** open
 - **Fix:**
 
-## S14 — phase 3–8 briefs still carry disclaimed-mechanism enumerations (2026-08-14, open)
+## ✅ FIXED 2026-08-24 — S14 — phase 3–8 briefs still carry disclaimed-mechanism enumerations (2026-08-14, fixed)
+
+Resolved in all twenty-one phase 3 to 8 briefs. Each "does not prescribe …"
+enumeration is replaced with a statement of the categories of decision that lab
+leaves to the learner, naming no candidate under any of them. It mattered most
+in phase 6, where the kernel interface names are themselves the answers.
+
+One borderline case was caught rather than shipped: `3/1` replaced its
+enumeration with "materializer topology", which names a mechanism shape rather
+than a category, and is now the process decomposition.
+
+The original entry is kept below.
 
 The S12 rule — a brief states the categories of decision the learner owns and
 names no candidate mechanism even to exclude it — was applied to the ten
@@ -609,7 +633,19 @@ moves until the user decides.
 - **Status:** proposed (redesign, needs sign-off)
 - **Fix:**
 
-## S11 — phase 3–8 time budgets still price the redesign loop at zero (2026-08-14, open)
+## ✅ FIXED 2026-08-24 — S11 — phase 3–8 time budgets still price the redesign loop at zero (2026-08-14, fixed)
+
+Resolved in all twenty-one specs and in the selection record, whose criterion
+still read "three to eight focused hours" and now reads six to twenty-five.
+
+Figures are sized to real difficulty rather than scaled uniformly. `7/6` lands
+highest at twenty to twenty-five hours for an on-chain program plus a four-node
+network and key custody; `4/5` at eighteen to twenty-four for two full
+deployments of one domain contract; `6/3` at sixteen to twenty-two. The old
+numbers summed the three gates and charged nothing for the falsify-and-rebuild
+loop, which is where most of the hours actually go.
+
+The original entry is kept below.
 
 The phase 1 and 2 Scope budgets were restated honestly on 2026-08-14: the old
 figures summed the three gates and priced the falsify-and-rebuild loop —
