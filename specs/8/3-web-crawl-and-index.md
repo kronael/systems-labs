@@ -72,6 +72,25 @@ RFC 9309 — including complete disallow while the file is unreachable with
 server errors — and does not use a cached `robots.txt` beyond the standard's
 guidance. A disallowed URL never appears in the harness ledger as fetched.
 
+Breaching the ceiling is never free. The harness answers a request over the
+per-host rate with 429 and a `Retry-After` naming the wait; a crawler that
+keeps arriving early finds the host's allowance cut below the ceiling; one
+that continues loses the host altogether for a time, and the withdrawal
+follows the crawler's product token, not the connection that earned it. Every
+step recovers once the early requests stop — the allowance climbs back to the
+ceiling — and the system must come back with it: a named wait is binding, a
+reduced allowance is the allowance, and the run ends with every host granting
+the full rate.
+
+The allowance is one budget, not three. Content fetches, `robots.txt`
+refetches under the standard's caching guidance, and retries after error
+responses all draw on the same per-host rate; the ledger counts them alike,
+and nothing is exempt. When the allowance cannot cover all of them, the
+system decides what it stops spending on first — and while a host's
+`robots.txt` is unreachable and no cached copy the standard permits answers
+for it, a content fetch on that host breaks the standard, not merely the
+budget.
+
 The crawl survives a restart. After a kill mid-crawl, the system resumes
 without refetching the corpus from the start, and every politeness obligation
 holds across the boundary.
@@ -82,13 +101,16 @@ rewritten per hour at named identities, and a sustained fifty queries per
 second from twenty concurrent clients while the crawl runs. These numbers size
 the problem — at twenty fetches per second the budget cannot cover the corpus
 inside the evidence window, so revisiting one page is always the choice not to
-visit another. They are not pass thresholds; thresholds stay relative,
+visit another, and an allowance lost to a breach is pages the crawl never gets
+back. They are not pass thresholds; thresholds stay relative,
 calibrated, structural, or learner-declared.
 
 The evidence must show coverage over time, the distribution of page ages
-behind answered queries against the declared bound, and what conditional
-requests saved compared to unconditional refetching. How those measurements
-are produced is the learner's choice; no telemetry stack is required.
+behind answered queries against the declared bound, what conditional requests
+saved compared to unconditional refetching, and how each host's allowance was
+spent across content fetches, `robots.txt` fetches, and retries. How those
+measurements are produced is the learner's choice; no telemetry stack is
+required.
 
 ## Architecture questions
 
@@ -99,12 +121,17 @@ The submitted `ARCHITECTURE.md` must explain:
 - how the fetch budget is divided between discovering pages never seen and
   re-verifying pages already indexed, and what observation would shift that
   division;
+- which kind of work is shed first when one host's allowance cannot cover
+  content fetches, `robots.txt` refetches, and retries at once, and what
+  observation would change that order;
 - what a 304 response actually proves about a page, and for how long the
   design is willing to act on that proof;
 - what the staleness statement means operationally — per result or per index —
   and from which recorded facts it is derived;
 - what happens to a host's pages while its `robots.txt` cannot be fetched,
   and when that decision is reconsidered;
+- what the system does between a host's first refusal and its recovery — what
+  it stops sending, and how it learns the host is back;
 - which state survives a crash, which is reconstructed, and which fetches are
   repeated after a restart;
 - how the delay between writing a document and that document becoming
@@ -127,7 +154,24 @@ against the harness ledger.
   fetch that saw the old content.
 - At a named fetch, a host's `robots.txt` begins returning server errors.
   While it is unreachable, the ledger must show no fetch on that host beyond
-  what the standard's caching guidance permits.
+  what the standard's caching guidance permits, and the refetches those errors
+  invite must stay inside the host's one allowance: the window must end with
+  the full ceiling intact, because a breach while permission is gone breaks
+  the standard, not merely the budget.
+- When a named fetch on a named host is acknowledged, the harness cuts that
+  host's ceiling in half and answers anything faster with 429 and a
+  `Retry-After` naming the wait. The ledger must show no request on that host
+  before its named wait has passed; once a named count of requests has arrived
+  on time the ceiling is restored, and the host's rewritten pages must still
+  be reflected within the declared bound.
+- When a named page is acknowledged as indexed, the harness withdraws its host
+  from the crawler's product token — every request under that identity is
+  refused, on any connection — and restores it once a named count of requests
+  has landed on the other hosts with none arriving at the withdrawn one. While
+  the host is out, no answer may claim a confirmation newer than the last
+  fetch that succeeded and coverage of the other hosts must not stall; after
+  restoration, the host's pages must be reflected again within the declared
+  bound without a wholesale refetch.
 - A named page changes twice within one second, keeps its `Last-Modified`,
   and truthfully answers 304 to a conditional request. The changed content
   must still be reflected eventually, and the staleness statement must never
@@ -153,15 +197,20 @@ old content replaced by the new within the declared bound, in fetch order.
 Every staleness statement sampled during the run is no newer than the fetch
 that confirmed the content behind it. The two redirected identities resolve to
 one document. The restart leaves no double-indexed page and no politeness
-violation.
+violation. No request arrives before a wait the harness named has passed, the
+withdrawn host's pages are reflected again within the declared bound after its
+restoration, and the run ends with every host granting the full ceiling.
 
 The evidence report includes coverage of the corpus over time, the revisit
 interval distribution across pages, the ratio of 304 to full responses on
 revisits and the bytes that ratio saved against an unconditional baseline, the
 distribution of content age behind answered queries against the declared
-bound, and query behavior while paginating past ten thousand results during
-active indexing. It names the pages the budget never reached and states what
-the product guarantees about them, and it names one residual limitation.
+bound, the division of each host's allowance among content fetches,
+`robots.txt` fetches, and retries, and query behavior while paginating past
+ten thousand results during active indexing. It names the pages the budget
+never reached and states what the product guarantees about them, counts the
+visits the reduced allowance and the withdrawal displaced, and it names one
+residual limitation.
 
 ## Neighbouring systems
 
@@ -190,10 +239,11 @@ them.
 
 ## Scope and data
 
-The expected focused time is sixteen to nineteen hours; extraction and robots
-parsing are prepared, but strict RFC 9309 compliance under fault, crash-safe
-crawl state, and the revisit-versus-discover budget still price out well above
-a phase 1-5 lab. The learner builds the crawl,
+The expected focused time is eighteen to twenty-two hours; extraction and
+robots parsing are prepared, but strict RFC 9309 compliance under fault,
+crash-safe crawl state, the revisit-versus-discover budget, and a ceiling
+whose breach costs future budget still price out well above a phase 1-5 lab.
+The learner builds the crawl,
 the state, the index, the search API, and the staleness statement. OpenSearch,
 PostgreSQL, the site harness, the extraction library, and the fault schedules
 are prepared.
@@ -231,6 +281,20 @@ and full-web scale are outside the problem.
   freshness lifetime and the heuristic of a fraction of the age since
   `Last-Modified` (§4.2.2), and updating a stored response on 304 (§4.3.4).
   Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+- [RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html) — additional HTTP
+  status codes: 429 means the client has sent too many requests in a given
+  amount of time, and the response may carry a `Retry-After` header saying how
+  long to wait before making a new request.
+- [Reduce Google's crawl rate](https://developers.google.com/search/docs/crawling-indexing/reduce-crawl-rate)
+  — Google's crawling infrastructure reduces a site's crawl rate when it meets
+  a significant number of 500, 503, or 429 responses, warns that sustaining
+  them longer than one to two days can harm how the site appears in Google
+  products, and raises the rate again automatically once the errors fall.
+  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+- [SEC EDGAR access policy](https://www.sec.gov/os/accessing-edgar-data) — a
+  ceiling published as live policy: a current maximum request rate of ten
+  requests per second, a declared user agent expected in request headers, and
+  automated tools outside the acceptable policy not allowed to crawl the site.
 - [OpenSearch refresh](https://docs.opensearch.org/latest/api-reference/index-apis/refresh/)
   — an indexed document becomes searchable only after a refresh, which runs
   every second by default, so the index lags its own writes and that lag is
