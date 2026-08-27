@@ -1,5 +1,71 @@
 # Bugs
 
+## S22 — no lab teaches that an action must not outlive its evidence (2026-08-27, approved)
+
+Every lab in the catalog asks its system to keep serving. None asks it to stop.
+`7/3` labels finality but never withdraws, `3/1` reports what it could not see
+but only observes, and `8/3` withholds fetches but loses nothing by doing so.
+No lab holds a system that must void standing output because its own view
+became untrustworthy, then resume when trust returns.
+
+Grounded before proposing, not after. SEC Release 34-70694 finds that Knight
+"did not have procedures in place to halt SMARS's operations in response to
+its own aberrant activity" and "did not have a mechanism to test whether their
+systems were relying on stale data". The counter-case is equally documented:
+RFC 8767 serves stale DNS rather than fail, AWS static stability keeps the data
+plane running through control-plane loss, and the 2015 DynamoDB cascade was
+caused by servers disqualifying themselves. Both corners must therefore fail.
+
+The falsified belief, scoped to stay singular: *no action may outlive the
+evidence that justified it.* Knight's output-volume bounding is deliberately
+excluded — that is a second belief.
+
+### Approved 2026-08-27, in progress
+
+New phase 1 lab at `1/7`. Four named barriers: a gap in the authority's
+sequence, a severed session past a counterparty countdown, a process paused
+between decision and application, and a heal that the system must resume
+within a bounded number of records.
+
+- **Severity:** medium
+- **Scope:** phase 1, new lab
+- **Affected:** `specs/1/7-*.md` (new), `specs/1/README.md`,
+  `specs/index.md`, `specs/0/1-lab-selection.md`
+- **Source:** grounding pass 2026-08-27; SEC 34-70694, RFC 8767, RFC 9309,
+  Binance and Kraken API documentation, Kleppmann on fencing tokens
+- **Status:** approved, in progress
+- **Fix:**
+
+## S21 — `8/3` rations a budget but breaching it costs nothing (2026-08-27, approved)
+
+`8/3` already enforces a per-host ceiling and a corpus the budget cannot cover,
+so "revisiting one page is always the choice not to visit another" is live. Two
+things are missing. Breach has no consequence beyond a ledger failure, and the
+budget is not contended by different kinds of work.
+
+Both are documented. RFC 6585 defines 429 and `Retry-After`. Google reduces a
+site's crawl rate on a significant number of 500, 503 or 429 responses, warns
+that sustaining them beyond one to two days harms how the site appears, and
+raises the rate again once errors fall. SEC EDGAR publishes a 10 requests per
+second ceiling and blocks undeclared automated access outright. RFC 9309 makes
+an unreachable `robots.txt` a complete disallow, so error responses poison the
+permission to crawl and not merely its throughput.
+
+### Approved 2026-08-27, in progress
+
+Extend `8/3`'s requirements and failure schedule: an escalating consequence for
+breach with a recovery path, and one budget contended by content fetches,
+`robots.txt` refetches, and post-error retries. This deepens the model the lab
+already carries rather than adding a second one.
+
+- **Severity:** low
+- **Scope:** phase 8, requirements extension
+- **Affected:** `specs/8/3-web-crawl-and-index.md`
+- **Source:** grounding pass 2026-08-27; RFC 6585, RFC 9309, Google crawl-rate
+  documentation, SEC EDGAR access policy
+- **Status:** approved, in progress
+- **Fix:**
+
 ## ✅ FIXED 2026-08-23 — S20 — phase 1 misses two dimensions, and `1/2` and `1/4` overlap (2026-08-23, fixed)
 
 Signed off and shipped in two parts. The merge landed first: `1/4` folded into
