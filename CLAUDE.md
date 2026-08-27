@@ -362,14 +362,14 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
 - Phases 1 and 2 — eleven specs. Ten were reviewed and released as `v0.1.0`;
   the import lab has since merged into `1/2`, and phase 1 gained two labs from
   an orthogonality review (`S20`).
-- Phases 3, 4, 6, 7, 8 — 21 specs, drafted; their briefs still carry the
-  disclaimed-mechanism enumerations this file now forbids (`S14` in `BUGS.md`)
-  and gate-sum hour budgets (`S11`).
-- Every lab spec still narrates the removed grader (`S17`), and the
-  verification restructure left the history vocabulary under-specified and the
-  independent-answer producer unowned (`S18`, `S19`). All three are queued in
-  `BUGS.md`, not fixed; `S18` and `S19` need sign-off before anything ships.
+- Phases 3, 4, 6, 7, 8 — 21 specs, drafted and reviewed against the contracts
+  this file states.
+- The 2026-08-23/24 sweep closed `S8`, `S11`, `S14`, `S15`, `S16`, `S17`, `S18`,
+  `S19`, `S20`. The open queue in `BUGS.md` is `S1`, `S9`, `S10` — all
+  `proposed`, all needing sign-off, none blocking spec work.
 - No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`.
+- `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
+  short-lived credentials, per-phase account table. Only phase 4 buys anything.
 
 # Project Memory
 
