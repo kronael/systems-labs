@@ -17,8 +17,8 @@ reported behavior recorded in the [track record](../0/2-low-level-track.md).
 ## The labs
 
 - [Bounded-memory record shipper](1-bounded-memory-record-shipper.md) — a
-  service that ships a growing record file to a slow, stalling consumer, in
-  order, inside a fixed memory ceiling.
+  host log-shipping agent that forwards a growing file to a slow, stalling
+  collector, in order, inside a fixed memory ceiling it does not own.
 - [Crash-safe record store](2-crash-safe-record-store.md) — a local store
   that acknowledges only what survives power loss and recovers from a kill
   at an arbitrary instant.
@@ -83,7 +83,7 @@ behavior reproducible. Documentation:
 ## What this phase does not use, and why that is interesting
 
 Each lab's `Neighbouring systems` section names what a practitioner would
-have reached for instead — POSIX AIO and thread-per-connection designs,
+have reached for instead — Fluent Bit, Vector, Filebeat,
 SQLite, LMDB, RocksDB, ScyllaDB, jemalloc, tcmalloc, mimalloc, wrk,
 tcpreplay, k6 — and the one thing each does differently at that lab's
 boundary. They appear as reading rather than as dependencies: the labs never

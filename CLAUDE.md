@@ -179,6 +179,19 @@ consistent. NEVER make a lab hard through input formats, parsing chores, or
 boilerplate volume. A lab that is merely laborious has failed, and so has one
 whose product path is obvious once the environment is running.
 
+**The domain supplies the reasons, never the difficulty.** A lab names a real
+subject, and that subject must explain why the invariant exists and why the
+scale target's numbers are the size they are. A domain that could be swapped
+for any other without changing a requirement is decoration: the learner
+finishes knowing the technology and nothing else. Ground it in a public source
+the same way a quirk is grounded — fetch the page, quote the sentence.
+
+The opposite failure is worse, because it is invisible. The domain must never
+become something to learn: no formats to parse, no vocabulary to memorize, no
+regulation to interpret. One sentence of fact that explains an existing
+requirement is the whole of it. If a learner would need the domain to pass
+rather than to understand, cut it back.
+
 Every lab states a **scale target**: a speed, a load, and an amount. Those three
 numbers size the problem so a toy design fails on its own terms. They are NOT
 pass thresholds — thresholds stay relative, calibrated, structural, or
@@ -301,18 +314,21 @@ RDS, and ElastiCache are excluded — each bills continuously.
 3. Name the scale target — speed, load, amount — and check the earned-dependency
    rule: state what the naive small tool would fail at this scale. If nothing,
    raise the scale target or drop the dependency.
-4. Split `Architecture questions`. A question stated at the level of the
+4. Name the domain and cite the fact that makes its numbers and its invariant
+   inevitable. If the spec reads the same with the domain swapped out, the
+   domain is decoration; ground it or drop the pretence.
+5. Split `Architecture questions`. A question stated at the level of the
    property the design must defend publishes into `README.md`. A question that
    presupposes a mechanism is solution-bearing: mark it `HINTS.md`-bound, or
    rewrite it until it names only the property.
-5. Mark each `Code pointers` citation neutral or solution-bearing. Solution-
+6. Mark each `Code pointers` citation neutral or solution-bearing. Solution-
    bearing ones land in `HINTS.md` and never in `README.md`.
-6. Copy `template/` to the lab directory and remove its implementation. Write
+7. Copy `template/` to the lab directory and remove its implementation. Write
    `EVALUATION.md`. NEVER write a worked solution — the answer key describes
    what a strong design holds, it does not implement one.
-7. Add the fault schedule recipe to the controller, update the frozen aggregate
+8. Add the fault schedule recipe to the controller, update the frozen aggregate
    digest, and confirm `make fault` materializes and removes it.
-8. Run `make teaching-lint`. Add a row to the core catalog in `specs/index.md`.
+9. Run `make teaching-lint`. Add a row to the core catalog in `specs/index.md`.
 
 ## Naming rule — read before editing any link
 
@@ -366,8 +382,13 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
 - Phases 3, 4, 6, 7, 8 — 21 specs, drafted and reviewed against the contracts
   this file states.
 - The 2026-08-23/24 sweep closed `S8`, `S11`, `S14`, `S15`, `S16`, `S17`, `S18`,
-  `S19`, `S20`. The open queue in `BUGS.md` is `S1`, `S9`, `S10` — all
+  `S19`, `S20`. The 2026-08-28 sweep closed `S23` and `S24`: nine labs gained
+  a domain that does work, and the teaching contract was restored across the
+  specs that predate it. The open queue in `BUGS.md` is `S1`, `S9`, `S10` — all
   `proposed`, all needing sign-off, none blocking spec work.
+- Every spec now carries the nine sections in order, the neighbour publish-split
+  sentence, `status: draft`, and a scale target. `1/7` is in `specs/index.md`'s
+  full list; whether it joins the seventeen core labs is undecided.
 - No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`.
 - `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
   short-lived credentials, per-phase account table. Only phase 4 buys anything.
