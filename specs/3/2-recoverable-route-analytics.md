@@ -6,10 +6,14 @@ status: draft
 
 ## Brief
 
-Design and build a continuously updated routing analytics service that can
-recover through two independent paths: restart from saved processing state and
-reconstruction from the retained event history. Both paths must produce the
-same externally visible route and churn results.
+Design and build the analytics service behind a route-churn report — the
+numbers the Internet routing community publishes about churn each year: how
+often each prefix updates, how long a prefix keeps updating once a change
+begins, and which prefixes and origins produce the most updates. The service
+maintains these views continuously from a stream of route observations and
+can recover through two independent paths: restart from saved processing
+state and reconstruction from the retained event history. Both paths must
+produce the same externally visible report.
 
 Kafka is the required source, Flink is the required stateful processing engine,
 and PostgreSQL is the required query store. The internal state model, the
@@ -20,9 +24,13 @@ decomposition between the two recovery routes are the learner's decisions.
 
 The supplied Compose stack starts Kafka, a local Flink cluster, PostgreSQL,
 OpenTelemetry collection, checkpoint storage, and the fault controller. It
-includes generated and cached route observations, compatible schema versions,
-checkpoint inspection, retention fixtures, exact crash barriers, and a query
-API shell.
+includes generated and cached route observations — already decoded, each
+carrying a prefix, an origin autonomous system, and the provider's event
+time — compatible schema versions, checkpoint inspection, retention fixtures,
+exact crash barriers, a query API shell, and a lab configuration fixing the
+report window and the quiet interval. The generated workload reproduces the
+concentration real churn reports measure: a small share of prefixes and
+origins carries most of the update volume.
 
 The learner owns the Flink job, query-serving integration, database design,
 recovery controls, and application Compose layer. Standard Make targets run a
@@ -31,10 +39,30 @@ inject worker and sink failures, and compare results by exact identity.
 
 ## Requirements
 
-The service exposes current observed routes, event-time churn, collector
-freshness, processing lag, saved-state age, and reconstruction status. A saved-
-state restart resumes accepted work. A full reconstruction starts without
-operator or query state and reaches the same accepted result.
+The service publishes the three views a route-churn report rests on, computed
+in event time over the report window the lab configuration fixes:
+
+- **Per-prefix update rate** — how many updates each tracked prefix received
+  in each window.
+- **Time to stability** — the event-time span of each change episode: an
+  episode opens when an update disturbs a quiet prefix and closes when no
+  further update arrives for the configured quiet interval, and the report
+  lists each episode with its duration and the period's average.
+- **Noisiest prefixes and origins** — the prefixes and the origin autonomous
+  systems ranked by update volume, each with its share of the total.
+
+Beside the report, the service exposes the current route observed for each
+prefix, processing lag, saved-state age, and reconstruction status.
+
+A stability duration is a statement about event time: a record that arrives
+late or out of order changes the measured answer itself, not merely when the
+answer appears. The rule for late and reordered records is the learner's to
+declare, must be documented, and must hold identically on both recovery paths.
+
+A saved-state restart resumes accepted work. A full reconstruction starts
+without operator or query state and reaches the same accepted result: the
+same episodes with the same durations, the same counts, the same rankings,
+the same current routes.
 
 Queries remain available during reconstruction and never mix incompatible old
 and new state. A reconstructed result becomes active only after validation.
@@ -59,9 +87,12 @@ The submitted `ARCHITECTURE.md` must explain:
 - which state belongs to Flink, Kafka, PostgreSQL, and the query boundary;
 - what a checkpoint covers and which effects remain outside that boundary;
 - how external effects behave when failure occurs around checkpoint completion;
-- how restore and full reconstruction can be compared by exact identity;
+- how restore and full reconstruction can be compared by exact identity
+  across the report's views;
 - how queries avoid partial or mixed reconstruction state;
-- how event time, watermarks, and late records behave after recovery;
+- how event time, watermarks, and late records behave after recovery, and
+  what a late record does to a stability duration the report has already
+  published;
 - how schema and saved-state compatibility are decided;
 - how retention limits whether reconstruction is possible.
 
@@ -72,8 +103,9 @@ At least two sink or activation designs must be compared. Naming an
 
 The failure schedule kills a task around a PostgreSQL effect and checkpoint,
 removes the newest saved state, restarts workers during rebalance, introduces
-old and new event versions, delays events across watermarks, and supplies a
-history with an insufficient retention prefix.
+old and new event versions, delays events across watermarks at a prefix whose
+stability duration the report has already published, and supplies a history
+with an insufficient retention prefix.
 
 Checks observe APIs, Kafka positions, Flink checkpoints and metrics,
 PostgreSQL state, attempt histories, activation behavior, and reconstruction
@@ -81,10 +113,12 @@ checksums. They do not require a named connector or sink pattern.
 
 ## Acceptance evidence
 
-Normal processing, saved-state restore, and full reconstruction agree on exact
-route and window identities. Query availability obeys the submitted contract.
-Repeated attempts do not corrupt results. Missing history or incompatible
-state fails loudly before activation.
+Normal processing, saved-state restore, and full reconstruction agree on the
+report by exact identity: the same change episodes with the same durations,
+the same per-window update counts per prefix, the same rankings, and the
+same current route per prefix — never totals alone. Query availability obeys
+the submitted contract. Repeated attempts do not corrupt results. Missing
+history or incompatible state fails loudly before activation.
 
 The report includes checkpoint and failure timelines, Kafka offsets, state
 size, watermark progress, sink attempts, restore duration, reconstruction
@@ -117,10 +151,14 @@ The lab does not run them.
 
 The expected focused time is fifteen to twenty hours. Kafka, Flink,
 PostgreSQL, input, telemetry, checkpoint storage, and faults are prepared,
-but reconciling two independent recovery paths to the same exact result is
+but reconciling two independent recovery paths to the same exact report is
 not, and a first design usually passes restore before it is falsified on
 reconstruction, or the reverse, forcing at least one rebuild of the
-activation boundary. Custom connectors, hosted stream services, data lakes,
+activation boundary. The learner does not become a routing analyst: the
+views are named and their meanings fixed above, and the report window and
+quiet interval come from the lab configuration. Protocol attribute parsing,
+path analysis, comparing vantage points, judging whether an observed change
+is genuine, custom connectors, hosted stream services, data lakes,
 multi-cluster Kafka, and RPKI logic are outside the problem.
 
 ## Code pointers
@@ -140,5 +178,20 @@ multi-cluster Kafka, and RPKI logic are outside the problem.
   that the exactly-once guarantee covers state inside Flink, while what an
   external system observes across recovery depends on that system's own
   coordination with the checkpoint; and that an element arriving after the
-  watermark has passed its window is dropped by default.
+  watermark has passed its window is dropped by default. Solution-bearing:
+  this belongs in HINTS.md, never in README.md.
+- Domain grounding, judged neutral — it reports the numbers a real churn
+  report publishes and touches no recovery design: [Geoff Huston, *BGP
+  updates in 2025*, APNIC Blog, 9 January
+  2026](https://blog.apnic.net/2026/01/09/bgp-updates-in-2025/), measured
+  from a single vantage point (AS131072). Most update messages "come from a
+  pool of between 30,000 to 80,000 prefixes" of the roughly 1.2 million
+  advertised; the "daily average time for an unstable prefix to reach
+  stability is now between 20 and 45 seconds"; "Less than 5% of the unstable
+  prefixes caused half of all BGP updates during December 2025", and "Fifty
+  origin Autonomous System Numbers (ASNs) accounted for one-third of all BGP
+  IPv4 updates in this period". These measurements are the lab's three views
+  with their published values. The article's explanation of the convergence
+  timescale is the observation lab's hint territory and never publishes into
+  this lab's learner-facing text; the figures ground the product.
 - Implementation pointers do not exist while the spec is `draft`.

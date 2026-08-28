@@ -12,7 +12,12 @@ multi-party settlements in which debits and credits net to zero, and answers
 queries about any participant's balance and any settlement's status and
 history. The system is an on-chain program plus the client that drives it end
 to end — creating accounts, funding them, executing settlements, and reading
-the result back.
+the result back. Settlement nets because gross flows dwarf net obligations —
+the clearing corporation for the US equity market estimates that netting
+reduces the value of settlement obligations by approximately 98%, hundreds of
+trillions of dollars of trades collapsing into a few trillion that actually
+settle — which is why a settlement here nets across thousands of participants
+at once.
 
 A settlement either takes full effect or has no observable effect, and it
 takes effect exactly once no matter how often it is submitted or how large it
@@ -206,6 +211,11 @@ and any mainnet or public-RPC dependency are outside the problem.
   submission, evidence, and verification contracts.
 - [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — blockchain
   track rationale and candidates.
+- [NSCC rule filing SR-NSCC-2023-007 (Release No. 34-98213)](https://www.sec.gov/files/rules/sro/nscc/2023/34-98213.pdf)
+  — why settlement nets at all: NSCC estimates that in 2022 "netting through
+  NSCC's continuous net settlement ('CNS') accounting system reduced the value
+  of CNS settlement obligations by approximately 98% or $510 trillion from
+  $519 trillion to $9 trillion".
 - [Compute budget](https://solana.com/docs/core/fees/compute-budget) — a
   transaction may consume at most 1,400,000 compute units, an instruction
   defaults to 200,000, and a transaction that would exceed a limit is not

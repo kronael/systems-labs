@@ -11,7 +11,12 @@ corpus: given a query sequence, it returns the matching corpus sequences,
 ranked, with the region each match covers, a score, and a stated confidence,
 while new sequences arrive continuously.
 
-No biology is required. A sequence is a string over a fixed twenty-letter
+A match is a hypothesis about relationship: sequence similarity is how an
+unknown sequence acquires a provisional function, and how members of a family
+are recognized. That purpose is why a score that ignores the size of the
+corpus it was drawn against is dangerous rather than merely imprecise — it
+invites a claim of relationship the data does not support. No biology
+background is required: a sequence is a string over a fixed twenty-letter
 alphabet with a stable accession. A match is a scored region of similarity
 between the query and one corpus sequence. The public contract separates two
 properties that a naive design merges: the **score** of a match is a function
@@ -214,6 +219,10 @@ operations, and any user interface are outside the problem.
   submission, evidence, and verification contracts.
 - [`../0/4-search-and-retrieval-track.md`](../0/4-search-and-retrieval-track.md)
   — the track record where this candidate and its origination are recorded.
+- [NCBI BLAST homepage](https://blast.ncbi.nlm.nih.gov/Blast.cgi) — what a
+  ranked match is for: "BLAST can be used to infer functional and evolutionary
+  relationships between sequences as well as help identify members of gene
+  families."
 - [The Statistics of Sequence Similarity Scores](https://www.ncbi.nlm.nih.gov/BLAST/tutorial/Altschul-1.html)
   — NCBI's primary description of the Karlin-Altschul statistics: the expected
   number of chance matches is proportional to the search space, a database

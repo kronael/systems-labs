@@ -26,9 +26,11 @@ than controlled: it does not isolate one variable, it swaps one deployable
 shape for another and lets the same product expose the difference. What breaks
 names the part of the phase 1 design that was load-bearing.
 
-One lab comes first and has no phase 1 partner: metered billing introduces the
-execution model on an unfamiliar product, so the recasts that follow vary one
-thing rather than two.
+Two labs have no phase 1 partner. Metered billing comes first and introduces
+the execution model on an unfamiliar product, so the recasts that follow vary
+one thing rather than two. Record import lost its partner when phase 1 merged
+the standalone import lab into `1/2`; it stands alone now, contrasting a
+delivery model rather than holding a product constant.
 
 `1/3` has no counterpart here. Replaying a retained log through metered
 invocations teaches the same lesson at higher cost, and a recast must reach a
@@ -40,18 +42,19 @@ failure the original could not. The reasoning is in the
 - [Metered billing API](1-metered-billing-api.md) — subscriptions, metered
   usage, and period-close invoicing, where the environment freezes between
   invocations.
-- [Reliable record import](2-reliable-record-import.md) — the import product
-  on a hosted queue with a poller the learner does not write, contrasting the
-  self-run leased delivery inside `1/2`.
+- [Reliable record import](2-reliable-record-import.md) — interval meter
+  readings imported on a hosted queue with a poller the learner does not
+  write, contrasting the self-run leased delivery inside `1/2`. It has no
+  partner and requires no prior lab.
 - [Serverless reservation fulfillment](3-serverless-reservation-fulfillment.md)
   — the reservation product from `1/2`, with a partitioned key-value store as
   the system of record.
 - [Serverless auditable transfer](4-serverless-auditable-transfer.md) — the
   transfer product from `1/5`, carrying the commit gap onto an environment
   where nothing runs between events.
-- [Serverless quote aggregation](5-serverless-quote-aggregation.md) — the quote
-  product from `1/1`, where admission is a platform ceiling rather than the
-  design's own decision.
+- [Serverless quote aggregation](5-serverless-quote-aggregation.md) — the
+  fare-search product from `1/1`, where admission is a platform ceiling rather
+  than the design's own decision.
 
 ## The technologies
 
@@ -98,8 +101,9 @@ reading, never as dependencies.
 The most important neighbour is phase 1 itself. Each recast requires a direct
 comparison with the local design — in its `ARCHITECTURE.md` or its evidence
 report — including one property the local version had that the serverless one
-cannot recover. The metered billing lab, which has no phase 1 partner, compares
-alternative designs instead.
+cannot recover. The two labs with no phase 1 partner, metered billing and
+record import, compare against documented contracts and alternative designs
+instead.
 
 ## Prerequisites
 
@@ -110,8 +114,9 @@ evidence report, for the required contrast of observed behaviour. The quote
 recast further compares against the local lab's recorded baseline on the same
 host, so that baseline must exist on the machine where the phase 2 evidence is
 produced. A learner who skipped the partner lab, ran it on another machine, or
-discarded its evidence cannot produce this phase's acceptance evidence. Only
-the metered billing lab, which has no partner, carries no such prerequisite.
+discarded its evidence cannot produce this phase's acceptance evidence. The
+two labs with no partner, metered billing and record import, carry no such
+prerequisite.
 
 ## Cloud
 

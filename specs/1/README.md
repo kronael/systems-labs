@@ -9,7 +9,7 @@ the learner tree; any learner-facing orientation is derived from it later.
 
 ## What this phase is about
 
-The six labs in this phase put a running process under pressure it cannot
+The seven labs in this phase put a running process under pressure it cannot
 design away: demand above capacity, a dependency that slows or dies, a restart
 in the middle of accepted work, a record shape that changes while the system
 is serving, and a store that hands work back instead of completing it.
@@ -22,27 +22,38 @@ durable and its audit record cannot be lost, even though the database and the
 event system fail independently. The last one carries it inward, to the case
 where the store refuses: the invariant is an aggregate that no single write
 can be judged against, conflicting work is declined rather than completed, and
-what happens next belongs to the application.
+what happens next belongs to the application. The seventh inverts the phase's
+premise: every other lab asks a system to keep serving, and this one asks it
+to stop. A transmitter left on the air is a continuing action, so an
+authorization that outlives the evidence justifying it is a violation — while
+a service that simply stays dark fails just as plainly. Its pause barrier is
+the deliberate counterpart to `1/2`'s freeze past acknowledgement: there the
+system must finish work it already accepted, here it must undo work already
+in the world.
 
 ## The labs
 
-- [Resilient quote service](1-resilient-quote-service.md) — a quote
+- [Resilient quote service](1-resilient-quote-service.md) — a fare-search
   aggregation API that stays predictable under overload and partial provider
-  failure.
-- [Reservation fulfillment](2-reservation-fulfillment.md) — a reservation API
-  whose asynchronous fulfillment arrives on a lease, recovering accepted work
-  after worker, broker, or database restarts.
+  failure, never returning a quote the provider no longer honours.
+- [Reservation fulfillment](2-reservation-fulfillment.md) — a stay
+  reservation API whose asynchronous fulfillment arrives on a lease,
+  recovering accepted work after worker, broker, or database restarts.
 - [Order activity dashboard](3-order-activity-dashboard.md) — replayable order
   and customer views that can be rebuilt while staying available.
 - [Uninterrupted catalog service](4-uninterrupted-catalog-service.md) — a
-  catalog API that keeps answering while the shape of its records changes,
-  with no maintenance window and no half-changed answer.
+  retail catalog API that keeps answering while a mandated price-display duty
+  reshapes its records, with no maintenance window and no half-changed answer.
 - [Auditable transfer service](5-auditable-transfer-service.md) — a
   money-transfer system with a durable ledger and a separately queryable audit
   product that survives independent failures of either side.
 - [Shared budget service](6-shared-budget-service.md) — shared spending
   budgets that are never overspent under concurrent claims the store declines
   to complete, where every decision is final.
+- [Spectrum compliance service](7-spectrum-compliance-service.md) — a fleet of
+  radio transmitters kept legally on the air under a coordinator the service
+  does not run, where an authorization must never outlive the evidence for it
+  and the fleet must never stay dark once that evidence returns.
 
 ## The technologies
 
@@ -105,7 +116,7 @@ Each lab's `Neighbouring systems` section names the two or three technologies
 a practitioner would have reached for instead — Envoy, HAProxy, resilience4j,
 RabbitMQ, Temporal, Kafka Streams, Flink, Amazon SQS, ActiveMQ with XA
 transactions, CockroachDB, MongoDB, MySQL with InnoDB, FoundationDB,
-DynamoDB transactions — and the one thing each does differently at that
+DynamoDB transactions, CME Globex, Kubernetes, recursive DNS resolvers — and the one thing each does differently at that
 lab's boundary. They appear as reading with
 documentation pointers, never as dependencies, so the exclusion costs the
 learner the operation of a second system but not the comparison.
