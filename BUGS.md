@@ -61,11 +61,14 @@ The rest are drift:
   suffixed section eight
 - **Source:** four-bucket framing review, 2026-08-28; every claim re-verified
   by grep against the working tree before entry
-- **Status:** approved, in progress
-- **Fix:** normalize section eight to `Scope`; backfill the publish-split
-  sentence into the eight specs; correct the counts; wire `1/7`; cut the two
-  dangling references; re-domain `6/1`'s neighbours to products; scope the
-  language claim to phase 6; repair the dropped words and the markers.
+- **Status:** closed 2026-08-28
+- **Fix:** all shipped. Section eight is `Scope` in all 33 specs; the
+  publish-split sentence is in all 33; counts corrected in four documents;
+  `1/7` wired into `specs/index.md` and `specs/1/README.md`; both dangling
+  references cut; `6/1`'s neighbours are now Fluent Bit, Vector and Filebeat,
+  with the readiness-versus-completion material moved to marked pointers; the
+  language claim scoped to phase 6; dropped words and markers repaired.
+  Commits `4f4a67a`, `c2e0da1`, `410e420`, `e7c2264`, `0cbb25a`.
 
 ## S23 — nine labs name a domain that does no work (2026-08-28, approved)
 
@@ -111,8 +114,15 @@ called droppable.
 - **Source:** four-bucket framing review, 2026-08-28; each citation fetched
   during the review, and the Directive 98/6/EC and RFC 5545 quotes re-fetched
   independently before entry
-- **Status:** approved, in progress
-- **Fix:** below, one sub per lab.
+- **Status:** closed 2026-08-28
+- **Fix:** all nine shipped, one sub per lab, every citation fetched by the sub
+  and the load-bearing ones re-verified independently before commit. The RFC
+  5545 sentence turned out to live in section 3.6.1, not 3.8.2.2 where the
+  brief sent it; the sub found that and was right. Commits `cd11dba`,
+  `0e30c3b`, `e7c2264`.
+
+  The standard this bug applied was not written down anywhere. It is now
+  `CLAUDE.md`'s domain-grounding paragraph and step 4 of `Adding a lab`.
 
 ## S22 — no lab teaches that an action must not outlive its evidence (2026-08-27, approved)
 
