@@ -42,7 +42,7 @@ curriculum only after the core is `accepted`.
 | [0/2-low-level-track.md](0/2-low-level-track.md) | reference | Phase 6 in Rust and C: five specced kernel-quirk candidates with origination notes |
 | [0/3-blockchain-track.md](0/3-blockchain-track.md) | reference | Phase 7 on Solana and Ethereum: validator, chain data, program, and permissionless delivery |
 | [0/4-search-and-retrieval-track.md](0/4-search-and-retrieval-track.md) | reference | Phase 8 on OpenSearch: proteins, news, web crawl, spatial, and relevance evaluation |
-| [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 32 labs share, the verification vocabulary their evaluation keys are written in, and the build order |
+| [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 33 labs share, the verification vocabulary their evaluation keys are written in, and the build order |
 | [0/6-serverless-contrast-track.md](0/6-serverless-contrast-track.md) | reference | Phase 2 paired against phase 1: what the execution model removes, which pairings earn a lab, and which model is useful where |
 | [1/1-resilient-quote-service.md](1/1-resilient-quote-service.md) | draft | Quote aggregation architecture under overload, partial provider failure, and shutdown |
 | [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Reservation architecture whose asynchronous fulfillment arrives on a lease that expires while work is still in flight |

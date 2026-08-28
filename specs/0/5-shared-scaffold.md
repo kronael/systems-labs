@@ -39,7 +39,7 @@ There is no shared grader. Each lab carries `EVALUATION.md`, the answer key
 whoever checks the work reads, as fixed by the
 [verification section](../01-systems-labs.md#verification).
 
-What the scaffold owes every lab here is **vocabulary**, so thirty-two answer
+What the scaffold owes every lab here is **vocabulary**, so thirty-three answer
 keys describe their checks the same way rather than each inventing a phrasing.
 Five recurring shapes cover most lab invariants, and a key names the one it
 means:

@@ -95,5 +95,5 @@ This phase needs no cloud account and touches no cloud service: the local
 Linux kernel is the laboratory, and every gate runs on it. The curriculum's
 optional cloud path — Lambda, SQS, DynamoDB on-demand, and short-retention
 logs, with MSK, EKS, NAT gateways, RDS, and ElastiCache excluded by policy
-because they bill by the hour — belongs to phases 4 and 5, not here. See
+because they bill by the hour — belongs to phase 4, not here. See
 [cloud access](../../docs/cloud-access.md).

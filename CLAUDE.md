@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Curriculum of end-to-end systems labs. Each lab prompts a complete, useful
 product that a learner designs, breaks, recovers, and defends with evidence.
-32 labs across seven phases; seventeen are the core.
+33 labs across seven phases; seventeen are the core.
 
 **Today the repository holds specifications only** — no code, no `Makefile`, no
 lab directory. Every target below is specified, not implemented. Do not report a
@@ -266,7 +266,8 @@ an unclear invariant.
   Python; a generator that slows with the system under test destroys the
   measurement the labs teach.
 - **Go and TypeScript** — learner starters for the core phases; **Rust and C**
-  for phases 6–8.
+  for phase 6, the low-level track. Phase 7 starters follow each chain's own
+  toolchain, and phase 8 fixes no starter language.
 - **HCL** — infrastructure, OpenTofu. Pulumi and CDK are out, because a
   general-purpose language computes resources at run time instead of declaring
   them, and drift needs a plan that states every change in advance.
@@ -359,9 +360,9 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
 
 ## State of the repo
 
-- Phases 1 and 2 — eleven specs. Ten were reviewed and released as `v0.1.0`;
-  the import lab has since merged into `1/2`, and phase 1 gained two labs from
-  an orthogonality review (`S20`).
+- Phases 1 and 2 — twelve specs. Ten were reviewed and released as `v0.1.0`;
+  the import lab has since merged into `1/2`, phase 1 gained two labs from an
+  orthogonality review (`S20`), and `1/7` arrived from `S22`.
 - Phases 3, 4, 6, 7, 8 — 21 specs, drafted and reviewed against the contracts
   this file states.
 - The 2026-08-23/24 sweep closed `S8`, `S11`, `S14`, `S15`, `S16`, `S17`, `S18`,
