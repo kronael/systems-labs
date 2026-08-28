@@ -7,9 +7,12 @@ status: draft
 ## Brief
 
 Design and build a low-latency market API that serves recent trades and candles
-with DynamoDB-compatible storage and Valkey available. The service must
-preserve durable market history and explain its freshness when Valkey is cold,
-full, slow, restarted, or unavailable.
+with DynamoDB-compatible storage and Valkey available. A market answer has an
+age by nature: the venue's own candle documentation states that the most recent
+entry covers the current, not-yet-committed period, so the newest values are
+not final and will change until the period closes. The service must preserve
+durable market history and explain the freshness of every answer when Valkey
+is cold, full, slow, restarted, or unavailable.
 
 Valkey and DynamoDB Local are required dependencies. The cache policy, the
 coordination between concurrent application replicas, and the recovery path
@@ -30,10 +33,16 @@ restart dependencies, and capture evidence.
 ## Requirements
 
 Recent-trade and candle responses must match durable market history under the
-declared freshness contract. Every response includes an `as_of` value and
-enough status to distinguish fresh, accepted-stale, cache bypass, and failure.
-If neither dependency can satisfy the contract, the caller receives a typed
-non-2xx response.
+declared freshness contract. The age of an answer is a property of the data,
+not a service convention: the current candle period has not closed, so the
+newest answer is the least settled one, while every committed period behind it
+no longer changes. Every response includes an `as_of` value stating which
+moment of the durable history the answer reflects, and enough status to
+distinguish fresh, accepted-stale, cache bypass, and failure. A caller that
+accepts a stale answer is not merely taking a cheaper one; it knowingly
+chooses a slightly older, more settled view over the newest, least settled
+one, and the contract must make that choice explicit. If neither dependency
+can satisfy the contract, the caller receives a typed non-2xx response.
 
 Valkey loss or eviction cannot require repair of durable market data. Cache
 failure must not create unbounded waits or unbounded amplification against
@@ -132,7 +141,13 @@ problem.
 - [Key eviction](https://valkey.io/topics/lru-cache/) — at `maxmemory` Valkey
   evicts by the configured policy, and its LRU and LFU are approximations
   that sample a handful of keys per decision rather than track exact recency.
+  Solution-bearing: this belongs in HINTS.md, never in README.md.
 - [`EXPIRE`](https://valkey.io/commands/expire/) — expired keys are reclaimed
   on access plus a background sampling cycle that tolerates a fraction of
   expired keys lingering in memory, so a TTL is not an exact deadline.
+  Solution-bearing: this belongs in HINTS.md, never in README.md.
+- [Get OHLC data](https://docs.kraken.com/api/docs/rest-api/get-ohlc-data) —
+  "The last entry in the OHLC array is for the current, not-yet-committed
+  timeframe": the venue's own contract makes the newest candle provisional,
+  so an answer's age states how settled it is.
 - Implementation pointers do not exist while the spec is `draft`.
