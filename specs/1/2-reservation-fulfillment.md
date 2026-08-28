@@ -6,13 +6,18 @@ status: draft
 
 ## Brief
 
-Design and build a reservation system that accepts requests, enforces legal
-state changes, performs asynchronous fulfillment work, and recovers accepted
-work after application, broker, or database restarts.
+Design and build a reservation system for stays: a stay holds one room for a
+range of nights. The system accepts reservation requests, enforces legal state
+changes, performs the asynchronous work that fulfills each accepted stay, and
+recovers accepted work after application, broker, or database restarts.
 
-A reservation claims one resource for a half-open time interval. Two live
-reservations for the same resource must never overlap, and that must hold while
-many clients request overlapping intervals for the same resource at once.
+A reservation claims one room for a half-open range of days: the arrival day
+is part of the stay, the departure day is not, because departure morning frees
+the room for that day's arrival. A room holds one stay per night, so two live
+reservations for the same room conflict exactly when they share a night, and
+back-to-back stays — one ending the day the other begins — share no night and
+do not conflict. Both halves of that rule must hold while many clients request
+overlapping ranges for the same room at once.
 
 The required environment is PostgreSQL as the system of record and a self-run
 stream broker with per-message acknowledgement carrying the fulfillment work.
@@ -27,12 +32,14 @@ collection, the fault controller, and an optional second application replica.
 It includes migration wiring, generated clients, a million-row deterministic
 dataset, and concurrency workloads.
 
-The stack also includes the fulfillment provider: a prepared endpoint outside
-the learner's processes that accepts a fulfillment request for a reservation
-identity, records it in an inspectable log, and acknowledges it. That log is
-the observable boundary of the fulfillment effect — an effect applied twice is
-two recorded requests for one reservation. How and when the design produces
-that request are the learner's decisions.
+The stack also includes the fulfillment provider, standing in for the desk
+that makes a room ready for its stay: a prepared endpoint outside the
+learner's processes that accepts a fulfillment request for a reservation
+identity, records it in an inspectable log, and acknowledges it. Each recorded
+request is an order the desk carries out, so the log is the observable
+boundary of the fulfillment effect — an effect applied twice is two recorded
+orders for one stay, the same room readied twice. How and when the design
+produces that request are the learner's decisions.
 
 The learner owns the database design, application topology, worker behaviour,
 and application Compose layer. Standard Make targets start the environment,
@@ -43,17 +50,23 @@ query plans and evidence.
 
 Clients can create a reservation with an idempotency key, request legal state
 changes, and query current and terminal status. Reusing a key with the same
-request has one effect; reusing it with different data fails visibly.
+request has one effect — a retried request is the same stay, never a second
+one; reusing it with different data fails visibly.
 
-No two live reservations for one resource may overlap in time. This holds under
-concurrent conflicting requests, not merely in a quiet system, and it holds
-through every supported write path. Invalid state transitions must be
-impossible through every supported write path.
+No two live reservations for one room may share a night; stays that meet only
+at the boundary day do not conflict. This holds under concurrent conflicting
+requests, not merely in a quiet system, and it holds through every supported
+write path. Invalid state transitions must be impossible through every
+supported write path.
 
 The fulfillment effect is the request to the prepared fulfillment provider,
-recorded there against the reservation's identity. Every acknowledged
-reservation requires that effect exactly once; a reservation cancelled before
-its effect was applied requires none.
+recorded there against the reservation's identity: the order that readies the
+room for the stay. Every acknowledged reservation requires that effect exactly
+once. Applied twice, the desk does one stay's work twice; never applied, the
+reservation holds its nights while the room is never made ready — a stay kept
+in the record and missed in the world. A reservation cancelled before its
+effect was applied requires none: no order was placed, so there is nothing to
+undo.
 
 Fulfillment work is delivered at least once. Any unit of work may be delivered
 again, at any point, and the design must state what makes a repeated delivery
@@ -75,9 +88,9 @@ transaction boundary.
 
 The scale target is a sustained 500 reservation requests per second with
 fulfillment keeping pace, 200 concurrent clients mixing creations, state
-changes, and status queries, a contention profile in which one resource in a
-hundred receives a fifth of all reservation attempts with overlapping
-intervals, 256 fulfillment items in flight at once, 2 percent of fulfillment
+changes, and status queries, a contention profile in which one room in a
+hundred receives a fifth of all reservation attempts with overlapping night
+ranges, 256 fulfillment items in flight at once, 2 percent of fulfillment
 deliveries repeated, and the prepared million-row dataset behind every required
 query. These numbers size the problem; they are not pass thresholds.
 Fulfillment latency and recovery time are measured against the learner's
@@ -93,8 +106,8 @@ produced is the learner's choice.
 The submitted `ARCHITECTURE.md` must explain:
 
 - which invariants belong in PostgreSQL and which belong in application code —
-  the non-overlap constraint among them — and what the rejected placements
-  cost;
+  among them the rule that a shared night is a conflict and a shared boundary
+  day is not — and what the rejected placements cost;
 - what an acknowledgement asserts about a unit of fulfillment work, and when it
   is honest to send one;
 - how the in-flight ceiling was chosen, and what it costs on each side;
@@ -126,10 +139,11 @@ delays the store until the window expires, restarts the broker with work
 unacknowledged, repeats the declared share of deliveries, injects work that
 fails permanently at known reservation identities, repeats client requests, and
 restarts PostgreSQL. Its workload throughout includes many clients contending
-on one resource with deliberately overlapping intervals, so the schedule that
-falsifies the delivery design also exercises the non-overlap constraint. At the
-end the final reservation set is read and no two live reservations for any
-resource may overlap.
+on one room with deliberately overlapping night ranges, back-to-back stays
+meeting at a boundary day among them, so the schedule that falsifies the
+delivery design also exercises both halves of the conflict rule. At the end
+the final reservation set is read and no two live reservations for any room
+may share a night.
 
 Checks observe only HTTP, SQL-visible state, the provider's request log, broker
 state, process lifecycle, query plans, metrics, and the submitted evidence.
@@ -140,7 +154,7 @@ primitive.
 
 All acknowledged reservations remain recoverable and reach the correct terminal
 state. Invalid transitions fail at the authoritative boundary, and no two live
-reservations overlap after any schedule. No reservation receives a second
+reservations share a night after any schedule. No reservation receives a second
 fulfillment effect under the declared repeat share, a frozen worker, or a
 broker restart. Work that fails permanently reaches an inspectable terminal
 state and none retries forever; a reintroduced unit completes. Failure is
@@ -184,9 +198,9 @@ data generation, telemetry, and faults are prepared. A simple design fails this
 lab at its scale target: a single process consuming work one unit at a time
 cannot hold 500 reservations per second with 256 units in flight, and a design
 that treats delivery as exclusive produces a second fulfillment effect the
-moment a worker runs long. Generic workflow engines, replication, cloud
-databases, and external network calls inside database transactions are outside
-the problem.
+moment a worker runs long. Pricing, payment, and any record of who occupies a
+room are outside the problem, as are generic workflow engines, replication,
+cloud databases, and external network calls inside database transactions.
 
 ## Code pointers
 
@@ -195,6 +209,12 @@ the problem.
 - [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
 - [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
   the serverless recast of this product and what it removes.
+- [RFC 5545, section 3.6.1](https://www.rfc-editor.org/rfc/rfc5545.html#section-3.6.1)
+  — the calendar standard fixes the stay's interval convention in one sentence:
+  'The "DTEND" property for a "VEVENT" calendar component specifies the
+  non-inclusive end of the event.' Section 3.8.2.2 defines the property itself
+  and adds only that its value 'MUST be later in time than the value of the
+  "DTSTART" property'; the non-inclusive sentence is section 3.6.1's.
 - [JetStream acknowledgement](https://docs.nats.io/learn/jetstream/acknowledgment)
   — the acknowledgement window is a timer, and a delivery not resolved before it
   expires is treated as a silent failure and redelivered. Solution-bearing:

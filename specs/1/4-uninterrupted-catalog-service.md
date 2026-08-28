@@ -11,10 +11,23 @@ records changes. Merchants publish items; clients retrieve one item and list a
 merchant's items under a filter. The service also accepts a declared change to
 the shape of a catalog record and adopts it while it is serving.
 
-There is no maintenance window. For the whole time a declared change is being
-adopted, requests are accepted, answered within a declared ceiling, and never
-answered from a record caught between the two shapes. Every published item
-carries exactly one shape, and the answer states which one.
+The catalog lists packaged food and household goods, and European
+price-indication law — Directive 98/6/EC — requires each offered product to
+show a unit price, the price per litre or per kilogram, beside its selling
+price, while exempting some products: those whose unit price would equal the
+selling price, and those whose nature makes the indication useless. The duty
+is why the record's shape changes, and it takes effect on a date, not when
+the catalog is ready. What each item must carry under the new shape depends
+on that item — its own computed value, or none at all — so while a change is
+being adopted the catalog holds items in both shapes, and one shape never
+replaces the other in a single step.
+
+There is no maintenance window because the store never closes: the catalog is
+the storefront of every merchant on it, and it keeps selling while the change
+lands. For the whole time a declared change is being adopted, requests are
+accepted, answered within a declared ceiling, and never answered from a
+record caught between the two shapes. Every published item carries exactly
+one shape, and the answer states which one.
 
 The required environment is PostgreSQL as the system of record. The data
 layout, where a record's published shape is decided, how a declared change
@@ -30,14 +43,25 @@ generated clients, initial schema loading, a deterministic 25-million-item
 catalog across 50,000 merchants, and read, write, and long-read workloads.
 
 The stack supplies the declared changes themselves: four record-shape changes
-carried in the lab's TOML configuration. Each states the shape the catalog
-must end in and the rule that gives every existing item its value under that
-shape — among them a value that is computed when the change is adopted and
-differs for every item, a representation of an existing attribute that both
-old and new readers must understand, a uniqueness rule that becomes narrower,
-and an attribute the product stops publishing. A declared change states an
+carried in the lab's TOML configuration, which together take the catalog from
+the shape it sold under yesterday to the shape the price-display duty
+requires. Each states the shape the catalog must end in and the rule that
+gives every existing item its value under that shape. Among them: a
+representation of an existing attribute changes — the amount an item contains
+becomes computable rather than merely displayable — and readers of both
+shapes must understand it while the change runs; a value is computed when the
+change is adopted from what each record already holds, differs for every
+item, and is conditional — the stated rule decides which items must carry it
+and which must not; a uniqueness rule becomes narrower, so a shopper
+comparing per-unit prices never meets the same product twice under one
+merchant; and an attribute the product stops publishing — the free-text
+per-unit claim merchants wrote by hand, which cannot stand beside a computed
+value it may contradict. The changes build on one another — the computed
+value reads the representation an earlier change establishes — which is why
+the declared order is part of the declaration. A declared change states an
 outcome and never a step; how the catalog arrives at it is the learner's
-decision.
+decision. The learner never consults the law: each declared change states its
+rule completely.
 
 The stack also includes the request recorder: a prepared component outside the
 learner's processes through which client traffic passes, timestamping every
@@ -58,10 +82,13 @@ carries a revision; republishing the same revision has one effect, and
 publishing a stale revision fails visibly. An operator applies one declared
 change and inspects the progress and outcome of a change in flight.
 
-Every answer states the shape it carries. No answer mixes the two shapes and
-no item is published in both at once. An item accepted before a change is
-retrievable after it under the same identity, carrying the new shape with the
-value the change's stated rule gives it.
+Every answer states the shape it carries, because under the new shape absence
+is meaningful: an item without the per-unit value is either exempt or not yet
+reached, and a listing that blurs that distinction misleads a shopper exactly
+where the duty exists to let prices be compared. No answer mixes the two
+shapes and no item is published in both at once. An item accepted before a
+change is retrievable after it under the same identity, carrying the new
+shape with the value — or the stated absence — the change's rule gives it.
 
 For the whole duration of a declared change, no request is refused for a
 reason the change caused and no request exceeds the submission's declared
@@ -73,14 +100,19 @@ change submitted while one is in progress is refused visibly. A change
 interrupted by process death or database restart leaves every item readable
 and every acknowledged publication intact, and it can be carried to completion
 or withdrawn; both outcomes are discoverable through the public operation, and
-neither requires editing stored records by hand.
+neither requires editing stored records by hand. Carrying it to completion
+resumes from what the interrupted attempt already made true rather than
+beginning again: adopting a change across 25 million live items takes real
+time, the duty's date does not move, and a change that pays for its progress
+twice after every interruption may never finish at all.
 
 Reads and writes accepted during a change keep the meaning their
 acknowledgement gave them. A publication acknowledged before a change is not
 lost by it, and a publication acknowledged during one is retrievable
 immediately in the shape its answer named.
 
-The scale target is a catalog of 25 million items across 50,000 merchants, a
+The scale target is a catalog of 25 million packaged-goods items across
+50,000 merchants, a
 sustained 3,000 retrievals and listings per second alongside 300
 publications per second from 400 concurrent clients, one listing request in a hundred
 streaming a large result that stays open for 30 seconds, and all four declared
@@ -99,8 +131,9 @@ authority for what clients saw.
 
 The submitted `ARCHITECTURE.md` must explain:
 
-- what "the shape of a record changed" means to a client, and how an answer
-  states which shape it carries;
+- what "the shape of a record changed" means to a client, how an answer
+  states which shape it carries, and how a reader tells an item the rule
+  exempts from an item the change has not reached;
 - how every public answer stays correct while items exist in both shapes, and
   what that costs on the read path once a change is finished;
 - how a request in flight is ordered against a change in progress, and what a
@@ -146,7 +179,8 @@ throughout.
 At the end the full catalog is read. Every item is published in exactly one
 shape, every acknowledged publication is present exactly once at its
 acknowledged revision, and every value under the new shape matches the
-declared change's stated rule.
+declared change's stated rule — where the rule exempts an item, that means
+the value's absence.
 
 Checks observe only HTTP, SQL-visible state, the request recorder's history,
 process lifecycle, query plans, metrics, and the submitted evidence. They do
@@ -206,13 +240,23 @@ prepared. A simple design fails this lab at its scale target: adopting a
 declared change against 25 million items as one operation runs for minutes,
 and every request arriving while it runs waits behind it, so the change a
 small catalog absorbs invisibly becomes an outage the request recorder writes
-down. Replication, cloud databases, search relevance, merchant authentication,
-and a browser front end are outside the problem.
+down. Replication, cloud databases, search relevance, merchant
+authentication, legal interpretation, and a browser front end are outside the
+problem.
 
 ## Code pointers
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   PostgreSQL, evidence, and verification contracts.
+- [Directive 98/6/EC](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:31998L0006)
+  — Article 3: "The selling price and the unit price shall be indicated for
+  all products referred to in Article 1, the indication of the unit price
+  being subject to the provisions of Article 5", and "The unit price need not
+  be indicated if it is identical to the sales price"; Article 5 lets Member
+  States waive the indication where it "would not be useful because of the
+  products' nature or purpose or would be liable to create confusion".
+  Neutral: it explains why the change exists and why the new value is
+  conditional, never how to adopt one, so it may publish in `README.md`.
 - [PostgreSQL `ALTER TABLE`](https://www.postgresql.org/docs/current/sql-altertable.html)
   — the lock level differs per subform and "An `ACCESS EXCLUSIVE` lock is
   acquired unless explicitly noted", while "Adding a column with a volatile

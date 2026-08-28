@@ -6,13 +6,16 @@ status: draft
 
 ## Brief
 
-Design and build the quote service from
+Design and build the fare-search service from
 [`../1/1-resilient-quote-service.md`](../1/1-resilient-quote-service.md) again,
 on an execution environment that runs one request per instance, admits work
 against a ceiling the platform enforces, and bills per request and for the
-duration each invocation executes. The service asks two independent providers
-for a quote and returns the best usable result. It must remain predictable when demand exceeds the ceiling
-or one provider becomes slow.
+duration each invocation executes. A traveller's search asks two independent
+fare providers; each answers with a quote — a price honoured only until a
+stated expiry, because seats are held behind it — and the service returns the
+best quote still valid when the response leaves, with its provider and its
+expiry. It must remain predictable when demand exceeds the ceiling or one
+provider becomes slow.
 
 The required environment is the function execution model with an external store
 available for shared state. How provider calls are arranged within an
@@ -28,7 +31,8 @@ The supplied environment starts the local function runtime, the provider
 simulators, an external store, the fault controller, and the open-loop load
 generator.
 
-The simulators follow a latency and failure schedule. The fault controller
+The simulators answer searches with seeded priced quotes, each carrying its
+expiry, and follow a latency and failure schedule. The fault controller
 destroys environments to force first-invocation latency, holds a provider past
 the handler's remaining time, throttles above the declared ceiling, and freezes
 an environment at the freeze barrier — the point where the runtime and every
@@ -38,9 +42,14 @@ behind `make fault`. The learner owns the handler and its tests. No cloud accoun
 
 ## Requirements
 
-The service returns the best usable quote, and states what "usable" means when
-one provider is slow, failing, or returning stale data. A provider that exceeds
-its budget must not extend the response beyond what the design promises.
+The service returns the best valid quote under the same rule as the local lab:
+the lowest-priced quote whose expiry has not passed when the response is sent,
+between equal prices the one that stays bookable longer. A quote past its
+expiry is never returned — the provider no longer honours it — and the rule
+holds while a provider is slow, failing, or answering with quotes already near
+their expiries. When no valid quote exists, the caller receives a typed
+non-2xx response. A provider that exceeds its budget must not extend the
+response beyond what the design promises.
 
 Above the declared concurrency ceiling the platform rejects work, and the
 design states what a caller observes in that regime and why that behavior is
@@ -63,9 +72,11 @@ The scale target is a sustained 2,000 requests per second of open-loop offered
 traffic against a declared concurrency ceiling sized so that rate is several
 times what the ceiling admits, 500 concurrent client connections, one million
 requests per evidence run, and a provider latency schedule that drives at least
-one provider past its budget for a sustained interval. These numbers size the problem; they
-are not pass thresholds. Latency and rejection are judged against the declared
-ceiling and the learner's stated service level.
+one provider past its budget for a sustained interval. The offered rate is
+fare search's to absorb — the traffic the booking path never sees — and the
+ceiling does not grow because a fare sale started. These numbers size the
+problem; they are not pass thresholds. Latency and rejection are judged
+against the declared ceiling and the learner's stated service level.
 
 ## Architecture questions
 
@@ -81,6 +92,8 @@ The submitted `ARCHITECTURE.md` must explain:
   ceiling;
 - what a first invocation costs, how large a share of the tail it is, and
   whether the design tries to reduce it or to absorb it;
+- how much of a quote's validity is already spent by the time the caller sees
+  it, and how first invocations change that share;
 - which measurement separates a slow provider from a throttled service, given
   that both appear to the caller as a failure to answer;
 - at what offered rate this design becomes more expensive than the local one,
@@ -97,14 +110,16 @@ measured window, freezes an environment with a provider call outstanding, and
 holds a provider past the handler's maximum run time.
 
 Checks do not require a named cache or rejection mechanism. They observe
-the public API, provider-side request traffic, invocation and throttle counts,
-telemetry, and the submitted evidence.
+the public API, the expiry stamped on each returned quote, provider-side
+request traffic, invocation and throttle counts, telemetry, and the submitted
+evidence.
 
 ## Acceptance evidence
 
 The service answers within its stated service level while a provider is slow,
 and its behavior above the ceiling matches what the design declared. No response
-outlives the promised budget. Provider-side load stays inside the stated bound
+outlives the promised budget, and no returned quote is past its expiry at the
+moment the response is sent. Provider-side load stays inside the stated bound
 while environments are being created and destroyed.
 
 The admitted fraction of offered traffic is reported and defended against the
@@ -141,8 +156,9 @@ not run them.
 
 The expected focused time is six to nine hours. The learner builds the handler
 and its tests. The runtime, provider simulators, store, load generator, fault
-and schedules are prepared. Authentication, provider onboarding,
-billing, and multi-region routing are outside the problem.
+and schedules are prepared. Booking, payment, seat selection, authentication,
+provider onboarding, billing, and multi-region routing are outside the
+problem.
 
 The local quote lab is a prerequisite, and its artifacts must be retained: its
 `ARCHITECTURE.md` and its recorded baseline, produced on the same host where
@@ -157,6 +173,11 @@ baseline; without it the required evidence cannot be produced.
   why this pairing earns a lab and what the platform removes.
 - [`../1/1-resilient-quote-service.md`](../1/1-resilient-quote-service.md) — the
   local lab this one recasts, and the source of the comparison baseline.
+- [Duffel API reference — Offers](https://duffel.com/docs/api/offers) — the
+  reported behaviour the product's expiry rests on: "An offer is only
+  available to create an order for a limited time by the traveller before it
+  expires, typically within 30 minutes", and past its stated expiry an offer
+  "can no longer be used to create an order".
 - [Concurrency](https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html)
   — one in-flight request per environment, and throttling once concurrency is
   exhausted, so admission is a platform setting rather than an application
