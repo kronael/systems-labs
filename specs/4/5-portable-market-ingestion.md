@@ -132,7 +132,7 @@ does differently here points at this lab's quirk.
 
 The lab does not run them.
 
-## Scope and cost
+## Scope
 
 The expected focused time is eighteen to twenty-four hours. Compose
 dependencies, `kind`, the Lambda-compatible runner, base OpenTofu sandboxes,

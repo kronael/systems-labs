@@ -151,7 +151,7 @@ distributed operation.
 - [`mallopt(3)`](https://man7.org/linux/man-pages/man3/mallopt.3.html) —
   `M_TRIM_THRESHOLD` releases only contiguous free space at the top of the
   heap, `M_MMAP_THRESHOLD` rises dynamically as large blocks are freed, and
-  the arena count grows with lock contention.
+  the arena count grows with lock contention. Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
 - [`malloc_trim(3)`](https://man7.org/linux/man-pages/man3/malloc_trim.3.html)
   — only whole free pages can be released, and thread heaps ignore the pad.
   Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
@@ -160,5 +160,5 @@ distributed operation.
   contention is detected.
 - [Transparent hugepage support](https://www.kernel.org/doc/html/latest/admin-guide/mm/transhuge.html)
   — a 2 MB page can back a region of which one byte is touched, so resident
-  size rises without any new allocation.
+  size rises without any new allocation. Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

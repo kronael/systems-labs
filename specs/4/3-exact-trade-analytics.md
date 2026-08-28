@@ -122,7 +122,7 @@ does differently here points at this lab's quirk.
 
 The lab does not run them.
 
-## Scope and data
+## Scope
 
 The expected focused time is fourteen to eighteen hours. The learner builds
 the ingestion service, the schema, and the query API. ClickHouse, the

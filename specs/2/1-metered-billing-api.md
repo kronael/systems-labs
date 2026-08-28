@@ -155,9 +155,10 @@ path and the residual limit the design accepts.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **Google Cloud Run** serves the same scale-to-zero request shape from a
   container, and its CPU-allocation setting is this lab's boundary made
@@ -175,7 +176,7 @@ the design:
 Read their documentation on lifecycle, state, and background work. The lab
 does not run them.
 
-## Scope and cost
+## Scope
 
 The expected focused time is fifteen to twenty-five hours. The learner builds
 the functions, the state design, the queue usage, and the tests. The runner, the

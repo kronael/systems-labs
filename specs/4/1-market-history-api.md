@@ -116,7 +116,7 @@ does differently here points at this lab's quirk.
 
 The lab does not run them.
 
-## Scope and cost
+## Scope
 
 The expected focused time is ten to fourteen hours. DynamoDB Local, data
 generation, Kraken recording, telemetry, faults, and inspection are prepared,

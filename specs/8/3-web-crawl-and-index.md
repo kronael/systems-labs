@@ -266,7 +266,7 @@ Read the [Nutch](https://nutch.apache.org/),
 [Common Crawl](https://commoncrawl.org/) documentation. The lab does not run
 them.
 
-## Scope and data
+## Scope
 
 The expected focused time is eighteen to twenty-two hours; extraction and
 robots parsing are prepared, but strict RFC 9309 compliance under fault,

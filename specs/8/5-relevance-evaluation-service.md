@@ -188,7 +188,7 @@ does differently here points at this lab's quirk.
 
 The lab does not run them.
 
-## Scope and data
+## Scope
 
 The expected focused time is twenty to twenty-four hours, denser than a phase
 1-5 lab by design: the interaction between the engine and the durable store is

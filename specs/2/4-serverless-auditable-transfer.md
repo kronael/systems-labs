@@ -146,8 +146,10 @@ what bounds that window.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **A change-data stream from the store** turns publication into someone else's
   problem, at the cost of a delivery order that no longer matches the write's
@@ -164,8 +166,8 @@ guarantees. The lab does not run them.
 ## Scope
 
 The expected focused time is twelve to eighteen hours. The learner builds the
-handlers and their tests. The runtime, store, queue, generator, history
-and checker are prepared. Multi-currency support, authentication,
+handlers and their tests. The runtime, store, queue, generator, and history
+checker are prepared. Multi-currency support, authentication,
 reversals, and multi-region replication are outside the problem.
 
 The local transfer lab is a prerequisite, and its artifacts must be retained:

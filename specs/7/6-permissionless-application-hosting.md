@@ -228,7 +228,7 @@ does differently here points at this lab's quirk.
 Read the GitHub Pages usage limits, the Arweave endowment description, and
 the ENS contenthash specification. The lab does not run them.
 
-## Scope and cost
+## Scope
 
 The expected focused time is twenty to twenty-five hours. The learner builds
 the program, the interface bundle and manifest, and the publishing path. The

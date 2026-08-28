@@ -136,8 +136,10 @@ one.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **A long-lived process behind an autoscaler** keeps the connection pool and
   the in-process cache while making capacity a scaling policy, which trades
@@ -155,8 +157,8 @@ not run them.
 ## Scope
 
 The expected focused time is six to nine hours. The learner builds the handler
-and its tests. The runtime, provider simulators, store, load generator, fault
-and schedules are prepared. Booking, payment, seat selection, authentication,
+and its tests. The runtime, provider simulators, store, load generator, and fault
+schedules are prepared. Booking, payment, seat selection, authentication,
 provider onboarding, billing, and multi-region routing are outside the
 problem.
 

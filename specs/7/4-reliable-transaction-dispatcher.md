@@ -159,14 +159,13 @@ does differently here points at this lab's quirk.
 Read their documentation on submission lifecycle, inclusion, and retry
 ownership. The lab does not run them.
 
-## Scope and data
+## Scope
 
 The expected focused time is sixteen to twenty-two hours. Both nodes, funded
 accounts, the order generator, the fault schedules, and chain inspection are
 prepared. Payments use each chain's native transfer; authoring an on-chain
 program, token standards, contract calls, MEV, multi-node clusters, and
-cross-chain atomicity are outside the problem — the last belongs to the
-cross-chain settlement audit candidate.
+cross-chain atomicity are outside the problem.
 
 No step requires mainnet funds or a cloud account. Public RPC endpoints are
 opt-in, bounded, cached under the shared source directory, and never on a

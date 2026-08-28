@@ -143,7 +143,7 @@ does differently here points at this lab's quirk.
 
 The lab does not run them.
 
-## Scope and data
+## Scope
 
 The expected focused time is ten to fourteen hours. Kafka, data sources,
 telemetry, store profiles, workloads, and faults are prepared, but the scope

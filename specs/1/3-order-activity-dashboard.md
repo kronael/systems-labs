@@ -113,9 +113,10 @@ phrase "exactly once" as a substitute for evidence.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **Apache Flink** owns state, progress, and restart through checkpoints, so
   the coordination between durable effect and consumer progress becomes the

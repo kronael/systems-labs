@@ -199,7 +199,7 @@ Read their documentation on visibility, grouping, and distance semantics:
 its durable store but not its text search, and it does not run Solr or
 pgvector.
 
-## Scope and data
+## Scope
 
 The expected focused time is twenty to twenty-four hours; phase 8 labs sit at
 the dense end of the catalog because the interaction between the search

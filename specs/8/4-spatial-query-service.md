@@ -167,7 +167,7 @@ does differently here points at this lab's quirk.
 
 The lab does not run them.
 
-## Scope and data
+## Scope
 
 The expected focused time is eighteen to twenty-two hours; phase 8 labs are
 deliberately denser because the interaction between the search engine and the

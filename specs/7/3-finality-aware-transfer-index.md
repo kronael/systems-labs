@@ -161,7 +161,7 @@ does differently here points at this lab's quirk.
 Read their documentation on reorg thresholds, index ripeness, and hosted
 answers. The lab does not run them.
 
-## Scope and data
+## Scope
 
 The expected focused time is fourteen to eighteen hours. The node, token
 contracts, workload driver, and fault schedules are prepared; the learner

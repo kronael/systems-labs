@@ -96,9 +96,10 @@ cached balance or row count.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **ActiveMQ**, as a JMS broker, can join an XA transaction with the database,
   so one coordinator prepares the commit on both sides — and inherits the

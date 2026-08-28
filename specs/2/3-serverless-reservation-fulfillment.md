@@ -161,8 +161,10 @@ that this design does not.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **A relational store behind the same functions** keeps the exclusion
   constraint that made the local version's invariant structural, but reintroduces
@@ -181,8 +183,8 @@ lab does not run them.
 ## Scope
 
 The expected focused time is ten to fifteen hours. The learner builds the
-handlers and their tests. The runtime, store, generator, fault schedules, and
-are prepared. Multi-region behavior, authentication, capacity
+handlers and their tests. The runtime, store, generator, and fault schedules are
+prepared. Multi-region behavior, authentication, capacity
 provisioning, and a second product surface are outside the problem.
 
 The local reservation lab is a prerequisite, and its artifacts must be

@@ -187,7 +187,7 @@ does differently here points at this lab's quirk.
 Read their documentation on database builds, batch throughput, and recall. The
 lab does not run them.
 
-## Scope and data
+## Scope
 
 The expected focused time is sixteen to twenty hours; this track is
 deliberately denser than phases 1 to 5 because the interaction between the

@@ -112,9 +112,10 @@ the scale target, and the evidence must make that visible.
 
 ## Neighbouring systems
 
-A practitioner might have reached for one of these instead. Each changes the
-boundary this lab is about, and each is worth reading about before defending
-the design:
+A practitioner might have reached for one of these instead. The names and
+their documentation links publish into `README.md`; the boundary difference
+stated with each publishes into `HINTS.md`, because naming what a neighbour
+does differently here points at this lab's quirk.
 
 - **Envoy** moves admission control, retry budgets, and outlier detection into
   a proxy in front of the service, so the overload policy lives in
