@@ -1,5 +1,119 @@
 # Bugs
 
+## S24 — the teaching contract drifted out of nine specs and four documents (2026-08-28, approved)
+
+A framing review of all 33 labs surfaced defects that are not about any one
+lab's design. They are places where the repository contradicts itself, so a
+learner or an author reading one file is told something the next file denies.
+
+Two are broken references into the curriculum graph, and both point at labs
+that do not exist:
+
+- `2/2` says "This lab is taken after the local import lab" and names it a
+  prerequisite whose artifacts must be retained. `0/6` records that `2/2`
+  "lost its partner when phase 1 merged the standalone import lab into `1/2`"
+  and is "a model contrast rather than a recast". The prerequisite is
+  unsatisfiable, and `specs/index.md` row 08 repeats the stale claim.
+- `7/4` excludes cross-chain atomicity because "the last belongs to the
+  cross-chain settlement audit candidate". `0/3` records that candidate as
+  "cut: its finality lesson largely repeated `7/3`'s".
+
+The rest are drift:
+
+- **Counts.** `CLAUDE.md` says "32 labs" and "Phases 1 and 2 — eleven specs";
+  disk holds 33 and twelve. `specs/index.md` says "all 32 labs";
+  `specs/0/5-shared-scaffold.md` says "thirty-two answer".
+- **`1/7` is unwired.** Absent from both tables in `specs/index.md`; absent
+  from `specs/1/README.md`, which still opens "The six labs".
+- **Section eight.** `CLAUDE.md` mandates nine sections "in order and no
+  others", ending `Scope`. Fourteen specs write `Scope and cost` (five) or
+  `Scope and data` (nine). The governing spec never names the sections, so
+  `CLAUDE.md` is the only rule and the fourteen break it. It is drift, not
+  design: `2/1` and `2/2` carry the suffix while `2/3`-`2/5` do not, in one
+  phase with one cost profile.
+- **The neighbour publish split.** Twenty-five specs carry the sentence that
+  says the names and links publish into `README.md` while the boundary
+  difference publishes into `HINTS.md`. Eight do not: `1/1`, `1/3`, `1/5`, and
+  all five phase 2 specs — the oldest files, written before the rule existed.
+  Without it an author has no instruction on the one split that decides
+  whether a lab spoils itself.
+- **`6/1`'s neighbours are mechanisms, not products.** `epoll`, `POSIX AIO`,
+  and "a blocking thread per connection" are exactly what the ban lists, and
+  the neighbour rule publishes names into `README.md`. Every other lab names
+  products, where a name alone solves nothing. Here a name is the answer.
+- **Languages.** `CLAUDE.md` says "**Rust and C** for phases 6-8". `0/2` is
+  the low-level track and it is phase 6 alone; `7/1`, `7/2`, `7/4` and `7/6`
+  name Rust, Go and TypeScript, and phase 8 names no language.
+- **`6/README.md`** sends hourly-billed dependencies to "phases 4 and 5".
+  Phase 5 does not exist.
+- **Dropped words.** `2/3` "fault schedules, and are prepared"; `2/4`
+  "history and checker are prepared"; `2/5` "fault and schedules are
+  prepared".
+- **Unmarked solution-bearing citations.** `6/4` marks `malloc_trim(3)` but
+  not `mallopt(3)` or the hugepage page, which explain the same quirk; `6/1`
+  leaves both `io_uring` pointers unmarked though they state the buffer
+  ownership rule the lab is about.
+
+- **Severity:** medium
+- **Scope:** cross-cutting; nine specs and four documents
+- **Affected:** `CLAUDE.md`, `specs/index.md`, `specs/0/5-shared-scaffold.md`,
+  `specs/1/README.md`, `specs/6/README.md`, and the fourteen specs carrying a
+  suffixed section eight
+- **Source:** four-bucket framing review, 2026-08-28; every claim re-verified
+  by grep against the working tree before entry
+- **Status:** approved, in progress
+- **Fix:** normalize section eight to `Scope`; backfill the publish-split
+  sentence into the eight specs; correct the counts; wire `1/7`; cut the two
+  dangling references; re-domain `6/1`'s neighbours to products; scope the
+  language claim to phase 6; repair the dropped words and the markers.
+
+## S23 — nine labs name a domain that does no work (2026-08-28, approved)
+
+The learner should finish a lab knowing something true about its subject
+matter, not only about its technology. A framing review of all 33 labs against
+that standard found the catalog mostly sound and the failures concentrated:
+phases 7 and 8 are grounded throughout, and phase 4's finance monoculture is
+earned rather than lazy — one corpus, one generator, one recording pipeline,
+with the record shape paid for once in `4/1` so four stores can be compared
+against identical data.
+
+Nine labs name a domain whose facts never reach the requirements. The worst is
+`1/1`, the first lab a learner meets, which quotes nothing: no product, no
+reason a quote expires, no rule deciding which of two quotes is better.
+
+Every fix is a **framing** change — what the product is, what the records
+mean, why a limit is that number. No quirk changes, no scale target changes,
+no dependency is added, and the budget moves by at most an hour, because a
+deepening that adds a parsing chore is the failure this bug exists to avoid.
+
+| lab | today | grounded in |
+|-----|-------|-------------|
+| `1/1` + `2/5` | a quote of nothing | priced offers that expire; the pair must move together |
+| `1/2` | an unnamed resource | a stay, whose half-open interval is the changeover day (RFC 5545) |
+| `1/4` | four structural changes | the mandated unit price (Directive 98/6/EC Article 3) |
+| `2/2` | "structured records" | interval meter readings, which also gives `2/2` the identity S24 shows it lost |
+| `3/2` | routing as scenery | the real churn report's own products (Huston, APNIC) |
+| `4/2` | freshness asserted | the venue's own last-entry-uncommitted rule |
+| `6/1` | "records" to a stalled consumer | a host log shipper, whose ceiling exists because the memory belongs to the workload |
+| `8/1` | homology stripped out | what a match is for (NCBI BLAST) |
+| `7/2` | netting unexplained | why settlement nets at all (DTCC) |
+
+Deliberately not taken, to hold the line against overdoing it: a second
+`1/4` proposal, `1/3`'s cancellation race, `4/5`'s instrument alias table —
+the closest of the three to a parsing chore — and `7/3`, which its reviewer
+called droppable.
+
+- **Severity:** low
+- **Scope:** nine labs, framing only
+- **Affected:** `specs/1/1-*.md`, `specs/1/2-*.md`, `specs/1/4-*.md`,
+  `specs/2/2-*.md`, `specs/2/5-*.md`, `specs/3/2-*.md`, `specs/4/2-*.md`,
+  `specs/6/1-*.md`, `specs/7/2-*.md`, `specs/8/1-*.md`
+- **Source:** four-bucket framing review, 2026-08-28; each citation fetched
+  during the review, and the Directive 98/6/EC and RFC 5545 quotes re-fetched
+  independently before entry
+- **Status:** approved, in progress
+- **Fix:** below, one sub per lab.
+
 ## S22 — no lab teaches that an action must not outlive its evidence (2026-08-27, approved)
 
 Every lab in the catalog asks its system to keep serving. None asks it to stop.
