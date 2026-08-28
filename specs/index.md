@@ -7,14 +7,14 @@ architecture pressure it applies, and the environment prepared for it.
 
 | # | Spec | System to design | Architecture pressure | Prepared environment |
 |---|------|------------------|-----------------------|----------------------|
-| 01 | [Resilient quote service](1/1-resilient-quote-service.md) | Quote aggregation API | Overload, partial provider failure, cancellation, shutdown | Provider simulators, telemetry, load generator |
-| 02 | [Reservation fulfillment service](1/2-reservation-fulfillment.md) | Reservation API with leased asynchronous fulfillment | A lease that is not a lock, a database-enforced invariant, worker recovery | PostgreSQL, NATS JetStream, fault controller, large dataset |
+| 01 | [Resilient quote service](1/1-resilient-quote-service.md) | Fare-search aggregation API over quotes that expire | Overload, partial provider failure, cancellation, shutdown | Provider simulators, telemetry, load generator |
+| 02 | [Reservation fulfillment service](1/2-reservation-fulfillment.md) | Stay reservation API with leased asynchronous fulfillment | A lease that is not a lock, a database-enforced invariant, worker recovery | PostgreSQL, NATS JetStream, fault controller, large dataset |
 | 03 | [Order activity dashboard](1/3-order-activity-dashboard.md) | Replayable order and customer views | Ordering, progress versus effect, rebuild, skew | Kafka, PostgreSQL, generated producers |
 | 04 | [Uninterrupted catalog service](1/4-uninterrupted-catalog-service.md) | Catalog API that serves through changes to its record shape | A shape change against live traffic, two shapes coexisting, an interrupted change resumed | PostgreSQL, declared shape changes, request recorder, 25-million-item catalog |
 | 05 | [Auditable transfer service](1/5-auditable-transfer-service.md) | Money ledger with a downstream audit product | Cross-system commit gaps, contention, replay | PostgreSQL, Kafka, history checker |
 | 06 | [Shared budget service](1/6-shared-budget-service.md) | Shared spending budgets under concurrent claims | An invariant no single write can be judged against, work the store declines to complete, a retry boundary the application owns | PostgreSQL, overlap-profiled claim workload, fault controller |
 | 07 | [Metered billing API](2/1-metered-billing-api.md) | Subscriptions, metered usage, period-close invoicing | Frozen execution environments, reuse, work that outlives a response, a close larger than one invocation | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
-| 08 | [Reliable record import, serverless](2/2-reliable-record-import.md) | The same import product on functions | A lease timer the learner does not own, partial batch outcomes | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
+| 08 | [Reliable record import, serverless](2/2-reliable-record-import.md) | Interval meter readings imported on functions | A lease timer the learner does not own, partial batch outcomes | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
 | 09 | [Serverless reservation fulfillment](2/3-serverless-reservation-fulfillment.md) | The same reservation product on functions | An invariant no store enforces, fulfillment without a worker | Lambda runtime emulator, DynamoDB Local |
 | 10 | [Serverless auditable transfer](2/4-serverless-auditable-transfer.md) | The same transfer product on functions | A commit gap with nothing running between events, a freeze that strands the publish | Lambda runtime emulator, ElasticMQ, DynamoDB Local |
 | 11 | [Serverless quote aggregation](2/5-serverless-quote-aggregation.md) | The same quote product on functions | Admission as a platform ceiling, cold starts, state outside the process | Lambda runtime emulator, provider simulators, external store |
@@ -44,17 +44,18 @@ curriculum only after the core is `accepted`.
 | [0/4-search-and-retrieval-track.md](0/4-search-and-retrieval-track.md) | reference | Phase 8 on OpenSearch: proteins, news, web crawl, spatial, and relevance evaluation |
 | [0/5-shared-scaffold.md](0/5-shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 33 labs share, the verification vocabulary their evaluation keys are written in, and the build order |
 | [0/6-serverless-contrast-track.md](0/6-serverless-contrast-track.md) | reference | Phase 2 paired against phase 1: what the execution model removes, which pairings earn a lab, and which model is useful where |
-| [1/1-resilient-quote-service.md](1/1-resilient-quote-service.md) | draft | Quote aggregation architecture under overload, partial provider failure, and shutdown |
-| [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Reservation architecture whose asynchronous fulfillment arrives on a lease that expires while work is still in flight |
+| [1/1-resilient-quote-service.md](1/1-resilient-quote-service.md) | draft | Fare-search aggregation under overload and partial provider failure, where a quote past its expiry is worse than none |
+| [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment.md) | draft | Stay reservation architecture whose asynchronous fulfillment arrives on a lease that expires while work is still in flight |
 | [1/3-order-activity-dashboard.md](1/3-order-activity-dashboard.md) | draft | Queryable, replayable order activity architecture in a Kafka environment |
-| [1/4-uninterrupted-catalog-service.md](1/4-uninterrupted-catalog-service.md) | draft | Catalog architecture that keeps answering while the shape of its records changes, with no maintenance window |
+| [1/4-uninterrupted-catalog-service.md](1/4-uninterrupted-catalog-service.md) | draft | Retail catalog architecture that keeps answering while a mandated price-display change reshapes 25 million records, with no maintenance window |
 | [1/5-auditable-transfer-service.md](1/5-auditable-transfer-service.md) | draft | Transfer and audit architecture spanning PostgreSQL and Kafka failure boundaries |
 | [1/6-shared-budget-service.md](1/6-shared-budget-service.md) | draft | Shared budget architecture whose conflicting decisions the store declines to complete, leaving the retry boundary to the application |
+| [1/7-spectrum-compliance-service.md](1/7-spectrum-compliance-service.md) | draft | Radio fleet kept legally on the air, where an authorization that outlives the evidence for it is a violation and staying dark is its own failure |
 | [2/1-metered-billing-api.md](2/1-metered-billing-api.md) | draft | Subscriptions, metered usage, and period-close invoicing on an execution environment that freezes between invocations |
-| [2/2-reliable-record-import.md](2/2-reliable-record-import.md) | draft | The same import product on functions, in a leased-delivery environment the learner configures but does not run |
+| [2/2-reliable-record-import.md](2/2-reliable-record-import.md) | draft | Interval meter readings imported on functions, in a leased-delivery environment the learner configures but does not run; the one phase 2 lab with no phase 1 partner |
 | [2/3-serverless-reservation-fulfillment.md](2/3-serverless-reservation-fulfillment.md) | draft | The same reservation product on functions, with a partitioned key-value store as the system of record |
 | [2/4-serverless-auditable-transfer.md](2/4-serverless-auditable-transfer.md) | draft | The same transfer product on functions, carrying the commit gap onto an environment where nothing runs between events |
-| [2/5-serverless-quote-aggregation.md](2/5-serverless-quote-aggregation.md) | draft | The same quote product on functions, where admission is a platform ceiling rather than the design's own decision |
+| [2/5-serverless-quote-aggregation.md](2/5-serverless-quote-aggregation.md) | draft | The same fare-search product on functions, where admission is a platform ceiling rather than the design's own decision |
 | [3/1-internet-route-observatory.md](3/1-internet-route-observatory.md) | draft | Route observations answered with the scope they rest on, where vantage points disagree and a burst is exploration |
 | [3/2-recoverable-route-analytics.md](3/2-recoverable-route-analytics.md) | draft | Stateful route analytics with checkpoint and history-based recovery requirements |
 | [4/1-market-history-api.md](4/1-market-history-api.md) | draft | Trade and candle query architecture over DynamoDB-compatible storage |
