@@ -1,5 +1,228 @@
 # Bugs
 
+## S26 — half the labs promise a landscape they do not carry (2026-08-29, proposed)
+
+Three parallel hunts over all 33 existing lab specs. Findings are grouped by
+what they break, not by phase. Everything below was re-verified against the
+file text.
+
+**The systemic one. Seventeen specs carry the sentence "The names and their
+documentation links publish into `README.md`" and contain no documentation
+link at all.** The `README.md` those specs generate would name neighbours with
+nothing to read, which is the half of the landscape contract that does the
+orienting. `1/1`, `1/3`, `1/5`, `2/1`, `2/2`, `2/3`, `2/4`, `2/5`, `6/2`,
+`6/3`, `6/4`, `6/5`, and every phase-7 spec — `7/1`, `7/2`, `7/3`, `7/4`,
+`7/6`. Four of them also name categories rather than products, which fails the
+contract twice: `2/3` ("A relational store behind the same functions"), `2/4`
+("A change-data stream from the store"), `2/5` (all three are categories), and
+`7/1`, whose second and third neighbours are two API surfaces of the same
+platform.
+
+**Banned phrasing in learner-facing Briefs.** `CLAUDE.md` bans "the trick",
+"the trap", "the catch", and "the hard part" from text that publishes into
+`README.md`. `7/2:24` and `7/6:23` both open the paragraph that states the
+lab's difficulty with "The hard part is". `0/3:15` and `0/3:72` use it too,
+which is fine — the track record is author-facing.
+
+**Unmarked solution-bearing citations.** `CLAUDE.md` step 6 requires every
+`Code pointers` citation marked neutral or solution-bearing; unmarked defaults
+to README-eligible. These name the answer and are unmarked:
+
+- `4/3:143-153` — all three ClickHouse pointers, naming the table engine, the
+  asynchronous mutation behaviour, and `parts_to_throw_insert` with its
+  default. The engine name answers the lab's central data-layout question.
+- `6/3:150-158` — the mmap paper and `mmap(2)`/`madvise(2)`, while the Brief
+  makes the file-access strategy the learner's decision.
+- `6/2:140-143` — fsyncgate and the LWN article, while the durability strategy
+  is the learner's decision.
+- `6/5:169-180` — the coordinated-omission source and both timing interfaces,
+  while `wrk2` and HdrHistogram in the same section *are* marked.
+- `6/4:158-160` — `malloc(3)`, while its three sibling bullets are marked.
+
+**Named mechanisms in `Brief` or `Requirements`.** `2/3:56-58` asserts where
+the partner lab's invariant lived and rules out a store-level constraint here;
+`1/2:110-113` explicitly leaves that placement to the learner, so `2/3` both
+leaks and misreports. `2/3:120-121` repeats it as an unmarked architecture
+question. Also `4/1:46` ("table scans are not accepted"), `4/3:20` and
+`:130-132` (names the store's merge behaviour outside the allowed sections),
+`3/2:99-100` (names the exactly-once switch its own pointers mark
+HINTS-only), `7/2:83-85` ("Pre-paying for storage the workload has not yet
+needed fails this requirement"), `6/1:50-51`, `6/5:78-81`, `8/1:36-37`,
+`8/1:100-101`, `8/1:110-111`, `8/4:81-82`, `4/2:72`.
+
+**Faults with no named barrier.** The contract says a scenario fires at a
+named record, never on a timer. These do not: `4/2:81-85` (five of eight),
+`2/2:102-105` (no identity anywhere, and one barrier reads "around its durable
+effect", which cannot land at the same boundary twice), `1/1:86-89`,
+`1/3:88-91`, `1/5:75-79`, `2/5:108-109` ("inside a measured window"),
+`7/1:131`, `7/3:114-115`, `7/4:113`, `4/5:84-85`, `4/3:83`. Every spec does
+declare what must hold after recovery; that half is clean.
+
+**The phase-4 shared corpus is not shared.** `S23` records the intent as one
+corpus and one generator so four stores compare against identical data. In
+fact `4/1:48` says 100 million trades across 20 symbols, `4/2:52` says 100
+million across 50, and `4/3:47` says 2 billion across 500. `4/1:22` names the
+prepared generator as "a deterministic million-trade generator", 100x under
+its own lab's target and 2000x under `4/3`'s. `4/2`'s scaffold names a loader
+with no tie to the shared recording pipeline. `specs/4/README.md:125` claims
+the phase-4 neighbour sections name Cloud Run and Step Functions; neither
+appears in any phase-4 spec.
+
+**Phase-2 pairs drifted from their partners.** `2/4:41-45` claims the product
+is identical to `1/5` and then drops three of its invariants — value
+conservation, history-and-balance agreement, and the conflicting-reuse rule —
+without flagging any as platform-forced, though it does flag a fourth.
+`2/3:14` generalizes `1/2`'s stay-boundary rule to "one resource for a
+half-open time interval" and never restates the half that makes back-to-back
+stays legal, so `S23`'s grounding of `1/2` did not propagate. `2/5`↔`1/1` is
+clean.
+
+**Smaller, verified.** `7/2:87-89` states a wall-clock speed where `0/3:136`
+requires speed against the node's own rate. `0/3:112` claims `7/4`'s shape is
+"end-to-end program development plus dispatcher" while `7/4:166` excludes
+authoring a program, so `7/4` fits none of the four admitted shapes. `8/1:238`
+cites sequenceserver.com as "the track record's origination source"; `0/4:32`
+originates `8/1` from NCBI. `8/3:115` rests a load-bearing claim on an
+evidence-window length the spec never states. `1/3`, `1/5` and `2/2` state no
+earned-dependency sentence. `4/1`, `4/3` and `4/5` name four or five
+neighbours where the contract says two or three, and `4/3:118` links only one
+of a paired name. Five phase-8 specs and `0/4:11` carry "phases 1 to 5"
+fossils. Grammar: `2/3:138` "They observes HTTP"; `2/5:40`; `8/2:92` says
+"These three numbers" above four.
+
+**Clean.** All 33 carry the nine sections in order and `status: draft` alone.
+All 33 state a scale target with speed, load and amount. Every relative link
+resolves. No spec references `4/4`, `7/5` or a phase-5 lab. Roughly sixty
+citations were fetched across the three hunts and none contradicted its
+claim; four are bot-blocked and were confirmed through mirrors or left marked
+unreachable. Arithmetic recomputes throughout except the phase-4 corpus above.
+
+### Proposal, needs sign-off
+
+The neighbour-link gap is the one to fix first and is mechanical: seventeen
+specs need two or three real documentation URLs each, fetched before they are
+written. The phase-4 corpus numbers and the phase-2 pair drift are
+design decisions, not typos — they change what a lab teaches — and need the
+user before anything moves. The unmarked citations and banned phrases are
+corrections that can ship together once approved.
+
+- **Severity:** high — the neighbour-link gap silently breaks the landscape
+  half of the teaching contract in half the catalog
+- **Scope:** 24 lab specs plus `specs/4/README.md` and `specs/0/3`
+- **Affected:** listed inline above
+- **Source:** three parallel spec hunts, 2026-08-29; every finding
+  re-verified against the file text, and the seventeen-spec link gap
+  reconfirmed by a repository-wide count
+- **Status:** proposed
+- **Fix:**
+
+## S25 — the governing spec and the shared scaffold contradict the contracts they govern (2026-08-29, proposed)
+
+A cross-document hunt over `CLAUDE.md`, `specs/01-systems-labs.md`,
+`specs/index.md`, the six `specs/0/` track files, `docs/cloud-access.md`, the
+seven phase `README.md` files and `BUGS.md` found fourteen defects. Every one
+was verified by reading both sides of the contradiction. None is a matter of
+taste; each is a place where one document states something another denies, or
+where a document denies itself.
+
+**The two that break a contract rather than merely misstate one:**
+
+- **`0/5` states a `make teaching-lint` rule that would fail every compliant
+  `README.md`.** `specs/0/5-shared-scaffold.md:155` says the lint fails when a
+  "`Neighbouring systems` product name" appears in learner-facing text.
+  `specs/01-systems-labs.md:768` and `CLAUDE.md:131` say it fails on a
+  "boundary-difference sentence". The teaching contract *requires* neighbour
+  product names in `README.md` — that is the whole publish split — so `0/5`'s
+  lint bans the text the contract mandates. `0/5` kept `S6`'s wording after the
+  rule changed under it.
+- **The governing spec still supplies a "verification skill" it deleted.**
+  `specs/01-systems-labs.md:827` says "There is no grader binary and no grading
+  framework, and there is no skill." The same file promises one at `:46` ("each
+  lab describes its checks in an agent-run skill"), lists it among prepared
+  material at `:112`, and makes the GPL licence contract enumerate it at `:876`
+  and `:891`. `S17` removed the grader; these four survived.
+
+**Contradictions between documents:**
+
+- **The phase 1/2 pairing count is a fossil in four places.** `0/6:75` records
+  that `2/2` lost its partner and that the true recasts are three: `1/1`→`2/5`,
+  `1/2`→`2/3`, `1/5`→`2/4`. Against that, `01-systems-labs.md:138` and `:393`,
+  `specs/2/README.md:12`, and `specs/1/README.md:128` all still say phase 2
+  rebuilds **four** products. `specs/2/README.md` also denies itself: `:12`
+  says four are rebuilt, `:29` says two of the five have no partner. It also
+  says "Phase 1 built five systems"; phase 1 has seven.
+- **`specs/index.md:55` calls `2/2` "the one phase 2 lab with no phase 1
+  partner".** `specs/2/README.md:29` and `0/6:71` both say two are.
+- **The governing spec asserts a deployment claim its own track file rebuts.**
+  `01-systems-labs.md:404` says holding the phase 1 store fixed "would produce
+  a shape no practitioner deploys". `0/6:26` says it "is deployable — functions
+  with a relational store are a supported and documented shape" and rejects it
+  for a different reason. Two documents carry the corrected reasoning; the
+  governing one carries the falsified one.
+- **The starter-language claim was scoped in `CLAUDE.md` and missed in the
+  spec.** `01-systems-labs.md:436` and `:499` still say every lab supplies Go
+  and TypeScript. `CLAUDE.md:281` scopes that to the core phases; `0/2` (Rust
+  and C) and `0/3` (per-chain toolchains) agree with `CLAUDE.md`.
+- **`CLAUDE.md:393` says "Only phase 4 buys anything".** `docs/cloud-access.md`
+  licenses phase 2 an optional hosted run on on-demand DynamoDB, which bills
+  with no perpetual free allowance.
+
+**Stale state that misreports what is open:**
+
+- **Nine `BUGS.md` entries carry a `FIXED` header and resolution prose while
+  their own Status fields still read `open` or `proposed`:** `S20`, `S19`,
+  `S18`, `S17`, `S15`, `S14`, `S8`, `S11`, `S2`. `CLAUDE.md:384` says that
+  sweep closed them; this file says otherwise.
+- **`S21` and `S22` read "approved, in progress" with empty Fix fields**, but
+  both shipped — `1/7` exists and is wired, and `8/3` carries S21's breach
+  consequence. `CLAUDE.md:387` names the open queue as `S1`, `S9`, `S10` only.
+  `S22`'s Affected list also names `specs/0/1-lab-selection.md`, which contains
+  no trace of `1/7`; that part never landed.
+- **`S1` argues about `4/4-subscription-billing-api.md`, which does not
+  exist** — the lab is now `2/1-metered-billing-api.md`, which `S10` argues
+  about separately, neither entry referencing the other. This is the only
+  reference to a nonexistent lab in the repository, and it sits in the entry
+  `CLAUDE.md` names first in the open queue.
+- **`0/5:9` says "Thirty-one labs"**; `0/5:42` says thirty-three, and disk
+  holds 33. The `S24` count sweep missed it.
+- **`0/1:9` says the catalog "has since grown to twelve"**; it is seventeen
+  core labs. `0/1:213` still describes the superseded five-phase map in the
+  present tense with no supersession note.
+- **Four "phases 1 to 5" fossils survive** at `0/2:11`, `0/2:103`, `0/4:11`,
+  and `specs/8/README.md:11`. `S24` fixed the identical defect in
+  `6/README.md` and missed these.
+- **`docs/cloud-access.md:7` over-claims its own scope** — "Cloud use exists
+  only for the opt-in `make smoke` check" — while `:205` licenses public RPC
+  recordings, which are `make source` work.
+
+**Clean.** Every relative link and anchor in scope resolves. The Make
+vocabulary is identical across `CLAUDE.md`, `01-systems-labs.md` and `0/5`.
+Every file carries exactly one frontmatter key, and every status in
+`specs/index.md` matches its file. Lab counts on disk are exactly 33
+(7+5+2+4+5+5+5), the core catalog has exactly 17 rows, and the full list 33
+entries.
+
+### Proposal, needs sign-off
+
+Two of these are redesign-shaped and need the user before anything ships:
+the `0/5` lint rule (it changes what CI enforces) and the pairing-count fossil
+(it decides whether the phase 2 contrast is described as three recasts plus two
+originals, which is what `0/6` actually records). The rest are corrections to
+text that is simply wrong and can ship as one commit once approved.
+
+- **Severity:** high — `0/5`'s lint rule and the verification-skill survivors
+  are in the two documents every other file defers to
+- **Scope:** cross-document; no lab spec changes
+- **Affected:** `specs/01-systems-labs.md`, `specs/0/5-shared-scaffold.md`,
+  `specs/0/1-lab-selection.md`, `specs/0/2-low-level-track.md`,
+  `specs/0/4-search-and-retrieval-track.md`, `specs/index.md`,
+  `specs/1/README.md`, `specs/2/README.md`, `specs/8/README.md`,
+  `docs/cloud-access.md`, `BUGS.md`
+- **Source:** cross-document bug hunt, 2026-08-29; every finding re-verified
+  against both files before entry
+- **Status:** proposed
+- **Fix:**
+
 ## S24 — the teaching contract drifted out of nine specs and four documents (2026-08-28, approved)
 
 A framing review of all 33 labs surfaced defects that are not about any one
