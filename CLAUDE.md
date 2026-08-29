@@ -380,9 +380,10 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
   the import lab has since merged into `1/2`, phase 1 gained two labs from an
   orthogonality review (`S20`), and `1/7` arrived from `S22`.
 - Phases 3, 4, 6, 7, 8 — 22 specs, drafted and reviewed against the contracts
-  this file states. `7/7` is the newest: a deposit service whose capital moves
-  through a signing network that only signs outbound, so nothing ever reports
-  back. It is deliberately distinct from `7/4`, and both specs say so.
+  this file states. `7/7` is the newest: a deposit service holding capital at
+  addresses it cannot sign for, where an observed movement names no request.
+  Its first draft duplicated `7/3` and `1/5`; it was narrowed to the one
+  property no other lab covers, and `7/3` and `7/4` now point back at it.
 - The 2026-08-23/24 sweep closed `S8`, `S11`, `S14`, `S15`, `S16`, `S17`, `S18`,
   `S19`, `S20`. The 2026-08-28 sweep closed `S23` and `S24`: nine labs gained
   a domain that does work, and the teaching contract was restored across the
@@ -397,10 +398,10 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
   `specs/index.md`'s full list; whether `1/7` joins the seventeen core labs is
   undecided.
 - No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`.
-- There is no root `LICENSE` and no root `README.md`, though
-  `specs/01-systems-labs.md` declares the repository GPL-3.0 and says it
-  carries the full licence text in a root `LICENSE`. Nothing may be tagged or
-  published until that is true.
+- Root `LICENSE` (verbatim GPL-3.0 from gnu.org), `README.md`, and
+  `THIRD_PARTY.md` exist as of 2026-08-29, discharging the licensing contract
+  in `01-systems-labs.md`. `THIRD_PARTY.md` lists only `LICENSE` itself;
+  nothing else here is copied.
 - `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
   short-lived credentials, per-phase account table. Only phase 4 buys anything.
 
