@@ -175,6 +175,11 @@ outside the problem.
 
 ## Code pointers
 
+- [`7-multi-chain-deposit-service.md`](7-multi-chain-deposit-service.md) — the
+  neighbouring lab that also publishes balances it may have to revise. There
+  the movement never names the request that caused it and nothing is ever
+  withdrawn; here the movement names itself and the chain takes it back.
+  Reorganization belongs to this lab and is out of scope there.
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   fault-injection, data, evidence, and verification contracts.
 - [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — the track

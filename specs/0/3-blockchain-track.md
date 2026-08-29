@@ -43,7 +43,7 @@ are original.
 | 7/3 | Finality-aware transfer index | Data processing | A receipt means it happened | [`eth_getLogs` `removed` flag](https://docs.metamask.io/services/reference/ethereum/json-rpc-methods/eth_getlogs/): orphaned logs are re-sent with `removed: true`. Proof-of-stake moves a block proposed → safe → finalized, roughly two epochs |
 | 7/4 | Reliable transaction dispatcher | End-to-end program | Send and wait works; retry is free | Solana: [blockhash expires after 151 blocks, about 60–90 seconds](https://solana.com/developers/guides/advanced/confirmation), and [durable nonces](https://solana.com/docs/core/transactions/durable-nonces) remove that window at the cost of an `AdvanceNonceAccount` first instruction. Ethereum: nonce gaps stall an account, replacement needs a fee bump |
 | 7/6 | Permissionless application hosting | Permissionless delivery | Deployed means permanent, and permissionless means nobody can change it | [IPFS persistence](https://docs.ipfs.tech/concepts/persistence/): the network guarantees discoverability, not availability; unpinned data is garbage-collected, and pinning services pin for a fee. [IPNS](https://docs.ipfs.tech/concepts/ipns/): DHT records expire after 48 hours regardless of validity, and a node republishes only while it runs. [Deploying programs](https://solana.com/docs/programs/deploying): the upgrade authority can replace or close a program, `--final` removes it, and once immutable it can never be updated or closed |
-| 7/7 | Multi-chain deposit service | End-to-end program | The party holding the record can find out what happened to the money | [NEAR chain signatures](https://docs.near.org/chain-abstraction/chain-signatures): "a 'one way' solution to sign and execute outbound transactions happening on other blockchains", with a documented risk of a signature "replayed on a chain you did not intend to interact with". [FDIC, 89 FR 80135](https://www.govinfo.gov/content/pkg/FR-2024-10-02/html/2024-22565.htm): proposed 12 CFR 375.3 requires balances "at the beneficial ownership level", reconciliation "no less frequently than at the close of business daily", and record access "in the event of business interruption, insolvency, or bankruptcy of the third party" |
+| 7/7 | Multi-chain deposit service | End-to-end program | Money that moves says who moved it | [NEAR chain signatures](https://docs.near.org/chain-abstraction/chain-signatures): "a 'one way' solution to sign and execute outbound transactions happening on other blockchains", with a documented risk of a signature "replayed on a chain you did not intend to interact with". [FDIC, 89 FR 80135](https://www.govinfo.gov/content/pkg/FR-2024-10-02/html/2024-22565.htm): proposed 12 CFR 375.3 requires balances "at the beneficial ownership level", reconciliation "no less frequently than at the close of business daily", and record access "in the event of business interruption, insolvency, or bankruptcy of the third party" |
 
 ## Expanded candidates
 
@@ -134,23 +134,25 @@ Spec: [`../7/6-permissionless-application-hosting.md`](../7/6-permissionless-app
 
 ### 7/7 Multi-chain deposit service — specced
 
-Hold customer deposits, put the capital to work on two other chains, and keep
-an account of who owns what that survives never being told what happened.
+Hold customer deposits at addresses on two chains whose keys the service does
+not have, and keep an account of who owns what.
 
-The service records balances on one chain and moves capital on two others
-through a signing network that signs outbound only. Once it has handed out a
-signature it cannot recall it, and nothing will ever report back whether the
-transaction was included, dropped, or included twice. Every other lab that
-sends something can ask the chain whether it arrived; this one holds no key
-abroad and cannot ask. The question becomes what may be published about
-capital whose fate is unknown — and the custodial-deposit rules make that
-question answerable rather than philosophical, because they fix what a record
-must state and how often it must be reconciled against an independent reading.
+The service composes a transaction and a signing network returns a signature
+over it — outbound only, with no reply, ever. The addresses are ordinary
+addresses, so a movement there carries nothing naming the request that caused
+it, strangers can send to them, and a payload signed once can be included
+twice. The service can watch the money and cannot ask anyone what it means.
+Attribution becomes an argument it has to make and defend, and the
+custodial-deposit rules make that answerable rather than philosophical: they
+fix what a record must state, how often it must be reconciled, and that the
+reconciliation must still run when the party in the middle has gone silent.
 
-Distinct from 7/4, which drives both chains with keys it holds and asks
-whether each payment landed exactly once. That lab's subject is the identity
-of a retry; this one's is the solvency of a published balance. They must not
-be run as one.
+Scoped away from its two neighbours deliberately, because the first draft
+collided with both. Reorganization is 7/3's subject — there a movement names
+itself and the chain withdraws it; here a movement never names itself and the
+chain withdraws nothing. Retry identity is 7/4's — that lab holds the keys and
+can ask the chain what happened. This one has nobody to ask. Both exclusions
+are written into 7/7's Scope, and 7/3 and 7/4 point back.
 
 Shape: end-to-end program development. Languages: Rust, with a TypeScript
 view.

@@ -36,9 +36,9 @@ recorded in the [track record](../0/3-blockchain-track.md).
   — a system that publishes an application and delivers it to users with no
   server, domain, or account the publisher operates.
 - [Multi-chain deposit service](7-multi-chain-deposit-service.md) — a
-  deposit service that records balances on one chain, puts the capital to
-  work on two others through a signing network that only signs outbound,
-  and must still say who owns what.
+  deposit service holding customer capital at addresses on two chains it
+  cannot sign for, where an observed movement names no request and the
+  service must still say who owns what.
 
 ## The technologies
 

@@ -72,7 +72,7 @@ curriculum only after the core is `accepted`.
 | [7/3-finality-aware-transfer-index.md](7/3-finality-aware-transfer-index.md) | draft | Transfer index whose settled view stays free of logs the chain later withdrew |
 | [7/4-reliable-transaction-dispatcher.md](7/4-reliable-transaction-dispatcher.md) | draft | Queued payments landed exactly once across two chains that disagree about retry |
 | [7/6-permissionless-application-hosting.md](7/6-permissionless-application-hosting.md) | draft | An application delivered with no server, domain, or account its publisher operates |
-| [7/7-multi-chain-deposit-service.md](7/7-multi-chain-deposit-service.md) | draft | Customer deposits recorded on one chain and put to work on two others, where a signature once handed out can never be recalled and nothing reports back |
+| [7/7-multi-chain-deposit-service.md](7/7-multi-chain-deposit-service.md) | draft | Customer deposits held at addresses on two chains the service cannot sign for, where a movement never names the request that caused it |
 | [8/1-protein-similarity-search.md](8/1-protein-similarity-search.md) | draft | Ranked sequence matches whose confidence belongs to the corpus, not to the match |
 | [8/2-news-aggregation-service.md](8/2-news-aggregation-service.md) | draft | Feed items grouped under a declared policy, with a freshness the system can actually vouch for |
 | [8/3-web-crawl-and-index.md](8/3-web-crawl-and-index.md) | draft | Polite bounded crawl whose real product is the revisit decision under a budget |
