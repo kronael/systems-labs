@@ -177,6 +177,11 @@ request path. CI and checks use the local nodes only.
   evidence, and verification contracts.
 - [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — track record
   and the origination of this candidate.
+- [`7-multi-chain-deposit-service.md`](7-multi-chain-deposit-service.md) — the
+  neighbouring lab in this phase. It holds no key on the chains it moves
+  capital to and is never told what happened, so its question is what may be
+  published about capital whose fate is unknown. This lab holds both keys and
+  can ask. The two must not be run as one.
 - [Transaction confirmation and expiration](https://solana.com/developers/guides/advanced/confirmation)
   — a transaction is valid while its blockhash sits within the 151 most
   recent, about 60 to 90 seconds; after expiry it will never be processed, an

@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Curriculum of end-to-end systems labs. Each lab prompts a complete, useful
 product that a learner designs, breaks, recovers, and defends with evidence.
-33 labs across seven phases; seventeen are the core.
+34 labs across seven phases; seventeen are the core.
 
 **Today the repository holds specifications only** — no code, no `Makefile`, no
 lab directory. Every target below is specified, not implemented. Do not report a
@@ -379,17 +379,28 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
 - Phases 1 and 2 — twelve specs. Ten were reviewed and released as `v0.1.0`;
   the import lab has since merged into `1/2`, phase 1 gained two labs from an
   orthogonality review (`S20`), and `1/7` arrived from `S22`.
-- Phases 3, 4, 6, 7, 8 — 21 specs, drafted and reviewed against the contracts
-  this file states.
+- Phases 3, 4, 6, 7, 8 — 22 specs, drafted and reviewed against the contracts
+  this file states. `7/7` is the newest: a deposit service whose capital moves
+  through a signing network that only signs outbound, so nothing ever reports
+  back. It is deliberately distinct from `7/4`, and both specs say so.
 - The 2026-08-23/24 sweep closed `S8`, `S11`, `S14`, `S15`, `S16`, `S17`, `S18`,
   `S19`, `S20`. The 2026-08-28 sweep closed `S23` and `S24`: nine labs gained
   a domain that does work, and the teaching contract was restored across the
-  specs that predate it. The open queue in `BUGS.md` is `S1`, `S9`, `S10` — all
-  `proposed`, all needing sign-off, none blocking spec work.
-- Every spec now carries the nine sections in order, the neighbour publish-split
-  sentence, `status: draft`, and a scale target. `1/7` is in `specs/index.md`'s
-  full list; whether it joins the seventeen core labs is undecided.
+  specs that predate it. The 2026-08-29 hunt opened `S25` and `S26`: the
+  governing spec and the shared scaffold contradict contracts they govern, and
+  seventeen labs promise neighbour documentation links they do not carry. The
+  open queue in `BUGS.md` is `S1`, `S9`, `S10`, `S25`, `S26` — all `proposed`,
+  all needing sign-off.
+- Every spec carries the nine sections in order, the neighbour publish-split
+  sentence, `status: draft`, and a scale target. Seventeen carry that sentence
+  without the links it promises — see `S26`. `1/7` and `7/7` are in
+  `specs/index.md`'s full list; whether `1/7` joins the seventeen core labs is
+  undecided.
 - No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`.
+- There is no root `LICENSE` and no root `README.md`, though
+  `specs/01-systems-labs.md` declares the repository GPL-3.0 and says it
+  carries the full licence text in a root `LICENSE`. Nothing may be tagged or
+  published until that is true.
 - `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
   short-lived credentials, per-phase account table. Only phase 4 buys anything.
 

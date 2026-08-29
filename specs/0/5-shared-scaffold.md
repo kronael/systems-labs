@@ -6,7 +6,7 @@ status: draft
 
 ## Decision
 
-Thirty-one labs cannot each own a generator, a fault controller,
+Thirty-four labs cannot each own a generator, a fault controller,
 and an evidence format. They share one implementation of each, and a lab
 contributes only its own declarative files. This document specifies those
 shared components and the boundary between shared and per-lab.
@@ -39,7 +39,7 @@ There is no shared grader. Each lab carries `EVALUATION.md`, the answer key
 whoever checks the work reads, as fixed by the
 [verification section](../01-systems-labs.md#verification).
 
-What the scaffold owes every lab here is **vocabulary**, so thirty-three answer
+What the scaffold owes every lab here is **vocabulary**, so thirty-four answer
 keys describe their checks the same way rather than each inventing a phrasing.
 Five recurring shapes cover most lab invariants, and a key names the one it
 means:

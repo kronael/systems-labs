@@ -35,6 +35,10 @@ recorded in the [track record](../0/3-blockchain-track.md).
 - [Permissionless application hosting](6-permissionless-application-hosting.md)
   — a system that publishes an application and delivers it to users with no
   server, domain, or account the publisher operates.
+- [Multi-chain deposit service](7-multi-chain-deposit-service.md) — a
+  deposit service that records balances on one chain, puts the capital to
+  work on two others through a signing network that only signs outbound,
+  and must still say who owns what.
 
 ## The technologies
 
@@ -93,7 +97,8 @@ Each lab's `Neighbouring systems` section names what a practitioner would
 have reached for instead — Yellowstone gRPC, RPC subscriptions and polling,
 an EVM settlement contract, Stellar Soroban, The Graph, TrueBlocks,
 Etherscan, OpenZeppelin Relayer, Flashbots Protect, Temporal, static
-hosting behind a CDN, Arweave, ENS — and the one thing each does
+hosting behind a CDN, Arweave, ENS, NEAR Intents, Wormhole Portal,
+THORChain — and the one thing each does
 differently at that lab's boundary. They appear as reading rather than as
 dependencies: the labs never run them, and knowing what each trades away is
 part of defending a design.
