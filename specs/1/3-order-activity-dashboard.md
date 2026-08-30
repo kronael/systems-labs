@@ -85,10 +85,13 @@ declared scope.
 
 ## Adversarial evaluation
 
-The failure schedule repeats events, uses keys that challenge the stated ordering model,
-kills processing immediately before and after durable effects, triggers
-rebalances, skews traffic toward one customer, introduces a compatible schema
-version, and shortens available history in a rebuild fixture. One schedule
+Every fault fires at a named barrier, never on a timer and never at random.
+The failure schedule repeats named events, uses keys that challenge the stated
+ordering model, kills processing immediately before the durable effect of a
+named event and again immediately after it, triggers a rebalance at a named
+event, skews traffic toward one customer, introduces a compatible schema
+version at a named event, and shortens available history in a rebuild
+fixture. One schedule
 serves one study: every step presses the declared ordering scope where it is
 hardest, and the duplicate, crash, rebalance, and rebuild checks assert the
 supporting constraints along the way.

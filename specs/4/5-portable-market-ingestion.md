@@ -79,12 +79,14 @@ At least two application-decomposition or deployment designs must be compared.
 
 ## Adversarial evaluation
 
+Every fault fires at a named barrier, never on a timer and never at random.
 The failure schedule sends identical event histories through both
-environments, kills a Kubernetes worker around a record boundary, sends
-SIGTERM under load, deploys a version that fails readiness, rolls back with
-backlog present, expires an SQS lease, fails one batch item, repeats
-invocations, changes a managed Kubernetes field outside OpenTofu, and scans
-plan and state for supplied secret sentinels.
+environments, kills a Kubernetes worker immediately after a named record's
+durable effect, sends SIGTERM once a named record has been accepted, deploys a
+version that fails readiness, rolls back with backlog present, expires the SQS
+lease of a named record, fails one named batch item, repeats the invocation
+carrying a named record, changes a managed Kubernetes field outside OpenTofu,
+and scans plan and state for supplied secret sentinels.
 
 Checks observe public input and query contracts, transport-visible
 histories, DynamoDB results, Kubernetes rollout state, Lambda-shaped

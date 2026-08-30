@@ -110,7 +110,8 @@ random:
   it; after the dispatcher reports recovery, the schedule lowers the price
   again, so a transaction that was merely forgotten rather than displaced
   becomes minable;
-- it restarts each node with its ledger intact while payments are in flight.
+- it restarts each node with its ledger intact at the submission of a named
+  payment, while that payment and others are in flight.
 
 Evaluation observes chain state through each node's own RPC, the dispatcher's
 public outcome surface, process lifecycle, and exact per-payment histories:

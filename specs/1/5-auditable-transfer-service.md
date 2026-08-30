@@ -72,11 +72,13 @@ alone do not count as analysis.
 
 ## Adversarial evaluation
 
-The failure schedule kills processes immediately before and after database commit,
-broker acknowledgement, local publication progress, downstream effect, and
-consumer progress. It repeats client requests, runs concurrent transfers
-against hot accounts, delays Kafka, restarts PostgreSQL, and rebuilds the audit
-product.
+Every fault fires at a named barrier, never on a timer and never at random.
+The failure schedule kills processes immediately before and immediately after
+a named transfer's database commit, its broker acknowledgement, its local
+publication progress, its downstream effect, and its consumer progress. It
+repeats the client request of a named transfer, runs concurrent transfers
+against hot accounts, delays Kafka at a named transfer, restarts PostgreSQL at
+a named transfer, and rebuilds the audit product.
 
 Checks observe public APIs, SQL and Kafka state, exact histories,
 telemetry, process lifecycle, and resource bounds. They do not require a named

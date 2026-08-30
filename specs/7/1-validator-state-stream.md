@@ -128,7 +128,8 @@ frozen window are skipped when it resumes; verification reads the
 slot-status stream to learn which slots were skipped or marked dead and
 asserts that no confirmed answer ever reflected them. The controller also
 kills the validator after a named slot is rooted and restarts it against the
-preserved ledger, kills the learner's store-side path mid-write, and starts
+preserved ledger, kills the learner's store-side path during the write for account 4711's
+update at slot S, and starts
 the whole system with an empty store against a validator holding prior
 state.
 

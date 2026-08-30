@@ -103,11 +103,13 @@ The document must compare the local design and this one directly.
 
 ## Adversarial evaluation
 
-The failure schedule drives offered load several times the declared ceiling, runs the
-provider latency schedule including a sustained slow interval and a hard
-failure, destroys environments to force first-invocation latency inside a
-measured window, freezes an environment with a provider call outstanding, and
-holds a provider past the handler's maximum run time.
+Every fault fires at a named barrier, never on a timer and never at random.
+The failure schedule drives offered load several times the declared ceiling,
+runs the provider latency schedule including a sustained slow interval and a
+hard failure at named requests, destroys the environment that served a named
+request so the next named request pays first-invocation latency, freezes the
+environment with a named request's provider call outstanding, and holds a
+named request's provider call past the handler's maximum run time.
 
 Checks do not require a named cache or rejection mechanism. They observe
 the public API, the expiry stamped on each returned quote, provider-side

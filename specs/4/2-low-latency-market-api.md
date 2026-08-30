@@ -81,10 +81,13 @@ durability, eviction, and availability properties the design relies on.
 
 ## Adversarial evaluation
 
-The failure schedule aligns expirations, evicts a popular entry before its
-TTL, drives a same-key burst through two replicas, kills one instance during
-a fill, slows DynamoDB, makes Valkey time out, restarts Valkey empty, and
-changes the source generation.
+Every fault fires at a named barrier, never on a timer and never at random.
+The failure schedule aligns the expirations of named keys, evicts a named
+popular entry before its expiry, drives a burst on one named key through two
+replicas, kills one instance at the moment a named key's fill is granted,
+slows DynamoDB at a named request, makes Valkey time out at a named request,
+restarts Valkey empty once a named key has been served, and changes the source
+generation at a named record.
 
 Checks observe public responses, freshness metadata, dependency requests,
 Valkey state and memory, traces, metrics, and exact comparison with the
