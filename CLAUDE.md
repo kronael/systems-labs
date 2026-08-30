@@ -399,9 +399,12 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
   governing spec and the shared scaffold contradict contracts they govern, and
   seventeen labs promise neighbour documentation links they do not carry. The
   open queue in `BUGS.md` is `S1`, `S9`, `S10`, `S25`, `S26` — all `proposed`,
-  all needing sign-off. On 2026-08-30 the citation half of `S26` closed by
-  contract: every `Code pointers` citation is solution-bearing, and each brief
-  names one starter instead of a menu.
+  all needing sign-off. The 2026-08-30 sweep closed most of `S26`: every
+  `Code pointers` citation is solution-bearing, each brief names one starter
+  instead of a menu, every neighbour carries a fetched documentation link,
+  the mechanism leaks are gone, and every fault fires at a named barrier.
+  What is left in `S26` is user-owned — the phase-4 corpus numbers and the
+  phase-2 pair drift.
 - Every spec carries the nine sections in order, the neighbour publish-split
   sentence, `status: draft`, and a scale target. Seventeen carry that sentence
   without the links it promises — see `S26`. `1/7` and `7/7` are in

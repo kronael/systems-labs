@@ -79,6 +79,13 @@ effect", which cannot land at the same boundary twice), `1/1:86-89`,
 `7/1:131`, `7/3:114-115`, `7/4:113`, `4/5:84-85`, `4/3:83`. Every spec does
 declare what must hold after recovery; that half is clean.
 
+2026-08-30: closed. Every scenario in all eleven specs now names the barrier
+it fires at, and each ambiguous "around its durable effect" is split into one
+fault immediately before the effect and one immediately after, because
+"around" cannot land at the same boundary twice. Commits `6a1d717`,
+`52eebf8`. What remains in `S26` is user-owned: the phase-4 corpus numbers
+and the phase-2 pair drift, both design decisions.
+
 **The phase-4 shared corpus is not shared.** `S23` records the intent as one
 corpus and one generator so four stores compare against identical data. In
 fact `4/1:48` says 100 million trades across 20 symbols, `4/2:52` says 100
