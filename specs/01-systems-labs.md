@@ -433,10 +433,13 @@ through metered invocations is the same lesson at higher cost.
 - Live-source adapters use bounded duration, identify themselves where the
   provider requires it, honor rate limits, record provenance, and surface
   disconnection or truncation. CI and verification use generated or cached input.
-- Each lab supplies two supported starters, Go and TypeScript. Both satisfy the
-  same black-box HTTP, Kafka, SQL, and container contracts, so a starter is a
-  skeleton and a build file, never a second set of checks. Other languages remain
-  possible for a learner and unsupported by the course.
+- Each lab supplies one supported starter, and the brief names it. Go is that
+  starter wherever the environment does not dictate another: the kernel surface
+  of phase 6 dictates Rust and C, an on-chain program dictates the chain's own
+  language, and a browser bundle dictates TypeScript. A starter is a skeleton
+  and a build file, never a second set of checks. Other languages remain
+  possible for a learner and unsupported by the course. A menu of starters is a
+  decision the brief owes the learner, not an option it hands them.
 
 The Lambda environment is **required**, not offered, in the labs whose brief
 fixes that execution shape. There the product must run as event-driven
@@ -496,7 +499,8 @@ must guarantee, not by taste.
   A generator that slows down with the system under test
   destroys the measurement these labs exist to teach, so this boundary is not
   negotiable.
-- **Go and TypeScript** are the two supported learner starters.
+- **Go** is the supported learner starter, except where the environment
+  dictates another language.
 
 Language breadth is incidental to system semantics.
 
@@ -775,7 +779,7 @@ Every lab exposes the same root vocabulary:
   worker pool" does. The same checks cover every course-authored
   learner-facing text except `HINTS.md` and `EVALUATION.md`, which are
   solution-bearing by choice. The check is cheap by construction, because every `Code pointers`
-  bullet carries an explicit neutral or solution-bearing state, each lab's
+  bullet is solution-bearing and none of them may appear, each lab's
   dependency set bounds the parameter vocabulary to scan for, and the
   mechanism vocabulary is one curriculum-wide list maintained with the lint.
   CI runs it.
@@ -863,8 +867,11 @@ which is a defect in the lab rather than a reason to build a framework.
 The attribution model is stricter than a source pool:
 
 1. Root `NOTICE` credits the repository and lists broad influences.
-2. Each lab `README.md` lists only solution-neutral sources and dataset
-   provenance.
+2. Each lab `README.md` lists dataset provenance and the neighbour
+   documentation links, and no quirk source at all. Every `Code pointers`
+   citation is solution-bearing: the document that reports the behaviour a
+   lab rests on states the behaviour, and stating it is the reading the
+   learner is meant to do.
 3. Each `HINTS.md` lists the exact architecture and solution sources used by
    that lab, with title, author or project, URL, license, and whether the source
    is cited, adapted, or copied.

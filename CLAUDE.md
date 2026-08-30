@@ -129,9 +129,12 @@ line ``Stuck? See `HINTS.md`.``
 
 `make teaching-lint` enforces this and runs in CI: it fails on a mechanism name
 — prescribed, disclaimed, or merely mentioned — a barrier name, a neighbour
-boundary-difference sentence, a dependency configuration-parameter name, or a
-solution-bearing citation in any course-authored learner-facing text other than
-`HINTS.md` and `EVALUATION.md`.
+boundary-difference sentence, a dependency configuration-parameter name, or any
+`Code pointers` citation in any course-authored learner-facing text other than
+`HINTS.md` and `EVALUATION.md`. Every quirk source is solution-bearing, because
+the page that reports the behaviour states it, so a `README.md` that cites the
+page has handed over the reading. The only links `README.md` carries are the
+neighbour documentation pointers and the dataset provenance.
 
 ## The brief — what, never how
 
@@ -278,9 +281,10 @@ an unclear invariant.
   fault controller, provider simulators. NEVER move these to
   Python; a generator that slows with the system under test destroys the
   measurement the labs teach.
-- **Go and TypeScript** — learner starters for the core phases; **Rust and C**
-  for phase 6, the low-level track. Phase 7 starters follow each chain's own
-  toolchain, and phase 8 fixes no starter language.
+- **Go** — the learner starter, and every brief names one starter, never a
+  menu. The exceptions are dictated by the environment, never by taste:
+  **Rust and C** for phase 6, the low-level track; the chain's own language
+  for an on-chain program; TypeScript for a browser bundle.
 - **HCL** — infrastructure, OpenTofu. Pulumi and CDK are out, because a
   general-purpose language computes resources at run time instead of declaring
   them, and drift needs a plan that states every change in advance.
@@ -321,8 +325,12 @@ RDS, and ElastiCache are excluded — each bills continuously.
    property the design must defend publishes into `README.md`. A question that
    presupposes a mechanism is solution-bearing: mark it `HINTS.md`-bound, or
    rewrite it until it names only the property.
-6. Mark each `Code pointers` citation neutral or solution-bearing. Solution-
-   bearing ones land in `HINTS.md` and never in `README.md`.
+6. Every `Code pointers` citation is solution-bearing and lands in `HINTS.md`
+   or `EVALUATION.md`. NEVER put a quirk source in `README.md`: the document
+   that reports the behaviour states the behaviour, so citing it hands over
+   the reading the learner is meant to do. `README.md` carries the
+   requirements, the dataset provenance, and the neighbour documentation
+   links, and no other citation.
 7. Copy `template/` to the lab directory and remove its implementation. Write
    `EVALUATION.md`. NEVER write a worked solution — the answer key describes
    what a strong design holds, it does not implement one.
