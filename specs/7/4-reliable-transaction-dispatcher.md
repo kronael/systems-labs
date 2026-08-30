@@ -30,7 +30,7 @@ identities. Fault scenarios are declarative files driven by the course-wide
 fault controller.
 
 The learner owns the dispatcher, its public outcome surface, the application
-Compose layer, and `ARCHITECTURE.md`. The supported starters are Rust and Go.
+Compose layer, and `ARCHITECTURE.md`. The starter is Go.
 No cloud account and no mainnet funds are required.
 
 ## Requirements
