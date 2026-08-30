@@ -96,8 +96,8 @@ The submitted `ARCHITECTURE.md` must explain:
 - how schema and saved-state compatibility are decided;
 - how retention limits whether reconstruction is possible.
 
-At least two sink or activation designs must be compared. Naming an
-"exactly-once" mode does not answer the boundary questions.
+At least two sink or activation designs must be compared. Naming a delivery
+guarantee does not answer the boundary questions.
 
 ## Adversarial evaluation
 

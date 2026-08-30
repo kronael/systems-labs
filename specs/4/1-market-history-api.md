@@ -42,8 +42,8 @@ freshness. Results remain complete across DynamoDB pagination. Duplicate or
 overlapping source pages produce one logical trade and correct candles.
 
 The design has a stated logical retention policy. Physical TTL timing cannot
-change query correctness. Every access pattern has a bounded request shape;
-table scans are not accepted as an architecture for public queries.
+change query correctness. Every access pattern has a bounded request shape, and the cost of a public
+query must not grow with the retained history.
 
 The scale target is 100 million retained trades across 20 symbols, a
 sustained ingest of 4,000 trades per second with seven in ten writes landing

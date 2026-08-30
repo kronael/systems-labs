@@ -47,9 +47,9 @@ record and without skipping an unacknowledged one.
 Resident memory has a declared ceiling that holds while the collector is
 stalled for minutes. The ceiling is the host's claim, not a tuning choice:
 the memory belongs to the workload the host is there to run. The service
-continues to accept a growing log file during a stall; it must not read the
-entire file into memory, and it must never block or slow the applications'
-writes.
+continues to accept a growing log file during a stall; its memory use must not
+grow with the size of that file, and it must never block or slow the
+applications' writes.
 
 Partial progress is normal: a write can accept fewer bytes than offered, and
 the kernel can report progress for only part of what it was handed at once.
