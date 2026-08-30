@@ -39,6 +39,13 @@ to README-eligible. These name the answer and are unmarked:
   while `wrk2` and HdrHistogram in the same section *are* marked.
 - `6/4:158-160` — `malloc(3)`, while its three sibling bullets are marked.
 
+2026-08-30: this finding is closed by contract change, not by marking each
+bullet. Every `Code pointers` citation is solution-bearing now, every lab
+spec's section says so in its own words, and `README.md` carries only the
+neighbour documentation links and the dataset provenance. The page that
+reports a behaviour states the behaviour, so citing it in `README.md` handed
+over the reading. Commit `c6ecc0f`. The rest of `S26` stays open.
+
 **Named mechanisms in `Brief` or `Requirements`.** `2/3:56-58` asserts where
 the partner lab's invariant lived and rules out a store-level constraint here;
 `1/2:110-113` explicitly leaves that placement to the learner, so `2/3` both
