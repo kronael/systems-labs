@@ -22,9 +22,8 @@ at once.
 A settlement either takes full effect or has no observable effect, and it
 takes effect exactly once no matter how often it is submitted or how large it
 is. The runtime bounds the program before its logic does: a transaction has a
-compute unit budget, a byte-size ceiling, a cap on
-how much an account may grow per call, and a minimum balance an account must
-hold to stay alive. Each bound, reached, demands a design change rather than
+compute unit budget, a byte-size ceiling, a cap on how much an account may
+grow per call, and a minimum balance an account must hold to stay alive. Each bound, reached, demands a design change rather than
 a parameter change.
 
 The assignment is the whole system: the program's account model, the

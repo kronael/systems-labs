@@ -46,6 +46,13 @@ neighbour documentation links and the dataset provenance. The page that
 reports a behaviour states the behaviour, so citing it in `README.md` handed
 over the reading. Commit `c6ecc0f`. The rest of `S26` stays open.
 
+2026-08-30: the seventeen-spec link gap is closed. Every neighbour in every
+lab spec now carries a documentation URL that answered 200 when it was
+written, and the nine bullets that named a category now name a product —
+Aurora Serverless v2, Step Functions, Fargate, DynamoDB Streams, PostgreSQL
+with a self-run Kafka, Cloud Run, API Gateway caching, Istio, GitHub Pages.
+The banned opener left `7/2` and `7/6` in the same commit, `36e7e17`.
+
 **Named mechanisms in `Brief` or `Requirements`.** `2/3:56-58` asserts where
 the partner lab's invariant lived and rules out a store-level constraint here;
 `1/2:110-113` explicitly leaves that placement to the learner, so `2/3` both
