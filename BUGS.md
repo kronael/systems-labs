@@ -64,6 +64,13 @@ HINTS-only), `7/2:83-85` ("Pre-paying for storage the workload has not yet
 needed fails this requirement"), `6/1:50-51`, `6/5:78-81`, `8/1:36-37`,
 `8/1:100-101`, `8/1:110-111`, `8/4:81-82`, `4/2:72`.
 
+2026-08-30: the mechanism leaks are closed. `4/2`, `6/5`, `8/1`, and `8/4`
+now mark their mechanism-presupposing questions `HINTS.md`-bound in the
+wording `7/7` uses; `4/1`, `3/2`, `6/1`, `4/3`, and `2/3` state the property
+instead of naming or disclaiming the mechanism. Commits `67c2b49`, `fb3afaa`,
+`fe3fbf2`. `7/2:83-85` stands: the sentence states a cost the evidence
+reports, not a mechanism.
+
 **Faults with no named barrier.** The contract says a scenario fires at a
 named record, never on a timer. These do not: `4/2:81-85` (five of eight),
 `2/2:102-105` (no identity anywhere, and one barrier reads "around its durable
