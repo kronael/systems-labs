@@ -104,8 +104,8 @@ calibrate its schedule fidelity. The failure schedule then replays the same
 configuration under faults: the target stalls for ten seconds beginning when a
 named event is acknowledged, raises its service time a hundredfold across a
 named span of events, and refuses new connections at a named boundary; the
-harness steps the container's wall clock at a named event; and SIGTERM arrives
-while events are in flight.
+harness steps the container's wall clock at a named event; and SIGTERM
+arrives once a named event has been sent, while others are in flight.
 
 Checks do not inspect private functions or require a named timing interface,
 concurrency model, or distribution format. They observe the time every event
