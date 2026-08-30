@@ -76,6 +76,9 @@ The submitted `ARCHITECTURE.md` must explain:
 
 At least two cache policies must be compared with the supplied access pattern.
 
+`HINTS.md`-bound, because it presupposes a mechanism: which of the store's
+durability, eviction, and availability properties the design relies on.
+
 ## Adversarial evaluation
 
 The failure schedule aligns expirations, evicts a popular entry before its

@@ -98,6 +98,10 @@ The submitted `ARCHITECTURE.md` must explain:
 Alternative designs must be compared. The chosen design needs stated failure
 modes and one residual limitation.
 
+`HINTS.md`-bound, because each presupposes a mechanism: what a store's fast
+spatial lookup returns before a correct answer is formed, and which of two
+stores is authoritative for which fact.
+
 ## Adversarial evaluation
 
 Verification replays the seeded extract and edit schedule, then issues queries

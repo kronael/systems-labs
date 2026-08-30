@@ -119,6 +119,10 @@ The submitted `ARCHITECTURE.md` must explain:
 Alternative designs must be compared. The chosen design needs stated failure
 modes and one residual limitation.
 
+`HINTS.md`-bound, because each presupposes a mechanism: what a retrieval stage
+guarantees about a candidate set, how an incomplete candidate set is detected,
+and which of two stores is authoritative for corpus membership.
+
 ## Adversarial evaluation
 
 Verification queries with the planted fixtures and asserts that the true match

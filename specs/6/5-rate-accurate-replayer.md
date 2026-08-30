@@ -94,6 +94,9 @@ The submitted `ARCHITECTURE.md` must explain:
 Alternative designs must be compared. The chosen design needs stated failure
 modes and one residual limitation.
 
+`HINTS.md`-bound, because it names a rejected design: what a sender that waits
+for each answer before sending the next would report instead.
+
 ## Adversarial evaluation
 
 Verification first runs the replayer against an instantly answering target to
