@@ -246,6 +246,9 @@ problem.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   PostgreSQL, evidence, and verification contracts.
 - [Directive 98/6/EC](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:31998L0006)

@@ -173,6 +173,9 @@ request path. CI and checks use the local nodes only.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.
 - [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — track record

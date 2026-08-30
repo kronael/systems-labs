@@ -479,6 +479,9 @@ operators' fleets, and running against more than one coordinator.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   workload, fault, and evidence contracts.
 - [47 CFR § 96.39(c)(2)](https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-96)

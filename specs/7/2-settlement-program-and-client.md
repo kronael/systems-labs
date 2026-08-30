@@ -51,7 +51,7 @@ references costs 32 bytes of that; a program may grow an account by at most
 account stays on chain only while it holds the rent-exempt minimum for its
 size, roughly `(bytes + 128) × 3,480 lamports × 2 years`.
 
-The learner owns the program, in Rust, and the client, in TypeScript.
+The learner owns the program, in Rust, and the client, in Go.
 Everything runs against the local validator with airdropped lamports. No
 mainnet funds and no cloud account are involved. Public RPC endpoints are
 opt-in, bounded, cached, and never on a request path; no gate requires them.
@@ -206,6 +206,9 @@ markets under real contention, multi-validator clusters, off-chain indexers,
 and any mainnet or public-RPC dependency are outside the problem.
 
 ## Code pointers
+
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.

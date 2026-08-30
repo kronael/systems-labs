@@ -175,6 +175,9 @@ outside the problem.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`7-multi-chain-deposit-service.md`](7-multi-chain-deposit-service.md) — the
   neighbouring lab that also publishes balances it may have to revise. There
   the movement never names the request that caused it and nothing is ever

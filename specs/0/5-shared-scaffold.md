@@ -218,8 +218,9 @@ Lab 01 is authored against the finished scaffold, not alongside it.
   barrier; the proposal is `BUGS.md` S1 and needs sign-off.
 - Whether the five invariant shapes survive contact with phases 7 and 8, whose
   identities are chain transactions and documents rather than records.
-- Whether `template/` carries both supported starters or only Go, given that a
-  second starter doubles the surface the scaffold must keep passing.
+- Closed 2026-08-30: `template/` carries Go only, because the course now
+  supplies one starter per lab and a second starter would double the surface
+  the scaffold must keep passing.
 
 ## Governing references
 

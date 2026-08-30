@@ -218,6 +218,9 @@ problem.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   PostgreSQL, evidence, and retry contracts.
 - [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html)

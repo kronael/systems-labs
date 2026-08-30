@@ -59,8 +59,8 @@ files driven by the course-wide fault controller.
 
 The learner owns the service, its on-chain records, its public interface, the
 portfolio view, the application Compose layer, and `ARCHITECTURE.md`. The
-supported starters are Rust for the chain-facing work and TypeScript for the
-view. No cloud account and no mainnet funds are required.
+starter is Go, for the chain-facing work and for the
+view alike. No cloud account and no mainnet funds are required.
 
 ## Requirements
 
@@ -243,6 +243,9 @@ request path. CI and checks use the local chains and the local signing network
 only.
 
 ## Code pointers
+
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.

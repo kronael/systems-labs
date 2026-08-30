@@ -162,6 +162,9 @@ capture of new recordings are outside the problem.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
 - [`../0/2-low-level-track.md`](../0/2-low-level-track.md) — low-level track

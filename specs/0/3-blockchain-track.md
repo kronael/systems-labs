@@ -77,8 +77,8 @@ falls below the rent-exempt minimum disappears; and a transaction that carries
 enough accounts to be useful exceeds the message size limit. Each limit forces
 a design change, not a parameter change.
 
-Shape: end-to-end program development. Languages: Rust, with a TypeScript
-client.
+Shape: end-to-end program development. Languages: Rust for the program, Go
+for the client.
 
 Spec: [`../7/2-settlement-program-and-client.md`](../7/2-settlement-program-and-client.md).
 
@@ -93,7 +93,7 @@ keyed on block number silently keeps the orphaned rows. The product must
 therefore answer with two views — a fast unfinalized one and a settled
 finalized one — and must never let the fast view contaminate the settled one.
 
-Shape: data processing. Languages: Go or TypeScript.
+Shape: data processing. Language: Go.
 
 Spec: [`../7/3-finality-aware-transfer-index.md`](../7/3-finality-aware-transfer-index.md).
 
@@ -110,7 +110,7 @@ the account, a replacement needs a fee bump, and a transaction the dispatcher
 abandoned can still be mined. The two chains disagree about what a retry even
 means, which is the contrast this lab exists to teach.
 
-Shape: end-to-end program development plus dispatcher. Languages: Rust or Go.
+Shape: end-to-end program development plus dispatcher. Language: Go.
 
 Spec: [`../7/4-reliable-transaction-dispatcher.md`](../7/4-reliable-transaction-dispatcher.md).
 
@@ -154,8 +154,7 @@ chain withdraws nothing. Retry identity is 7/4's — that lab holds the keys and
 can ask the chain what happened. This one has nobody to ask. Both exclusions
 are written into 7/7's Scope, and 7/3 and 7/4 point back.
 
-Shape: end-to-end program development. Languages: Rust, with a TypeScript
-view.
+Shape: end-to-end program development. Language: Go.
 
 Spec: [`../7/7-multi-chain-deposit-service.md`](../7/7-multi-chain-deposit-service.md).
 

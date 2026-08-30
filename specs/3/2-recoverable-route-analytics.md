@@ -163,6 +163,9 @@ multi-cluster Kafka, and RPKI logic are outside the problem.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Flink,
   Kafka, evidence, and failure contracts.
 - [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.

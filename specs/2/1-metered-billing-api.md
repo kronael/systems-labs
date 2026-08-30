@@ -190,6 +190,9 @@ outside the problem.
 
 ## Code pointers
 
+Every citation below is solution-bearing. None of it publishes into
+`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, the
   Lambda execution-shape policy, cost, grading, and evidence contracts.
 - [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
