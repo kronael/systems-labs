@@ -54,8 +54,8 @@ their tests. No cloud account is required.
 
 No two live reservations for one resource may overlap in time. This holds under
 concurrent conflicting requests at the declared contention profile. This
-invariant is the lab's study: the local pairing's store enforced it
-structurally, and the required store here cannot express it. The execution
+invariant is the lab's study, and the environment here will not hold it for
+the design. The execution
 model's lifecycle — the freeze, environment reuse, and the invocation ceiling
 — is an environment fact whose contract is the study of the phase's opening
 lab; here the design must survive it while establishing the invariant no

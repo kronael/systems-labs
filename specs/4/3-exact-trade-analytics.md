@@ -127,10 +127,10 @@ The lab does not run them.
 The expected focused time is fourteen to eighteen hours. The learner builds
 the ingestion service, the schema, and the query API. ClickHouse, the
 generator, the cached recordings, and the fault schedules are prepared, but
-producing an exact answer against a store whose deduplication is background
-work is not, and a first design that trusts the store's own reconciliation
-is falsified the moment the insert rate outruns merging, forcing a rebuild
-of the write and query path. Real Kraken recordings are opt-in, bounded, and
+producing an exact answer against a store that reconciles in the background
+is not, and a first design that trusts that reconciliation is falsified the
+moment the arrival rate outruns it, forcing a rebuild of the write and query
+path. Real Kraken recordings are opt-in, bounded, and
 cached; CI uses generated input only. Dashboards, alerting, multi-node
 replication, and cluster operations are outside the problem.
 
