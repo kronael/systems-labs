@@ -119,17 +119,19 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **jemalloc** makes returning memory a scheduled policy rather than a side
-  effect: unused dirty pages decay along a curve over roughly ten seconds and
-  are purged with `madvise`, so residency follows load with a lag instead of
-  holding a high-water mark.
-- **tcmalloc** releases from its page heap at a configured background rate,
-  never on the release call itself, and its tuning guide states the cost this
-  lab measures: released memory must be faulted back, and fine-grained release
-  breaks up hugepages.
-- **mimalloc** purges rather than unmaps: it decommits unused pages after a
-  delay it exposes as a first-class option, keeping the address ranges while
-  shrinking residency.
+- **jemalloc** — [documentation](https://jemalloc.net/). Makes returning
+  memory a scheduled policy rather than a side effect: unused dirty pages
+  decay along a curve over roughly ten seconds and are purged with `madvise`,
+  so residency follows load with a lag instead of holding a high-water mark.
+- **tcmalloc** — [documentation](https://google.github.io/tcmalloc/). Releases
+  from its page heap at a configured background rate, never on the release
+  call itself, and its tuning guide states the cost this lab measures:
+  released memory must be faulted back, and fine-grained release breaks up
+  hugepages.
+- **mimalloc** — [documentation](https://github.com/microsoft/mimalloc).
+  Purges rather than unmaps: it decommits unused pages after a delay it
+  exposes as a first-class option, keeping the address ranges while shrinking
+  residency.
 
 The lab does not run them.
 

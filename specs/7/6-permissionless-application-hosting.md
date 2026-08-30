@@ -20,7 +20,7 @@ that delivery: publishing a release, keeping every release retrievable, moving
 users to the newest one, and ending with a program that nobody, including the
 publisher, can change.
 
-The hard part is that deployment buys less than it appears to. Nothing keeps
+Deployment buys less than it appears to. Nothing keeps
 the published bytes available unless something is arranged to keep them; the
 address of the bytes can never change, so being current lives in a separate
 pointer that can go stale or die of neglect; and the program remains
@@ -205,25 +205,26 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **Static hosting behind a CDN**, GitHub Pages being the plainest case,
-  makes availability an operator's obligation instead of the publisher's
-  arrangement: the site stays up because the host keeps it up, the name moves
-  the instant the operator says so, and the price is that nothing binds the
-  name to particular bytes and the account is the availability — published
-  sites may be no larger than 1 GB, bandwidth has a soft limit of 100 GB per
-  month, and the host's terms decide what stays published.
-- **Arweave** makes permanence a purchase rather than an arrangement: one
-  upfront fee, most of which enters a storage endowment that pays out only
-  when block rewards fall short, priced on the expectation that storage keeps
-  getting cheaper. Nothing needs the publisher after the transaction and
-  nothing can be unpublished — and the mutable-pointer problem remains
-  exactly as it is here.
-- **ENS with `contenthash`** puts the pointer itself on a chain: a resolver
-  record holds a machine-readable multicodec content address, formerly
-  standardized as EIP-1577, so moving the pointer is a transaction, the
-  record persists with no republishing publisher, and every past value is
-  public — at the cost of gas per move and of needing a chain client or a
-  trusted gateway to read it.
+- **GitHub Pages** — [documentation](https://docs.github.com/en/pages). Static
+  hosting behind a CDN makes availability an operator's obligation instead of
+  the publisher's arrangement: the site stays up because the host keeps it up,
+  the name moves the instant the operator says so, and the price is that
+  nothing binds the name to particular bytes and the account is the
+  availability — published sites may be no larger than 1 GB, bandwidth has a
+  soft limit of 100 GB per month, and the host's terms decide what stays
+  published.
+- **Arweave** — [documentation](https://docs.arweave.org/). Makes permanence a
+  purchase rather than an arrangement: one upfront fee, most of which enters a
+  storage endowment that pays out only when block rewards fall short, priced
+  on the expectation that storage keeps getting cheaper. Nothing needs the
+  publisher after the transaction and nothing can be unpublished — and the
+  mutable-pointer problem remains exactly as it is here.
+- **ENS with `contenthash`** — [documentation](https://docs.ens.domains/).
+  Puts the pointer itself on a chain: a resolver record holds a
+  machine-readable multicodec content address, formerly standardized as
+  EIP-1577, so moving the pointer is a transaction, the record persists with
+  no republishing publisher, and every past value is public — at the cost of
+  gas per move and of needing a chain client or a trusted gateway to read it.
 
 Read the GitHub Pages usage limits, the Arweave endowment description, and
 the ENS contenthash specification. The lab does not run them.

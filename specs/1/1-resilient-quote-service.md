@@ -117,14 +117,18 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **Envoy** moves admission control, retry budgets, and outlier detection into
-  a proxy in front of the service, so the overload policy lives in
-  configuration and the application never learns its own capacity.
-- **resilience4j**, and Hystrix before it, packages the failure policy as named
-  per-call-site primitives, which fixes the isolation boundaries before any
-  measurement has shown where the actual bottleneck sits.
-- **HAProxy** caps connections and request rates at the edge, so excess traffic
-  is refused before it reaches the service rather than handled inside it.
+- **Envoy** — [documentation](https://www.envoyproxy.io/docs/envoy/latest/).
+  Moves admission control, retry budgets, and outlier detection into a proxy
+  in front of the service, so the overload policy lives in configuration and
+  the application never learns its own capacity.
+- **resilience4j** —
+  [documentation](https://resilience4j.readme.io/docs/getting-started). With
+  Hystrix before it, it packages the failure policy as named per-call-site
+  primitives, which fixes the isolation boundaries before any measurement has
+  shown where the actual bottleneck sits.
+- **HAProxy** — [documentation](https://docs.haproxy.org/). Caps connections
+  and request rates at the edge, so excess traffic is refused before it
+  reaches the service rather than handled inside it.
 
 Read their documentation on admission control, circuit breaking, and load
 shedding. The lab does not run them.

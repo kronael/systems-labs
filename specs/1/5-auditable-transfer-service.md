@@ -101,16 +101,21 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **ActiveMQ**, as a JMS broker, can join an XA transaction with the database,
-  so one coordinator prepares the commit on both sides — and inherits the
+- **ActiveMQ** —
+  [documentation](https://activemq.apache.org/components/classic/documentation).
+  As a JMS broker, can join an XA transaction with the database, so one
+  coordinator prepares the commit on both sides — and inherits the
   coordinator's failure mode: an in-doubt transaction that holds its locks
   until recovery resolves it.
-- **Temporal** makes the cross-system progress itself durable state owned by a
-  workflow engine, so what survives a crash between the two effects becomes
-  that engine's contract rather than the application's design.
-- **CockroachDB**, holding ledger and audit in one store, removes the boundary
-  entirely: both commit in a single transactional domain, at the price of the
-  audit product sharing the ledger's failure and load domain.
+- **Temporal** — [documentation](https://docs.temporal.io/). Makes the
+  cross-system progress itself durable state owned by a workflow engine, so
+  what survives a crash between the two effects becomes that engine's contract
+  rather than the application's design.
+- **CockroachDB** —
+  [documentation](https://www.cockroachlabs.com/docs/stable/). Holding ledger
+  and audit in one store, removes the boundary entirely: both commit in a
+  single transactional domain, at the price of the audit product sharing the
+  ledger's failure and load domain.
 
 Read their documentation on transaction scope, coordination, and failure
 recovery. The lab does not run them.

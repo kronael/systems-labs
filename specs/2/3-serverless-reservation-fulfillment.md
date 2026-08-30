@@ -166,16 +166,23 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **A relational store behind the same functions** keeps the exclusion
-  constraint that made the local version's invariant structural, but reintroduces
-  connection management from an environment count the learner does not control.
-- **A workflow service** such as Step Functions moves the work that outlives a
-  response into a managed state machine with its own durability and its own
-  execution limits, so the freeze stops being the learner's problem and becomes
-  a service contract to read.
-- **A container platform** keeps the long-lived process and the worker pool, and
-  the local lab already showed what that buys. The comparison is what makes the
-  cost of this execution model legible.
+- **Amazon Aurora Serverless v2** —
+  [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html).
+  A relational store behind the same functions keeps the exclusion constraint
+  that made the local version's invariant structural, but reintroduces
+  connection management from an environment count the learner does not
+  control.
+- **AWS Step Functions** —
+  [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html).
+  A workflow service moves the work that outlives a response into a managed
+  state machine with its own durability and its own execution limits, so the
+  freeze stops being the learner's problem and becomes a service contract to
+  read.
+- **AWS Fargate** —
+  [documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html).
+  A container platform keeps the long-lived process and the worker pool, and
+  the local lab already showed what that buys. The comparison is what makes
+  the cost of this execution model legible.
 
 Read their documentation on transactions, durable execution, and lifecycle. The
 lab does not run them.

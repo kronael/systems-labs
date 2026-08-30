@@ -151,14 +151,20 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **A change-data stream from the store** turns publication into someone else's
+- **Amazon DynamoDB Streams** —
+  [documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html).
+  A change-data stream from the store turns publication into someone else's
   problem, at the cost of a delivery order that no longer matches the write's
   atomicity, which is the same trade this lab makes explicit.
-- **A workflow service** makes the two-step effect a durable execution with its
+- **AWS Step Functions** —
+  [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html).
+  A workflow service makes the two-step effect a durable execution with its
   own retry and compensation semantics, moving the commit gap into a service
   contract rather than removing it.
-- **A relational ledger with a self-run broker**, which is the local lab, and is
-  the comparison that makes this design's residual window legible.
+- **PostgreSQL with a self-run Kafka** —
+  [documentation](https://www.postgresql.org/docs/current/). A relational
+  ledger with a self-run broker, which is the local lab, and is the comparison
+  that makes this design's residual window legible.
 
 Read their documentation on change streams, durable execution, and delivery
 guarantees. The lab does not run them.

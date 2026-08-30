@@ -164,18 +164,21 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **Yellowstone gRPC (Dragon's Mouth)** consumes the same plugin interface
-  but immediately turns it into a filtered gRPC subscription service, moving
-  consumers off the validator's boundary onto a network stream with
-  per-subscription commitment filters — the back-pressure problem is solved
-  once, inside the plugin, for all consumers.
-- **RPC WebSocket subscriptions** (`accountSubscribe`) let the node apply the
-  requested commitment level before a notification is delivered, so the
-  subscriber never faces pre-commitment state — and a dropped connection has
-  no replay and no snapshot to resume from.
-- **JSON-RPC polling** (`getProgramAccounts`) returns current account state
-  at a chosen commitment level in one shot, which makes cold start trivial
-  and every state between two polls invisible.
+- **Yellowstone gRPC (Dragon's Mouth)** —
+  [documentation](https://github.com/rpcpool/yellowstone-grpc). Consumes the
+  same plugin interface but immediately turns it into a filtered gRPC
+  subscription service, moving consumers off the validator's boundary onto a
+  network stream with per-subscription commitment filters — the back-pressure
+  problem is solved once, inside the plugin, for all consumers.
+- **RPC WebSocket subscriptions** (`accountSubscribe`) —
+  [documentation](https://solana.com/docs/rpc/websocket). These let the node
+  apply the requested commitment level before a notification is delivered, so
+  the subscriber never faces pre-commitment state — and a dropped connection
+  has no replay and no snapshot to resume from.
+- **JSON-RPC polling** (`getProgramAccounts`) —
+  [documentation](https://solana.com/docs/rpc/http). This returns current
+  account state at a chosen commitment level in one shot, which makes cold
+  start trivial and every state between two polls invisible.
 
 Read their documentation on commitment filtering, delivery, and cold start.
 The lab does not run them.

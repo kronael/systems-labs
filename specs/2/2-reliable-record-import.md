@@ -133,15 +133,17 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **Kafka** replaces the per-message lease with a consumer-owned offset, so
-  progress is a position the consumer moves rather than a clock the queue
-  runs, and history survives acknowledgement.
-- **RabbitMQ** redelivers when a channel closes rather than when a timer
-  expires, which ties recovery to connection lifetime instead of a visibility
-  window.
-- **AWS Step Functions** moves retry, catch, and terminal-failure routing into
-  a platform state machine, so the fate of an identity is orchestrated rather
-  than designed.
+- **Kafka** — [documentation](https://kafka.apache.org/documentation/).
+  Replaces the per-message lease with a consumer-owned offset, so progress is
+  a position the consumer moves rather than a clock the queue runs, and
+  history survives acknowledgement.
+- **RabbitMQ** — [documentation](https://www.rabbitmq.com/docs). Redelivers
+  when a channel closes rather than when a timer expires, which ties recovery
+  to connection lifetime instead of a visibility window.
+- **AWS Step Functions** —
+  [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html).
+  Moves retry, catch, and terminal-failure routing into a platform state
+  machine, so the fate of an identity is orchestrated rather than designed.
 
 Read their documentation on delivery, redelivery, and failure routing. The lab
 does not run them.

@@ -118,15 +118,19 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **Apache Flink** owns state, progress, and restart through checkpoints, so
-  the coordination between durable effect and consumer progress becomes the
-  framework's contract instead of the learner's design.
-- **Kafka Streams** materializes views from the same log with managed state
-  stores and its own rebalance behavior, trading the external query store for
-  state that lives inside the consumer.
-- **RabbitMQ** deletes what it has acknowledged, so the rebuild this lab
-  requires is impossible by construction: history exists only while a queue
-  still holds it.
+- **Apache Flink** —
+  [documentation](https://nightlies.apache.org/flink/flink-docs-stable/). Owns
+  state, progress, and restart through checkpoints, so the coordination
+  between durable effect and consumer progress becomes the framework's
+  contract instead of the learner's design.
+- **Kafka Streams** —
+  [documentation](https://kafka.apache.org/documentation/streams/).
+  Materializes views from the same log with managed state stores and its own
+  rebalance behavior, trading the external query store for state that lives
+  inside the consumer.
+- **RabbitMQ** — [documentation](https://www.rabbitmq.com/docs). Deletes what
+  it has acknowledged, so the rebuild this lab requires is impossible by
+  construction: history exists only while a queue still holds it.
 
 Read their documentation on state, progress, and replay. The lab does not run
 them.

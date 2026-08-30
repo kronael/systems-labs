@@ -141,15 +141,19 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **A long-lived process behind an autoscaler** keeps the connection pool and
-  the in-process cache while making capacity a scaling policy, which trades
+- **Google Cloud Run** — [documentation](https://cloud.google.com/run/docs). A
+  long-lived process behind an autoscaler keeps the connection pool and the
+  in-process cache while making capacity a scaling policy, which trades
   first-invocation latency for capacity held during idle periods.
-- **An API gateway with request-level caching** answers repeat requests before
-  any code runs, which removes the fan-out entirely for a hit and moves the
+- **Amazon API Gateway caching** —
+  [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html).
+  An API gateway with request-level caching answers repeat requests before any
+  code runs, which removes the fan-out entirely for a hit and moves the
   freshness decision into configuration.
-- **A service mesh sidecar** provides timeouts, retries, and circuit breaking
-  outside the application, which is exactly the policy this lab requires the
-  design to own and state.
+- **Istio** — [documentation](https://istio.io/latest/docs/). A service mesh
+  sidecar provides timeouts, retries, and circuit breaking outside the
+  application, which is exactly the policy this lab requires the design to own
+  and state.
 
 Read their documentation on scaling, caching, and outlier handling. The lab does
 not run them.

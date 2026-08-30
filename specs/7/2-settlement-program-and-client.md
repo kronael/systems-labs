@@ -21,8 +21,8 @@ at once.
 
 A settlement either takes full effect or has no observable effect, and it
 takes effect exactly once no matter how often it is submitted or how large it
-is. The hard part is that the runtime bounds the program before its logic
-does: a transaction has a compute unit budget, a byte-size ceiling, a cap on
+is. The runtime bounds the program before its logic does: a transaction has a
+compute unit budget, a byte-size ceiling, a cap on
 how much an account may grow per call, and a minimum balance an account must
 hold to stay alive. Each bound, reached, demands a design change rather than
 a parameter change.
@@ -176,22 +176,25 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **Ethereum (an EVM contract)** prices compute instead of capping it per
-  slot of work: the caller buys gas up to a block gas limit that moves by
-  validator signalling, a transaction that runs out reverts every change but
-  still pays for the work done, and contract storage persists with no
-  minimum balance to maintain — so a bigger settlement is a more expensive
-  transaction, not a redesign, until the block limit itself is the wall.
-- **Stellar Soroban** also enforces hard per-transaction resource limits on
-  CPU instructions and ledger I/O, but its rent runs the other way at this
-  boundary: a persistent entry whose TTL lapses is archived and restorable,
-  not gone, so an underfunded account is a recoverable state instead of a
-  disappearance.
-- **PostgreSQL**, as the off-chain ledger a settlement service would
-  ordinarily sit on, makes a settlement over any participant count one ACID
-  transaction; the ceilings that shape this lab are operator-set timeouts
-  and hardware there, not protocol constants that every node enforces
-  identically.
+- **Ethereum (an EVM contract)** —
+  [documentation](https://ethereum.org/en/developers/docs/smart-contracts/).
+  Prices compute instead of capping it per slot of work: the caller buys gas
+  up to a block gas limit that moves by validator signalling, a transaction
+  that runs out reverts every change but still pays for the work done, and
+  contract storage persists with no minimum balance to maintain — so a bigger
+  settlement is a more expensive transaction, not a redesign, until the block
+  limit itself is the wall.
+- **Stellar Soroban** —
+  [documentation](https://developers.stellar.org/docs/build/smart-contracts/overview).
+  Also enforces hard per-transaction resource limits on CPU instructions and
+  ledger I/O, but its rent runs the other way at this boundary: a persistent
+  entry whose TTL lapses is archived and restorable, not gone, so an
+  underfunded account is a recoverable state instead of a disappearance.
+- **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/).
+  As the off-chain ledger a settlement service would ordinarily sit on, makes
+  a settlement over any participant count one ACID transaction; the ceilings
+  that shape this lab are operator-set timeouts and hardware there, not
+  protocol constants that every node enforces identically.
 
 Read the Ethereum gas documentation, the Soroban state-archival
 documentation, and the PostgreSQL transaction documentation. The lab does not

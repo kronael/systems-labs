@@ -160,18 +160,21 @@ their documentation links publish into `README.md`; the boundary difference
 stated with each publishes into `HINTS.md`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
-- **Google Cloud Run** serves the same scale-to-zero request shape from a
-  container, and its CPU-allocation setting is this lab's boundary made
-  configurable: request-based billing throttles the CPU once the response is
-  sent, instance-based billing keeps it computing — for a price.
-- **AWS Step Functions** is the vendor's own answer to work larger than one
-  invocation: a Standard workflow records each step durably and runs for up
-  to a year, so resumption stops being the function's problem and becomes a
-  second orchestration surface to own.
-- **Temporal** generalizes that answer: it records every effect in an event
-  history and replays it after a crash, so code appears to run for months
-  across process deaths — at the cost of operating a second stateful
-  platform.
+- **Google Cloud Run** — [documentation](https://cloud.google.com/run/docs).
+  Serves the same scale-to-zero request shape from a container, and its
+  CPU-allocation setting is this lab's boundary made configurable:
+  request-based billing throttles the CPU once the response is sent,
+  instance-based billing keeps it computing — for a price.
+- **AWS Step Functions** —
+  [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html).
+  Is the vendor's own answer to work larger than one invocation: a Standard
+  workflow records each step durably and runs for up to a year, so resumption
+  stops being the function's problem and becomes a second orchestration
+  surface to own.
+- **Temporal** — [documentation](https://docs.temporal.io/). Generalizes that
+  answer: it records every effect in an event history and replays it after a
+  crash, so code appears to run for months across process deaths — at the cost
+  of operating a second stateful platform.
 
 Read their documentation on lifecycle, state, and background work. The lab
 does not run them.
