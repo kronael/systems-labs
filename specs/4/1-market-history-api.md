@@ -22,7 +22,9 @@ The supplied Compose stack starts DynamoDB Local, OpenTelemetry collection, and
 the fault controller. It includes the shared deterministic trade generator, seeded to this lab's
 scale target, an
 opt-in bounded Kraken recent-trades recorder, provenance and replay tools,
-and DynamoDB inspection, hot-symbol and cursor-overlap scenarios.
+and DynamoDB inspection, hot-symbol and cursor-overlap scenarios. The store
+endpoint the stack publishes is served through the fault controller's
+transport layer.
 
 The learner owns ingestion, serving, data design, and the application Compose
 layer. Standard Make targets start the database, generate or replay input,
@@ -77,8 +79,28 @@ multi-page queries, reads through a secondary access path immediately after
 a write, retains physically expired items, and introduces malformed
 precision data.
 
+The concentrated burst falsifies a key design only because the controller
+supplies the ceiling the local store does not: downloadable DynamoDB ignores
+provisioned throughput settings, bounds read and write speed only by the host
+machine, and partitions no table, so no volume of generated trades makes it
+throttle. The transport layer is the layer this lab's required gate depends
+on. In front of the store it reads each request's table and index keys,
+operation type, and item size, holds the request before dispatch, applies the
+scenario's declared partition mapping and per-partition capacity budget,
+forwards what that budget admits, and refuses the rest with the store's own
+throttling outcome, applying none of what it refused. Injection ends at its
+declared release boundary, and a run in which it never activates fails rather
+than passes.
+
+That gate proves that the submitted key design holds its invariants and its
+declared service level inside a declared capacity model. It does not prove
+how the hosted service's own partition adaptation would treat that design;
+`EVALUATION.md` states that boundary, and the optional hosted smoke run is
+what compares the modelled limit against the real one.
+
 Checks observe public APIs, DynamoDB requests and items, source histories,
-telemetry, key distribution, request counts, and exact candle reconciliation.
+telemetry, key distribution, request counts, the requests the transport layer
+admitted and refused, and exact candle reconciliation.
 They do not require a particular single-table or multi-table pattern.
 
 ## Acceptance evidence
@@ -142,4 +164,10 @@ Every citation below is solution-bearing. None of it publishes into
 - [Paginating query results](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.Pagination.html)
   — a `Query` returns at most 1 MB per call, and only the absence of
   `LastEvaluatedKey` proves a result set is complete.
+- [DynamoDB local usage notes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.UsageNotes.html)
+  — "Provisioned throughput settings are ignored in downloadable DynamoDB",
+  "the speed of read and write operations on table data is limited only by the
+  speed of your computer", and "when you run DynamoDB locally, there is no
+  table partitioning", so this lab's ceiling comes from the controller and
+  never from the store.
 - Implementation pointers do not exist while the spec is `draft`.
