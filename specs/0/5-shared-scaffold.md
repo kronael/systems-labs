@@ -4,6 +4,9 @@ status: draft
 
 # Shared scaffold
 
+This file is author-facing. Like everything under `specs/`, it is not part of
+the learner tree; any learner-facing orientation is derived from it later.
+
 ## Decision
 
 Thirty-four labs cannot each own a generator, a fault controller,

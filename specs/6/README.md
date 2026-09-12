@@ -4,6 +4,9 @@ status: reference
 
 # Phase 6 — Low-level
 
+This file is author-facing. Like everything under `specs/`, it is not part of
+the learner tree; any learner-facing orientation is derived from it later.
+
 ## What this phase is about
 
 Phase 6 is a separate catalog in Rust and C whose quirks live in the kernel

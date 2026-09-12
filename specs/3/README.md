@@ -4,6 +4,9 @@ status: reference
 
 # Phase 3 — real Internet streaming
 
+This file is author-facing. Like everything under `specs/`, it is not part of
+the learner tree; any learner-facing orientation is derived from it later.
+
 ## What this phase is about
 
 This phase feeds the labs from the real Internet: BGP routing observations in

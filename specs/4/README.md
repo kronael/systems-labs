@@ -4,6 +4,9 @@ status: reference
 
 # Phase 4 — NoSQL, analytics, and platform portability
 
+This file is author-facing. Like everything under `specs/`, it is not part of
+the learner tree; any learner-facing orientation is derived from it later.
+
 ## What this phase is about
 
 Phase 4 puts pressure on stores and platforms whose contracts differ from a

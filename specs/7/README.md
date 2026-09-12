@@ -4,6 +4,9 @@ status: reference
 
 # Phase 7 — Blockchain
 
+This file is author-facing. Like everything under `specs/`, it is not part of
+the learner tree; any learner-facing orientation is derived from it later.
+
 ## What this phase is about
 
 Phase 7 is a separate catalog on Solana and Ethereum whose quirks live in

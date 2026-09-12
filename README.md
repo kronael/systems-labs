@@ -80,6 +80,13 @@ seventeen core labs in course order, and lab 01 is the intended entry point.
 Read the catalog rows to see what each lab asks; open a specification only if
 you have decided you are an author rather than a learner.
 
+While no lab runs, three things are worth doing and none of them spoils
+anything: check that you meet [what you will need](#what-you-will-need); read
+one phase's row set in the catalog and decide which product you want to build
+first; and read [`docs/cloud-access.md`](docs/cloud-access.md) if you expect to
+take the optional cloud path. You are ready when you can start a container on
+your own machine and say which lab you mean to do first.
+
 Phase 1 is where a learner starts. The later phases assume it: three of the
 five phase 2 labs recast a phase 1 product on an execution model you cannot
 operate, and each one needs your phase 1 design and evidence to compare
@@ -101,6 +108,16 @@ The digit directory under `specs/` is the curriculum phase, not a version.
 purpose.
 
 ## What you will need
+
+Before the first lab you can write and run a program of a few hundred lines,
+use a terminal, start a container, and read a vendor's own documentation rather
+than a tutorial about it. You do not need to have operated a database, a
+message broker, or a cluster: that is what the labs teach. A lab asks you to
+design a system, so it assumes you can already build one that works.
+
+You need a machine that runs Linux containers. Each lab states a scale target
+— a speed, a load, and an amount — and those numbers decide how much machine a
+lab wants; the exact figures land with the scaffold.
 
 Every required gate runs locally, and no lab needs a cloud account to pass.
 Labs name heavyweight dependencies — PostgreSQL, Kafka, DynamoDB Local,

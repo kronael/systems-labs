@@ -1,7 +1,8 @@
 # Specification index
 
-Author-facing. Every lab specification below carries its `Adversarial
-evaluation` section, so opening one spends that lab for whoever does it.
+Author-facing. No lab is built: every row below is a specification, and each
+one carries its `Adversarial evaluation` section, so opening a specification
+spends that lab for whoever does it.
 
 ## Core catalog
 

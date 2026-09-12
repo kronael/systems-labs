@@ -4,6 +4,9 @@ status: reference
 
 # Phase 8 — Search, retrieval, and spatial
 
+This file is author-facing. Like everything under `specs/`, it is not part of
+the learner tree; any learner-facing orientation is derived from it later.
+
 ## What this phase is about
 
 Phase 8 is a separate catalog built on retrieval: every lab pairs a search
