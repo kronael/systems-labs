@@ -44,6 +44,12 @@ each acknowledged transfer exactly once however many times its record arrives.
 No transfer may be applied twice under duplicate resubmission, and no balance
 may go negative.
 
+The product is held constant, so its invariants are `1/5`'s in full: total
+value remains constant across accepted transfers, account histories and
+balances agree, and one idempotency key and payload have one monetary effect
+while conflicting reuse fails visibly. The execution model changes what has to
+hold them, never which of them hold.
+
 Nothing runs between events here. Work still outstanding when a response is
 returned is not guaranteed to run, because the environment freezes once the
 runtime and every extension have completed with no events pending; the

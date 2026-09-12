@@ -19,7 +19,8 @@ between ingestion and serving are the learner's decisions.
 ## Prepared scaffold
 
 The supplied Compose stack starts DynamoDB Local, OpenTelemetry collection, and
-the fault controller. It includes a deterministic million-trade generator, an
+the fault controller. It includes the shared deterministic trade generator, seeded to this lab's
+scale target, an
 opt-in bounded Kraken recent-trades recorder, provenance and replay tools,
 and DynamoDB inspection, hot-symbol and cursor-overlap scenarios.
 

@@ -22,8 +22,8 @@ when Valkey cannot answer are the learner's decisions.
 
 The supplied Compose stack starts Valkey, DynamoDB Local, OpenTelemetry
 collection, two optional application slots, and the fault controller. It
-includes a deterministic market-history loader, hot-key and working-set
-generators, memory-pressure controls, cache inspection, and latency measurement.
+includes a loader that reads the shared deterministic trade generator's
+output, hot-key and working-set generators, memory-pressure controls, cache inspection, and latency measurement.
 
 The learner owns the API, cache policy, application topology, and application
 Compose layer. Standard Make targets load durable market data, run cold and warm

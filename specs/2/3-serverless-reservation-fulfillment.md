@@ -127,9 +127,11 @@ property the local version had that this one cannot recover.
 
 ## Adversarial evaluation
 
-The failure schedule drives many clients at one resource with deliberately overlapping
-intervals, then reads the final reservation set and asserts that no two live
-reservations for that resource overlap. It freezes environments at the freeze
+The failure schedule drives many clients at one resource with deliberately
+overlapping intervals, intervals that meet exactly at a boundary among them, so
+the schedule exercises both halves of the rule: a shared interior conflicts and
+a shared boundary does not. It then reads the final reservation set and asserts
+that no two live reservations for that resource overlap. It freezes environments at the freeze
 barrier with fulfillment outstanding, destroys environments between
 invocations, repeats requests with the same and with altered payloads, repeats a
 request long after its first acceptance, drives offered load past what the
