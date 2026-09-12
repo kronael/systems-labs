@@ -199,10 +199,10 @@ lab does not run them.
 ## Scope
 
 The expected focused time is sixteen to twenty hours; this track is
-deliberately denser than phases 1 to 5 because the interaction between the
+deliberately denser than phases 1 to 4 because the interaction between the
 search engine and the durable store is the lesson, and the redesign loop
 across ingestion, index/store consistency, and significance recomputation
-prices out well above a phase 1-5 lab. The learner builds the ingestion service,
+prices out well above a phase 1-4 lab. The learner builds the ingestion service,
 the index and store design, and the query API. OpenSearch, PostgreSQL, the
 generator, the scoring rules, the planted fixtures, and the fault schedules
 are prepared.
@@ -231,7 +231,8 @@ Every citation below is solution-bearing. None of it publishes into
   relationships between sequences as well as help identify members of gene
   families."
 - [The Statistics of Sequence Similarity Scores](https://www.ncbi.nlm.nih.gov/BLAST/tutorial/Altschul-1.html)
-  — NCBI's primary description of the Karlin-Altschul statistics: the expected
+  — the track record's origination source and NCBI's primary description of
+  the Karlin-Altschul statistics: the expected
   number of chance matches is proportional to the search space, a database
   search multiplies the pairwise expectation by `N/n` with `N` the total
   database length, and a normalized score plus the search space size is all
@@ -242,8 +243,8 @@ Every citation below is solution-bearing. None of it publishes into
   'expect' to see by chance when searching a database of a particular size".
   Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
 - [How BLAST E-values are calculated](https://sequenceserver.com/blog/blast-e-value-meaning/)
-  — the track record's origination source: the same amount of similarity gets
-  a weaker significance as the database grows, because larger databases have
+  — the same amount of similarity gets a weaker significance as the database
+  grows, because larger databases have
   more chances of producing the alignment by chance. Solution-bearing: this
   belongs in `HINTS.md`, never in `README.md`.
 - [UniProt FTP license](https://ftp.uniprot.org/pub/databases/uniprot/LICENSE)

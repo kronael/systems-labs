@@ -137,7 +137,7 @@ configured ceiling admits, and delays a store response until a handler
 runs out of time.
 
 Checks do not require a named item layout or serialization mechanism. They
-observes HTTP, store-visible state, invocation counts, and the submitted
+observe HTTP, store-visible state, invocation counts, and the submitted
 evidence.
 
 ## Acceptance evidence

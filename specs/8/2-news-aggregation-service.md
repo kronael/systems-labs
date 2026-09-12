@@ -89,7 +89,7 @@ with bursts of 2,000 per second, 20 million retained items, and 100
 concurrent readers across the view and search operations. At that size,
 comparing each arrival against every retained item is arithmetic nobody can
 afford, so the cost of the grouping decision is part of the design, not an
-implementation detail. These three numbers size the problem; they are not
+implementation detail. These numbers size the problem; they are not
 pass thresholds. Thresholds stay relative, calibrated, structural, or
 learner-declared.
 

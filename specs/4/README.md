@@ -120,10 +120,10 @@ and changes provenance rather than the pass criteria. Documentation:
 ## What this phase does not use, and why that is interesting
 
 Each lab's `Neighbouring systems` section names the technologies a
-practitioner would have reached for instead — Cassandra, ScyllaDB, MongoDB,
-PostgreSQL, Memcached, groupcache, ElastiCache, Druid, Pinot, OpenSearch,
-Cloud Run, Step Functions, Temporal, Knative, Pulumi and CDK — and the one
-thing each does differently at that lab's boundary. They appear as reading
+practitioner would have reached for instead — Apache Cassandra, MongoDB,
+PostgreSQL, Memcached, groupcache, Amazon ElastiCache, Apache Druid,
+Elasticsearch or OpenSearch, Knative, Temporal and Pulumi — and the one thing
+each does differently at that lab's boundary. They appear as reading
 rather than as dependencies: the labs never run them, but a learner who knows
 what the alternatives guarantee can defend the choice the lab forced.
 

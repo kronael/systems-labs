@@ -152,19 +152,11 @@ measurement method is the learner's choice.
 
 `make teaching-lint` is the mechanical enforcement of the
 [teaching contract](../01-systems-labs.md#teaching-contract), and CI runs it.
-It fails if a scenario barrier name, a `Neighbouring systems` product name, or
-any citation marked solution-bearing appears in any course-authored
-learner-facing text other than `HINTS.md` and `EVALUATION.md`, which are
-solution-bearing by choice. It also fails if the name of a
-configuration parameter belonging to a dependency appears in those texts: a
-setting's name names a mechanism, and the task may state only the property the
-setting governs. And it fails if a mechanism name appears in them at all —
-prescribed, disclaimed, or merely mentioned.
-Excluding a candidate names it: a task that says no worker pool is required
-has told the learner what is in play, so a disclaimer fails the lint exactly
-as a prescription does.
+What the lint rejects is stated once, in the
+[verification contract](../01-systems-labs.md#verification-contract).
+
 The check is cheap by construction: the barrier vocabulary is shared, each
-lab's neighbour names are listed in its own spec, every `Code pointers`
+lab's neighbour boundary-difference sentences stay in its own spec, every `Code pointers`
 bullet carries an explicit neutral or solution-bearing state, each lab's
 dependency set bounds the parameter vocabulary to scan for, and the
 mechanism vocabulary is one curriculum-wide list maintained with the lint,
@@ -226,5 +218,5 @@ Lab 01 is authored against the finished scaffold, not alongside it.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — the contracts this
   scaffold implements.
-- [`1-lab-selection.md`](../../docs/lab-selection.md) — the scored selection.
+- [`lab-selection.md`](../../docs/lab-selection.md) — the scored selection.
 - [`../index.md`](../index.md) — authoritative list and lifecycle status.

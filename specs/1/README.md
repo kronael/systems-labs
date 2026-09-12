@@ -125,5 +125,5 @@ learner the operation of a second system but not the comparison.
 
 This phase needs no cloud account, and it has no optional cloud touchpoint
 either. Every dependency is software the learner runs, which is what
-distinguishes it from [phase 2](../2/README.md), where four of these same
+distinguishes it from [phase 2](../2/README.md), where three of these same
 products are rebuilt on an execution model the learner cannot operate.

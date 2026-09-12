@@ -177,7 +177,7 @@ The expected focused time is eighteen to twenty-two hours; phase 8 labs are
 deliberately denser because the interaction between the search engine and the
 domain store is the lesson, and three query classes each demanding exact
 answers under antimeridian and high-latitude placements, held against a
-continuously edited store, price out well above a phase 1-5 lab. The learner builds the query service, the content
+continuously edited store, price out well above a phase 1-4 lab. The learner builds the query service, the content
 and upkeep of the search engine, the edit application path, and the tests.
 PostGIS, OpenSearch, the loaded extract, the generator, and the fault
 schedules are prepared. Map rendering, tile serving, routing, and cartography

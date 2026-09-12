@@ -271,7 +271,7 @@ them.
 The expected focused time is eighteen to twenty-two hours; extraction and
 robots parsing are prepared, but strict RFC 9309 compliance under fault,
 crash-safe crawl state, the revisit-versus-discover budget, and a ceiling
-whose breach costs future budget still price out well above a phase 1-5 lab.
+whose breach costs future budget still price out well above a phase 1-4 lab.
 The learner builds the crawl,
 the state, the index, the search API, and the staleness statement. OpenSearch,
 PostgreSQL, the site harness, the extraction library, and the fault schedules

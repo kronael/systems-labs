@@ -9,8 +9,8 @@ the learner tree; any learner-facing orientation is derived from it later.
 
 ## What this phase is about
 
-Phase 1 built five systems on software the learner operates. This phase takes
-four of those products and rebuilds them on an execution model that runs one
+Phase 1 built seven systems on software the learner operates. This phase takes
+three of those products and rebuilds them on an execution model that runs one
 request per instance and freezes when its runtime and every extension have
 completed with no events pending. Nothing runs between events. Process memory
 survives inside a reused environment and is visible to whoever arrives next,

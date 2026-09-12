@@ -43,7 +43,7 @@ Each section below fixes one thing. This list is the index, not a substitute.
 
 **Technology** — **Technology spine**: a fixed small set, the heavier tool per category, driven into the regime where its quirk fires or the dependency is unearned. **Zero-cost and AWS contract**: every required gate runs locally with no account.
 
-**Proof** — **Adversarial contract**: the learner predicts before the run; verification detects no preferred pattern. **Data contract**: one adapter for real and generated input, decimals stay decimal, schedules name exact records. **Repository contract**: who owns which file, and what `README.md` may never say. **Verification contract**: one Make vocabulary, no hard-coded performance number. **Verification**: no grader binary — each lab describes its checks in an agent-run skill, and only the fault controller and generator stay compiled.
+**Proof** — **Adversarial contract**: the learner predicts before the run; verification detects no preferred pattern. **Data contract**: one adapter for real and generated input, decimals stay decimal, schedules name exact records. **Repository contract**: who owns which file, and what `README.md` may never say. **Verification contract**: one Make vocabulary, no hard-coded performance number. **Verification**: no grader binary and no skill — each lab carries `EVALUATION.md`, and only the fault controller and generator stay compiled.
 
 **Provenance** — **Source placement**, **Licence and corresponding source**, **Research ledger**, **Per-lab source map**, **Sources deliberately excluded**: who is credited, what may be copied, and where a recipient obtains the complete source.
 
@@ -109,7 +109,7 @@ Each lab has three depth gates:
   operational tradeoff and one limitation that remains.
 
 Passing means all three gates pass. The prepared material contains protocols,
-dependency bootstrapping, data schemas, generators, and the verification skill.
+dependency bootstrapping, data schemas, generators, and `EVALUATION.md`.
 It does not contain an application topology or the path that connects input to
 output. The
 learner owns the architecture, service boundaries, state design, event
@@ -132,10 +132,11 @@ the evidence run. A lab's budget is larger than their sum, because the pedagogy
 is the redesign between them — the naive design is falsified and rebuilt,
 sometimes more than once — and that loop is where most of the hours go.
 Individual labs run six to twenty-five focused hours, so the seventeen core
-labs run to roughly 150 to 250 focused hours. The first four establish runtime,
+labs run to roughly 200 to 300 focused hours: the budgets the catalog selects
+sum to 203 at the low end and 294 at the high one. The first four establish runtime,
 delivery, and change semantics; the fifth makes those semantics span two
 systems that cannot commit together; the sixth turns inward, to work the store
-declines to complete; the five serverless labs rebuild four of those products
+declines to complete; the five serverless labs rebuild three of those products
 on an execution model the learner cannot operate; the rest integrate them into
 real-data, NoSQL, analytical, and portable products.
 
@@ -390,9 +391,9 @@ nowhere else, because a second copy drifts.
 
 ## Local and serverless phases
 
-Phase 1 runs software the learner operates. Phase 2 runs four of the same
-products on an execution model the learner cannot operate, plus one product
-that introduces it. The pairing is the subject: a phase 1 design becomes
+Phase 1 runs software the learner operates. Phase 2 runs three of the same
+products on an execution model the learner cannot operate, plus two products
+that stand alone. The pairing is the subject: a phase 1 design becomes
 unavailable in phase 2, and what breaks names the part that was load-bearing.
 
 This is the single exception to the no-ports rule. A port across *languages* is
@@ -401,10 +402,10 @@ answer while adding only a stricter compiler. A port across *execution models*
 is the opposite — it confiscates the answer. The product is held constant —
 the same public behaviour and the same invariants — while the execution model
 changes together with the stores and delivery it is normally paired with,
-because holding the phase 1 store fixed would produce a shape no practitioner
-deploys. The contrast is honest rather than controlled: it swaps one
-deployable shape for another and lets the same product expose the
-difference. The exception extends no
+because holding the phase 1 store fixed moves the lesson to connection
+management under an environment count nobody controls, which is a different
+lab. The contrast is honest rather than controlled: it swaps one deployable
+shape for another and lets the same product expose the difference. The exception extends no
 further: no lab may be repeated in another language, and no phase 2 lab may
 reuse a phase 1 lab's checks unchanged.
 
@@ -788,8 +789,9 @@ Every lab exposes the same root vocabulary:
   and adapter version. It reuses an existing matching recording unless refresh
   is explicitly requested.
 - `make smoke` runs the live-platform checks against a real account. It is the
-  only target that leaves the workstation, and it is the check that closes the
-  emulator gap: the local gates run against an emulator that is more permissive
+  only target that deploys anything and the only one that needs an account;
+  `make source` also reaches the network, to record a bounded sample into the
+  shared cache. `make smoke` is the check that closes the emulator gap: the local gates run against an emulator that is more permissive
   than the service, so a design can pass every local gate and still violate a
   production limit.
 
@@ -880,7 +882,7 @@ The attribution model is stricter than a source pool:
 5. No source marked "citation only" contributes copied prose, code, fixtures,
    tests, or diagrams.
 
-All lab prose, verification skills, fixtures, and workload generators are
+All lab prose, answer keys, fixtures, and workload generators are
 original GPL-3.0 work. Apache-2.0, MIT, MIT-0,
 BSD-2-Clause, CC0,
 MPL-2.0, and PostgreSQL-licensed dependencies remain under their own licenses.
@@ -895,7 +897,7 @@ repository carries the complete GPLv3 text in a root `LICENSE`, and the
 publish step copies that file into the root of every learner distribution.
 
 **The source repository is the complete corresponding source** for everything
-the curriculum conveys — prose, verification skills, fixtures, workloads, the
+the curriculum conveys — prose, answer keys, fixtures, workloads, the
 fault controller and its seeded recipe sources, and `specs/` — and it
 is public under GPL-3.0 in its entirety. The publish step's exclusions decide
 which tree a file lands in, never whether it is published.

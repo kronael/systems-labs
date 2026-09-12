@@ -69,7 +69,8 @@ The submitted `ARCHITECTURE.md` must explain:
 - how cache identity changes across query, source generation, and schema;
 - how writes or new market data interact with previously cached results;
 - how concurrent misses are controlled within and across application replicas;
-- how a failed fill owner or expired coordination state recovers;
+- what a caller observes while a missing value is being produced, and how the
+  service returns to answering for that value when the attempt does not finish;
 - how timeouts and resource limits prevent the cache from worsening an outage;
 - which Valkey durability, eviction, and availability properties the design
   relies on and which it explicitly does not rely on.

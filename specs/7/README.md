@@ -15,6 +15,10 @@ permissionless deployment and delivery — and every candidate is one of
 them. Each lab is grounded in a documented, publicly reported behavior
 recorded in the [track record](../../docs/blockchain-track.md).
 
+The `7/5` slot is empty. Its candidate was a cross-chain settlement audit, cut
+because its finality lesson repeated `7/3`'s; the track record states the
+reasoning. The numbering does not close the gap.
+
 ## The labs
 
 - [Validator state stream](1-validator-state-stream.md) — a system that
