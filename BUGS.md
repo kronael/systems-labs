@@ -376,9 +376,10 @@ called droppable.
   The standard this bug applied was not written down anywhere. It is now
   `CLAUDE.md`'s domain-grounding paragraph and step 4 of `Adding a lab`.
 
-  2026-09-12: re-verified before publication. The three hashes this entry
-  cited did not exist in the history; the four above do, and their diffs
-  hold every bound — no hour budget moved, no scale-target number changed,
+  2026-09-12: re-verified before publication. A `git filter-repo` run
+  earlier today rewrote every hash in the history; `.git/filter-repo/commit-map`
+  maps the three this entry cited onto three of the four above, and their
+  diffs hold every bound — no hour budget moved, no scale-target number changed,
   no dependency name was added or removed, no banned phrase entered a
   Brief, and each grounding fact sits in learner-facing text, not only in
   `Code pointers`. All thirteen grounding sources were fetched again and
