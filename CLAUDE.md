@@ -166,7 +166,8 @@ than their sum, because the redesign between them is the teaching.
 | evidence | 1–2 h | a load or deployment run recording the operational tradeoff and one remaining limitation |
 
 Individual labs run six to twenty-five focused hours. The seventeen core labs
-run to roughly 150 to 250 focused hours.
+run to roughly 200 to 300 focused hours; their stated budgets sum to 203 at the
+low end and 294 at the high one.
 
 ## Difficulty, scale, and the earned dependency
 
@@ -248,7 +249,7 @@ make fault      deterministic failure and recovery scenarios
 make bench      seeded load, evidence report, observed history
 make teaching-lint   fail on any solution leak in learner-facing text; CI runs it
 make source     record bounded real data
-make smoke      live cloud check, the only target that leaves the workstation
+make smoke      live cloud check, the only target that deploys to an account
 make clean      remove generated artifacts, keep cached source data
 ```
 
@@ -353,7 +354,9 @@ rather than copying one from a table.
 The digit directory under `specs/` is the curriculum **phase**, not a version:
 1 local runtime and delivery; 2 the same problems serverless; 3 real Internet
 streaming; 4 NoSQL, analytics, portability; 6 low-level; 7 blockchain;
-8 search, retrieval, spatial. **Phase 5 no longer exists** — its lab became
+8 search, retrieval, spatial. The `7/5` slot is empty too: its candidate was
+cut for repeating `7/3`'s lesson, and the numbering does not close.
+**Phase 5 no longer exists** — its lab became
 `4/5`, and the gap stays open on purpose. Do not renumber to close it.
 
 **Phase 1 runs software the learner operates; phase 2 runs an execution model
@@ -384,44 +387,35 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
 
 ## State of the repo
 
-- Phases 1 and 2 — twelve specs. Ten were reviewed and released as `v0.1.0`;
-  the import lab has since merged into `1/2`, phase 1 gained two labs from an
-  orthogonality review (`S20`), and `1/7` arrived from `S22`.
-- Phases 3, 4, 6, 7, 8 — 22 specs, drafted and reviewed against the contracts
-  this file states. `7/7` is the newest: a deposit service holding capital at
-  addresses it cannot sign for, where an observed movement names no request.
-  Its first draft duplicated `7/3` and `1/5`; it was narrowed to the one
-  property no other lab covers, and `7/3` and `7/4` now point back at it.
-- The 2026-08-23/24 sweep closed `S8`, `S11`, `S14`, `S15`, `S16`, `S17`, `S18`,
-  `S19`, `S20`. The 2026-08-28 sweep closed `S23` and `S24`: nine labs gained
-  a domain that does work, and the teaching contract was restored across the
-  specs that predate it. The 2026-08-29 hunt opened `S25` and `S26`: the
-  governing spec and the shared scaffold contradict contracts they govern, and
-  seventeen labs promise neighbour documentation links they do not carry. The
-  open queue in `BUGS.md` is `S1`, `S9`, `S10`, `S25`, `S26` — all `proposed`,
-  all needing sign-off. The 2026-08-30 sweep closed most of `S26`: every
-  `Code pointers` citation is solution-bearing, each brief names one starter
-  instead of a menu, every neighbour carries a fetched documentation link,
-  the mechanism leaks are gone, and every fault fires at a named barrier.
-  What is left in `S26` is user-owned — the phase-4 corpus numbers and the
-  phase-2 pair drift.
-- Every spec carries the nine sections in order, the neighbour publish-split
-  sentence, `status: draft`, and a scale target. Seventeen carry that sentence
-  without the links it promises — see `S26`. `1/7` and `7/7` are in
-  `specs/index.md`'s full list; whether `1/7` joins the seventeen core labs is
-  undecided.
-- No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`.
-- Root `LICENSE` (verbatim GPL-3.0 from gnu.org), `README.md`, and
-  `THIRD_PARTY.md` exist as of 2026-08-29, discharging the licensing contract
-  in `01-systems-labs.md`. `THIRD_PARTY.md` lists only `LICENSE` itself;
-  nothing else here is copied.
+- Thirty-four lab specs exist: seven in phase 1, five in phase 2, two in
+  phase 3, four in phase 4, five in phase 6, six in phase 7, five in phase 8.
+  The seventeen core labs are the phase 1 to 4 rows of the core catalog in
+  `specs/index.md`. `1/7` sits in phase 1 and outside the core; phases 6, 7
+  and 8 are separate catalogs.
+- Every lab spec carries the nine sections in order, `status: draft`, a scale
+  target, and a fetched documentation link for every neighbour it names. `1/7`
+  is the one lab whose `README.md` names no neighbour at all: every genuine
+  candidate carries the answer in its name, so all three publish into
+  `HINTS.md`, and the spec records that deviation where it happens.
+- `BUGS.md` holds seven findings, every one a redesign waiting on the user.
+  `S1`, `S27`, `S28` and `S29` all ask one question: whether the local
+  dependency reproduces the failure the lab is built on. `S26` holds the
+  phase-4 corpus and the phase-2 pair drift, `S30` the crawl window, `S31` the
+  phase-7 shape taxonomy.
+- No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`,
+  and it is the first thing built once `01-systems-labs.md` is `accepted`.
+- Root carries `LICENSE` (verbatim GPL-3.0 from gnu.org), `README.md`,
+  `CONTRIBUTING.md`, and `THIRD_PARTY.md`, which discharges the licensing
+  contract in `01-systems-labs.md`. `THIRD_PARTY.md` lists only `LICENSE`
+  itself; nothing else here is copied.
 - `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
-  short-lived credentials, per-phase account table. Only phase 4 buys anything.
+  short-lived credentials, per-phase account table. Phases 2 and 4 are the only
+  ones that can bill, and only on the optional path.
 
 # Project Memory
 
-- A disclaimed mechanism is still a named mechanism. This was the oldest and
-  most pervasive leak in the repository, and this file used to require it.
+- A disclaimed mechanism is still a named mechanism, and it is the leak that
+  hides best: ruling a candidate out names it as surely as prescribing it.
 - Emulators reproduce a hosted API and omit its limits, so a lab whose lesson
   lives in a limit needs the fault controller to supply the limit.
 - Within a category the course picks the heavier tool, and the lab must then

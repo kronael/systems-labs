@@ -29,7 +29,7 @@ Every lab passes three gates:
 | evidence | 1–2 h | a load or deployment run recording the operational tradeoff and one remaining limitation |
 
 A single lab runs six to twenty-five focused hours. The seventeen core labs run
-to roughly 150 to 250 focused hours in total.
+to roughly 200 to 300 focused hours in total.
 
 ## Where the difficulty comes from
 
@@ -69,9 +69,10 @@ machine, and reading it is a deliberate act, like opening `HINTS.md`.
 Read [`specs/index.md`](specs/index.md). Its core catalog lists the seventeen
 core labs in course order, and lab 01 is the intended entry point.
 
-Phase 1 is where a learner starts. The later phases assume it: every phase 2
-lab rebuilds a phase 1 product on an execution model you cannot operate, and
-it needs your phase 1 design and evidence to compare against.
+Phase 1 is where a learner starts. The later phases assume it: three of the
+five phase 2 labs recast a phase 1 product on an execution model you cannot
+operate, and each one needs your phase 1 design and evidence to compare
+against. The other two stand alone and need no earlier lab.
 
 ## Phases
 
@@ -100,7 +101,7 @@ C in phase 6, the chain's own language for an on-chain program, TypeScript for
 a browser bundle.
 
 [`docs/cloud-access.md`](docs/cloud-access.md) covers the optional cloud path.
-Only phase 4 buys anything.
+Phases 2 and 4 are the only ones that can bill, and only on the optional path.
 
 ## Status
 
@@ -111,8 +112,9 @@ a lab directory, pinning dependency versions, and authoring the first lab all
 wait on it moving to `accepted`. Every other spec reads `draft` too.
 
 Open defects are recorded in [`BUGS.md`](BUGS.md) rather than fixed silently.
-Six findings are open as of 2026-09-12, and two of them are redesigns awaiting
-a decision.
+Seven are open as of 2026-09-12, and each one is a redesign waiting on a
+decision. Four of them ask the same question: whether a lab's central failure
+can be reproduced on the local dependency at all.
 
 ## Contributing
 
