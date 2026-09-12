@@ -140,7 +140,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/2-low-level-track.md`](../0/2-low-level-track.md) — low-level track
+- [`../../docs/low-level-track.md`](../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [fsyncgate](https://danluu.com/fsyncgate/) — the PostgreSQL thread showing
   that a failed `fsync` can clear the error and the dirty page, so the next

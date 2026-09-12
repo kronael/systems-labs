@@ -13,7 +13,7 @@ deployment actually buys. The track admits four shapes only — validator
 enhancement, chain data processing, end-to-end program development, and
 permissionless deployment and delivery — and every candidate is one of
 them. Each lab is grounded in a documented, publicly reported behavior
-recorded in the [track record](../0/3-blockchain-track.md).
+recorded in the [track record](../../docs/blockchain-track.md).
 
 ## The labs
 

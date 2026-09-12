@@ -257,7 +257,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.
-- [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — track record
+- [`../../docs/blockchain-track.md`](../../docs/blockchain-track.md) — track record
   and the origination of this candidate.
 - [IPFS persistence and pinning](https://docs.ipfs.tech/concepts/persistence/)
   — the network guarantees content is discoverable, not persistently

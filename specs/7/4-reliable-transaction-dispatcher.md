@@ -184,7 +184,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.
-- [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — track record
+- [`../../docs/blockchain-track.md`](../../docs/blockchain-track.md) — track record
   and the origination of this candidate.
 - [`7-multi-chain-deposit-service.md`](7-multi-chain-deposit-service.md) — the
   neighbouring lab in this phase. It holds no key on the chains it moves

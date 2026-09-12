@@ -214,7 +214,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — blockchain
+- [`../../docs/blockchain-track.md`](../../docs/blockchain-track.md) — blockchain
   track rationale and candidates.
 - [NSCC rule filing SR-NSCC-2023-007 (Release No. 34-98213)](https://www.sec.gov/files/rules/sro/nscc/2023/34-98213.pdf)
   — why settlement nets at all: NSCC estimates that in 2022 "netting through

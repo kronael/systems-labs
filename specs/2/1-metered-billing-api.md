@@ -198,7 +198,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, the
   Lambda execution-shape policy, cost, grading, and evidence contracts.
-- [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
+- [`../../docs/serverless-contrast-track.md`](../../docs/serverless-contrast-track.md) —
   why this lab lands after the recasts and has no phase 1 partner.
 - [`2-reliable-record-import.md`](2-reliable-record-import.md) — the
   neighbouring queue-driven lab, whose subject is the queue's delivery contract

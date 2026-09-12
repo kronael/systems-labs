@@ -204,7 +204,7 @@ where a document denies itself.
 - **`S21` and `S22` read "approved, in progress" with empty Fix fields**, but
   both shipped — `1/7` exists and is wired, and `8/3` carries S21's breach
   consequence. `CLAUDE.md:387` names the open queue as `S1`, `S9`, `S10` only.
-  `S22`'s Affected list also names `specs/0/1-lab-selection.md`, which contains
+  `S22`'s Affected list also names `docs/lab-selection.md`, which contains
   no trace of `1/7`; that part never landed.
 - **`S1` argues about `4/4-subscription-billing-api.md`, which does not
   exist** — the lab is now `2/1-metered-billing-api.md`, which `S10` argues
@@ -242,8 +242,8 @@ text that is simply wrong and can ship as one commit once approved.
   are in the two documents every other file defers to
 - **Scope:** cross-document; no lab spec changes
 - **Affected:** `specs/01-systems-labs.md`, `specs/0/5-shared-scaffold.md`,
-  `specs/0/1-lab-selection.md`, `specs/0/2-low-level-track.md`,
-  `specs/0/4-search-and-retrieval-track.md`, `specs/index.md`,
+  `docs/lab-selection.md`, `docs/low-level-track.md`,
+  `docs/search-and-retrieval-track.md`, `specs/index.md`,
   `specs/1/README.md`, `specs/2/README.md`, `specs/8/README.md`,
   `docs/cloud-access.md`, `BUGS.md`
 - **Source:** cross-document bug hunt, 2026-08-29; every finding re-verified
@@ -351,7 +351,7 @@ within a bounded number of records.
 - **Severity:** medium
 - **Scope:** phase 1, new lab
 - **Affected:** `specs/1/7-*.md` (new), `specs/1/README.md`,
-  `specs/index.md`, `specs/0/1-lab-selection.md`
+  `specs/index.md`, `docs/lab-selection.md`
 - **Source:** grounding pass 2026-08-27; SEC 34-70694, RFC 8767, RFC 9309,
   Binance and Kraken API documentation, Kleppmann on fencing tokens
 - **Status:** approved, in progress

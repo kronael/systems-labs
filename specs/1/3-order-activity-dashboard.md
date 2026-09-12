@@ -152,7 +152,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Kafka,
   evidence, and verification contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale.
 - [KIP-429](https://cwiki.apache.org/confluence/display/KAFKA/KIP-429%3A+Kafka+Consumer+Incremental+Rebalance+Protocol)
   — under the eager protocol a healthy consumer revokes every assigned
   partition before rejoining the group, because no partition may be

@@ -226,5 +226,5 @@ Lab 01 is authored against the finished scaffold, not alongside it.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — the contracts this
   scaffold implements.
-- [`1-lab-selection.md`](1-lab-selection.md) — the scored selection.
+- [`1-lab-selection.md`](../../docs/lab-selection.md) — the scored selection.
 - [`../index.md`](../index.md) — authoritative list and lifecycle status.

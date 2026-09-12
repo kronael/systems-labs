@@ -249,7 +249,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.
-- [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — track record
+- [`../../docs/blockchain-track.md`](../../docs/blockchain-track.md) — track record
   and the origination of this candidate.
 - [`3-finality-aware-transfer-index.md`](3-finality-aware-transfer-index.md)
   — the neighbouring lab whose subject is what a receipt proves when the chain

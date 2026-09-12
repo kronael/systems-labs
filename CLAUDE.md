@@ -363,7 +363,7 @@ the original's checks, failure schedule, and answer. A port across execution
 models confiscates the answer.
 
 Phases 6, 7, and 8 are **separate catalogs**, not ports. Each track's labs must
-expose a failure the others cannot reach; see the track files under `specs/0/`.
+expose a failure the others cannot reach; see the track files under `docs/`.
 
 The core catalog in `specs/index.md` holds each lab's system, architecture
 pressure, and prepared environment. Read it there; do not restate it elsewhere,

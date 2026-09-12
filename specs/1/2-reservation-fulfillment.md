@@ -209,8 +209,8 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   PostgreSQL, evidence, and retry contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
-- [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale.
+- [`../../docs/serverless-contrast-track.md`](../../docs/serverless-contrast-track.md) —
   the serverless recast of this product and what it removes.
 - [RFC 5545, section 3.6.1](https://www.rfc-editor.org/rfc/rfc5545.html#section-3.6.1)
   — the calendar standard fixes the stay's interval convention in one sentence:

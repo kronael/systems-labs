@@ -12,7 +12,7 @@ durability, virtual memory, memory allocation, and time. A port of a phase
 1–5 lab is not a low-level lab, because it inherits the original's
 checks, failure schedule, and answer; every lab here exposes a failure
 the other tracks cannot reach, and each is grounded in a documented, publicly
-reported behavior recorded in the [track record](../0/2-low-level-track.md).
+reported behavior recorded in the [track record](../../docs/low-level-track.md).
 
 ## The labs
 

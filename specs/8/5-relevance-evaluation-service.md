@@ -219,7 +219,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/4-search-and-retrieval-track.md`](../0/4-search-and-retrieval-track.md)
+- [`../../docs/search-and-retrieval-track.md`](../../docs/search-and-retrieval-track.md)
   — the track record where this candidate is recorded.
 - Järvelin and Kekäläinen,
   [Cumulated gain-based evaluation of IR techniques](https://dl.acm.org/doi/10.1145/582415.582418)

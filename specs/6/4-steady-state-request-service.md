@@ -151,7 +151,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/2-low-level-track.md`](../0/2-low-level-track.md) — low-level track
+- [`../../docs/low-level-track.md`](../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [`mallopt(3)`](https://man7.org/linux/man-pages/man3/mallopt.3.html) —
   `M_TRIM_THRESHOLD` releases only contiguous free space at the top of the

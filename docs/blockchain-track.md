@@ -62,7 +62,7 @@ define its own cold-start story.
 
 Shape: validator enhancement. Languages: Rust.
 
-Spec: [`../7/1-validator-state-stream.md`](../7/1-validator-state-stream.md).
+Spec: [`../7/1-validator-state-stream.md`](../specs/7/1-validator-state-stream.md).
 
 ### 7/2 Settlement program and client — specced
 
@@ -80,7 +80,7 @@ a design change, not a parameter change.
 Shape: end-to-end program development. Languages: Rust for the program, Go
 for the client.
 
-Spec: [`../7/2-settlement-program-and-client.md`](../7/2-settlement-program-and-client.md).
+Spec: [`../7/2-settlement-program-and-client.md`](../specs/7/2-settlement-program-and-client.md).
 
 ### 7/3 Finality-aware transfer index — specced
 
@@ -95,7 +95,7 @@ finalized one — and must never let the fast view contaminate the settled one.
 
 Shape: data processing. Language: Go.
 
-Spec: [`../7/3-finality-aware-transfer-index.md`](../7/3-finality-aware-transfer-index.md).
+Spec: [`../7/3-finality-aware-transfer-index.md`](../specs/7/3-finality-aware-transfer-index.md).
 
 ### 7/4 Reliable transaction dispatcher — specced
 
@@ -112,7 +112,7 @@ means, which is the contrast this lab exists to teach.
 
 Shape: end-to-end program development plus dispatcher. Language: Go.
 
-Spec: [`../7/4-reliable-transaction-dispatcher.md`](../7/4-reliable-transaction-dispatcher.md).
+Spec: [`../7/4-reliable-transaction-dispatcher.md`](../specs/7/4-reliable-transaction-dispatcher.md).
 
 ### 7/6 Permissionless application hosting — specced
 
@@ -130,7 +130,7 @@ is an act rather than a property, and it cannot be undone.
 Shape: permissionless deployment and delivery. Languages: Rust, with a
 TypeScript client.
 
-Spec: [`../7/6-permissionless-application-hosting.md`](../7/6-permissionless-application-hosting.md).
+Spec: [`../7/6-permissionless-application-hosting.md`](../specs/7/6-permissionless-application-hosting.md).
 
 ### 7/7 Multi-chain deposit service — specced
 
@@ -156,7 +156,7 @@ are written into 7/7's Scope, and 7/3 and 7/4 point back.
 
 Shape: end-to-end program development. Language: Go.
 
-Spec: [`../7/7-multi-chain-deposit-service.md`](../7/7-multi-chain-deposit-service.md).
+Spec: [`../7/7-multi-chain-deposit-service.md`](../specs/7/7-multi-chain-deposit-service.md).
 
 ## Scale contract
 
@@ -168,9 +168,9 @@ node's own rate rather than against a wall-clock target.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../01-systems-labs.md) — course-wide learning,
+- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`1-lab-selection.md`](1-lab-selection.md) — the scored selection that
+- [`1-lab-selection.md`](lab-selection.md) — the scored selection that
   produced the original core ten.
-- [`2-low-level-track.md`](2-low-level-track.md) — the Rust and C track.
-- [`../index.md`](../index.md) — authoritative list and lifecycle status.
+- [`2-low-level-track.md`](low-level-track.md) — the Rust and C track.
+- [`../index.md`](../specs/index.md) — authoritative list and lifecycle status.

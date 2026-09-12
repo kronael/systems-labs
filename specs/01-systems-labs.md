@@ -409,7 +409,7 @@ further: no lab may be repeated in another language, and no phase 2 lab may
 reuse a phase 1 lab's checks unchanged.
 
 `1/3` has no serverless counterpart, and the reason is recorded in the
-[serverless contrast track](0/6-serverless-contrast-track.md). A recast must
+[serverless contrast track](../docs/serverless-contrast-track.md). A recast must
 falsify something the original could not reach. Replaying a retained log
 through metered invocations is the same lesson at higher cost.
 
@@ -1021,18 +1021,18 @@ and transaction-isolation pages — are carried in each lab's own
 ## Code pointers
 
 - [`specs/index.md`](index.md) — selected specs and lifecycle status.
-- [`specs/0/1-lab-selection.md`](0/1-lab-selection.md) — candidate expansion,
+- [`../docs/lab-selection.md`](../docs/lab-selection.md) — candidate expansion,
   scores, cuts, and selected sequence.
-- [`specs/0/2-low-level-track.md`](0/2-low-level-track.md) — the Rust and C
+- [`../docs/low-level-track.md`](../docs/low-level-track.md) — the Rust and C
   catalog for kernel-level quirks, recorded and not yet selected.
-- [`specs/0/3-blockchain-track.md`](0/3-blockchain-track.md) — the Solana and
+- [`../docs/blockchain-track.md`](../docs/blockchain-track.md) — the Solana and
   Ethereum catalog, recorded and not yet selected.
-- [`specs/0/4-search-and-retrieval-track.md`](0/4-search-and-retrieval-track.md)
+- [`../docs/search-and-retrieval-track.md`](../docs/search-and-retrieval-track.md)
   — the OpenSearch catalog for retrieval and spatial quirks, recorded and not
   yet selected.
 - [`specs/0/5-shared-scaffold.md`](0/5-shared-scaffold.md) — the shared
   generator, fault controller, evidence writer, and the build order.
-- [`specs/0/6-serverless-contrast-track.md`](0/6-serverless-contrast-track.md)
+- [`../docs/serverless-contrast-track.md`](../docs/serverless-contrast-track.md)
   — the phase 1 and phase 2 pairing catalog and the rejected pairing.
 - [`docs/cloud-access.md`](../docs/cloud-access.md) — how to obtain the
   optional cloud account, the verified free-tier allowances, and the

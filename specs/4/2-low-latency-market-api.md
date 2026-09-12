@@ -146,7 +146,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Valkey,
   evidence, and failure contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale.
 - [Key eviction](https://valkey.io/topics/lru-cache/) — at `maxmemory` Valkey
   evicts by the configured policy, and its LRU and LFU are approximations
   that sample a handful of keys per decision rather than track exact recency.

@@ -153,7 +153,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   portability, cost, IaC, platform, and evidence contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale.
 - [Execution environment lifecycle](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html)
   — Lambda freezes the environment between invocations and recycles it within
   hours, so unfinished background work and buffered state survive only if the

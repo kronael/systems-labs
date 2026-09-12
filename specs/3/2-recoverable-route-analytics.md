@@ -168,7 +168,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Flink,
   Kafka, evidence, and failure contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale.
 - Quirk origination: the Flink documentation on [checkpoints versus
   savepoints](https://nightlies.apache.org/flink/flink-docs-stable/docs/ops/state/checkpoints_vs_savepoints/),
   [fault-tolerance guarantees of sources and

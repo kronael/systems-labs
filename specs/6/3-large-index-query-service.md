@@ -151,7 +151,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/2-low-level-track.md`](../0/2-low-level-track.md) — low-level track
+- [`../../docs/low-level-track.md`](../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [Are You Sure You Want to Use MMAP in Your Database Management System?](https://db.cs.cmu.edu/papers/2022/cidr2022-p13-crotty.pdf)
   — CIDR 2022. Blocking page faults with no asynchronous path, uncontrollable

@@ -52,7 +52,7 @@ stays exactly the same.
 
 Technologies: OpenSearch, an alignment stage, a durable store, UniProt data.
 
-Spec: [`../8/1-protein-similarity-search.md`](../8/1-protein-similarity-search.md).
+Spec: [`../8/1-protein-similarity-search.md`](../specs/8/1-protein-similarity-search.md).
 
 ### 8/2 News aggregation and curation — specced
 
@@ -69,7 +69,7 @@ the system's own history is not the publisher's history.
 Technologies: OpenSearch, near-duplicate detection, a durable store, feed
 ingestion.
 
-Spec: [`../8/2-news-aggregation-service.md`](../8/2-news-aggregation-service.md).
+Spec: [`../8/2-news-aggregation-service.md`](../specs/8/2-news-aggregation-service.md).
 
 ### 8/3 Web crawl and index — specced
 
@@ -84,7 +84,7 @@ requests decide whether a revisit costs anything at all.
 
 Technologies: OpenSearch, a crawl scheduler, a durable store, HTTP caching.
 
-Spec: [`../8/3-web-crawl-and-index.md`](../8/3-web-crawl-and-index.md).
+Spec: [`../8/3-web-crawl-and-index.md`](../specs/8/3-web-crawl-and-index.md).
 
 ### 8/4 Spatial query service — specced
 
@@ -105,7 +105,7 @@ obligations for derived databases. Extracts are opt-in, bounded, cached, and
 never redistributed by this repository, exactly as the RIPE and Kraken
 recordings are handled.
 
-Spec: [`../8/4-spatial-query-service.md`](../8/4-spatial-query-service.md).
+Spec: [`../8/4-spatial-query-service.md`](../specs/8/4-spatial-query-service.md).
 
 ### 8/5 Relevance evaluation service — specced
 
@@ -118,7 +118,7 @@ survive contact with new queries.
 
 Technologies: OpenSearch, an evaluation harness, a durable store.
 
-Spec: [`../8/5-relevance-evaluation-service.md`](../8/5-relevance-evaluation-service.md).
+Spec: [`../8/5-relevance-evaluation-service.md`](../specs/8/5-relevance-evaluation-service.md).
 
 ## Scale contract
 
@@ -130,11 +130,11 @@ extent large enough that the index cannot be scanned.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../01-systems-labs.md) — course-wide learning,
+- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`1-lab-selection.md`](1-lab-selection.md) — the scored selection that
+- [`1-lab-selection.md`](lab-selection.md) — the scored selection that
   produced the original core ten.
-- [`2-low-level-track.md`](2-low-level-track.md) — the Rust and C track.
-- [`3-blockchain-track.md`](3-blockchain-track.md) — the Solana and Ethereum
+- [`2-low-level-track.md`](low-level-track.md) — the Rust and C track.
+- [`3-blockchain-track.md`](blockchain-track.md) — the Solana and Ethereum
   track.
-- [`../index.md`](../index.md) — authoritative list and lifecycle status.
+- [`../index.md`](../specs/index.md) — authoritative list and lifecycle status.

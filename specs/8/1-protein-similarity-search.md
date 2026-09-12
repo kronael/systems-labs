@@ -224,7 +224,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/4-search-and-retrieval-track.md`](../0/4-search-and-retrieval-track.md)
+- [`../../docs/search-and-retrieval-track.md`](../../docs/search-and-retrieval-track.md)
   — the track record where this candidate and its origination are recorded.
 - [NCBI BLAST homepage](https://blast.ncbi.nlm.nih.gov/Blast.cgi) — what a
   ranked match is for: "BLAST can be used to infer functional and evolutionary

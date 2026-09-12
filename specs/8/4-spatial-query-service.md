@@ -199,7 +199,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/4-search-and-retrieval-track.md`](../0/4-search-and-retrieval-track.md)
+- [`../../docs/search-and-retrieval-track.md`](../../docs/search-and-retrieval-track.md)
   — the track record holding this candidate and its origination.
 - [The `&&` operator](https://postgis.net/docs/geometry_overlaps.html) —
   returns `TRUE` when the 2D bounding box of one geometry intersects the 2D

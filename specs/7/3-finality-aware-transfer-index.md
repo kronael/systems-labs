@@ -188,7 +188,7 @@ Every citation below is solution-bearing. None of it publishes into
   Reorganization belongs to this lab and is out of scope there.
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   fault-injection, data, evidence, and verification contracts.
-- [`../0/3-blockchain-track.md`](../0/3-blockchain-track.md) — the track
+- [`../../docs/blockchain-track.md`](../../docs/blockchain-track.md) — the track
   record where this candidate and its origination are filed.
 - Quirk origination:
   [Ethereum JSON-RPC API](https://ethereum.org/en/developers/docs/apis/json-rpc/)

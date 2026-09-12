@@ -188,7 +188,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, execution
   shape policy, cost, grading, and evidence contracts.
-- [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
+- [`../../docs/serverless-contrast-track.md`](../../docs/serverless-contrast-track.md) —
   why this pairing earns a lab and what the platform removes.
 - [`../1/5-auditable-transfer-service.md`](../1/5-auditable-transfer-service.md)
   — the local lab this one recasts.

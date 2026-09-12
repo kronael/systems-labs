@@ -14,7 +14,7 @@ lesson, not either system alone. This is the track that admits OpenSearch,
 which the core catalog excludes; it earns entry here because retrieval is
 the subject rather than a second representative of an existing category.
 Each candidate is grounded in a documented public source recorded in the
-[track record](../0/4-search-and-retrieval-track.md).
+[track record](../../docs/search-and-retrieval-track.md).
 
 ## The labs
 

@@ -142,7 +142,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale,
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale,
   where ClickHouse was recorded as the strongest first addition.
 - [`ReplacingMergeTree`](https://clickhouse.com/docs/en/engines/table-engines/mergetree-family/replacingmergetree)
   — deduplication happens only during a merge, merging runs in the background

@@ -296,7 +296,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/4-search-and-retrieval-track.md`](../0/4-search-and-retrieval-track.md)
+- [`../../docs/search-and-retrieval-track.md`](../../docs/search-and-retrieval-track.md)
   — the track record where this candidate and its origination are recorded.
 - [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) — the Robots
   Exclusion Protocol: a cached `robots.txt` should not be used beyond 24 hours

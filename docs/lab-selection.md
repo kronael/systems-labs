@@ -225,7 +225,7 @@ solutions. Each lab directory remains independently completable.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../01-systems-labs.md) — course-wide learning,
+- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`../index.md`](../index.md) — authoritative list and lifecycle status of the
+- [`../index.md`](../specs/index.md) — authoritative list and lifecycle status of the
   selected lab specs.

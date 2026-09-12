@@ -160,7 +160,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Kafka,
   real-data, source, and evidence contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale.
 - Quirk origination. The falsified belief is that the collector's view is the
   Internet's state and that an update means the routing changed. Both halves
   have primary sources:

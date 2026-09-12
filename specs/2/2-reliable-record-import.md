@@ -172,8 +172,8 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, queue,
   Lambda, cost, and evidence contracts.
-- [`../0/1-lab-selection.md`](../0/1-lab-selection.md) — selection rationale.
-- [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
+- [`../../docs/lab-selection.md`](../../docs/lab-selection.md) — selection rationale.
+- [`../../docs/serverless-contrast-track.md`](../../docs/serverless-contrast-track.md) —
   the pairing this lab belongs to and what the platform supplies instead.
 - [`../1/2-reservation-fulfillment.md`](../1/2-reservation-fulfillment.md) —
   the self-run form of the leased-delivery model this lab receives as a hosted

@@ -172,7 +172,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/2-low-level-track.md`](../0/2-low-level-track.md) — low-level track
+- [`../../docs/low-level-track.md`](../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [Tene, mechanical-sympathy, 2013](https://groups.google.com/g/mechanical-sympathy/c/icNZJejUHfE)
   — the original account of the omission: a generator that waits for each

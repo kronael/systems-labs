@@ -42,7 +42,7 @@ holding a product constant.
 `1/3` has no counterpart here. Replaying a retained log through metered
 invocations teaches the same lesson at higher cost, and a recast must reach a
 failure the original could not. The reasoning is in the
-[serverless contrast track](../0/6-serverless-contrast-track.md).
+[serverless contrast track](../../docs/serverless-contrast-track.md).
 
 ## The labs
 

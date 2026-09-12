@@ -225,7 +225,7 @@ Every citation below is solution-bearing. None of it publishes into
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../0/4-search-and-retrieval-track.md`](../0/4-search-and-retrieval-track.md)
+- [`../../docs/search-and-retrieval-track.md`](../../docs/search-and-retrieval-track.md)
   — the track record where this candidate is expanded.
 - [Broder, *Identifying and Filtering Near-Duplicate Documents*](https://cs.brown.edu/courses/cs253/papers/nearduplicate.pdf)
   — resemblance is a number between 0 and 1 computed from a document's
