@@ -53,8 +53,8 @@ failure the original could not. The reasoning is in the
   transfer product from `1/5`, carrying the commit gap onto an environment
   where nothing runs between events.
 - [Serverless quote aggregation](5-serverless-quote-aggregation.md) — the
-  fare-search product from `1/1`, where admission is a platform ceiling rather
-  than the design's own decision.
+  fare-search product from `1/1`, where a quote's expiry runs on while the
+  environment holding it is frozen.
 - [Metered billing API](1-metered-billing-api.md) — subscriptions, metered
   usage, and period-close invoicing, on an unfamiliar product the learner
   meets once the execution model is familiar.

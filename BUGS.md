@@ -387,33 +387,6 @@ already carries rather than adding a second one.
 - **Status:** approved, in progress
 - **Fix:**
 
-## S9 — cut `2/5` or fold its unique content elsewhere (2026-08-14, proposed)
-
-Both external reviewers ranked `2/5` last and proposed cutting it. Admission
-control — the local quote lab's central subject — is confiscated by the
-platform, so the learner's buildable artifact reduces to one handler plus a
-declared ceiling. Its distinctive lessons — throttling above the ceiling,
-cold-start cost, state outside the process — are already exercised by `2/1`,
-`2/3`, and `2/4`. Its one unique item is fan-out amplification per instance:
-provider-side load multiplied by environment count rather than shared through
-a process-wide pool, which fits elsewhere as a required evidence number.
-
-### Proposal, needs sign-off
-
-Cut `2/5`, or fold the fan-out-amplification measurement into another phase 2
-lab as a required evidence number, and record the cut in the serverless
-contrast track. Cutting a lab is a curriculum decision; nothing moves until
-the user decides.
-
-- **Severity:** medium
-- **Scope:** phase 2, curriculum structure
-- **Affected:** `specs/2/5-serverless-quote-aggregation.md`,
-  `specs/2/README.md`, `specs/0/6-serverless-contrast-track.md`,
-  `specs/01-systems-labs.md`
-- **Source:** two external reviews, 2026-08-14
-- **Status:** proposed (redesign, needs sign-off)
-- **Fix:**
-
 ## S1 — `4/4` may not be falsifiable on the local Lambda emulator (2026-08-14, proposed)
 
 `4/4-subscription-billing-api.md` teaches that the execution environment

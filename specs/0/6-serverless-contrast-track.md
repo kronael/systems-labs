@@ -64,7 +64,7 @@ at all.
 
 | Local | Serverless | What the platform removes | What the learner must build instead |
 |-------|-----------|---------------------------|-------------------------------------|
-| [1/1 quote service](../1/1-resilient-quote-service.md) | [2/5 quote aggregation](../2/5-serverless-quote-aggregation.md) | The long-lived process, its shared connections, and admission control the design owns | External shared state, a concurrency ceiling declared to the platform, and a degradation policy for throttling rather than queueing |
+| [1/1 quote service](../1/1-resilient-quote-service.md) | [2/5 quote aggregation](../2/5-serverless-quote-aggregation.md) | The long-lived process, its shared connections, and admission control the design owns | External shared state, a quote expiry that runs on across a freeze the design does not control, and provider fan-out that scales with environment count rather than with a pool the service sizes |
 | [1/2 reservation fulfillment](../1/2-reservation-fulfillment.md) | [2/3 serverless reservation](../2/3-serverless-reservation-fulfillment.md) | The commit-time listener, the worker pool, and a store able to enforce non-overlap itself | A hand-built exclusion rule over a store that cannot express one, and an event-driven fulfillment path |
 | [1/5 auditable transfer](../1/5-auditable-transfer-service.md) | [2/4 serverless transfer](../2/4-serverless-auditable-transfer.md) | Any process that outlives a request to carry committed state downstream | A commit gap closed by events, across a freeze that can strand the publish |
 

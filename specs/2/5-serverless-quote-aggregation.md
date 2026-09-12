@@ -17,11 +17,18 @@ best quote still valid when the response leaves, with its provider and its
 expiry. It must remain predictable when demand exceeds the ceiling or one
 provider becomes slow.
 
+A quote carries a deadline of its own, and this execution model can stop the
+process holding it. An environment freezes with a quote in memory and thaws
+minutes later, so a value that was fresh when it was stored can be stale when
+it is read, and the process that would have expired it was not running. That
+is this lab's subject: a deadline the design does not own, crossing a pause
+the design does not control.
+
 The required environment is the function execution model with an external store
 available for shared state. How provider calls are arranged within an
 invocation, how the shared store is used, how the time budget is divided, and
-how the service behaves when demand exceeds the ceiling or a provider fails
-are the learner's decisions.
+how the service decides a remembered quote is still honourable are the
+learner's decisions.
 
 This lab is taken after the local one. The product is identical on purpose.
 
@@ -51,15 +58,23 @@ their expiries. When no valid quote exists, the caller receives a typed
 non-2xx response. A provider that exceeds its budget must not extend the
 response beyond what the design promises.
 
-Above the declared concurrency ceiling the platform rejects work, and the
-design states what a caller observes in that regime and why that behavior is
-right for this product.
-
 Process memory survives inside a reused environment and is visible to whoever
 arrives next, but no request is guaranteed to land in a reused environment, so
 memory can neither be relied on nor treated as private. Any state the design
 needs to be visible across requests lives outside the instance, and the
 submission states what a read of that state proves and what it does not.
+
+A quote remembered across a freeze must never be returned past its expiry. The
+design states how it establishes that a remembered quote is still valid, and
+what it does when it cannot establish that. Wall-clock time advances during a
+freeze while nothing in the process does, so an expiry judged from anything the
+process itself recorded is not evidence.
+
+The declared concurrency ceiling is an environment fact here rather than this
+lab's subject: the platform rejects work above it, and the design states what a
+caller observes. Fan-out is the part the design still owns — one request per
+instance means provider load scales with environment count rather than with a
+pool the service sizes, and the evidence run records that multiplier.
 
 A handler has a maximum run time, and a provider call that outlives it is
 terminated rather than completed. The design states what the caller sees in that
