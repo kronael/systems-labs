@@ -18,7 +18,7 @@ and the evidence it must produce.
 It does not give you the service decomposition, the schema, the retry
 algorithm, the cache policy, or the recovery mechanism. Those are yours, and
 getting them wrong is the teaching. Your first design is supposed to fail —
-the redesign after it fails is the part you are paying for.
+the redesign after it fails is the lesson.
 
 Every lab passes three gates:
 
@@ -66,8 +66,11 @@ machine, and reading it is a deliberate act, like opening `HINTS.md`.
 
 ## Where to start
 
-There is no learner tree yet, so the only thing to read is the author's own
-catalog.
+[`HOWTO.md`](HOWTO.md) is the method: what you do in a lab, in what order, what
+you write down, and how you know you are finished. Read it first.
+
+There is no learner tree yet, so the only thing to read after it is the
+author's own catalog.
 
 **Reading a lab specification spends that lab.** The specifications are written
 for whoever builds the labs, not for whoever does them, and each one carries

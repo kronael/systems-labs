@@ -113,11 +113,12 @@ The scale target is 200,000 pages across twenty hosts, a harness-enforced
 ceiling of one request per second per host, roughly six percent of the corpus
 rewritten per hour at named identities, and a sustained fifty queries per
 second from twenty concurrent clients while the crawl runs. These numbers size
-the problem — at twenty fetches per second the budget cannot cover the corpus
-inside the evidence window, so revisiting one page is always the choice not to
-visit another, and an allowance lost to a breach is pages the crawl never gets
-back. They are not pass thresholds; thresholds stay relative,
-calibrated, structural, or learner-declared.
+the problem — one uninterrupted pass over the corpus at the ceiling costs
+200,000 / 20 = 10,000 seconds, and the evidence window is shorter than that,
+so the budget cannot cover the corpus inside it, revisiting one page is always
+the choice not to visit another, and an allowance lost to a breach is pages
+the crawl never gets back. They are not pass thresholds; thresholds stay
+relative, calibrated, structural, or learner-declared.
 
 The evidence must show coverage over time, the distribution of page ages
 behind answered queries against the declared bound, what re-verifying content

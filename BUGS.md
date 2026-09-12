@@ -33,28 +33,31 @@ Both are catalog decisions.
 - **Status:** proposed (redesign, needs sign-off)
 - **Fix:**
 
-## S30 — `8/3`'s crawl budget shortfall has no window to be short of (2026-09-12, proposed)
+## S30 — `8/3`'s freshness bound can be declared loose enough to remove the scarcity (2026-09-12, partial)
 
 `8/3` claims a corpus its budget cannot cover, so revisiting one page is always
-the choice not to visit another. The claim needs a duration and does not have
-one: the spec states a corpus of 200,000 pages and a per-host ceiling of twenty
-fetches per second, but never how long the evidence run lasts, and it leaves
-the freshness bound learner-declared. An ideal full pass costs 200,000 / 20 =
-10,000 seconds, about two hours and forty-seven minutes, so a long enough run
-with a loose enough freshness bound satisfies every stated number and removes
-the shortfall the lab is built on. Scarcity that the learner can declare away
-is not scarcity.
+the choice not to visit another. A long enough run with a loose enough
+freshness bound satisfied every stated number and removed that shortfall.
+
+2026-09-12: the coverage half is closed. The spec now states that the evidence
+window is shorter than one uninterrupted pass at the ceiling, which costs
+200,000 / 20 = 10,000 seconds, so no run length satisfies the requirements and
+covers the corpus.
+
+What remains is the freshness bound. It is learner-declared, and a loose enough
+declaration still removes the revisit pressure that makes the budget contended.
 
 ### Proposal, needs sign-off
 
-Fix the evidence-run duration and the admissible freshness bound so the offered
-work provably exceeds the crawl budget. Both are curriculum numbers, so nothing
-moves until the user decides.
+Bound the admissible freshness declaration so the revisits it forces, plus the
+`robots.txt` refetches and the post-error retries, provably exceed the
+allowance. That is a curriculum number, so nothing moves until the user
+decides.
 
 - **Severity:** medium
 - **Scope:** phase 8, acceptance evidence
 - **Affected:** `specs/8/3-web-crawl-and-index.md`
-- **Source:** CTO audit 2026-09-12; `specs/8/3-web-crawl-and-index.md:112-120,222-235`
+- **Source:** CTO audit 2026-09-12; `specs/8/3-web-crawl-and-index.md:112-122,222-235`
 - **Status:** proposed (redesign, needs sign-off)
 - **Fix:**
 
