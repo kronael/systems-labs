@@ -1,76 +1,84 @@
 # systems-labs
 
-A curriculum of end-to-end systems labs. Each lab prompts a complete, useful
-product that a learner designs, breaks, recovers, and defends with evidence.
+A curriculum of end-to-end systems labs. Each lab hands you a brief — *design
+and build a system that does X under these requirements* — and then breaks it.
 34 labs across seven phases; seventeen are the core.
 
-**This repository holds specifications only.** There is no code, no
-`Makefile`, and no lab directory. Everything below is specified, not
-implemented. Nothing here builds or runs yet.
+**Nothing here runs yet.** This repository holds the specifications for those
+labs and no code: no `Makefile`, no lab directory, no starter. You can read
+what every lab will ask of you, and you cannot yet do one. See
+[Status](#status) before you plan time around it.
 
-## What a lab is
+## What a lab asks of you
 
-A lab is not an exercise with an answer. It is a brief: *design and build a
-system that does X under these requirements.* The brief fixes the product, its
+A lab is not an exercise with an answer. The brief fixes the product, its
 public behaviour, the environment, the limits, the failures it must survive,
-and the evidence it must produce. It never gives the service decomposition,
-the schema, the retry algorithm, the cache policy, or the recovery mechanism —
-those are the learner's decisions, and getting them wrong is the teaching.
+and the evidence it must produce.
+
+It does not give you the service decomposition, the schema, the retry
+algorithm, the cache policy, or the recovery mechanism. Those are yours, and
+getting them wrong is the teaching. Your first design is supposed to fail —
+the redesign after it fails is the part you are paying for.
 
 Every lab passes three gates:
 
-| gate | duration | delivers |
-|------|----------|----------|
+| gate | duration | you deliver |
+|------|----------|-------------|
 | product | 60–120 min | an end-to-end slice that accepts input, persists or transforms it, exposes a useful result, and survives restart |
-| failure | 2–4 h | a deterministic scenario that falsifies the naive design and forces the stated invariant to hold |
+| failure | 2–4 h | a deterministic scenario that falsifies your first design and forces the stated invariant to hold |
 | evidence | 1–2 h | a load or deployment run recording the operational tradeoff and one remaining limitation |
 
-Individual labs run six to twenty-five focused hours. The seventeen core labs
-run to roughly 150 to 250 focused hours.
+A single lab runs six to twenty-five focused hours. The seventeen core labs run
+to roughly 150 to 250 focused hours in total.
 
 ## Where the difficulty comes from
 
-From the quirk of the system under study — a notification that never replays,
-a lease that is not a deadline, an index that is not yet consistent. Never
-from input formats, parsing chores, or boilerplate volume.
+From the quirk of the system you are studying — a notification that never
+replays, a lease that is not a deadline, an index that is not yet consistent.
+Never from input formats, parsing chores, or boilerplate volume. A lab that is
+merely laborious has failed.
 
 Every quirk is grounded in a public document describing real reported
-behaviour: a manual page, a post-mortem, a paper, a vendor limit. That
-citation is the lab's ground truth. No quirk is invented and then given a
-source.
+behaviour: a manual page, a post-mortem, a paper, a vendor limit. That citation
+is the lab's ground truth.
 
-Faults fire at named barriers — *when record 4711 is acknowledged, freeze the
-broker* — never on a timer and never at random, so the failure lands at the
-same boundary on every run and verification asserts an exact history.
+## Keeping the answer away from yourself
 
-## The four files
+A learner who wants the exercise has to be able to avoid the answer without
+effort. That is why each lab is four files rather than four sections.
 
-A learner who wants the exercise must be able to avoid the answer without
-effort. That is why these are separate files and never sections of one.
-
-| file | holds | opened |
-|------|-------|--------|
+| file | holds | you open it |
+|------|-------|-------------|
 | `README.md` | the task and the technology landscape | by default |
 | `HINTS.md` | the design reading | by choice, when stuck |
 | `EVALUATION.md` | the answer key | by choice, when checking |
-| `ARCHITECTURE.md` | the learner's own reasoning | written, not read |
+| `ARCHITECTURE.md` | your own reasoning | you write it |
 
 No lab has a worked solution. A systems lab admits many correct designs, so no
-implementation is canonical. `EVALUATION.md` describes what a strong design
-holds and how to check it; it does not implement one. There is no grader
-binary.
+implementation is canonical. `EVALUATION.md` says what a strong design holds
+and how to check it; it does not implement one. There is no grader binary and
+no score.
 
-The failure schedule is never a readable file in the learner distribution: its
-recipes are compiled into the shared fault controller, and `make fault`
-materializes a schedule only while a run is in flight. The standard is
-deterrence, not impossibility — the learner owns the machine.
+The failure schedule is never a readable file: its recipes compile into the
+shared fault controller, and `make fault` materializes a schedule only while a
+run is in flight. The standard is deterrence, not impossibility — you own the
+machine, and reading it is a deliberate act, like opening `HINTS.md`.
+
+## Where to start
+
+Read [`specs/index.md`](specs/index.md). Its core catalog lists the seventeen
+core labs in course order, and lab 01 is the intended entry point.
+
+Phase 1 is where a learner starts. The later phases assume it: every phase 2
+lab rebuilds a phase 1 product on an execution model you cannot operate, and
+it needs your phase 1 design and evidence to compare against.
 
 ## Phases
 
 The digit directory under `specs/` is the curriculum phase, not a version.
 
 - **1** — local runtime and delivery (7 labs)
-- **2** — the same problems on an execution model the learner cannot operate (5)
+- **2** — the same problems on an execution model you cannot operate (5)
 - **3** — real Internet streaming (2)
 - **4** — NoSQL, analytics, portability (4)
 - **6** — low-level, in Rust and C (5)
@@ -78,34 +86,39 @@ The digit directory under `specs/` is the curriculum phase, not a version.
 - **8** — search, retrieval, spatial (5)
 
 **Phase 5 no longer exists.** Its lab became `4/5`, and the gap stays open on
-purpose. The numbering is not renumbered to close gaps.
+purpose.
 
-## Reading order
+## What you will need
 
-- [`specs/index.md`](specs/index.md) — the authoritative catalog and every
-  spec's status. Start here.
-- [`specs/01-systems-labs.md`](specs/01-systems-labs.md) — the governing spec.
-  Every cross-lab contract lives here and nowhere else.
-- [`specs/0/`](specs/0/) — the selection record and the four track catalogs.
-- [`specs/<phase>/README.md`](specs/) — what a phase is about and which
-  technologies it uses.
-- [`docs/cloud-access.md`](docs/cloud-access.md) — cloud onboarding. Every
-  required gate runs locally with no account; only phase 4 buys anything.
-- [`BUGS.md`](BUGS.md) — the open review queue.
-- [`CLAUDE.md`](CLAUDE.md) — the operational summary of the governing spec,
-  for agents working in this repository.
+Every required gate runs locally, and no lab needs a cloud account to pass.
+Labs name heavyweight dependencies — PostgreSQL, Kafka, DynamoDB Local,
+ClickHouse, Valkey, Flink — and each is driven hard enough that its quirk
+actually fires.
 
-`specs/` is author-facing and is not part of the learner tree.
+Go is the starter language unless the environment dictates otherwise: Rust and
+C in phase 6, the chain's own language for an on-chain program, TypeScript for
+a browser bundle.
+
+[`docs/cloud-access.md`](docs/cloud-access.md) covers the optional cloud path.
+Only phase 4 buys anything.
 
 ## Status
 
-Specification stage. `specs/01-systems-labs.md` is `draft`, which blocks
-implementation: creating a lab directory, pinning dependency versions, or
-authoring the first lab all wait on it moving to `accepted`.
+Specification stage, and honestly so.
 
-Known open defects are recorded in [`BUGS.md`](BUGS.md) rather than fixed
-silently. At the time of writing, `S26` records that seventeen specs promise
-neighbour documentation links they do not yet carry.
+`specs/01-systems-labs.md` is `draft`, and that blocks implementation: creating
+a lab directory, pinning dependency versions, and authoring the first lab all
+wait on it moving to `accepted`. Every other spec reads `draft` too.
+
+Open defects are recorded in [`BUGS.md`](BUGS.md) rather than fixed silently.
+Six findings are open as of 2026-09-12, and two of them are redesigns awaiting
+a decision.
+
+## Contributing
+
+[`CONTRIBUTING.md`](CONTRIBUTING.md) holds the authoring side: the teaching
+contract every lab obeys, how to add a lab, the review queue, and the records
+behind which labs exist and why.
 
 ## Licence
 
