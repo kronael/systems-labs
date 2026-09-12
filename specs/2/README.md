@@ -91,11 +91,15 @@ account. Project: <https://github.com/softwaremill/elasticmq>. The semantics it
 implements are Amazon SQS's:
 <https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html>.
 
-**The fault controller** must reproduce the freeze locally, at the platform's
-own barrier — the runtime and every extension complete, no events pending —
-or none of these labs can be falsified without a cloud account. That is a
-scaffold requirement rather than a technology, and it is recorded as an
-open question in [the shared scaffold](../0/5-shared-scaffold.md).
+**The fault controller** supplies the freeze, because the runtime emulator
+does not. Its process layer holds the environment at the platform's own
+barrier — the runtime and every extension complete, no events pending — and
+thaws it when the next invocation is assigned, so every lab in this phase
+except the import lab is falsified locally without a cloud account. Its
+transport layer supplies the limits the local store leaves out, in front of
+that store. Each lab names the layer its required gate depends on and states
+that the gate proves a declared model; the mechanism is in
+[the shared scaffold](../0/5-shared-scaffold.md).
 
 ## What this phase does not use, and why that is interesting
 
@@ -128,5 +132,5 @@ prerequisite.
 ## Cloud
 
 Every required gate runs locally on the runtime emulator. The optional smoke run
-confirms that the emulated freeze and concurrency behaviour match the service,
+compares the modelled freeze and the modelled limits against the service,
 and stays inside the guardrails in [cloud access](../../docs/cloud-access.md).

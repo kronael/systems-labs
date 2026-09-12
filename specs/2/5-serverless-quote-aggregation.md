@@ -44,8 +44,17 @@ destroys environments to force first-invocation latency, holds a provider past
 the handler's remaining time, throttles above the declared ceiling, and freezes
 an environment at the freeze barrier — the point where the runtime and every
 extension have completed with no events pending — with a provider call
-outstanding. The course supplies the provider protocol, the fault schedules
-behind `make fault`. The learner owns the handler and its tests. No cloud account is required.
+outstanding.
+
+The local runner does not freeze by itself. The fault controller's process
+layer supplies the freeze, at the barrier the platform states: the runtime and
+every extension complete with no events pending, which a returned response
+alone does not mark. The controller holds the environment at that barrier,
+confirms the suspension, and thaws it when the next invocation is assigned.
+
+The course supplies the provider protocol and the fault schedules behind
+`make fault`. The learner owns the handler and its tests. No cloud account is
+required.
 
 ## Requirements
 
@@ -138,6 +147,11 @@ and its behavior above the ceiling matches what the design declared. No response
 outlives the promised budget, and no returned quote is past its expiry at the
 moment the response is sent. Provider-side load stays inside the stated bound
 while environments are being created and destroyed.
+
+The freeze in that schedule comes from the controller's process layer. The
+required gate therefore proves a modelled freeze rather than the hosted
+service's own behaviour, and `EVALUATION.md` states that. Where an account
+exists, `make smoke` compares the modelled freeze against the service.
 
 The admitted fraction of offered traffic is reported and defended against the
 measured local capacity. A design that rejects nearly everything has not met

@@ -46,9 +46,23 @@ open.
 The fault controller freezes the environment at the freeze barrier and thaws
 it on the next invocation, destroys an environment between invocations, holds
 concurrent conflicting requests at one resource, and delays a store response
-past a handler's remaining time. The course supplies the client protocol,
-and the fault schedules behind `make fault`. The learner owns the handlers and
-their tests. No cloud account is required.
+past a handler's remaining time.
+
+The local runner does not freeze by itself, and the local store applies no
+capacity limit of its own. The controller supplies both. Its process layer
+holds the environment at the barrier the platform states — the runtime and
+every extension complete with no events pending, which a returned response
+alone does not mark — confirms the suspension, and thaws only when the next
+invocation is assigned. Its transport layer stands between the handlers and
+the store: it holds each request before dispatch, records the resource key
+that request addresses, admits what a declared capacity budget allows, and
+refuses the rest with the store's own failure shape, applying none of what it
+refused. Contention at the contended resource is therefore observable at that
+layer for every design, whatever a design does at the store.
+
+The course supplies the client protocol, and the fault schedules behind
+`make fault`. The learner owns the handlers and their tests. No cloud account
+is required.
 
 ## Requirements
 
@@ -102,8 +116,12 @@ numbers size the problem; they are not pass thresholds. Rejection and latency ar
 ceiling and the learner's stated service level.
 
 The evidence must report accepted and rejected attempts against the ceiling,
-conflict rate at the contended resource, and fulfillment completion after
-freezes. How that measurement is produced is the learner's choice.
+the contention the controller's transport layer recorded at the contended
+resource — the concurrent attempts it held at one resource key, and the
+outcome each attempt reached — and fulfillment completion after freezes. That
+contention record comes from the controller, so it reads the same for every
+correct design; how the other measurements are produced is the learner's
+choice.
 
 ## Architecture questions
 
@@ -116,7 +134,8 @@ The submitted `ARCHITECTURE.md` must explain:
   covers the published retry horizon, and what a client that retries beyond
   it observes;
 - how a write rejected under contention is distinguished from one rejected by a
-  rule, and which of the two may be retried;
+  rule, which of the two may be retried, and what the client sees in each
+  case;
 - what the concurrency ceiling does to offered load above it, and why the chosen
   rejection behavior is the right one for this product;
 - which invariant the local database enforced structurally, and what the
@@ -136,11 +155,17 @@ barrier with fulfillment outstanding, destroys environments between
 invocations, repeats requests with the same and with altered payloads, repeats a
 request long after its first acceptance, drives offered load past what the
 configured ceiling admits, and delays a store response until a handler
-runs out of time.
+runs out of time. At the contended resource the controller's transport layer
+holds the concurrent attempts before dispatch and releases them together at a
+named boundary, and it refuses the share the declared capacity budget excludes
+with the store's own failure shape, applying none of what it refused. A run in
+which that injection never activates, or never reaches its release boundary,
+fails rather than passes.
 
 Checks do not require a named item layout or serialization mechanism. They
-observe HTTP, store-visible state, invocation counts, and the submitted
-evidence.
+observe HTTP, store-visible state, the request history the controller's
+transport layer recorded at the store boundary, invocation counts, and the
+submitted evidence.
 
 ## Acceptance evidence
 
@@ -157,11 +182,20 @@ during its warm-up. A design that rejects nearly everything has not met the
 scale target, and the evidence must make that visible.
 
 The evidence report includes accepted and rejected attempts against the ceiling,
-conflict and cancellation rates at the contended resource, fulfillment
+the contention the controller's transport layer recorded at the contended
+resource — concurrent attempts held at one resource key, the share the declared
+capacity budget refused, and the outcome each attempt reached — fulfillment
 completion after each freeze, invocations per accepted reservation, and the
 latency distribution separated into environments that were reused and
 environments that were created. It names one guarantee the local version held
 that this design does not.
+
+The freeze and the capacity limit both come from the controller, at its
+process layer and its transport layer. The required gate therefore proves a
+declared model of the platform and of the store rather than their hosted
+behaviour, and `EVALUATION.md` states that. Where an account exists,
+`make smoke` compares the modelled freeze and the modelled limit against the
+services.
 
 ## Neighbouring systems
 

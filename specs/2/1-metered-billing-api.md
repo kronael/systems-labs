@@ -38,14 +38,17 @@ environment, one in-flight invocation per environment, a freeze once the
 runtime and every extension have completed with no events pending, thaw on
 reuse, environment recycling at named barriers, an invocation ceiling (the
 platform's 15-minute maximum, scaled down by lab config so the boundary is
-reachable in a test run), and the platform's payload ceilings. Detecting the
-freeze barrier on the local runner is an open question recorded in the
-[shared scaffold](../0/5-shared-scaffold.md); this lab states the requirement
-and does not assert that the scaffold has established the capability. Two further platform behaviours
-are environment facts here rather than this lab's subject: work above the
-fixed concurrency cap is rejected, and the queue that feeds deferred work
-delivers batches at least once. Their contracts are the study of other labs
-in this phase. A long-running container is not an accepted substitute,
+reachable in a test run), and the platform's payload ceilings. The local
+runner does not freeze by itself. The fault controller's process layer
+supplies the freeze, at the barrier the platform states: the runtime and every
+extension complete with no events pending, which a returned response alone
+does not mark. The controller holds the environment at that barrier, confirms
+the suspension, and thaws it when the next invocation is assigned; the
+mechanism is in the [shared scaffold](../0/5-shared-scaffold.md). Two further
+platform behaviours are environment facts here rather than this lab's subject:
+work above the fixed concurrency cap is rejected, and the queue that feeds
+deferred work delivers batches at least once. Their contracts are the study of
+other labs in this phase. A long-running container is not an accepted substitute,
 because the lifecycle is the subject.
 
 The rating rules are part of the supplied product definition, published with
@@ -147,6 +150,11 @@ change appears on exactly one line. The named faults leave no doubled charge,
 no lost charge, and no cross-account response. The close completes across
 many invocations and survives a killed one without repeating or skipping an
 account.
+
+The freeze in that schedule comes from the controller's process layer. The
+required gate therefore proves a modelled freeze rather than the hosted
+service's own behaviour, and `EVALUATION.md` states that. Where an account
+exists, `make smoke` compares the modelled freeze against the service.
 
 The report contains cold and warm latency distributions against the declared
 service level, invocation counts, concurrent executions over time, and the

@@ -32,9 +32,17 @@ duplicate-resubmission ratio and account skew.
 The fault controller freezes the environment at the freeze barrier with audit
 publication outstanding, destroys an environment between invocations, fails the
 queue while the ledger stays healthy, fails the store while the queue stays
-healthy, and replays a delivered audit message. The course supplies the client
-protocol, the history checker, and the fault schedules behind `make fault`. The
-learner owns the handlers and their tests. No cloud account is required.
+healthy, and replays a delivered audit message.
+
+The local runner does not freeze by itself. The fault controller's process
+layer supplies the freeze, at the barrier the platform states: the runtime and
+every extension complete with no events pending, which a returned response
+alone does not mark. The controller holds the environment at that barrier,
+confirms the suspension, and thaws it when the next invocation is assigned.
+
+The course supplies the client protocol, the history checker, and the fault
+schedules behind `make fault`. The learner owns the handlers and their tests.
+No cloud account is required.
 
 ## Requirements
 
@@ -138,6 +146,11 @@ change nothing. An audit view rebuilt after the loss of its store reaches
 exactly the acknowledged transfer set, from the durable state the submission
 names.
 
+The freeze in that schedule comes from the controller's process layer. The
+required gate therefore proves a modelled freeze rather than the hosted
+service's own behaviour, and `EVALUATION.md` states that. Where an account
+exists, `make smoke` compares the modelled freeze against the service.
+
 The admitted fraction of offered transfers is reported and defended against
 the rate the configured ceiling admits — the admitted rate the workload
 calibrated during its warm-up. A design that rejects nearly everything has
@@ -145,8 +158,10 @@ not met the scale target, and the evidence must make that visible.
 
 The evidence report includes accepted transfers against the ceiling, audit
 records delivered per accepted transfer, the delay distribution between ledger
-durability and audit availability, conflict and cancellation rates at hot
-accounts, and invocations per accepted transfer. It states the residual window
+durability and audit availability, the contention the controller's transport
+layer recorded at the hot accounts — the concurrent attempts it held at one
+account key and the outcome each attempt reached — and invocations per accepted
+transfer. It states the residual window
 in which a transfer is durable and its audit record is not yet available, and
 what bounds that window.
 
