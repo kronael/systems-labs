@@ -321,7 +321,7 @@ The rest are drift:
   language claim scoped to phase 6; dropped words and markers repaired.
   Commits `4f4a67a`, `c2e0da1`, `410e420`, `e7c2264`, `0cbb25a`.
 
-## S23 — nine labs name a domain that does no work (2026-08-28, approved)
+## ✅ FIXED 2026-08-28 — S23 — nine labs name a domain that does no work (2026-08-28, fixed)
 
 The learner should finish a lab knowing something true about its subject
 matter, not only about its technology. A framing review of all 33 labs against
@@ -369,11 +369,23 @@ called droppable.
 - **Fix:** all nine shipped, one sub per lab, every citation fetched by the sub
   and the load-bearing ones re-verified independently before commit. The RFC
   5545 sentence turned out to live in section 3.6.1, not 3.8.2.2 where the
-  brief sent it; the sub found that and was right. Commits `cd11dba`,
-  `0e30c3b`, `e7c2264`.
+  brief sent it; the sub found that and was right. Commits `1b67206` (`1/1`,
+  `2/5`, `1/2`, `1/4`), `d9ce4b3` (`2/2`), `a63e9b3` (`4/2`), `6b08893`
+  (`6/1`, `3/2`, `8/1`, `7/2`); closed in `3f51aaf`.
 
   The standard this bug applied was not written down anywhere. It is now
   `CLAUDE.md`'s domain-grounding paragraph and step 4 of `Adding a lab`.
+
+  2026-09-12: re-verified before publication. The three hashes this entry
+  cited did not exist in the history; the four above do, and their diffs
+  hold every bound — no hour budget moved, no scale-target number changed,
+  no dependency name was added or removed, no banned phrase entered a
+  Brief, and each grounding fact sits in learner-facing text, not only in
+  `Code pointers`. All thirteen grounding sources were fetched again and
+  each quoted sentence was found verbatim. One origin blocks automated
+  fetchers: `sdge.com/.../VEE.pdf` answers 403, and its sentence was
+  confirmed in the Internet Archive snapshot of 2026-06-22. Nothing is
+  open; the four items deliberately not taken stay not taken.
 
 ## S22 — no lab teaches that an action must not outlive its evidence (2026-08-27, approved)
 
