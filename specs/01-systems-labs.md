@@ -347,6 +347,39 @@ scenario says "when record 4711 is acknowledged, freeze the broker", so the
 failure lands at the same boundary on every run and verification can assert an
 exact history. Random chaos proves nothing twice.
 
+**A barrier holds execution; it is not a thing the controller notices.** An
+effect observed after the fact has already happened, and the next effect may
+happen during the gap, so a controller that watches a history and then acts
+cannot land a fault at an exact boundary. Each barrier is therefore declared
+with an adapter that maps it to an observable effect at a public boundary and
+holds every path able to cross that boundary until the fault is applied and
+confirmed, releasing only afterwards. An atomic effect admits no interior
+barrier: a fault lands immediately before it or immediately after it, never
+"around" it. A run fails, rather than passes, when a declared barrier is never
+mapped, is never reached, is crossed before its fault applied, or when the
+fault never activated.
+
+**The controller supplies the limit the environment omits.** An emulator
+reproduces a hosted API and leaves out the limits that make the API
+interesting, so a lab whose lesson lives in a limit cannot get that limit from
+the emulator and must not pretend otherwise. The controller supplies it at
+whichever of three layers the limit belongs to:
+
+- **transport** — a proxy between the application and the dependency applies a
+  declared capacity budget, a refusal, or a latency schedule, and refuses
+  excess with the dependency's own failure shape, applying none of what it
+  refused;
+- **process** — suspend and resume at a barrier, which models an environment
+  that is reused, as distinct from `SIGKILL`, which models one that was
+  destroyed;
+- **clock** — a time source the run controls, seeded so a run replays, so that
+  an expected time is computed rather than measured.
+
+Each lab names the layer its required gate depends on, and says in
+`EVALUATION.md` that the gate proves a declared model rather than the hosted
+service's own behaviour. Where an account exists, `make smoke` is what compares
+the modelled limit against the real one.
+
 The mechanisms, from most deterministic to most realistic:
 
 - **Process and container lifecycle** — `SIGTERM` for graceful shutdown,

@@ -103,6 +103,14 @@ process lifecycle including freeze and thaw, network shaping and asymmetric
 partitions and a fault proxy, each dependency's own control surface, clock
 skew, and the fault block device.
 
+The contract states two things the controller's shape follows from: a barrier
+holds execution rather than merely being noticed, and the controller supplies
+the limit the environment omits, at the transport, process or clock layer. The
+transport layer is the fault proxy; the process layer is freeze and thaw, held
+apart from `SIGKILL`; the clock layer is the seeded time source the run
+controls. Every lab names the layer its required gate depends on, so a gate
+that depends on a limit no layer supplies is a gate that proves nothing.
+
 A scenario is declarative and names a trigger, a target, and an effect. The
 trigger is a **barrier**, not a time: an identity reaching a boundary. The
 controller and the evidence writer therefore share the barrier vocabulary,
