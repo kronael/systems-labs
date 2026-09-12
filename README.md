@@ -143,10 +143,11 @@ a lab directory, pinning dependency versions, and authoring the first lab all
 wait on it moving to `accepted`. Every other spec reads `draft` too.
 
 Open defects are recorded in [`BUGS.md`](BUGS.md) rather than fixed silently.
-Seven are open as of 2026-09-12, and each one is a redesign waiting on a
-decision. Four of them turned out to be one defect in four places: a lab's
-central failure cannot be reproduced on the local dependency, because an
-emulator reproduces an API and omits its limits. `S32` proposes the fix.
+The queue is empty as of 2026-09-12. The seven findings that stood in it were
+one defect: four labs asked a local emulator for the limit their lesson lives
+in, and an emulator reproduces an API and leaves its limits out. The fault
+controller supplies the limit now, and every lab whose gate depends on one says
+which layer supplies it.
 
 ## Contributing
 

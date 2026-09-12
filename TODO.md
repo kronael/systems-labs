@@ -9,10 +9,10 @@ what does not exist yet. A proposal moves out of here by becoming a spec under
 
 Nothing is built. `specs/0/5-shared-scaffold.md` specifies the generator, the
 fault controller, the evidence writer and `template/`, and the approval
-boundary blocks all of it while `specs/01-systems-labs.md` is `draft`. Four
-findings in `BUGS.md` say the controller needs three layers it does not have
-— transport, process, and clock — before any required gate means anything.
-That work comes before any new lab.
+boundary blocks all of it while `specs/01-systems-labs.md` is `draft`. The
+controller's three layers — transport, process, and clock — are specified now,
+and every lab that depends on one names it, but none of it is built. That work
+comes before any new lab.
 
 ## Gaps in the catalog
 
