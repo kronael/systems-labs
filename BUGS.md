@@ -44,14 +44,14 @@ bullet. Every `Code pointers` citation is solution-bearing now, every lab
 spec's section says so in its own words, and `README.md` carries only the
 neighbour documentation links and the dataset provenance. The page that
 reports a behaviour states the behaviour, so citing it in `README.md` handed
-over the reading. Commit `c6ecc0f`. The rest of `S26` stays open.
+over the reading. Commit `ec51a45`. The rest of `S26` stays open.
 
 2026-08-30: the seventeen-spec link gap is closed. Every neighbour in every
 lab spec now carries a documentation URL that answered 200 when it was
 written, and the nine bullets that named a category now name a product —
 Aurora Serverless v2, Step Functions, Fargate, DynamoDB Streams, PostgreSQL
 with a self-run Kafka, Cloud Run, API Gateway caching, Istio, GitHub Pages.
-The banned opener left `7/2` and `7/6` in the same commit, `36e7e17`.
+The banned opener left `7/2` and `7/6` in the same commit, `fd293b7`.
 
 **Named mechanisms in `Brief` or `Requirements`.** `2/3:56-58` asserts where
 the partner lab's invariant lived and rules out a store-level constraint here;
@@ -67,8 +67,8 @@ needed fails this requirement"), `6/1:50-51`, `6/5:78-81`, `8/1:36-37`,
 2026-08-30: the mechanism leaks are closed. `4/2`, `6/5`, `8/1`, and `8/4`
 now mark their mechanism-presupposing questions `HINTS.md`-bound in the
 wording `7/7` uses; `4/1`, `3/2`, `6/1`, `4/3`, and `2/3` state the property
-instead of naming or disclaiming the mechanism. Commits `67c2b49`, `fb3afaa`,
-`fe3fbf2`. `7/2:83-85` stands: the sentence states a cost the evidence
+instead of naming or disclaiming the mechanism. Commits `be8f183`, `833409a`,
+`bb8fdc7`. `7/2:83-85` stands: the sentence states a cost the evidence
 reports, not a mechanism.
 
 **Faults with no named barrier.** The contract says a scenario fires at a
@@ -82,8 +82,8 @@ declare what must hold after recovery; that half is clean.
 2026-08-30: closed. Every scenario in all eleven specs now names the barrier
 it fires at, and each ambiguous "around its durable effect" is split into one
 fault immediately before the effect and one immediately after, because
-"around" cannot land at the same boundary twice. Commits `6a1d717`,
-`52eebf8`. What remains in `S26` is user-owned: the phase-4 corpus numbers
+"around" cannot land at the same boundary twice. Commits `2f32607`,
+`90399b7`. What remains in `S26` is user-owned: the phase-4 corpus numbers
 and the phase-2 pair drift, both design decisions.
 
 **The phase-4 shared corpus is not shared.** `S23` records the intent as one
@@ -319,7 +319,7 @@ The rest are drift:
   references cut; `6/1`'s neighbours are now Fluent Bit, Vector and Filebeat,
   with the readiness-versus-completion material moved to marked pointers; the
   language claim scoped to phase 6; dropped words and markers repaired.
-  Commits `4f4a67a`, `c2e0da1`, `410e420`, `e7c2264`, `0cbb25a`.
+  Commits `af59080`, `65035f5`, `d9ce4b3`, `6b08893`, `3f51aaf`.
 
 ## ✅ FIXED 2026-08-28 — S23 — nine labs name a domain that does no work (2026-08-28, fixed)
 
