@@ -144,8 +144,9 @@ wait on it moving to `accepted`. Every other spec reads `draft` too.
 
 Open defects are recorded in [`BUGS.md`](BUGS.md) rather than fixed silently.
 Seven are open as of 2026-09-12, and each one is a redesign waiting on a
-decision. Four of them ask the same question: whether a lab's central failure
-can be reproduced on the local dependency at all.
+decision. Four of them turned out to be one defect in four places: a lab's
+central failure cannot be reproduced on the local dependency, because an
+emulator reproduces an API and omits its limits. `S32` proposes the fix.
 
 ## Contributing
 

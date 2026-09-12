@@ -400,9 +400,10 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
   candidate carries the answer in its name, so all three publish into
   `HINTS.md`, and the spec records that deviation where it happens.
 - `BUGS.md` holds seven findings, every one a redesign waiting on the user.
-  `S1`, `S27`, `S28` and `S29` all ask one question: whether the local
-  dependency reproduces the failure the lab is built on. `S26` holds the
-  phase-4 corpus and the phase-2 pair drift, `S30` the crawl window, `S31` the
+  `S1`, `S27`, `S28` and `S29` are settled against primary sources: the local
+  dependency does NOT reproduce the failure the lab is built on. `S32` is the
+  one decision that answers all four — the emulator owes the API and the
+  controller owes the limit. `S30` holds the crawl freshness bound, `S31` the
   phase-7 shape taxonomy.
 - No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`,
   and it is the first thing built once `01-systems-labs.md` is `accepted`.
