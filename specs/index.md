@@ -1,5 +1,8 @@
 # Specification index
 
+Author-facing. Every lab specification below carries its `Adversarial
+evaluation` section, so opening one spends that lab for whoever does it.
+
 ## Core catalog
 
 The seventeen core labs, in course order. Each row names the lab's system, the

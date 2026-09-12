@@ -66,8 +66,19 @@ machine, and reading it is a deliberate act, like opening `HINTS.md`.
 
 ## Where to start
 
-Read [`specs/index.md`](specs/index.md). Its core catalog lists the seventeen
-core labs in course order, and lab 01 is the intended entry point.
+There is no learner tree yet, so the only thing to read is the author's own
+catalog.
+
+**Reading a lab specification spends that lab.** The specifications are written
+for whoever builds the labs, not for whoever does them, and each one carries
+the failure schedule — the exact records at which the lab breaks your design.
+That schedule is the lab. A finished lab keeps it in a compiled controller for
+the same reason.
+
+Knowing that, [`specs/index.md`](specs/index.md) is the catalog. It lists the
+seventeen core labs in course order, and lab 01 is the intended entry point.
+Read the catalog rows to see what each lab asks; open a specification only if
+you have decided you are an author rather than a learner.
 
 Phase 1 is where a learner starts. The later phases assume it: three of the
 five phase 2 labs recast a phase 1 product on an execution model you cannot
