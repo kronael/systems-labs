@@ -6,8 +6,11 @@ status: reference
 
 ## Decision
 
-Phase 7 is a third catalog covering Solana and Ethereum. The work divides into
-four shapes, and every candidate is one of them:
+Phase 7 covers Solana and Ethereum through five shapes: validator enhancement,
+chain data processing, end-to-end program development, permissionless
+deployment and delivery, and chain transaction clients that submit transactions
+and establish outcomes without authoring a program. It is a third catalog, and
+every candidate is one of the five:
 
 - **validator enhancement** — code that runs inside or beside a node and must
   survive the node's own constraints;
@@ -18,7 +21,11 @@ four shapes, and every candidate is one of them:
 - **permissionless deployment and delivery** — an application published to users
   through content-addressed storage and on-chain state, with no server, domain,
   or account its publisher operates, where availability, currency, and
-  immutability must each be established deliberately rather than assumed.
+  immutability must each be established deliberately rather than assumed;
+- **chain transaction client** — a client that submits transactions and
+  establishes the outcome of each without authoring an on-chain program, where
+  the chain's own rules of validity, ordering, and abandonment decide when a
+  submission may be repeated and when an outcome may be declared final.
 
 The environment is local: `solana-test-validator` and a local Ethereum
 development node. Public RPC endpoints are opt-in, bounded, cached, and never
@@ -41,7 +48,7 @@ are original.
 | 7/1 | Validator state stream | Validator enhancement | A plugin can take its time, and every state it sees is real | [Agave Geyser plugin docs](https://docs.anza.xyz/validator/geyser); the validator pushes and the plugin reacts, so slow plugin work pushes back on the node. Reported edges: [slot streaming starts late](https://github.com/solana-labs/solana/issues/27842) and [no snapshot request from the plugin](https://github.com/solana-labs/solana/issues/31242) |
 | 7/2 | Settlement program and client | End-to-end program | A program is limited only by its logic | [Compute budget](https://solana.com/docs/core/fees/compute-budget): 200k CU per instruction, 1.4M per transaction. [Program limitations](https://solana.com/docs/programs/limitations). Realloc capped at 10,240 bytes per call, 10 MB per account; rent exemption required |
 | 7/3 | Finality-aware transfer index | Data processing | A receipt means it happened | [`eth_getLogs` `removed` flag](https://docs.metamask.io/services/reference/ethereum/json-rpc-methods/eth_getlogs/): orphaned logs are re-sent with `removed: true`. Proof-of-stake moves a block proposed → safe → finalized, roughly two epochs |
-| 7/4 | Reliable transaction dispatcher | End-to-end program | Send and wait works; retry is free | Solana: [blockhash expires after 151 blocks, about 60–90 seconds](https://solana.com/developers/guides/advanced/confirmation), and [durable nonces](https://solana.com/docs/core/transactions/durable-nonces) remove that window at the cost of an `AdvanceNonceAccount` first instruction. Ethereum: nonce gaps stall an account, replacement needs a fee bump |
+| 7/4 | Reliable transaction dispatcher | Chain transaction client | Send and wait works; retry is free | Solana: [blockhash expires after 151 blocks, about 60–90 seconds](https://solana.com/developers/guides/advanced/confirmation), and [durable nonces](https://solana.com/docs/core/transactions/durable-nonces) remove that window at the cost of an `AdvanceNonceAccount` first instruction. Ethereum: nonce gaps stall an account, replacement needs a fee bump |
 | 7/6 | Permissionless application hosting | Permissionless delivery | Deployed means permanent, and permissionless means nobody can change it | [IPFS persistence](https://docs.ipfs.tech/concepts/persistence/): the network guarantees discoverability, not availability; unpinned data is garbage-collected, and pinning services pin for a fee. [IPNS](https://docs.ipfs.tech/concepts/ipns/): DHT records expire after 48 hours regardless of validity, and a node republishes only while it runs. [Deploying programs](https://solana.com/docs/programs/deploying): the upgrade authority can replace or close a program, `--final` removes it, and once immutable it can never be updated or closed |
 | 7/7 | Multi-chain deposit service | End-to-end program | Money that moves says who moved it | [NEAR chain signatures](https://docs.near.org/chain-abstraction/chain-signatures): "a 'one way' solution to sign and execute outbound transactions happening on other blockchains", with a documented risk of a signature "replayed on a chain you did not intend to interact with". [FDIC, 89 FR 80135](https://www.govinfo.gov/content/pkg/FR-2024-10-02/html/2024-22565.htm): proposed 12 CFR 375.3 requires balances "at the beneficial ownership level", reconciliation "no less frequently than at the close of business daily", and record access "in the event of business interruption, insolvency, or bankruptcy of the third party" |
 
@@ -110,7 +117,7 @@ the account, a replacement needs a fee bump, and a transaction the dispatcher
 abandoned can still be mined. The two chains disagree about what a retry even
 means, which is the contrast this lab exists to teach.
 
-Shape: end-to-end program development plus dispatcher. Language: Go.
+Shape: chain transaction client. Language: Go.
 
 Spec: [`../7/4-reliable-transaction-dispatcher.md`](../specs/7/4-reliable-transaction-dispatcher.md).
 

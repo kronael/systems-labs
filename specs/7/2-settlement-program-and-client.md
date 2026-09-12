@@ -84,14 +84,17 @@ storage the workload has not yet needed fails this requirement on cost, not
 on style.
 
 The scale target is 10,000 registered participants, 50,000 settlements
-offered open-loop at 200 settlements per second with 64 in flight, 100
-balance and status queries per second served concurrently, at least 8 MiB of
-on-chain account data retained by the end of the run, and a largest single
-settlement netting across 2,000 participants. These numbers size the problem
-so that the compute unit budget, the message size ceiling, and the per-call
-growth cap are all reached; they are not pass thresholds. Thresholds stay
-relative, calibrated, structural, or learner-declared, per the verification
-contract.
+offered open-loop at 0.5 × r / m settlements per second with 64 in flight,
+100 balance and status queries per second served concurrently, at least 8 MiB
+of on-chain account data retained by the end of the run, and a largest single
+settlement netting across 2,000 participants. A separate calibration on the
+same host measures r, the confirmed transactions per second the node sustains,
+and m, the transactions per settlement, for the same seeded workload and
+confirmation level; that calibration holds fixed for the evidence run. These
+numbers size the problem so that the compute unit budget, the message size
+ceiling, and the per-call growth cap are all reached; they are not pass
+thresholds. Thresholds stay relative, calibrated, structural, or
+learner-declared, per the verification contract.
 
 The evidence must show compute units consumed per transaction against
 participants per settlement, transactions issued per settlement against its
@@ -161,12 +164,13 @@ applied exactly once or fully unapplied, and reports which.
 
 The evidence report includes compute units per transaction against
 settlement size, transactions per settlement against settlement size, the
-account-growth ledger with the rent balance at each step, sustained
-settlement throughput against the offered rate, query latency during
-settlement against the learner's declared level, total lamports spent on
-fees, and the observed rent-overhead factor against the declared one. It
-names the settlement size at which the design's transaction count changes
-shape, and the runtime limit that would bind next beyond the scale target.
+account-growth ledger with the rent balance at each step, completed
+settlements against the offered load, utilisation as s × m / r for the
+achieved settlement rate s, query latency during settlement against the
+learner's declared level, total lamports spent on fees, and the observed
+rent-overhead factor against the declared one. It names the settlement size
+at which the design's transaction count changes shape, and the runtime limit
+that would bind next beyond the scale target.
 
 ## Neighbouring systems
 

@@ -12,10 +12,10 @@ the learner tree; any learner-facing orientation is derived from it later.
 Phase 7 is a separate catalog on Solana and Ethereum whose quirks live in
 the chain's own contracts: what a validator notification proves, what the
 runtime bounds before a program's logic does, what a receipt means, and what
-deployment actually buys. The track admits four shapes only — validator
-enhancement, chain data processing, end-to-end program development, and
-permissionless deployment and delivery — and every candidate is one of
-them. Each lab is grounded in a documented, publicly reported behavior
+deployment actually buys. The track admits five shapes only — validator
+enhancement, chain data processing, end-to-end program development,
+permissionless deployment and delivery, and the chain transaction client that
+authors no program — and every candidate is one of them. Each lab is grounded in a documented, publicly reported behavior
 recorded in the [track record](../../docs/blockchain-track.md).
 
 The `7/5` slot is empty. Its candidate was a cross-chain settlement audit, cut
