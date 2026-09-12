@@ -374,7 +374,8 @@ because a second copy drifts. `01-systems-labs.md` specifies the shared
 contracts and carries no per-lab detail except the source map that indexes its
 own research ledger. `docs/` holds the selection record and the track
 catalogs; `specs/<phase>/README.md` orients a phase; `BUGS.md` is the review
-queue; `.diary/` is the shipping log. Root `HOWTO.md` is the learner's method —
+queue and `TODO.md` the forward backlog; `.diary/` is the shipping log. Root
+`HOWTO.md` is the learner's method —
 the loop, the gates, what they write, when they open which file — and
 `CONTRIBUTING.md` is its author-side counterpart.
 

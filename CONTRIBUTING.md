@@ -19,7 +19,9 @@ solution-bearing about the curriculum's design.
   were chosen, which were cut, and the candidates behind phases 6, 7 and 8.
 - [`HOWTO.md`](HOWTO.md) — the learner's method: the loop, the gates, what
   they write, and when they open which file. The counterpart to this file.
-- [`BUGS.md`](BUGS.md) — the review queue.
+- [`BUGS.md`](BUGS.md) — the review queue: what is wrong with what exists.
+- [`TODO.md`](TODO.md) — what does not exist yet, and which proposals are
+  still missing the documented behaviour that would let them become specs.
 - [`.diary/`](.diary/) — the shipping log, dated. History lives here and is
   never narrated into the specs.
 
