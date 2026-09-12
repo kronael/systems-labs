@@ -12,15 +12,15 @@ subscription at the close of each billing period — running entirely as
 event-driven functions that keep their state in an external store, with no
 long-lived process anywhere.
 
-The execution model is the lesson. The platform runs each request in an
-isolated environment that handles one invocation at a time, freezes when the
-runtime and every extension have completed with no events pending — a handler
-can return before that point — and thaws for a later invocation, the same
-caller's or anyone's. Work still unfinished at the freeze stops with it and
-resumes minutes later, under another request, or never. State the process
-accumulated for one caller is still there for the next. Environments are
-recycled even under continuous traffic, and an invocation is killed at its
-ceiling. None of this is a fault; it is the documented contract.
+The period close is the lesson. This lab is taken after the recasts, so the
+execution model's lifecycle is already a contract the learner has designed
+against — the freeze, environment reuse, and the invocation ceiling arrive
+here as environment facts, not as new material. What is new is a unit of work
+that does not fit an invocation: every active subscription must be invoiced at
+the close of a billing period, and the close is larger than the ceiling allows
+one invocation to finish. Work still unfinished at the freeze stops with it
+and resumes minutes later, under another request, or never. How the close is
+divided, resumed, and proven complete is the learner's decision.
 
 The assignment is the whole service: public behavior, state design, use of
 the queue, the period-close path, and end-to-end tests. The function
@@ -199,7 +199,7 @@ Every citation below is solution-bearing. None of it publishes into
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, the
   Lambda execution-shape policy, cost, grading, and evidence contracts.
 - [`../0/6-serverless-contrast-track.md`](../0/6-serverless-contrast-track.md) —
-  why this lab comes first and has no phase 1 partner.
+  why this lab lands after the recasts and has no phase 1 partner.
 - [`2-reliable-record-import.md`](2-reliable-record-import.md) — the
   neighbouring queue-driven lab, whose subject is the queue's delivery contract
   rather than the execution model.

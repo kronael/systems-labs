@@ -55,11 +55,13 @@ their tests. No cloud account is required.
 No two live reservations for one resource may overlap in time. This holds under
 concurrent conflicting requests at the declared contention profile. This
 invariant is the lab's study, and the environment here will not hold it for
-the design. The execution
-model's lifecycle — the freeze, environment reuse, and the invocation ceiling
-— is an environment fact whose contract is the study of the phase's opening
-lab; here the design must survive it while establishing the invariant no
-store enforces.
+the design. This lab opens the phase, so it also carries the phase's lifecycle
+contract: the freeze at the barrier where the runtime and every extension have
+completed with no events pending, environment reuse and the process memory it
+exposes, and the invocation ceiling that terminates work rather than
+completing it. The design must state what each of the three does to the
+invariant, because the later labs in this phase treat that contract as an
+environment fact rather than restating it.
 
 Reusing an idempotency key with the same request has one effect; reusing it with
 different data fails visibly. The local pairing holds this guarantee without a

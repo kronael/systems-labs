@@ -26,11 +26,18 @@ than controlled: it does not isolate one variable, it swaps one deployable
 shape for another and lets the same product expose the difference. What breaks
 names the part of the phase 1 design that was load-bearing.
 
-Two labs have no phase 1 partner. Metered billing comes first and introduces
-the execution model on an unfamiliar product, so the recasts that follow vary
-one thing rather than two. Record import lost its partner when phase 1 merged
-the standalone import lab into `1/2`; it stands alone now, contrasting a
-delivery model rather than holding a product constant.
+The phase opens on a recast, so the first lab varies one thing: the execution
+model, under a product the learner already built and still holds the artifacts
+for. That opening lab carries the lifecycle contract for the phase — the
+freeze, environment reuse, and the invocation ceiling — and the recasts after
+it treat that contract as an environment fact.
+
+Two labs have no phase 1 partner. Metered billing lands once the execution
+model is familiar, because an unfamiliar product and an unfamiliar execution
+model at the same time is the two-variable jump this ordering exists to avoid.
+Record import lost its partner when phase 1 merged the standalone import lab
+into `1/2`; it stands alone now, contrasting a delivery model rather than
+holding a product constant.
 
 `1/3` has no counterpart here. Replaying a retained log through metered
 invocations teaches the same lesson at higher cost, and a recast must reach a
@@ -39,22 +46,22 @@ failure the original could not. The reasoning is in the
 
 ## The labs
 
-- [Metered billing API](1-metered-billing-api.md) — subscriptions, metered
-  usage, and period-close invoicing, where the environment freezes between
-  invocations.
-- [Reliable record import](2-reliable-record-import.md) — interval meter
-  readings imported on a hosted queue with a poller the learner does not
-  write, contrasting the self-run leased delivery inside `1/2`. It has no
-  partner and requires no prior lab.
 - [Serverless reservation fulfillment](3-serverless-reservation-fulfillment.md)
   — the reservation product from `1/2`, with a partitioned key-value store as
-  the system of record.
+  the system of record. It opens the phase and carries the lifecycle contract.
 - [Serverless auditable transfer](4-serverless-auditable-transfer.md) — the
   transfer product from `1/5`, carrying the commit gap onto an environment
   where nothing runs between events.
 - [Serverless quote aggregation](5-serverless-quote-aggregation.md) — the
   fare-search product from `1/1`, where admission is a platform ceiling rather
   than the design's own decision.
+- [Metered billing API](1-metered-billing-api.md) — subscriptions, metered
+  usage, and period-close invoicing, on an unfamiliar product the learner
+  meets once the execution model is familiar.
+- [Reliable record import](2-reliable-record-import.md) — interval meter
+  readings imported on a hosted queue with a poller the learner does not
+  write, contrasting the self-run leased delivery inside `1/2`. It has no
+  partner and requires no prior lab.
 
 ## The technologies
 

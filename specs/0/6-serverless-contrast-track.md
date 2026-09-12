@@ -69,8 +69,11 @@ at all.
 | [1/5 auditable transfer](../1/5-auditable-transfer-service.md) | [2/4 serverless transfer](../2/4-serverless-auditable-transfer.md) | Any process that outlives a request to carry committed state downstream | A commit gap closed by events, across a freeze that can strand the publish |
 
 [2/1 metered billing](../2/1-metered-billing-api.md) has no phase 1 partner by
-design. It comes first and teaches the execution model on an unfamiliar
-product, so the recasts that follow vary one thing rather than two.
+design. It lands once the execution model is familiar, because a product the
+learner has never built and an execution model they have never used are two
+variables at once. The phase opens on a recast instead, which varies the
+execution model alone and carries the lifecycle contract the later labs treat
+as an environment fact.
 
 [2/2 reliable record import](../2/2-reliable-record-import.md) lost its partner
 when phase 1 merged the standalone import lab into
