@@ -369,7 +369,7 @@ The core catalog in `specs/index.md` holds each lab's system, architecture
 pressure, and prepared environment. Read it there; do not restate it elsewhere,
 because a second copy drifts. `01-systems-labs.md` specifies the shared
 contracts and carries no per-lab detail except the source map that indexes its
-own research ledger. `specs/0/` holds the selection record and the four track
+own research ledger. `docs/` holds the selection record and the track
 catalogs; `specs/<phase>/README.md` orients a phase; `BUGS.md` is the review
 queue; `.diary/` is the shipping log.
 
