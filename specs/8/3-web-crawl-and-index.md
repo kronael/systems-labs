@@ -48,7 +48,9 @@ large enough to exercise the standard's minimum parse size, and a
 `robots.txt` reached only through redirects. Pages carry `ETag` and
 `Last-Modified` validators and answer conditional requests. The harness
 rewrites named pages at named barriers, and the prepared schedules fix the
-evidence window.
+evidence window and the overlap window whose demands — updates to
+already-served pages, `robots.txt` requests, post-error retries — a declared
+freshness bound must cover.
 
 Every request the harness receives lands in a ledger, the ground truth
 verification checks against. A ledger record carries the timestamp, the URL,
@@ -80,6 +82,17 @@ publishes — the ceiling, the corpus, the rewrite rate — and it fits inside
 the evidence window, because a bound the window cannot witness cannot hold in
 the evidence. Pages the budget has never reached sit outside the bound, and
 what the product promises about them is part of the product.
+
+The declaration is constrained, not merely derived. Let F be the declared
+bound; let K, R, and E count the updates to already-served pages, the
+`robots.txt` requests, and the post-error retries that a prepared overlap
+window requires before F expires, each of them positive; let U count the
+eligible unfetched pages competing for the same allowance, and A(F) the host's
+available request slots under the declaration. The declaration is admissible
+only when K + R + E <= A(F) < K + R + E + U, so the work the bound promises
+fits and the corpus does not. At a constant grant g that reads
+(K + R + E) / g <= F < (K + R + E + U) / g; under the fault windows the
+recorded allowance supplies A(F).
 
 Politeness is binding. The crawler identifies itself with a stable product
 token, honours the per-host rate the harness enforces, obeys `robots.txt` per
@@ -233,14 +246,16 @@ full ceiling and the crawler's cadence on every faulted host recovered.
 The evidence report includes coverage of the corpus over time, the ratio of
 304 to full responses on revisits and the bytes each carried, the
 distribution of content age behind answered queries against the declared
-bound and its derivation, the division of each host's allowance among content
-fetches, `robots.txt` fetches, and retries, and the declared pagination
-contract holding while paginating past ten thousand results during active
-indexing. It names the pages the budget never reached and states what the
-product guarantees about them, states the budget the fault windows withheld —
-the full ceiling less the granted allowance, read from the harness's
-allowance record — and the learner's own account of what that cost the crawl,
-and it names one residual limitation.
+bound, its derivation, and the counts that make it admissible — K, R, E, U,
+and A(F) over the prepared overlap window — the division of each host's
+allowance among content fetches, `robots.txt` fetches, and retries, and the
+declared pagination contract holding while paginating past ten thousand
+results during active indexing. It names the pages the budget never reached
+and states what the product guarantees about them, names the eligible pages
+that lost service to the work the declared bound promised, states the budget
+the fault windows withheld — the full ceiling less the granted allowance, read
+from the harness's allowance record — and the learner's own account of what
+that cost the crawl, and it names one residual limitation.
 
 ## Neighbouring systems
 
