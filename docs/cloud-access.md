@@ -5,9 +5,10 @@ status: reference
 # Cloud access
 
 Every required gate in this curriculum runs locally with no cloud account.
-Cloud use exists only for the opt-in `make smoke` check, and the permitted
-services are AWS Lambda, SQS,
-DynamoDB on-demand, and short-retention logs. This document covers the three
+Cloud use is opt-in. `make smoke` is the only target that deploys to an
+account, and the permitted services are AWS Lambda, SQS, DynamoDB on-demand,
+and short-retention logs; `make source` may also record a bounded sample from
+a public provider, which needs no AWS account. This document covers the three
 things a learner reaching that optional step needs: getting an account, not
 getting billed, and knowing which services each phase touches. The course
 never promises that an account is free of charge; the guardrails below are

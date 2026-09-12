@@ -8,7 +8,7 @@ status: reference
 
 Phase 6 is a second catalog in Rust and C. Its quirks live in the kernel and
 the machine: I/O readiness and completion, durability, virtual memory, memory
-allocation, and time. It is not a translation of phases 1 to 5.
+allocation, and time. It is not a translation of phases 1 to 4.
 
 A port is not a low-level lab. Rewriting the quote service in Rust inherits the
 original's checks, failure schedule, and answer; the learner reimplements a
@@ -108,14 +108,14 @@ Spec: [`../6/5-rate-accurate-replayer.md`](../specs/6/5-rate-accurate-replayer.m
 ## Scale contract
 
 Each low-level lab carries a speed, a load, and an amount, per the
-[lab brief contract](../01-systems-labs.md#lab-brief-contract). The numbers are
+[lab brief contract](../specs/01-systems-labs.md#lab-brief-contract). The numbers are
 set when the lab is specced; they are chosen so the naive design fails on size
 rather than on a reviewer's judgment.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
+- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`1-lab-selection.md`](lab-selection.md) — the scored selection that
+- [`lab-selection.md`](lab-selection.md) — the scored selection that
   produced the original core ten.
-- [`../index.md`](../specs/index.md) — authoritative list and lifecycle status.
+- [`specs/index.md`](../specs/index.md) — authoritative list and lifecycle status.

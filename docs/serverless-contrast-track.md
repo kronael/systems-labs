@@ -167,8 +167,8 @@ long-lived process is capacity held for nothing.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — the contracts both phases
+- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — the contracts both phases
   inherit, and the execution-model carve-out to the no-ports rule.
-- [`1-lab-selection.md`](lab-selection.md) — the original scored selection.
+- [`lab-selection.md`](lab-selection.md) — the original scored selection.
 - [`5-shared-scaffold.md`](../specs/0/5-shared-scaffold.md) — the fault controller that
   must reproduce the freeze locally, without which phase 2 cannot be graded.

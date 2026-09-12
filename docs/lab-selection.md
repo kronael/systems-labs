@@ -6,10 +6,11 @@ status: reference
 
 ## Decision
 
-This record selected ten labs from twenty expanded candidates. The catalog has
-since grown to twelve; the two later additions are recorded in the
-[core catalog](../index.md#core-catalog) table, which is
-authoritative.
+This record selected ten labs from twenty expanded candidates. It scores that
+round and nothing else. The catalog now holds thirty-four labs, seventeen of
+them core. The [core catalog](../specs/index.md#core-catalog) table is
+authoritative for what exists, and every lab admitted after this round is
+recorded there.
 Selection favors durable system judgment over product count: every survivor
 produces a useful end-to-end system, exposes a false mental model through a
 deterministic failure, and fits into six to twenty-five focused hours with supplied
@@ -210,7 +211,7 @@ correctly also exceeds a several-hour product lab.
 
 ## Selected sequence
 
-The ten survivors form five phases:
+This round ordered its ten survivors in five groups:
 
 1. Runtime and delivery semantics: resilient quotes, reservation fulfillment,
    Kafka-backed activity, and queue-backed record import.
@@ -220,12 +221,14 @@ The ten survivors form five phases:
 5. Platform judgment: portable market ingestion under Kubernetes,
    Lambda-shaped execution, and OpenTofu.
 
-The sequence reuses event and evidence contracts without requiring copied
-solutions. Each lab directory remains independently completable.
+The grouping reuses event and evidence contracts without requiring copied
+solutions, and each lab directory stays independently completable. The
+curriculum's phase map is in [`specs/index.md`](../specs/index.md) and the
+phase `README.md` files.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
+- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`../index.md`](../specs/index.md) — authoritative list and lifecycle status of the
+- [`specs/index.md`](../specs/index.md) — authoritative list and lifecycle status of the
   selected lab specs.

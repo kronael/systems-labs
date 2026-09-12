@@ -23,7 +23,7 @@ four shapes, and every candidate is one of them:
 The environment is local: `solana-test-validator` and a local Ethereum
 development node. Public RPC endpoints are opt-in, bounded, cached, and never
 on a request path, exactly as the
-[data contract](../01-systems-labs.md#data-contract) requires. No lab requires
+[data contract](../specs/01-systems-labs.md#data-contract) requires. No lab requires
 mainnet funds.
 
 All six candidates have full specs. A seventh, cross-chain settlement audit,
@@ -161,16 +161,16 @@ Spec: [`../7/7-multi-chain-deposit-service.md`](../specs/7/7-multi-chain-deposit
 ## Scale contract
 
 Each blockchain lab carries a speed, a load, and an amount, per the
-[lab brief contract](../01-systems-labs.md#lab-brief-contract). Chain
+[lab brief contract](../specs/01-systems-labs.md#lab-brief-contract). Chain
 throughput is fixed by the local validator, so the amount is expressed in
 accounts, transfers, or slots indexed, and the speed is expressed against the
 node's own rate rather than against a wall-clock target.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
+- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`1-lab-selection.md`](lab-selection.md) — the scored selection that
+- [`lab-selection.md`](lab-selection.md) — the scored selection that
   produced the original core ten.
-- [`2-low-level-track.md`](low-level-track.md) — the Rust and C track.
-- [`../index.md`](../specs/index.md) — authoritative list and lifecycle status.
+- [`low-level-track.md`](low-level-track.md) — the Rust and C track.
+- [`specs/index.md`](../specs/index.md) — authoritative list and lifecycle status.

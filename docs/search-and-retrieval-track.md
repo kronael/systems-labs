@@ -8,7 +8,7 @@ status: reference
 
 Phase 8 is a fourth catalog built on retrieval. Its labs combine a search
 engine with a domain store and real public corpora, and each one is deliberately
-denser than a phase 1 to 5 lab: the interaction between the technologies is the
+denser than a phase 1 to 4 lab: the interaction between the technologies is the
 lesson, not any one of them alone.
 
 This is the track that admits **OpenSearch**, which the core catalog excludes.
@@ -123,18 +123,18 @@ Spec: [`../8/5-relevance-evaluation-service.md`](../specs/8/5-relevance-evaluati
 ## Scale contract
 
 Each lab carries a speed, a load, and an amount, per the
-[lab brief contract](../01-systems-labs.md#lab-brief-contract). The amount is
+[lab brief contract](../specs/01-systems-labs.md#lab-brief-contract). The amount is
 what forces the quirk here: 8/1 needs a corpus large enough that significance
 shifts, 8/3 needs more pages than the crawl budget covers, and 8/4 needs an
 extent large enough that the index cannot be scanned.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
+- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`1-lab-selection.md`](lab-selection.md) — the scored selection that
+- [`lab-selection.md`](lab-selection.md) — the scored selection that
   produced the original core ten.
-- [`2-low-level-track.md`](low-level-track.md) — the Rust and C track.
-- [`3-blockchain-track.md`](blockchain-track.md) — the Solana and Ethereum
+- [`low-level-track.md`](low-level-track.md) — the Rust and C track.
+- [`blockchain-track.md`](blockchain-track.md) — the Solana and Ethereum
   track.
-- [`../index.md`](../specs/index.md) — authoritative list and lifecycle status.
+- [`specs/index.md`](../specs/index.md) — authoritative list and lifecycle status.
