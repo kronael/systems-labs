@@ -357,7 +357,7 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
   documentation link for every neighbour. `1/7` names no neighbour at all:
   every genuine candidate carries the answer in its name, so all three sit in
   `hints/`, and the lab records that deviation where it happens.
-- `BUGS.md` holds `S33` to `S38`. The fault injection contract in
+- `BUGS.md` is empty. The fault injection contract in
   `docs/contract.md`
   states the two rules every lab's gate now rests on: a barrier holds execution
   rather than being noticed once it has passed, and the controller supplies the

@@ -161,16 +161,15 @@ Phases 2 and 4 are the only ones that can bill, and only there.
 
 ## Status
 
-`docs/contract.md` is `draft`, and that blocks implementation.
-Creating a lab directory, pinning dependency versions, and authoring the first
-lab all wait on it moving to `accepted`. Every other spec reads `draft` too.
+`docs/contract.md` is `draft`, and that blocks implementation. Writing code
+into a lab directory, pinning dependency versions, and building the first lab
+all wait on it moving to `accepted`.
 
 Open defects go in [`BUGS.md`](BUGS.md) rather than getting fixed silently.
-The queue is empty today. The findings that stood in it came down to one
-defect: four labs asked a local emulator for the limit their lesson lives in,
-and an emulator reproduces an API and leaves its limits out. The fault
-controller supplies the limit now, and every lab whose gate depends on one
-says which layer supplies it.
+The queue is empty today. The last sweep read every lab against one question —
+can a learner predict how their design fails, provoke it, and watch it
+manifest — and nineteen of the thirty-four could not. They can now: the
+resolutions and their commits are in `.diary/`.
 
 ## Contributing
 
