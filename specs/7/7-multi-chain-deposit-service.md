@@ -160,9 +160,9 @@ random:
   was authorized to leave;
 - it delivers a named authorization's signed payload to the second deposit
   chain as well as the intended one, and includes it on both;
-- it includes a named authorization's transaction after the service has
-  written that authorization off, and at the same barrier sends a stranger's
-  transfer of the same amount to the same address;
+- it includes a named authorization's transaction after the accounting close
+  that named that authorization unagreed has published, and at the same
+  barrier sends a stranger's transfer of the same amount to the same address;
 - it accepts a named depositor's full withdrawal at the moment that
   depositor's capital rests on an authorization the service has not
   attributed;

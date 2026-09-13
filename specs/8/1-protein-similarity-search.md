@@ -140,9 +140,10 @@ Faults fire at named barriers, never on a timer and never at random:
   suppressed or flagged; and the two answers must name different corpus
   versions.
 - **Restart barrier.** When the candidate phase for the named query begins,
-  the controller restarts one OpenSearch node. The service must return either
-  a complete answer or an explicit error — never a quietly smaller answer
-  assembled from the shards that survived.
+  the controller fails one named shard of the index the query ranges over, so
+  the engine answers from the shards that are still available. The service
+  must return either a complete answer or an explicit error, never a quietly
+  smaller answer assembled from the shards that responded.
 - **Indexing barrier.** The controller makes indexing fail for one named
   accession that is planted as the top match for a fixture query. The failure
   must surface in the corpus state, and the affected answer must disclose the

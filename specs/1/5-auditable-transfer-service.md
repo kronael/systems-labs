@@ -74,8 +74,8 @@ alone do not count as analysis.
 
 Every fault fires at a named barrier, never on a timer and never at random.
 The failure schedule kills processes immediately before and immediately after
-a named transfer's database commit, its broker acknowledgement, its local
-publication progress, its downstream effect, and its consumer progress. It
+a named transfer's database commit, its broker acknowledgement, its downstream
+effect, and its consumer progress. It
 repeats the client request of a named transfer, runs concurrent transfers
 against hot accounts, delays Kafka at a named transfer, restarts PostgreSQL at
 a named transfer, and rebuilds the audit product.
