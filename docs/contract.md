@@ -277,16 +277,15 @@ lab teachable:
   recipe sources from the source repository, but each is a
   deliberate act. The standard is the same as `hints/` — recovering the
   answer takes a deliberate act, and nothing hands it over by accident.
-- `labs/` — author-facing. The reasoning about what is optimal and why lives
-  here, and this directory is not part of the learner tree.
+- `EVALUATION.md` — the failure schedule, what each scenario must leave true,
+  and what a weak design gets wrong. It opens with the spoiler warning and is
+  opened by choice, when the learner is checking work rather than starting it.
 
-A lab spec's `Architecture questions` section splits across the first two
-artifacts. A question stated at the level of the property the design must
-defend belongs to the task and publishes into `README.md`. A question that
-presupposes a mechanism — where a thing lives, how a component establishes
-something — is solution-bearing: it publishes into `hints/`, or it is
-rewritten until it names only the property. Each lab spec marks which of its
-questions are `hints/`-bound.
+A lab's architecture questions split across the first two files. A question
+stated at the level of the property the design must defend belongs to the task
+and stays in `README.md`. A question that presupposes a mechanism — where a
+thing lives, how a component establishes something — is solution-bearing: it
+moves into `hints/`, or it is rewritten until it names only the property.
 
 The hints are a directory, `hints/`, holding one file per hint, because a
 learner who needs one answer should not have to read past four others to reach
@@ -341,8 +340,7 @@ schedules, which are declarative: each names a trigger, a target, and an
 effect. Each lab's seeded schedule recipes are compiled into the controller
 binary rather than shipped as readable files beside it: the learner
 distribution carries an executable that produces a schedule, not a source
-that describes one. The recipe sources live outside that distribution,
-excluded by the same publish step that excludes `labs/`,
+that describes one. The recipe sources live outside that distribution
 and remain published in the source repository, which the
 [licence contract](#licence-and-corresponding-source) requires the
 distribution to name as the route to the controller's corresponding source.
@@ -686,10 +684,10 @@ keeping its unit-sized submission model:
 
 - `README.md` states the task, invariants, limits, interfaces, scale target,
   and acceptance evidence without naming the solution. It carries nothing
-  else. In particular the spec's `Adversarial evaluation` section never
-  propagates into it: the failure schedule and the edge cases are the lab's
-  subject, and a learner who reads them in the task statement has been handed
-  the design. `README.md` says which invariants must hold and what evidence
+  else. In particular the failure schedule never appears in it. The schedule
+  and the edge cases are the lab's subject, and a learner who reads them in
+  the task statement has been handed the design; they live in `EVALUATION.md`
+  beside it, which is opened by choice and carries the spoiler warning. `README.md` says which invariants must hold and what evidence
   must exist, never which states can break them. Beyond that, it must not
   name, describe, compare, or rule out any solution method. The ban imports
   the `challenges/` categories verbatim: techniques, data structures, memory
@@ -724,11 +722,13 @@ keeping its unit-sized submission model:
   it asserts invariants over observed histories rather than comparing output
   to a reference run.
 - The fault schedules — duplicates, delayed acknowledgements, restarts,
-  partitions, recovery — are not lab-directory files and not readable files
-  anywhere in the learner distribution. Their seeded recipes are compiled
-  into the shared fault controller under the
-  [fault injection contract](#fault-injection-contract); `make fault`
-  materializes the one it runs and removes it afterwards.
+  partitions, recovery — are stated in `EVALUATION.md` and nowhere else in the
+  lab directory. That file opens with the spoiler warning and is opened by
+  choice, the same protection `hints/` has. What runs is not that text: the
+  seeded recipes are compiled into the shared fault controller under the
+  [fault injection contract](#fault-injection-contract), and `make fault`
+  materializes the one it runs and removes it afterwards, so a learner who
+  has not opened `EVALUATION.md` cannot read the schedule out of a run.
 - `sources/` contains provider adapters and provenance manifests, never a live
   network call on an application request path.
 - `workload/` generates schema-compatible large inputs from frozen seeds and
@@ -1062,8 +1062,7 @@ and transaction-isolation pages — are carried in each lab's own
 - `systems-labs/template/` — runnable dependency skeleton, public contracts,
   and empty application seams. Its trivial domain carries a working
   implementation, because the template is the scaffold's own regression test
-  and is not a lab. The publish step excludes `labs/` from the learner
-  distribution.
+  and is not a lab.
 
 ## Code pointers
 
