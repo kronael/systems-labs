@@ -10,7 +10,7 @@ answers part of the design, which is why they are here and not in the task.
   the movement never names the request that caused it and nothing is ever
   withdrawn; here the movement names itself and the chain takes it back.
   Reorganization belongs to this lab and is out of scope there.
-- [`../01-systems-labs.md`](../../../../specs/01-systems-labs.md) — shared scaffold,
+- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
   fault-injection, data, evidence, and verification contracts.
 - [`../../docs/blockchain-track.md`](../../../../docs/blockchain-track.md) — the track
   record where this candidate and its origination are filed.

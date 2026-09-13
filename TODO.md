@@ -1,15 +1,15 @@
 # TODO
 
 Author-facing. `BUGS.md` holds what is wrong with what exists; this file holds
-what does not exist yet. A proposal moves out of here by becoming a spec under
-`specs/<phase>/`, and it may not become one until its quirk is grounded — see
+what does not exist yet. A proposal moves out of here by becoming a lab under
+`labs/<phase>/`, and it may not become one until its quirk is grounded — see
 `CONTRIBUTING.md`, "Adding a lab", step 1.
 
 ## The scaffold
 
-Nothing is built. `specs/0/5-shared-scaffold.md` specifies the generator, the
+Nothing is built. `docs/shared-scaffold.md` specifies the generator, the
 fault controller, the evidence writer and `template/`, and the approval
-boundary blocks all of it while `specs/01-systems-labs.md` is `draft`. The
+boundary blocks all of it while `docs/contract.md` is `draft`. The
 controller's three layers — transport, process, and clock — are specified now,
 and every lab that depends on one names it, but none of it is built. That work
 comes before any new lab.
@@ -106,7 +106,7 @@ A regulation is a fact about why a requirement exists, never a thing to learn
 Recorded decisions, listed so nobody proposes them twice.
 
 - Consensus implementation, cloud-console navigation, and multi-cloud parity
-  are out by `specs/01-systems-labs.md`, "Scope boundaries".
+  are out by `docs/contract.md`, "Scope boundaries".
 - Ten candidates were scored and cut in `docs/lab-selection.md`, among them a
   CRDT workspace, a Raft key-value store, an eBPF profiler and multi-region
   failover.

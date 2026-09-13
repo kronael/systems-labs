@@ -4,7 +4,7 @@ status: reference
 
 # Serverless contrast track
 
-This file is author-facing. Like everything under `specs/`, it is not part of
+This file is author-facing. Like everything under `labs/`, it is not part of
 the learner tree, and its pairing analysis is solution-bearing on purpose:
 naming what each phase 1 answer rested on is the analysis. Nothing in it may
 be quoted into a learner-facing artifact.
@@ -64,20 +64,20 @@ at all.
 
 | Local | Serverless | What the platform removes | What the learner must build instead |
 |-------|-----------|---------------------------|-------------------------------------|
-| [1/1 quote service](../specs/1/1-resilient-quote-service.md) | [2/5 quote aggregation](../specs/2/5-serverless-quote-aggregation.md) | The long-lived process, its shared connections, and admission control the design owns | External shared state, a quote expiry that runs on across a freeze the design does not control, and provider fan-out that scales with environment count rather than with a pool the service sizes |
-| [1/2 reservation fulfillment](../specs/1/2-reservation-fulfillment.md) | [2/3 serverless reservation](../specs/2/3-serverless-reservation-fulfillment.md) | The commit-time listener, the worker pool, and a store able to enforce non-overlap itself | A hand-built exclusion rule over a store that cannot express one, and an event-driven fulfillment path |
-| [1/5 auditable transfer](../specs/1/5-auditable-transfer-service.md) | [2/4 serverless transfer](../specs/2/4-serverless-auditable-transfer.md) | Any process that outlives a request to carry committed state downstream | A commit gap closed by events, across a freeze that can strand the publish |
+| [1/1 quote service](../labs/1/1-resilient-quote-service/README.md) | [2/5 quote aggregation](../labs/2/5-serverless-quote-aggregation/README.md) | The long-lived process, its shared connections, and admission control the design owns | External shared state, a quote expiry that runs on across a freeze the design does not control, and provider fan-out that scales with environment count rather than with a pool the service sizes |
+| [1/2 reservation fulfillment](../labs/1/2-reservation-fulfillment/README.md) | [2/3 serverless reservation](../labs/2/3-serverless-reservation-fulfillment/README.md) | The commit-time listener, the worker pool, and a store able to enforce non-overlap itself | A hand-built exclusion rule over a store that cannot express one, and an event-driven fulfillment path |
+| [1/5 auditable transfer](../labs/1/5-auditable-transfer-service/README.md) | [2/4 serverless transfer](../labs/2/4-serverless-auditable-transfer/README.md) | Any process that outlives a request to carry committed state downstream | A commit gap closed by events, across a freeze that can strand the publish |
 
-[2/1 metered billing](../specs/2/1-metered-billing-api.md) has no phase 1 partner by
+[2/1 metered billing](../labs/2/1-metered-billing-api/README.md) has no phase 1 partner by
 design. It lands once the execution model is familiar, because a product the
 learner has never built and an execution model they have never used are two
 variables at once. The phase opens on a recast instead, which varies the
 execution model alone and carries the lifecycle contract the later labs treat
 as an environment fact.
 
-[2/2 reliable record import](../specs/2/2-reliable-record-import.md) lost its partner
+[2/2 reliable record import](../labs/2/2-reliable-record-import/README.md) lost its partner
 when phase 1 merged the standalone import lab into
-[1/2](../specs/1/2-reservation-fulfillment.md). No phase 1 lab now holds that product.
+[1/2](../labs/1/2-reservation-fulfillment/README.md). No phase 1 lab now holds that product.
 What survives is the model contrast, which was always the point of the pairing:
 `1/2` runs a leased delivery the learner operates, and `2/2` receives the same
 model as a hosted contract with the poller and the batch outcome supplied. The
@@ -167,8 +167,8 @@ long-lived process is capacity held for nothing.
 
 ## Governing references
 
-- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — the contracts both phases
+- [`docs/contract.md`](contract.md) — the contracts both phases
   inherit, and the execution-model carve-out to the no-ports rule.
 - [`lab-selection.md`](lab-selection.md) — the original scored selection.
-- [`5-shared-scaffold.md`](../specs/0/5-shared-scaffold.md) — the fault controller that
+- [`5-shared-scaffold.md`](shared-scaffold.md) — the fault controller that
   must reproduce the freeze locally, without which phase 2 cannot be graded.

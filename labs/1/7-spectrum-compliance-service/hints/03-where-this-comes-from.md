@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../specs/01-systems-labs.md) — shared scaffold,
+- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
   workload, fault, and evidence contracts.
 - [47 CFR § 96.39(c)(2)](https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-96)
   — the origination. "A CBSD must receive and comply with any incoming

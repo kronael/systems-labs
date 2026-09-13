@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../specs/01-systems-labs.md) — shared scaffold, Valkey,
+- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, Valkey,
   evidence, and failure contracts.
 - [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - [Key eviction](https://valkey.io/topics/lru-cache/) — at `maxmemory` Valkey

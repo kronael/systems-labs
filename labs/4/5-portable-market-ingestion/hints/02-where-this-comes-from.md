@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../specs/01-systems-labs.md) — shared scaffold,
+- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
   portability, cost, IaC, platform, and evidence contracts.
 - [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - [Execution environment lifecycle](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html)

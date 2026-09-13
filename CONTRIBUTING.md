@@ -6,14 +6,14 @@ solution-bearing about the curriculum's design.
 
 ## Where things live
 
-- [`specs/index.md`](specs/index.md) — the authoritative catalog. Every lab's
+- [`labs/README.md`](labs/README.md) — the authoritative catalog. Every lab's
   system, architecture pressure, prepared environment, and status.
-- [`specs/01-systems-labs.md`](specs/01-systems-labs.md) — the governing spec.
+- [`docs/contract.md`](docs/contract.md) — the governing spec.
   Every cross-lab contract lives here and nowhere else. Where this file and the
   spec disagree, the spec wins.
-- [`specs/<phase>/`](specs/) — the lab specs, one directory per phase, plus a
+- [`labs/<phase>/`](labs/) — the labs, one directory per lab, plus a
   `README.md` orienting the phase.
-- [`specs/0/5-shared-scaffold.md`](specs/0/5-shared-scaffold.md) — the one
+- [`docs/shared-scaffold.md`](docs/shared-scaffold.md) — the one
   generator, fault controller, evidence writer, and template all 34 labs share.
 - [`docs/`](docs/) — the selection record and the track catalogs: which labs
   were chosen, which were cut, and the candidates behind phases 6, 7 and 8.
@@ -25,7 +25,7 @@ solution-bearing about the curriculum's design.
 - [`.diary/`](.diary/) — the shipping log, dated. History lives here and is
   never narrated into the specs.
 
-`specs/` is the authoring source. The learner tree is derived from it, and no
+`labs/` is the authoring source. The learner tree is derived from it, and no
 learner reads a spec directly.
 
 ## The teaching contract
@@ -80,11 +80,12 @@ requirement is the whole of it.
    paper, a vendor limit. Fetch the page and confirm it says what you claim; a
    URL recalled from memory is not a citation. Never invent a quirk and then go
    looking for a source.
-2. Write the spec under `specs/<phase>/` with the nine sections in order and no
-   others: `Brief` · `Prepared scaffold` · `Requirements` ·
-   `Architecture questions` · `Adversarial evaluation` · `Acceptance evidence` ·
-   `Neighbouring systems` · `Scope` · `Code pointers`. Frontmatter carries one
-   key, `status:`.
+2. Create `labs/<phase>/<number>-<name>/` and write its `README.md`: the
+   brief, the prepared environment, the requirements, the scale target, the
+   architecture questions that state a property, the acceptance evidence, the
+   neighbour names with documentation links, and what is outside the problem.
+   Write `EVALUATION.md` beside it with the failure schedule and what each
+   scenario must leave true, and `hints/` with one file per hint.
 3. Name the scale target — speed, load, amount — and state what the naive small
    tool would fail at that scale. If nothing, raise the target or drop the
    dependency.
@@ -97,7 +98,7 @@ requirement is the whole of it.
 7. Add the fault schedule recipe to the controller and update the frozen
    digest.
 8. Run `make teaching-lint`, then add a row to the core catalog in
-   `specs/index.md`.
+   `labs/README.md`.
 
 ## Filing a defect
 
@@ -110,6 +111,6 @@ findings are pruned to `.diary/` so the queue stays readable.
 
 ## Approval boundary
 
-`specs/01-systems-labs.md` blocks implementation while it is `draft`. Creating
+`docs/contract.md` blocks implementation while it is `draft`. Creating
 a lab directory, pinning dependency versions, or authoring the first lab needs
 that spec moved to `accepted`. Editing and expanding the specs is open work.

@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../specs/01-systems-labs.md) — shared scaffold,
+- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
 - [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale,
   where ClickHouse was recorded as the strongest first addition.

@@ -104,7 +104,7 @@ the failure schedule: the exact records at which the lab breaks your design.
 That schedule is the lab. A finished lab keeps it in a compiled controller for
 the same reason.
 
-Knowing that, [`specs/index.md`](specs/index.md) is the catalog. It lists the
+Knowing that, [`labs/README.md`](labs/README.md) is the catalog. It lists the
 seventeen core labs in course order, and lab 01 is the intended entry point.
 Read the catalog rows to see what each lab asks. Open a specification only if
 you have decided you are an author rather than a learner.
@@ -123,7 +123,7 @@ stand alone.
 
 ## Phases
 
-The digit directory under `specs/` is the curriculum phase, not a version.
+The digit directory under `labs/` is the curriculum phase, not a version.
 
 - **1** local runtime and delivery (7 labs)
 - **2** the same problems on an execution model you cannot operate (5)
@@ -162,7 +162,7 @@ Phases 2 and 4 are the only ones that can bill, and only there.
 
 ## Status
 
-`specs/01-systems-labs.md` is `draft`, and that blocks implementation.
+`docs/contract.md` is `draft`, and that blocks implementation.
 Creating a lab directory, pinning dependency versions, and authoring the first
 lab all wait on it moving to `accepted`. Every other spec reads `draft` too.
 

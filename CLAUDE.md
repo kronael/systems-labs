@@ -8,11 +8,11 @@ Curriculum of end-to-end systems labs. Each lab prompts a complete, useful
 product that a learner designs, breaks, recovers, and defends with evidence.
 34 labs across seven phases; seventeen are the core.
 
-**Today the repository holds specifications only** — no code, no `Makefile`, no
-lab directory. Every target below is specified, not implemented. Do not report a
+**Today the repository holds the labs as text only** — no code, no `Makefile`,
+no scaffold. Every target below is described, not implemented. Do not report a
 build or test result; there is nothing to run.
 
-`specs/01-systems-labs.md` is the governing spec and the single source for every
+`docs/contract.md` is the governing contract and the single source for every
 cross-lab rule. This file is its operational summary; where the two disagree,
 the spec wins and this file is wrong.
 
@@ -194,15 +194,15 @@ survives with nothing to check is entertainment, not a gate.
 ## Per-lab directory shape
 
 ```text
-NN-solution-neutral-name/
+labs/<phase>/NN-solution-neutral-name/
   README.md         task, no solution
   ARCHITECTURE.md   learner-owned
-  hints/            architecture reading, one file per hint, opened by choice
+  hints/            one file per hint plus an index, opened by choice
+  EVALUATION.md     the failure schedule and what it must leave true
   lab.toml
   compose.yml       learner-owned application topology
   app/  tests/      learner-owned
   starter/          generated clients, contracts, empty seams, no product path
-  EVALUATION.md     the answer key, opened by choice
   sources/          provider adapters and provenance manifests
   workload/         seeded generators and bounded cached replay
   infra/compose/dependencies.yml   fixed external systems only
@@ -277,11 +277,11 @@ RDS, and ElastiCache are excluded — each bills continuously.
    paper, a vendor limit — and record it in the track record's origination
    column. NEVER invent a puzzle and then look for a source. Fetch the page and
    confirm it says what you claim; a URL recalled from memory is not a citation.
-2. Write the spec under `specs/<phase>/`, using the nine sections in order and
-   no others: `Brief` · `Prepared scaffold` · `Requirements` ·
-   `Architecture questions` · `Adversarial evaluation` · `Acceptance evidence` ·
-   `Neighbouring systems` · `Scope` · `Code pointers`. Frontmatter carries one
-   key, `status:`.
+2. Create the lab directory, `labs/<phase>/<number>-<name>/`, and write its
+   `README.md`: the brief, what the environment gives, the requirements, the
+   scale target, the architecture questions that state a property, the
+   acceptance evidence, the neighbour names with their documentation links,
+   and what is outside the problem. It ends with the fixed closing line.
 3. Name the scale target — speed, load, amount — and check the earned-dependency
    rule: state what the naive small tool would fail at this scale. If nothing,
    raise the scale target or drop the dependency.
@@ -303,7 +303,7 @@ RDS, and ElastiCache are excluded — each bills continuously.
    what a strong design holds, it does not implement one.
 8. Add the fault schedule recipe to the controller, update the frozen aggregate
    digest, and confirm `make fault` materializes and removes it.
-9. Run `make teaching-lint`. Add a row to the core catalog in `specs/index.md`.
+9. Run `make teaching-lint`. Add a row to the core catalog in `labs/README.md`.
 
 ## Naming rule — read before editing any link
 
@@ -311,13 +311,13 @@ Lab files carry **solution-neutral product names**. The file name states what
 the product does, never the technology that solves it. `1/2` is
 `reservation-fulfillment`, not `postgres-durable-jobs`.
 
-`specs/index.md` carries the product names in both its core catalog and its full
+`labs/README.md` carries the product names in both its core catalog and its full
 specification list. Before editing a link, read the real file name from disk
 rather than copying one from a table.
 
 ## Phases
 
-The digit directory under `specs/` is the curriculum **phase**, not a version:
+The digit directory under `labs/` is the curriculum **phase**, not a version:
 1 local runtime and delivery; 2 the same problems serverless; 3 real Internet
 streaming; 4 NoSQL, analytics, portability; 6 low-level; 7 blockchain;
 8 search, retrieval, spatial. **Phase 5 no longer exists** and the `7/5` slot is
@@ -329,44 +329,46 @@ product may be repeated: a port across languages inherits the original's answer,
 a port across execution models confiscates it. Phases 6, 7 and 8 are separate
 catalogs, and each track's labs must expose a failure the others cannot reach.
 
-Where things live: `specs/index.md` is the core catalog, per-lab detail lives
-there and nowhere else; `01-systems-labs.md` is the shared contracts;
-`docs/` holds the selection record and the track catalogs;
-`specs/<phase>/README.md` orients a phase; `HOWTO.md` is the learner's method
-and `CONTRIBUTING.md` its author-side counterpart; `BUGS.md` is the queue,
-`TODO.md` the backlog, `.diary/` the log. `specs/` is author-facing and is NOT
-part of the learner tree.
+Where things live: every lab is a directory under `labs/`, and everything that
+lab needs is inside it. `labs/README.md` is the core catalog and per-lab detail
+lives there and nowhere else; `labs/<phase>/README.md` orients a phase;
+`docs/contract.md` is the shared contract every lab obeys and
+`docs/shared-scaffold.md` the environment it runs on; `docs/` also holds the
+selection record and the track catalogs; `HOWTO.md` is the learner's method and
+`CONTRIBUTING.md` its author-side counterpart; `BUGS.md` is the queue,
+`TODO.md` the backlog, `.diary/` the log.
 
 ## Approval boundary
 
-`01-systems-labs.md` blocks implementation while it is `draft`. Creating a lab
-directory, pinning dependency versions, or authoring lab 01 needs the user to
-move that spec to `accepted` first. Editing and expanding the specs is open work.
+`docs/contract.md` blocks implementation while it is `draft`. Writing code into
+a lab directory, pinning dependency versions, and building lab 01 need the user
+to move it to `accepted` first. Writing and expanding the labs is open work.
 
 ## State of the repo
 
-- Thirty-four lab specs exist: seven in phase 1, five in phase 2, two in
-  phase 3, four in phase 4, five in phase 6, six in phase 7, five in phase 8.
+- Thirty-four labs exist under `labs/`: seven in phase 1, five in phase 2, two
+  in phase 3, four in phase 4, five in phase 6, six in phase 7, five in phase 8.
   The seventeen core labs are the phase 1 to 4 rows of the core catalog in
-  `specs/index.md`. `1/7` sits in phase 1 and outside the core; phases 6, 7
+  `labs/README.md`. `1/7` sits in phase 1 and outside the core; phases 6, 7
   and 8 are separate catalogs.
-- Every lab spec carries the nine sections in order, `status: draft`, a scale
-  target, and a fetched documentation link for every neighbour it names. `1/7`
-  is the one lab whose `README.md` names no neighbour at all: every genuine
-  candidate carries the answer in its name, so all three publish into
-  `hints/`, and the spec records that deviation where it happens.
-- `BUGS.md` is empty. The fault injection contract in `01-systems-labs.md`
+- Every lab directory holds `README.md`, `hints/` with its index, and
+  `EVALUATION.md`. Each names a scale target and carries a fetched
+  documentation link for every neighbour. `1/7` names no neighbour at all:
+  every genuine candidate carries the answer in its name, so all three sit in
+  `hints/`, and the lab records that deviation where it happens.
+- `BUGS.md` holds `S33` to `S37`. The fault injection contract in
+  `docs/contract.md`
   states the two rules every lab's gate now rests on: a barrier holds execution
   rather than being noticed once it has passed, and the controller supplies the
   limit the environment omits, at a transport, process, or clock layer. A lab
   whose required gate depends on a limit names its layer and says the gate
   proves a declared model, with `make smoke` as the comparison. `TODO.md` holds
   what does not exist yet.
-- No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`,
-  and it is the first thing built once `01-systems-labs.md` is `accepted`.
+- No code exists. The shared scaffold is specified in `docs/shared-scaffold.md`,
+  and it is the first thing built once `docs/contract.md` is `accepted`.
 - Root carries `LICENSE` (verbatim GPL-3.0 from gnu.org), `README.md`, and
   `CONTRIBUTING.md`. `LICENSE` is the one copied file here; the licensing
-  contract in `01-systems-labs.md` adds a root ledger with the first commit
+  contract in `docs/contract.md` adds a root ledger with the first commit
   that copies anything else.
 - `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
   short-lived credentials, per-phase account table. Phases 2 and 4 are the only

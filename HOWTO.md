@@ -89,7 +89,7 @@ learned something.
 ## Working the commands
 
 Each lab exposes the same small vocabulary, and no other. The verification
-contract in [`specs/01-systems-labs.md`](specs/01-systems-labs.md) is where
+contract in [`docs/contract.md`](docs/contract.md) is where
 this list is defined; that file is the governing spec and carries no lab's
 failure schedule.
 
@@ -173,6 +173,6 @@ phase 2 labs recast a phase 1 product onto an execution model you cannot
 operate, and each one needs your phase 1 design and evidence to compare
 against.
 
-The catalog is in [`specs/index.md`](specs/index.md). Read the rows. Warning:
+The catalog is in [`labs/README.md`](labs/README.md). Read the rows. Warning:
 the specifications those rows link to are author material, and each one carries
 the failure schedule, so opening a specification spends that lab for you.

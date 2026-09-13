@@ -50,7 +50,7 @@ the kernel until completion, and that a partial transfer must be reconciled
 against a record boundary. Memory is the forcing function: a growing input plus
 a stalled consumer makes any unbounded buffer fail.
 
-Spec: [`../6/1-bounded-memory-record-shipper.md`](../specs/6/1-bounded-memory-record-shipper.md).
+Spec: [`../6/1-bounded-memory-record-shipper.md`](../labs/6/1-bounded-memory-record-shipper/README.md).
 
 ### 6/2 Crash-safe record store — specced
 
@@ -63,7 +63,7 @@ the second call reports success over data that is gone. The store must treat
 that error as terminal, exactly as PostgreSQL now does, and must also handle a
 torn trailing record and a truncated file.
 
-Spec: [`../6/2-crash-safe-record-store.md`](../specs/6/2-crash-safe-record-store.md).
+Spec: [`../6/2-crash-safe-record-store.md`](../labs/6/2-crash-safe-record-store/README.md).
 
 ### 6/3 Large index query service — specced
 
@@ -77,7 +77,7 @@ shootdowns scale with cores, and the achieved read bandwidth stays far below
 the device. `SIGBUS` on truncation and the absence of write-back control finish
 the argument.
 
-Spec: [`../6/3-large-index-query-service.md`](../specs/6/3-large-index-query-service.md).
+Spec: [`../6/3-large-index-query-service.md`](../labs/6/3-large-index-query-service/README.md).
 
 ### 6/4 Steady-state request service — specced
 
@@ -89,7 +89,7 @@ is freed. The learner meets allocator arenas, fragmentation, trim thresholds,
 and transparent huge pages, and finds that the tail latency is produced by
 allocation rather than by the work the service performs.
 
-Spec: [`../6/4-steady-state-request-service.md`](../specs/6/4-steady-state-request-service.md).
+Spec: [`../6/4-steady-state-request-service.md`](../labs/6/4-steady-state-request-service/README.md).
 
 ### 6/5 Rate-accurate replayer — specced
 
@@ -103,19 +103,19 @@ difference between `CLOCK_MONOTONIC` and wall time all move the result. This
 candidate is the low-level counterpart to the open-loop generator that phases 1
 to 5 supply as prepared infrastructure.
 
-Spec: [`../6/5-rate-accurate-replayer.md`](../specs/6/5-rate-accurate-replayer.md).
+Spec: [`../6/5-rate-accurate-replayer.md`](../labs/6/5-rate-accurate-replayer/README.md).
 
 ## Scale contract
 
 Each low-level lab carries a speed, a load, and an amount, per the
-[lab brief contract](../specs/01-systems-labs.md#lab-brief-contract). The numbers are
+[lab brief contract](docs/contract.md#lab-brief-contract). The numbers are
 set when the lab is specced; they are chosen so the naive design fails on size
 rather than on a reviewer's judgment.
 
 ## Governing references
 
-- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
+- [`docs/contract.md`](contract.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
 - [`lab-selection.md`](lab-selection.md) — the scored selection that
   produced the original core ten.
-- [`specs/index.md`](../specs/index.md) — authoritative list and lifecycle status.
+- [`labs/README.md`](../labs/README.md) — authoritative list and lifecycle status.

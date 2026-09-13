@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../specs/01-systems-labs.md) — shared scaffold,
+- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
   DynamoDB, real-data, cost, and evidence contracts.
 - [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - [Partition key design](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html)

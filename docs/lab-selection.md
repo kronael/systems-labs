@@ -8,7 +8,7 @@ status: reference
 
 This record selected ten labs from twenty expanded candidates. It scores that
 round and nothing else. The catalog now holds thirty-four labs, seventeen of
-them core. The [core catalog](../specs/index.md#core-catalog) table is
+them core. The [core catalog](labs/README.md#core-catalog) table is
 authoritative for what exists, and every lab admitted after this round is
 recorded there.
 Selection favors durable system judgment over product count: every survivor
@@ -223,12 +223,12 @@ This round ordered its ten survivors in five groups:
 
 The grouping reuses event and evidence contracts without requiring copied
 solutions, and each lab directory stays independently completable. The
-curriculum's phase map is in [`specs/index.md`](../specs/index.md) and the
+curriculum's phase map is in [`labs/README.md`](../labs/README.md) and the
 phase `README.md` files.
 
 ## Governing references
 
-- [`specs/01-systems-labs.md`](../specs/01-systems-labs.md) — course-wide learning,
+- [`docs/contract.md`](contract.md) — course-wide learning,
   evidence, source, cost, and repository contracts.
-- [`specs/index.md`](../specs/index.md) — authoritative list and lifecycle status of the
+- [`labs/README.md`](../labs/README.md) — authoritative list and lifecycle status of the
   selected lab specs.

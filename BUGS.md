@@ -38,8 +38,8 @@ Each entry names the smallest change that closes it.
 - **Severity:** high — the failure gate is the lab, and in `1/5` a correct
   design fails the run
 - **Scope:** phase 1 specs
-- **Affected:** `specs/1/1`, `1/2`, `1/3`, `1/4`, `1/5`, `1/6`, `1/7`
-- **Source:** review of specs/1/ against the learner method, 2026-09-13; the
+- **Affected:** `labs/1/1`, `1/2`, `1/3`, `1/4`, `1/5`, `1/6`, `1/7`
+- **Source:** review of labs/1/ against the learner method, 2026-09-13; the
   `1/5` and `1/1` findings re-verified against the file text
 - **Status:** open
 - **Fix:**
@@ -78,8 +78,8 @@ Fixed in `bdd3f83` before this entry was written.
 
 - **Severity:** high — three labs demand evidence the environment cannot produce
 - **Scope:** phase 2 specs
-- **Affected:** `specs/2/1`, `2/2`, `2/3`, `2/4`, `2/5`
-- **Source:** review of specs/2/ against the learner method, 2026-09-13; the
+- **Affected:** `labs/2/1`, `2/2`, `2/3`, `2/4`, `2/5`
+- **Source:** review of labs/2/ against the learner method, 2026-09-13; the
   `2/5` leak and the throttling gap re-verified against the file text
 - **Status:** open
 - **Fix:**
@@ -119,7 +119,7 @@ clean: `6/1`, `6/3`, `6/4`, `6/5`, `7/2`, `7/4`, `7/6`, `8/2`.
 - **Severity:** medium — no correct design fails a run except in `7/7`, but
   four labs cannot show the failure they are built around
 - **Scope:** phase 6, 7 and 8 specs
-- **Affected:** `specs/8/1`, `7/1`, `6/2`, `7/7`, `8/5`, `7/3`, `8/3`, `8/4`
+- **Affected:** `labs/8/1`, `7/1`, `6/2`, `7/7`, `8/5`, `7/3`, `8/3`, `8/4`
 - **Source:** review of specs/6, /7, /8 against the learner method, 2026-09-13;
   the `8/1` contradiction and the `7/1` citation gap re-verified against the
   file text
@@ -158,11 +158,11 @@ method as written.
 
 Shared with `S33` to `S35`: `01:837` says `make fault` takes "never an argument
 the caller types", so nothing lets a learner choose the record or the hold. The
-fix belongs in `specs/0/5-shared-scaffold.md`, not in the labs.
+fix belongs in `docs/shared-scaffold.md`, not in the labs.
 
 - **Severity:** high — `4/1` cannot be worked as written
 - **Scope:** phase 3 and 4 specs
-- **Affected:** `specs/4/1`, `3/2`, `4/5`, `4/2`
+- **Affected:** `labs/4/1`, `3/2`, `4/5`, `4/2`
 - **Source:** review of specs/3 and specs/4 against the learner method,
   2026-09-13; the `4/1` publication gap and the `3/2` "around" violation
   re-verified against the file text
@@ -171,7 +171,7 @@ fix belongs in `specs/0/5-shared-scaffold.md`, not in the labs.
 
 ## S37 — the learner tree drifts from the specs, and three labs still leak (2026-09-13, open)
 
-`labs/` was generated from `specs/` once and is now edited by hand, so a spec
+`labs/` was generated from `labs/` once and is now edited by hand, so a spec
 change no longer reaches the learner. `4/1` proved it within the hour: the
 requirements paragraph added in `c94c8f1` never appeared in
 `labs/4/1-market-history-api/README.md` until it was copied across by hand.
@@ -195,7 +195,7 @@ adversarial section may name a record.
 
 - **Severity:** high — the drift silently reverts learner-facing fixes
 - **Scope:** `labs/`, phase 7 and 8 specs
-- **Affected:** `labs/` as a whole, `specs/7/6`, `specs/8/2`, `specs/8/3`
+- **Affected:** `labs/` as a whole, `labs/7/6`, `labs/8/2`, `labs/8/3`
 - **Source:** review of the hints split against the tree, 2026-09-13
 - **Status:** open
 - **Fix:**

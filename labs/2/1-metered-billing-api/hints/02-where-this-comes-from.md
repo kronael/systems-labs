@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../specs/01-systems-labs.md) — shared scaffold, the
+- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, the
   Lambda execution-shape policy, cost, grading, and evidence contracts.
 - [`../../docs/serverless-contrast-track.md`](../../../../docs/serverless-contrast-track.md) —
   why this lab lands after the recasts and has no phase 1 partner.
