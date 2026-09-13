@@ -48,11 +48,13 @@ Every lab runs the same seven steps.
 3. **Test.** Test that path across the real public boundary with the real
    dependencies. Do not test private functions.
 4. **Break.** Run the failure scenario. It fires at a named record, not on a
-   timer, so it lands at the same place every run. Then play with it. Run it
-   again, start it earlier, hold it longer, restart something in the middle,
-   and watch how the same failure shows up differently each time. One run
-   tells you the gate passed. Several tell you how the failure actually
-   manifests, which is the thing you are here to learn.
+   timer, so it lands at the same place every run. Then play with it. You
+   cannot move the barrier, because the schedule is compiled, but you can
+   change your own side between runs: weaken a limit, widen a timeout, take
+   out the guard you just added, run the load target underneath it. The
+   barrier stays put and the outcome moves, which is how you learn what your
+   design was actually doing. One run tells you the gate passed. Several tell
+   you how the failure manifests.
 5. **Inspect.** Read the evidence the dependency itself keeps, not the logs
    your own code wrote: its stored state, its record of what it has handed
    out, and its own measurement of what it did.
