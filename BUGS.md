@@ -125,3 +125,46 @@ clean: `6/1`, `6/3`, `6/4`, `6/5`, `7/2`, `7/4`, `7/6`, `8/2`.
   file text
 - **Status:** open
 - **Fix:**
+
+## S36 — `4/1` cannot provoke its own quirk, and `3/2` fires "around" a barrier (2026-09-13, open)
+
+The method review across phases 3 and 4. `3/1`, `4/2` and `4/3` support the
+method as written.
+
+- **`4/1` is the worst finding of the four reviews.** Its requirements never say
+  the store refuses work: `4/1:51-53` gives only the hot-symbol skew, and the
+  capacity ceiling appears solely in `Adversarial evaluation`, which never
+  publishes, so the learner cannot predict the failure at all. DynamoDB Local
+  then cannot produce it either — its own usage notes say read and write speed
+  "is limited only by the speed of your computer", and that reads, though
+  eventually consistent, mostly appear strongly consistent, which also kills
+  the `4/1:78-79` read-after-write fault. Requirements need a declared capacity
+  budget with its own refusal outcome, and the transport model needs index lag
+  or the read-after-write fault goes.
+- **`3/2:104` kills a task "around a PostgreSQL effect and checkpoint".**
+  `01:357-358` says an atomic effect admits no interior barrier and a fault
+  lands immediately before or immediately after it, never around it. `3/2:105`
+  restarts workers "during rebalance", a phase rather than a barrier, and the
+  section is missing the "Every fault fires at a named barrier" sentence its
+  neighbours carry. The learner cannot name the state that proves the
+  prediction, because the side is undecided.
+- **`4/5` cites a Lambda freeze it never provokes.** The citation at
+  `4/5:158-161` describes buffered state surviving only if the same environment
+  thaws; the requirements name only batch, visibility, repetition and
+  concurrency, and the schedule suspends nothing. The lab also names no layer
+  for its gate. Either cut the freeze citation or add one process-layer fault.
+- Editorial: `4/2:80-81` repeats `4/2:75-76` with a `HINTS.md`-bound mark the
+  first copy lacks.
+
+Shared with `S33` to `S35`: `01:837` says `make fault` takes "never an argument
+the caller types", so nothing lets a learner choose the record or the hold. The
+fix belongs in `specs/0/5-shared-scaffold.md`, not in the labs.
+
+- **Severity:** high — `4/1` cannot be worked as written
+- **Scope:** phase 3 and 4 specs
+- **Affected:** `specs/4/1`, `3/2`, `4/5`, `4/2`
+- **Source:** review of specs/3 and specs/4 against the learner method,
+  2026-09-13; the `4/1` publication gap and the `3/2` "around" violation
+  re-verified against the file text
+- **Status:** open
+- **Fix:**
