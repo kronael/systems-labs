@@ -15,7 +15,10 @@ runs the provider latency schedule including a sustained slow interval and a
 hard failure at named requests, destroys the environment that served a named
 request so the next named request pays first-invocation latency, freezes the
 environment with a named request's provider call outstanding, and holds a
-named request's provider call past the handler's maximum run time.
+named request's provider call past the handler's maximum run time. On the
+clock layer it holds a frozen environment past the expiry of the quote a named
+request left in it, then routes a second named request to that environment, so
+the remembered quote is stale before it can be served.
 
 Checks do not require a named cache or rejection mechanism. They observe
 the public API, the expiry stamped on each returned quote, provider-side

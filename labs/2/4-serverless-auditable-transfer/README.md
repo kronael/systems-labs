@@ -26,7 +26,14 @@ duplicate-resubmission ratio and account skew.
 The fault controller freezes the environment at the freeze barrier with audit
 publication outstanding, destroys an environment between invocations, fails the
 queue while the ledger stays healthy, fails the store while the queue stays
-healthy, and replays a delivered audit message.
+healthy, refuses work above the declared ceiling with the platform's own
+refusal, delivers two named transfers' audit records reordered across batches,
+and replays a delivered audit message.
+
+The local store applies no per-key limit of its own, so the controller's
+transport layer supplies the contention the hot-account profile is for: it
+reads each request's key before dispatch, holds what the declared per-key
+budget does not admit, and refuses it with the store's own outcome.
 
 The local runner does not freeze by itself. The fault controller's process
 layer supplies the freeze, at the barrier the platform states: the runtime and

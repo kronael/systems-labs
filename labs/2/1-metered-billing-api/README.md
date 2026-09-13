@@ -39,8 +39,10 @@ extension complete with no events pending, which a returned response alone
 does not mark. The controller holds the environment at that barrier, confirms
 the suspension, and thaws it when the next invocation is assigned; the
 mechanism belongs to the shared scaffold. Two further
-platform behaviours are environment facts here rather than this lab's subject:
-work above the fixed concurrency cap is rejected, and the queue that feeds
+platform behaviours are environment facts here rather than this lab's subject,
+and the controller supplies the first, because the local runner does not:
+work above the fixed concurrency cap is rejected, with the platform's own
+refusal, and the refused fraction is the controller's to report; and the queue that feeds
 deferred work delivers batches at least once. Their contracts are the study of
 other labs in this phase. A long-running container is not an accepted substitute,
 because the lifecycle is the subject.

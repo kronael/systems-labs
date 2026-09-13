@@ -9,8 +9,8 @@ hands you the boundary you were meant to find.
 
 ## The failure schedule
 
-The failure schedule freezes the environment between the ledger write and the audit
-publication, destroys environments between invocations, fails the queue while
+The failure schedule freezes the environment at the freeze barrier with the
+audit publication for a named transfer still outstanding, destroys environments between invocations, fails the queue while
 the ledger stays healthy and the reverse, resubmits transfers with the same and
 with altered payloads, replays delivered audit messages, and drives the hot
 accounts past what the configured ceiling admits. It then replays the full client history

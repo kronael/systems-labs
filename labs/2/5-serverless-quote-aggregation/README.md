@@ -69,9 +69,7 @@ submission states what a read of that state proves and what it does not.
 
 A quote remembered across a freeze must never be returned past its expiry. The
 design states how it establishes that a remembered quote is still valid, and
-what it does when it cannot establish that. Wall-clock time advances during a
-freeze while nothing in the process does, so an expiry judged from anything the
-process itself recorded is not evidence.
+what it does when it cannot establish that.
 
 The declared concurrency ceiling is an environment fact here rather than this
 lab's subject: the platform rejects work above it, and the design states what a

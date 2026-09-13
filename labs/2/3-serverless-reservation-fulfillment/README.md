@@ -39,8 +39,9 @@ open.
 
 The fault controller freezes the environment at the freeze barrier and thaws
 it on the next invocation, destroys an environment between invocations, holds
-concurrent conflicting requests at one resource, and delays a store response
-past a handler's remaining time.
+concurrent conflicting requests at one resource, refuses work above the
+declared concurrency ceiling with the platform's own refusal, and delays a
+store response past a handler's remaining time.
 
 The local runner does not freeze by itself, and the local store applies no
 capacity limit of its own. The controller supplies both. Its process layer
@@ -48,8 +49,9 @@ holds the environment at the barrier the platform states — the runtime and
 every extension complete with no events pending, which a returned response
 alone does not mark — confirms the suspension, and thaws only when the next
 invocation is assigned. Its transport layer stands between the handlers and
-the store: it holds each request before dispatch, records the resource key
-that request addresses, admits what a declared capacity budget allows, and
+the store: it holds each request before dispatch, reads the resource identity
+from the selector the lab config declares, so it does not need to know the
+design's data layout, records that identity, admits what a declared capacity budget allows, and
 refuses the rest with the store's own failure shape, applying none of what it
 refused. Contention at the contended resource is therefore observable at that
 layer for every design, whatever a design does at the store.

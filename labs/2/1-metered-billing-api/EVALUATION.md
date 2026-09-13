@@ -12,8 +12,10 @@ hands you the boundary you were meant to find.
 The failure schedule replays a scripted history against the public API and the queue
 while firing faults at named barriers: it freezes the environment at the
 freeze barrier following the response for invoice 4711, with work observably
-outstanding; recycles the environment between the two requests of one logical
-operation on account 2205; kills the invocation carrying subscription
+outstanding; recycles the environment between the usage submission for account 2205 and the
+invoice read that follows it; thaws the environment that served account 2205
+for the next request of account 2206, so one account's environment serves
+another's response; kills the invocation carrying subscription
 118207 at the invocation ceiling; and redelivers the queue message carrying
 usage event 771003 after its work is acknowledged — the queue's delivery
 contract is another lab's subject, and the redelivery is an environment fact

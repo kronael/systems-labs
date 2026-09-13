@@ -7,3 +7,5 @@
   lab at the fan-out and policy boundary.
 - [`02-where-this-comes-from.md`](02-where-this-comes-from.md) — the pages that report the
   behaviour this lab rests on.
+- [`03-what-a-frozen-process-can-know.md`](03-what-a-frozen-process-can-know.md) — what a process can and
+  cannot know about time across a freeze.

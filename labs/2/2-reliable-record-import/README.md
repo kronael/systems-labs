@@ -94,6 +94,10 @@ The document must compare at least two acknowledgement or idempotency designs.
 
 ## Acceptance evidence
 
+The gate depends on a limit the environment does not impose on its own: the
+controller supplies the lease expiry at the process layer, holding the
+invocation past the deadline rather than noticing afterwards that it passed.
+
 Every submitted identity has an explainable outcome. Accepted readings are
 queryable, duplicates cannot corrupt results, successful batch peers remain
 successful, temporary failures retry, poison work reaches a terminal
