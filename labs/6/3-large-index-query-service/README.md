@@ -102,4 +102,12 @@ not run them. What each does differently at this lab's boundary is in
 - **RocksDB** — [documentation](https://rocksdb.org/docs/getting-started.html)
 - **ScyllaDB** — [documentation](https://docs.scylladb.com/)
 
+## What is outside the problem
+
+The expected focused time is sixteen to twenty-two hours. The learner builds
+the query service and its tests. The segment format, data harness, load
+generator, device baseline, and fault schedules are prepared. Durability of
+writes, compaction, compression, secondary indexes, replication, and
+networked storage are outside the problem.
+
 Stuck? See `hints/`.

@@ -113,4 +113,16 @@ not run them. What each does differently at this lab's boundary is in
 - **Flashbots Protect** — [documentation](https://docs.flashbots.net/flashbots-protect/overview)
 - **Temporal** — [documentation](https://docs.temporal.io/)
 
+## What is outside the problem
+
+The expected focused time is sixteen to twenty-two hours. Both nodes, funded
+accounts, the order generator, the fault schedules, and chain inspection are
+prepared. Payments use each chain's native transfer; authoring an on-chain
+program, token standards, contract calls, MEV, multi-node clusters, and
+cross-chain atomicity are outside the problem.
+
+No step requires mainnet funds or a cloud account. Public RPC endpoints are
+opt-in, bounded, cached under the shared source directory, and never on a
+request path. CI and checks use the local nodes only.
+
 Stuck? See `hints/`.

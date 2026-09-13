@@ -94,4 +94,16 @@ not run them. What each does differently at this lab's boundary is in
 - **Temporal** — [documentation](https://docs.temporal.io/)
 - **Pulumi** — [documentation](https://www.pulumi.com/docs/)
 
+## What is outside the problem
+
+The expected focused time is eighteen to twenty-four hours. Compose
+dependencies, `kind`, the Lambda-compatible runner, base OpenTofu sandboxes,
+telemetry, workload, and faults are prepared, but two full deployments of
+one domain contract are not, and the design is falsified and rebuilt at
+least twice: once when the shared code boundary leaks a platform-specific
+assumption, and again when the infrastructure module layout does not
+account for an out-of-band change. MSK, EKS, NAT gateways, RDS, ElastiCache,
+API Gateway, multi-region deployment, and mandatory AWS access are outside
+the problem.
+
 Stuck? See `hints/`.

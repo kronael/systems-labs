@@ -117,4 +117,18 @@ not run them. What each does differently at this lab's boundary is in
 - **Spark Structured Streaming** — [documentation](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
 - **Materialize** — [documentation](https://materialize.com/docs/)
 
+## What is outside the problem
+
+The expected focused time is fifteen to twenty hours. Kafka, Flink,
+PostgreSQL, input, telemetry, checkpoint storage, and faults are prepared,
+but reconciling two independent recovery paths to the same exact report is
+not, and a first design usually passes restore before it is falsified on
+reconstruction, or the reverse, forcing at least one rebuild of the
+activation boundary. The learner does not become a routing analyst: the
+views are named and their meanings fixed above, and the report window and
+quiet interval come from the lab configuration. Protocol attribute parsing,
+path analysis, comparing vantage points, judging whether an observed change
+is genuine, custom connectors, hosted stream services, data lakes,
+multi-cluster Kafka, and RPKI logic are outside the problem.
+
 Stuck? See `hints/`.

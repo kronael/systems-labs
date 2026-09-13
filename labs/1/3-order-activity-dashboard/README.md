@@ -101,4 +101,11 @@ not run them. What each does differently at this lab's boundary is in
 - **Kafka Streams** — [documentation](https://kafka.apache.org/documentation/streams/)
 - **RabbitMQ** — [documentation](https://www.rabbitmq.com/docs)
 
+## What is outside the problem
+
+The expected focused time is fifteen to twenty-five hours. Kafka, PostgreSQL,
+producer workloads, telemetry, and faults are prepared. Flink, a schema-registry
+service, multi-cluster replication, and a browser dashboard are outside the
+problem.
+
 Stuck? See `hints/`.

@@ -119,4 +119,18 @@ not run them. What each does differently at this lab's boundary is in
 - **RabbitMQ** — [documentation](https://www.rabbitmq.com/docs)
 - **AWS Step Functions** — [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 
+## What is outside the problem
+
+The expected focused time is seven to ten hours. Queue, database, invocation
+harness, telemetry, workloads, and faults are prepared. SNS, EventBridge, Step
+Functions, API Gateway, and production AWS are outside the required problem.
+The optional smoke run follows the course cost ceiling.
+
+No other lab is a prerequisite, and every artifact the acceptance evidence
+needs is produced within this lab. Estimating a value for a missing or failed
+reading is excluded: the practice that holds failed readings for review also
+fills gaps with estimates, and estimation is a second problem with its own
+rules and its own failure model. The import ends where a reading is accepted,
+retried, or held — it never invents a value.
+
 Stuck? See `hints/`.

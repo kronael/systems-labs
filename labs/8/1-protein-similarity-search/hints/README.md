@@ -5,3 +5,5 @@
 - [`01-neighbour-boundaries.md`](01-neighbour-boundaries.md) — what NCBI
   BLAST+, DIAMOND, and OpenSearch k-NN vector search do differently from
   this lab at the serving boundary.
+- [`02-where-this-comes-from.md`](02-where-this-comes-from.md) — the pages that report the
+  behaviour this lab rests on.

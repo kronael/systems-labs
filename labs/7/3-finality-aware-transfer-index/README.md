@@ -123,4 +123,16 @@ not run them. What each does differently at this lab's boundary is in
 - **TrueBlocks** — [documentation](https://trueblocks.io/docs/)
 - **Etherscan** — [documentation](https://docs.etherscan.io/)
 
+## What is outside the problem
+
+The expected focused time is fourteen to eighteen hours. The node, token
+contracts, workload driver, and fault schedules are prepared; the learner
+builds the indexing service and the query API. Every required gate runs
+against the local node with no mainnet funds and no cloud account. A bounded
+recording from a public RPC endpoint is opt-in, checksummed, cached under
+the shared sources directory, and never fetched on a request path; CI uses
+the local node only. Writing token contracts, wallet and key management,
+non-fungible tokens, price data, and consensus-layer verification are
+outside the problem.
+
 Stuck? See `hints/`.

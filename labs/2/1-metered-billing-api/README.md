@@ -38,7 +38,7 @@ supplies the freeze, at the barrier the platform states: the runtime and every
 extension complete with no events pending, which a returned response alone
 does not mark. The controller holds the environment at that barrier, confirms
 the suspension, and thaws it when the next invocation is assigned; the
-mechanism is in the [shared scaffold](../0/5-shared-scaffold.md). Two further
+mechanism is in the [shared scaffold](../../../specs/0/5-shared-scaffold.md). Two further
 platform behaviours are environment facts here rather than this lab's subject:
 work above the fixed concurrency cap is rejected, and the queue that feeds
 deferred work delivers batches at least once. Their contracts are the study of
@@ -146,5 +146,17 @@ not run them. What each does differently at this lab's boundary is in
 - **Google Cloud Run** — [documentation](https://cloud.google.com/run/docs)
 - **AWS Step Functions** — [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 - **Temporal** — [documentation](https://docs.temporal.io/)
+
+## What is outside the problem
+
+The expected focused time is fifteen to twenty-five hours. The learner builds
+the functions, the state design, the queue usage, and the tests. The runner, the
+queue, the store, the generator, and the fault schedules are prepared. Every required gate runs locally with no AWS account. The optional
+smoke run behind `make smoke` uses Lambda,
+SQS, DynamoDB on-demand, and short-retention logs only, with a stated
+invocation and dollar ceiling; provisioned concurrency is excluded by the
+cost contract, so a cold start cannot be bought away. Payment collection,
+card networks, taxes, currency conversion, dunning, and API gateways are
+outside the problem.
 
 Stuck? See `hints/`.

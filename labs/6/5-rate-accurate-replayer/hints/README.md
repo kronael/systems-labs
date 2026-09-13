@@ -8,3 +8,5 @@
 - [`02-neighbour-boundaries.md`](02-neighbour-boundaries.md) — what wrk,
   tcpreplay, and k6 do differently from this lab at the offered-rate
   boundary.
+- [`03-where-this-comes-from.md`](03-where-this-comes-from.md) — the pages that report the
+  behaviour this lab rests on.

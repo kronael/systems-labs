@@ -100,4 +100,13 @@ not run them. What each does differently at this lab's boundary is in
 - **tcmalloc** — [documentation](https://google.github.io/tcmalloc/)
 - **mimalloc** — [documentation](https://github.com/microsoft/mimalloc)
 
+## What is outside the problem
+
+The expected focused time is sixteen to twenty hours. The learner builds the
+service and its tests. The workload generator, protocol, telemetry, and fault
+schedules are prepared. The environment fixes the platform's default
+allocation facility; swapping it for another is outside the problem, as are
+persistence, spilling entries to disk, replication, restart recovery, and
+distributed operation.
+
 Stuck? See `hints/`.

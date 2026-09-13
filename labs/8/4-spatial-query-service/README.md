@@ -118,4 +118,25 @@ not run them. What each does differently at this lab's boundary is in
 - **H3** — [documentation](https://h3geo.org/docs/)
 - **Tile38** — [documentation](https://tile38.com/)
 
+## What is outside the problem
+
+The expected focused time is eighteen to twenty-two hours; phase 8 labs are
+deliberately denser because the interaction between the search engine and the
+domain store is the lesson, and three query classes each demanding exact
+answers under antimeridian and high-latitude placements, held against a
+continuously edited store, price out well above a phase 1-4 lab. The learner builds the query service, the content
+and upkeep of the search engine, the edit application path, and the tests.
+PostGIS, OpenSearch, the loaded extract, the generator, and the fault
+schedules are prepared. Map rendering, tile serving, routing, and cartography
+are outside the problem.
+
+OpenStreetMap data is licensed under the ODbL: whoever alters or builds upon
+the data may distribute the result only under the same licence, so a database
+derived from an extract carries share-alike obligations. Real extracts —
+per-region `.osm.pbf` files such as Geofabrik publishes — are opt-in through
+`make source`, bounded, checksummed, cached under
+`${PREFIX:-/srv}/data/systems-labs/sources/`, never redistributed by this
+repository, and never fetched on a request path. CI and every required gate
+use generated seeded input only and run locally with no cloud account.
+
 Stuck? See `hints/`.

@@ -8,3 +8,5 @@
 - [`02-neighbour-boundaries.md`](02-neighbour-boundaries.md) — what Amazon
   DynamoDB Streams, AWS Step Functions, and PostgreSQL with a self-run Kafka
   do differently from this lab at the publication boundary.
+- [`03-where-this-comes-from.md`](03-where-this-comes-from.md) — the pages that report the
+  behaviour this lab rests on.

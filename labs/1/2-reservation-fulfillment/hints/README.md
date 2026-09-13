@@ -7,3 +7,5 @@
   delivery harmless.
 - [`02-neighbour-boundaries.md`](02-neighbour-boundaries.md) — what RabbitMQ,
   Kafka, and Temporal do differently from this lab at the redelivery boundary.
+- [`03-where-this-comes-from.md`](03-where-this-comes-from.md) — the pages that report the
+  behaviour this lab rests on.

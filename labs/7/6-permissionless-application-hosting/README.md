@@ -175,4 +175,25 @@ not run them. What each does differently at this lab's boundary is in
 - **Arweave** — [documentation](https://docs.arweave.org/)
 - **ENS with `contenthash`** — [documentation](https://docs.ens.domains/)
 
+## What is outside the problem
+
+The expected focused time is twenty to twenty-five hours. The learner builds
+the program, the interface bundle and manifest, and the publishing path. The
+validator, the name registry, the four-node content network, the user agent
+fleet, the release plan and payload generator, and the fault schedules are
+prepared.
+
+Every required gate runs locally at zero cost and with no account of any
+kind: no cloud account, no domain registrar, no pinning-service subscription,
+and no wallet holding real funds. The lab's subject is removing the accounts,
+so it must not require one. Optional use of the public content network, a
+public pinning service, or public RPC is opt-in, bounded, cached under the
+shared source directory, and never on a request path; CI and verification
+use the local environment only.
+
+Program runtime limits belong to the settlement lab, transaction dispatch
+reliability to the dispatcher lab. DNS and real domains, TLS and public
+gateways, token standards, multi-validator clusters, and browser-specific
+packaging are outside the problem.
+
 Stuck? See `hints/`.

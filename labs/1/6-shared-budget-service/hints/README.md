@@ -9,3 +9,5 @@
   — why a store's refusal to complete work differs from rejecting an invalid
   write, and why a decision over a set of records can be refused even when
   every individual write in it was legal.
+- [`03-where-this-comes-from.md`](03-where-this-comes-from.md) — the pages that report the
+  behaviour this lab rests on.

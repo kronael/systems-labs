@@ -150,4 +150,12 @@ not run them. What each does differently at this lab's boundary is in
 - **Stellar Soroban** — [documentation](https://developers.stellar.org/docs/build/smart-contracts/overview)
 - **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/)
 
+## What is outside the problem
+
+The expected focused time is sixteen to twenty-two hours. The learner builds
+the program and the client. The validator, generator, fault controller, and
+scenario files are prepared. Token standards, program upgrades, priority fee
+markets under real contention, multi-validator clusters, off-chain indexers,
+and any mainnet or public-RPC dependency are outside the problem.
+
 Stuck? See `hints/`.

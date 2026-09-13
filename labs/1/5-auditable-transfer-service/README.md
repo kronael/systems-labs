@@ -86,4 +86,11 @@ not run them. What each does differently at this lab's boundary is in
 - **Temporal** — [documentation](https://docs.temporal.io/)
 - **CockroachDB** — [documentation](https://www.cockroachlabs.com/docs/stable/)
 
+## What is outside the problem
+
+The expected focused time is fifteen to twenty hours. PostgreSQL, Kafka,
+workload, telemetry, faults, and history checking are prepared. The problem has one
+currency and no payment provider, exchange rate, chargeback, replica, or
+distributed transaction coordinator service.
+
 Stuck? See `hints/`.

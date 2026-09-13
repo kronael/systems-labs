@@ -108,4 +108,14 @@ not run them. What each does differently at this lab's boundary is in
 - **CAIDA BGPStream** — [documentation](https://bgpstream.caida.org/)
 - **RIPE Atlas** — [documentation](https://atlas.ripe.net/docs/)
 
+## What is outside the problem
+
+The expected focused time is ten to fourteen hours. Kafka, data sources,
+telemetry, store profiles, workloads, and faults are prepared, but the scope
+model, settling criterion, and process decomposition are not, and a first
+design that treats a collector's view as ground truth is falsified and
+rebuilt at least once against the supplied vantage-point set. Implementing
+BGP, decoding MRT or BGP wire formats, RPKI validation, global anomaly
+verdicts, alert delivery, and a map UI is outside the problem.
+
 Stuck? See `hints/`.

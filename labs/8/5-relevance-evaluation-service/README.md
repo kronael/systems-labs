@@ -139,4 +139,28 @@ not run them. What each does differently at this lab's boundary is in
 - **Quepid** — [documentation](https://github.com/o19s/quepid)
 - **Elasticsearch's ranking evaluation endpoint** — [documentation](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/search-rank-eval)
 
+## What is outside the problem
+
+The expected focused time is twenty to twenty-four hours, denser than a phase
+1-5 lab by design: the interaction between the engine and the durable store is
+the lesson, and the statistical rigor a defensible verdict requires — real
+difference from noise, reproducible lineage across a 200-run ledger, an
+overfit candidate that must be caught rather than rewarded — prices out well
+above the gates alone. The learner builds the service; OpenSearch, PostgreSQL, the generator,
+and the fault schedules are prepared, and every required gate runs locally with
+no cloud account.
+
+CI uses the generated seeded corpus, queries, judgements, and candidates only.
+Real public judgement sets — NIST publishes TREC judgement files — and their
+document collections are opt-in, bounded, checksummed, cached under
+`${PREFIX:-/srv}/data/systems-labs/sources/`, never fetched on a request path,
+and never redistributed by this repository. Several TREC document collections
+carry their own licences and access terms even where the judgement files are
+public, so any adopted collection's terms are recorded in the research ledger
+before use.
+
+Judgement-collection interfaces, online experiments on live traffic,
+learning-to-rank model training, and multi-node cluster operation are outside
+the problem.
+
 Stuck? See `hints/`.

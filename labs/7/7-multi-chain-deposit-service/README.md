@@ -168,4 +168,21 @@ not run them. What each does differently at this lab's boundary is in
 - **Wormhole Portal** — [documentation](https://wormhole.com/docs/protocol/introduction/)
 - **THORChain** — [documentation](https://docs.thorchain.org/how-it-works/technology)
 
+## What is outside the problem
+
+The expected focused time is eighteen to twenty-four hours. The three chains,
+the signing network, the depositor and third-party generators, the fault
+schedules, and the independent chain reader are prepared. Deposits and
+withdrawals use each chain's native transfer; yield, pricing, fees, interest,
+token standards, exchange between assets, governance, and the visual design of
+the portfolio view are outside the problem. Chain reorganization is outside
+this lab and belongs to `7/3`; retry identity on a chain the sender can query
+belongs to `7/4`. The service earns nothing and loses nothing; the only thing
+it must get right is who owns what.
+
+No step requires mainnet funds or a cloud account. Public RPC endpoints are
+opt-in, bounded, cached under the shared source directory, and never on a
+request path. CI and checks use the local chains and the local signing network
+only.
+
 Stuck? See `hints/`.

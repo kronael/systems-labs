@@ -94,4 +94,14 @@ not run them. What each does differently at this lab's boundary is in
 - **groupcache** — [documentation](https://github.com/golang/groupcache)
 - **Amazon ElastiCache** — [documentation](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/WhatIs.html)
 
+## What is outside the problem
+
+The expected focused time is eight to twelve hours. Valkey, DynamoDB Local,
+market data, two-replica topology, telemetry, workload, and faults are
+prepared, but the cache policy and cross-replica fill coordination are not,
+and a first policy that passes warm and cold traffic is routinely the one
+the same-key burst across two replicas falsifies. Valkey Cluster, Sentinel, a
+distributed write lock, CDN, durable queue, and ElastiCache are outside the
+problem.
+
 Stuck? See `hints/`.

@@ -102,4 +102,12 @@ not run them. What each does differently at this lab's boundary is in
 - **resilience4j** — [documentation](https://resilience4j.readme.io/docs/getting-started)
 - **HAProxy** — [documentation](https://docs.haproxy.org/)
 
+## What is outside the problem
+
+The expected focused time is six to ten hours. The learner builds the quote
+service and its tests. Provider simulators, telemetry, workload, and fault
+injection are prepared. Booking, payment, seat selection, and everything after
+the search are outside the problem, as are databases, caches, retries,
+Kubernetes, and browser UI.
+
 Stuck? See `hints/`.

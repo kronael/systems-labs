@@ -1,7 +1,7 @@
 # Serverless reservation fulfillment
 
 Design and build the reservation system from
-[`../1/2-reservation-fulfillment.md`](../1/2-reservation-fulfillment.md) again,
+[`../1/2-reservation-fulfillment.md`](../../1/2-reservation-fulfillment/README.md) again,
 on an execution environment that runs one request per instance, executes
 nothing between events, and freezes when its runtime and every extension have
 completed with no events pending. Clients create reservations with an
@@ -177,5 +177,17 @@ not run them. What each does differently at this lab's boundary is in
 - **Amazon Aurora Serverless v2** — [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
 - **AWS Step Functions** — [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 - **AWS Fargate** — [documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html)
+
+## What is outside the problem
+
+The expected focused time is ten to fifteen hours. The learner builds the
+handlers and their tests. The runtime, store, generator, and fault schedules are
+prepared. Multi-region behavior, authentication, capacity
+provisioning, and a second product surface are outside the problem.
+
+The local reservation lab is a prerequisite, and its artifacts must be
+retained: its `ARCHITECTURE.md` and its evidence report. The required
+comparison is against that design and its record, not a memory of it; without
+those artifacts the required evidence cannot be produced.
 
 Stuck? See `hints/`.

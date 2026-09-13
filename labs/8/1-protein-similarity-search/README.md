@@ -140,4 +140,25 @@ not run them. What each does differently at this lab's boundary is in
 - **DIAMOND** — [documentation](https://github.com/bbuchfink/diamond)
 - **OpenSearch k-NN vector search** — [documentation](https://docs.opensearch.org/latest/vector-search/vector-search-techniques/approximate-knn/)
 
+## What is outside the problem
+
+The expected focused time is sixteen to twenty hours; this track is
+deliberately denser than phases 1 to 4 because the interaction between the
+search engine and the durable store is the lesson, and the redesign loop
+across ingestion, index/store consistency, and significance recomputation
+prices out well above a phase 1-4 lab. The learner builds the ingestion service,
+the index and store design, and the query API. OpenSearch, PostgreSQL, the
+generator, the scoring rules, the planted fixtures, and the fault schedules
+are prepared.
+
+CI and every required gate use the seeded generator only and run locally with
+no cloud account. Real UniProt data is opt-in through `make source`: bounded
+to the manually curated subset (575,503 entries at release 2026_02),
+checksummed, cached under `${PREFIX:-/srv}/data/systems-labs/sources/`, and
+never fetched on a request path. UniProt data is CC BY 4.0, and the copyright
+statement travels with every cached copy.
+
+Choosing scoring rules, embeddings and semantic similarity, multi-node cluster
+operations, and any user interface are outside the problem.
+
 Stuck? See `hints/`.

@@ -1,7 +1,7 @@
 # Serverless quote aggregation
 
 Design and build the fare-search service from
-[`../1/1-resilient-quote-service.md`](../1/1-resilient-quote-service.md) again,
+[`../1/1-resilient-quote-service.md`](../../1/1-resilient-quote-service/README.md) again,
 on an execution environment that runs one request per instance, admits work
 against a ceiling the platform enforces, and bills per request and for the
 duration each invocation executes. A traveller's search asks two independent
@@ -153,5 +153,18 @@ not run them. What each does differently at this lab's boundary is in
 - **Google Cloud Run** — [documentation](https://cloud.google.com/run/docs)
 - **Amazon API Gateway caching** — [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html)
 - **Istio** — [documentation](https://istio.io/latest/docs/)
+
+## What is outside the problem
+
+The expected focused time is six to nine hours. The learner builds the handler
+and its tests. The runtime, provider simulators, store, load generator, and fault
+schedules are prepared. Booking, payment, seat selection, authentication,
+provider onboarding, billing, and multi-region routing are outside the
+problem.
+
+The local quote lab is a prerequisite, and its artifacts must be retained: its
+`ARCHITECTURE.md` and its recorded baseline, produced on the same host where
+this lab's evidence run happens. The acceptance evidence compares against that
+baseline; without it the required evidence cannot be produced.
 
 Stuck? See `hints/`.

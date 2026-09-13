@@ -92,4 +92,12 @@ not run them. What each does differently at this lab's boundary is in
 - **LMDB** — [documentation](http://www.lmdb.tech/doc/)
 - **RocksDB** — [documentation](https://rocksdb.org/docs/getting-started.html)
 
+## What is outside the problem
+
+The expected focused time is fourteen to eighteen hours. The learner builds
+the store and its tests. The crash harness, fault device, generator, protocol,
+and telemetry are prepared. Replication, secondary indexes, compaction across
+generations, transactions over multiple records, and networked clients are
+outside the problem.
+
 Stuck? See `hints/`.

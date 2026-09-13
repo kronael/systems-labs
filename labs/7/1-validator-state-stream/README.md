@@ -136,4 +136,15 @@ not run them. What each does differently at this lab's boundary is in
 - **RPC WebSocket subscriptions** — [documentation](https://solana.com/docs/rpc/websocket)
 - **JSON-RPC polling** — [documentation](https://solana.com/docs/rpc/http)
 
+## What is outside the problem
+
+The expected focused time is eighteen to twenty-four hours. The learner
+builds the plugin, the store contents, the query API, and the tests. The
+validator, the store, the generator, the fault hook, and the fault schedules
+are prepared.
+The environment is fully local; public RPC use is not part of the lab, and
+where a learner consults one anyway it is opt-in, bounded, cached, and never
+on a request path. Transaction and block streaming, multiple validators,
+fork-choice analysis, and token-program decoding are outside the problem.
+
 Stuck? See `hints/`.

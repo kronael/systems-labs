@@ -198,4 +198,27 @@ not run them. What each does differently at this lab's boundary is in
 
 - **Common Crawl** — [documentation](https://nutch.apache.org/)
 
+## What is outside the problem
+
+The expected focused time is eighteen to twenty-two hours; extraction and
+robots parsing are prepared, but strict RFC 9309 compliance under fault,
+crash-safe crawl state, the revisit-versus-discover budget, and a ceiling
+whose breach costs future budget still price out well above a phase 1-4 lab.
+The learner builds the crawl,
+the state, the index, the search API, and the staleness statement. OpenSearch,
+PostgreSQL, the site harness, the extraction library, and the fault schedules
+are prepared.
+
+Required gates use the local harness only; the live Internet is never touched.
+A real crawl is opt-in through `make source` with an explicit TOML config
+naming the permitted sites: it identifies itself with a product token and
+contact URL, obeys `robots.txt` and rate limits, is bounded by page and byte
+count, and writes a checksummed recording under
+`${PREFIX:-/srv}/data/systems-labs/sources/` that replays offline. No live
+fetch ever sits on a request path, and no required gate needs a cloud
+account.
+
+JavaScript rendering, ranking quality, HTML parsing, distributed crawling,
+and full-web scale are outside the problem.
+
 Stuck? See `hints/`.

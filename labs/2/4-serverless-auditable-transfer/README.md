@@ -1,7 +1,7 @@
 # Serverless auditable transfer
 
 Design and build the money-transfer system from
-[`../1/5-auditable-transfer-service.md`](../1/5-auditable-transfer-service.md)
+[`../1/5-auditable-transfer-service.md`](../../1/5-auditable-transfer-service/README.md)
 again, on an execution environment that executes nothing between events and
 freezes when its runtime and every extension have completed with no events
 pending. Clients create accounts, transfer integer minor currency units,
@@ -147,5 +147,17 @@ not run them. What each does differently at this lab's boundary is in
 - **Amazon DynamoDB Streams** — [documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
 - **AWS Step Functions** — [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 - **PostgreSQL with a self-run Kafka** — [documentation](https://www.postgresql.org/docs/current/)
+
+## What is outside the problem
+
+The expected focused time is twelve to eighteen hours. The learner builds the
+handlers and their tests. The runtime, store, queue, generator, and history
+checker are prepared. Multi-currency support, authentication,
+reversals, and multi-region replication are outside the problem.
+
+The local transfer lab is a prerequisite, and its artifacts must be retained:
+its `ARCHITECTURE.md` and its evidence report. The required comparison is
+against that design and its record, not a memory of it; without those
+artifacts the required evidence cannot be produced.
 
 Stuck? See `hints/`.

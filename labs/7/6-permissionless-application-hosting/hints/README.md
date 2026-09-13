@@ -5,3 +5,5 @@
 - [`01-neighbour-boundaries.md`](01-neighbour-boundaries.md) — what GitHub
   Pages, Arweave, and ENS with `contenthash` do differently from this lab at
   the pointer and permanence boundary.
+- [`02-where-this-comes-from.md`](02-where-this-comes-from.md) — the pages that report the
+  behaviour this lab rests on.

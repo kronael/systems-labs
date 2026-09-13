@@ -95,4 +95,14 @@ not run them. What each does differently at this lab's boundary is in
 - **MongoDB** — [documentation](https://www.mongodb.com/docs/manual/)
 - **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/)
 
+## What is outside the problem
+
+The expected focused time is ten to fourteen hours. DynamoDB Local, data
+generation, Kraken recording, telemetry, faults, and inspection are prepared,
+but the access-pattern map and key design are not, and a key design that
+serves the public queries cleanly is routinely the one the hot-symbol share
+falsifies, forcing a redesign before it holds at the ingest target. Order
+placement, accounts, streaming WebSockets, DAX, global tables, PartiQL, and
+production AWS are outside the problem.
+
 Stuck? See `hints/`.

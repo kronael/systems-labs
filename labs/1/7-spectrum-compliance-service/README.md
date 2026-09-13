@@ -298,4 +298,35 @@ This lab names none. Every genuine neighbour carries the answer in its
 name or on its landing page, so naming one would solve the lab instead
 of orienting you. They are in `hints/`.
 
+## What is outside the problem
+
+The expected focused time is sixteen to twenty-four hours: the
+falsify-and-rebuild loop between the gates is the teaching, and the build
+surface — the account and its durability, the action economy, the honest
+answers, and the justification the account must state — is the widest in the
+phase. The coordinator, the fleet, the supplied rule, the seeded channel
+plan, the workloads, telemetry, and faults are prepared. No store is
+required: the state that must survive restart is the service's own account,
+and how it is kept is the data-layout decision the lab judges. A simple
+design fails this lab at its scale target, and both failure narratives that
+follow are solution-bearing: they publish into `hints/`, never into
+`README.md`. One process that takes the stream, renews authorizations,
+instructs transmitters, keeps its account, and maintains the session in a
+single line of work holds together while the stream is quiet, but through a
+burst the reassignment churn alone outruns the action ceiling while its
+intake falls past the freshness bound and its renewals and session upkeep
+starve, so its transmitters stand on the air unjustified exactly while
+traffic keeps landing. And a design that treats every wobble — a refusal, a
+burst, a slow answer — as lost knowledge, taking the whole fleet dark and
+re-proving everything each time, spends the small-gap stretch and its own
+self-made doubts below the coverage fraction while, on this spec's own
+definition, it could know and could act — the coverage requirement convicts
+it directly — and where it also lets authorizations lapse, it buys the
+revocation period's fresh requests against the same 500-action ceiling.
+Choosing assignments is outside the problem — the rule is supplied. So are
+radio propagation and interference physics — channel, power, and location are
+numbers the coordinator's records give meaning to — the traffic the fleet
+carries, bounding the service's own action volume, coexistence with other
+operators' fleets, and running against more than one coordinator.
+
 Stuck? See `hints/`.

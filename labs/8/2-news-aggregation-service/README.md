@@ -147,4 +147,23 @@ not run them. What each does differently at this lab's boundary is in
 
 - **pgvector** — [documentation](https://www.postgresql.org/docs/current/textsearch-intro.html)
 
+## What is outside the problem
+
+The expected focused time is twenty to twenty-four hours; phase 8 labs sit at
+the dense end of the catalog because the interaction between the search
+engine and the durable store is the lesson, and this lab carries the added
+cost of a product decision with no fixed answer, defended and re-defended as
+the falsification schedule finds the policy's blind spots. The learner builds the ingestion service, the
+grouping decision, the store layouts, and the query API. OpenSearch,
+PostgreSQL, the feed harness, the parsers, and the fault schedules are
+prepared.
+
+CI uses generated seeded feeds only. Real feeds are opt-in through
+`make source`: bounded, checksummed, cached under
+`${PREFIX:-/srv}/data/systems-labs/sources/`, honoring each publisher's
+terms, never redistributed, and never fetched on a request path. Every
+required gate runs locally with no cloud account. Fetching article bodies
+beyond what a feed carries, personalization, an editorial interface, and
+multi-node OpenSearch operation are outside the problem.
+
 Stuck? See `hints/`.

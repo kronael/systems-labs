@@ -9,3 +9,5 @@
 - [`02-neighbour-boundaries.md`](02-neighbour-boundaries.md) — the three
   neighbouring systems this lab's `README.md` names none of, and what each
   does differently at this lab's boundary.
+- [`03-where-this-comes-from.md`](03-where-this-comes-from.md) — the pages that report the
+  behaviour this lab rests on.

@@ -104,4 +104,12 @@ not run them. What each does differently at this lab's boundary is in
 - **Vector** — [documentation](https://vector.dev/docs/)
 - **Filebeat** — [documentation](https://www.elastic.co/docs/reference/beats/filebeat)
 
+## What is outside the problem
+
+The expected focused time is twelve to sixteen hours. The learner builds the
+shipper and its tests. The collector harness, framing, generator, telemetry,
+and fault schedules are prepared. Log formats, parsing, multiline handling,
+file rotation, encryption, compression, multiple collectors, and distributed
+coordination are outside the problem.
+
 Stuck? See `hints/`.

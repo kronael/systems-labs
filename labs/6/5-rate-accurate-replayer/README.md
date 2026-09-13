@@ -127,4 +127,12 @@ not run them. What each does differently at this lab's boundary is in
 - **tcpreplay** — [documentation](https://tcpreplay.appneta.com/)
 - **k6** — [documentation](https://grafana.com/docs/k6/latest/)
 
+## What is outside the problem
+
+The expected focused time is fourteen to eighteen hours. The learner builds
+the replayer and its tests. The target harness, wire protocol, recordings,
+and scenario files are prepared. Multi-host load generation, protocol realism
+beyond the supplied framing, TLS, retries, response-body validation, and live
+capture of new recordings are outside the problem.
+
 Stuck? See `hints/`.
