@@ -146,6 +146,8 @@ not run them. What each does differently at this lab's boundary is in
 `hints/`, because saying it here would point straight at the answer.
 
 - **pgvector** — [documentation](https://www.postgresql.org/docs/current/textsearch-intro.html)
+- **PostgreSQL full-text search** — [documentation](https://www.postgresql.org/docs/current/textsearch.html)
+- **Apache Solr** — [documentation](https://solr.apache.org/guide/solr/latest/)
 
 ## What is outside the problem
 

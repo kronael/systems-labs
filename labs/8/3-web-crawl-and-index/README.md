@@ -197,6 +197,8 @@ not run them. What each does differently at this lab's boundary is in
 `hints/`, because saying it here would point straight at the answer.
 
 - **Common Crawl** — [documentation](https://nutch.apache.org/)
+- **Apache Nutch** — [documentation](https://nutch.apache.org/documentation/)
+- **Apache StormCrawler** — [documentation](https://stormcrawler.apache.org/docs/)
 
 ## What is outside the problem
 
