@@ -113,9 +113,15 @@ choice is their only protection. Do not add secrecy machinery around them, and
 do not weaken them to make them safe to open early — a hint that spoils nothing
 is a hint that helps nobody.
 
-Fixed wording, never paraphrased: every `HINTS.md` opens with the exact line
-`> Spoilers. Open only when stuck.` and every `README.md` ends with the exact
-line ``Stuck? See `HINTS.md`.``
+Hints are a directory, `hints/`, one file per hint, with `hints/README.md`
+listing what each file answers and nothing more. Fixed wording, never
+paraphrased: every hint file and that index opens with the exact line
+`> Spoilers. Open only when stuck.` and every lab `README.md` ends with the
+exact line ``Stuck? See `hints/`.``
+
+**A failure mode is a hint.** A lab `README.md` never says how a design fails,
+where it fails, or what a client sees when it does. Predicting that is the
+learner's first task.
 
 `make teaching-lint` enforces this and runs in CI: it fails on a mechanism name
 — prescribed, disclaimed, or merely mentioned — a barrier name, a neighbour

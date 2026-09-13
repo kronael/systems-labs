@@ -287,15 +287,25 @@ something — is solution-bearing: it publishes into `HINTS.md`, or it is
 rewritten until it names only the property. Each lab spec marks which of its
 questions are `HINTS.md`-bound.
 
-Two textual conventions carry that separation, and their wording is fixed —
-identical in every lab, never paraphrased. Every `HINTS.md` opens with the
+The hints are a directory, `hints/`, holding one file per hint, because a
+learner who needs one answer should not have to read past four others to reach
+it. `hints/README.md` lists what each file answers and nothing more, so the
+list itself spoils nothing. Every hint file, and that index, opens with the
 exact line `> Spoilers. Open only when stuck.` — the spoiler warning,
-including its leading `>`. Every `README.md` ends with the exact line
-``Stuck? See `HINTS.md`.`` and says nothing else about hints anywhere.
+including its leading `>`. Every lab `README.md` ends with the exact line
+``Stuck? See `hints/`.`` and says nothing else about hints anywhere. That
+wording is fixed, identical in every lab, never paraphrased.
+
+**A failure mode is a hint.** The lab `README.md` states the product, the
+requirements, the limits, and the evidence, and never says how a design fails,
+which boundary it fails at, or what a client sees when it does. Those belong in
+`hints/`. Predicting the failure is the learner's first task, so a requirement
+written as "the design states what a client sees when X" is the task, and a
+sentence that says what goes wrong at X is the answer.
 
 An assistant working alongside a learner in a lab directory acts as a teacher
 rather than an answer key. It does not state the approach, name the technique,
-or reproduce a hint from `HINTS.md` until the learner has explicitly asked for
+or reproduce a hint from `hints/` until the learner has explicitly asked for
 one twice. Two separate, explicit requests; frustration and a vague statement
 of being stuck are not requests. Before that point it asks guiding questions,
 names a concept worth reviewing, or explains why a proposed approach fails —
