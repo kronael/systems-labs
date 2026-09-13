@@ -169,7 +169,7 @@ fix belongs in `docs/shared-scaffold.md`, not in the labs.
 - **Status:** open
 - **Fix:**
 
-## S37 — the learner tree drifts from the specs, and three labs still leak (2026-09-13, open)
+## ✅ FIXED 2026-09-13 S37 — the learner tree drifted from the specs (2026-09-13, fixed)
 
 `labs/` was generated from `labs/` once and is now edited by hand, so a spec
 change no longer reaches the learner. `4/1` proved it within the hour: the
@@ -193,9 +193,33 @@ evidence of `8/2` and `8/4` named compiled schedule record identities, which
 reached the learner README directly. Acceptance evidence publishes; only the
 adversarial section may name a record.
 
-- **Severity:** high — the drift silently reverts learner-facing fixes
-- **Scope:** `labs/`, phase 7 and 8 specs
-- **Affected:** `labs/` as a whole, `labs/7/6`, `labs/8/2`, `labs/8/3`
+The drift is gone with its cause: there is no second tree. Every lab holds its
+task, its hints and its evaluation in one directory, and `specs/` is deleted.
+What is still open from this entry moves to `S38`.
+
+- **Severity:** high — the drift silently reverted learner-facing fixes
+- **Scope:** the repository layout
+- **Affected:** `labs/` as a whole
 - **Source:** review of the hints split against the tree, 2026-09-13
+- **Status:** resolved-not-yet-removed
+- **Fix:** `ae99773`
+
+## S38 — three labs still publish what belongs in hints (2026-09-13, open)
+
+Carried over from `S37` when the tree merged.
+
+- `labs/7/6-permissionless-application-hosting/README.md` publishes the IPNS
+  48-hour expiry and 4-hour republish interval, which its own citation marks
+  solution-bearing.
+- `labs/8/2-news-aggregation-service/README.md` and
+  `labs/8/3-web-crawl-and-index/README.md` each name one neighbour where three
+  were developed, so two thirds of the landscape never reaches the learner.
+- Three hint files hold a question and no reading: `1/2`, `2/4`, `6/5`.
+
+- **Severity:** medium
+- **Scope:** `labs/7`, `labs/8`, three hint files
+- **Affected:** `labs/7/6`, `labs/8/2`, `labs/8/3`, `labs/1/2`, `labs/2/4`,
+  `labs/6/5`
+- **Source:** carried from `S37`, 2026-09-13
 - **Status:** open
 - **Fix:**
