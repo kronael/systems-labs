@@ -126,24 +126,24 @@ authority for what clients saw.
 The submitted `ARCHITECTURE.md` must explain:
 
 - what "the shape of a record changed" means to a client, how an answer
-  states which shape it carries, and how a reader tells an item the rule
-  exempts from an item the change has not reached;
+ states which shape it carries, and how a reader tells an item the rule
+ exempts from an item the change has not reached;
 - how every public answer stays correct while items exist in both shapes, and
-  what that costs on the read path once a change is finished;
+ what that costs on the read path once a change is finished;
 - how a request in flight is ordered against a change in progress, and what a
-  writer observes at the moment the published shape changes;
+ writer observes at the moment the published shape changes;
 - how a change's progress is measured, what the reported progress is honest
-  about, and what it cannot say;
+ about, and what it cannot say;
 - how an interrupted change is carried to completion or withdrawn without any
-  item becoming unreadable, and what makes the second attempt safe;
+ item becoming unreadable, and what makes the second attempt safe;
 - how the declared latency ceiling was chosen, what it costs, and what
-  evidence shows it held for the whole window rather than on average;
+ evidence shows it held for the whole window rather than on average;
 - what a client that retrieved an item before a change and publishes it back
-  after must observe;
+ after must observe;
 - which indexes serve each public access pattern, and what each costs while a
-  change is in progress;
+ change is in progress;
 - which query answers "which shape is item X published in, and since when",
-  and what it costs at the declared volume.
+ and what it costs at the declared volume.
 
 The document must compare at least two viable adoption designs without turning
 a known tool name into the argument, and state one residual limitation.
@@ -175,5 +175,13 @@ not run them. What each does differently at this lab's boundary is in
 - **MongoDB** — [documentation](https://www.mongodb.com/docs/manual/data-modeling/)
 - **MySQL with InnoDB** — [documentation](https://dev.mysql.com/doc/refman/8.4/en/innodb-online-ddl-operations.html)
 - **CockroachDB** — [documentation](https://docs.cockroachlabs.com/docs/stable/online-schema-changes)
+
+## What is outside the problem
+
+The expected focused time is fourteen to twenty hours. PostgreSQL, the catalog
+data, the declared changes, the request recorder, telemetry, and faults are
+prepared. Replication, cloud databases, search relevance, merchant
+authentication, legal interpretation, and a browser front end are outside the
+problem.
 
 Stuck? See `hints/`.

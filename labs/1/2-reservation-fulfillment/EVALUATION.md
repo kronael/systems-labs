@@ -25,3 +25,11 @@ Checks observe only HTTP, SQL-visible state, the provider's request log, broker
 state, process lifecycle, query plans, metrics, and the submitted evidence.
 They do not require a particular schema, worker structure, or coordination
 primitive.
+
+## What a weak design gets wrong
+
+A simple design fails this
+lab at its scale target: a single process consuming work one unit at a time
+cannot hold 500 reservations per second with 256 units in flight, and a design
+that treats delivery as exclusive produces a second fulfillment effect the
+moment a worker runs long.

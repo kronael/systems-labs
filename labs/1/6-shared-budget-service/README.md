@@ -97,24 +97,24 @@ is produced is the learner's choice.
 The submitted `ARCHITECTURE.md` must explain:
 
 - what "committed against a budget" means, where that fact lives, and how it
-  is checked without trusting a stored total;
+ is checked without trusting a stored total;
 - how a claim naming several budgets is decided, and what that decision is
-  true of at the moment it is given;
+ true of at the moment it is given;
 - where the boundary of one decision sits relative to the answer the client
-  receives, and what a client may observe if the service has to arrive at that
-  decision more than once;
+ receives, and what a client may observe if the service has to arrive at that
+ decision more than once;
 - how a claim is kept from waiting forever while other claims keep conflicting
-  with it, what the declared bound is, and how the evidence shows it held;
+ with it, what the declared bound is, and how the evidence shows it held;
 - how the work performed to decide one claim is bounded, and what the client
-  receives at that bound;
+ receives at that bound;
 - what a budget statement is true of, and how the design defends that under
-  concurrent claims and limit changes;
+ concurrent claims and limit changes;
 - how a limit change and a decision in flight are ordered, and what each
-  observes;
+ observes;
 - which indexes serve each public access pattern at the declared volume, and
-  what each costs under the stated overlap;
+ what each costs under the stated overlap;
 - what holding the invariant costs in delivered throughput — measured, not
-  asserted — and where that cost is paid.
+ asserted — and where that cost is paid.
 
 The document must compare at least two viable decision designs without turning
 a known library name into the argument, and state one residual limitation.
@@ -149,5 +149,12 @@ not run them. What each does differently at this lab's boundary is in
 - **FoundationDB** — [documentation](https://apple.github.io/foundationdb/developer-guide.html)
 - **MySQL with InnoDB** — [documentation](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)
 - **DynamoDB transactions** — [documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html)
+
+## What is outside the problem
+
+The expected focused time is fourteen to twenty hours. PostgreSQL, the budget
+and claim data, the overlap profile, the workloads, telemetry, and faults are
+prepared. Multiple currencies, payment providers, approval workflows, cross-
+organization budgets, and forecasting are outside the problem.
 
 Stuck? See `hints/`.

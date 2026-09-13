@@ -146,4 +146,12 @@ not run them. What each does differently at this lab's boundary is in
 - **Kafka** — [documentation](https://kafka.apache.org/documentation/#design)
 - **Temporal** — [documentation](https://docs.temporal.io/encyclopedia)
 
+## What is outside the problem
+
+The expected focused time is fourteen to twenty hours. PostgreSQL, the broker,
+data generation, telemetry, and faults are prepared. Pricing, payment, and any
+record of who occupies a room are outside the problem, as are generic workflow
+engines, replication, cloud databases, and external network calls inside
+database transactions.
+
 Stuck? See `hints/`.

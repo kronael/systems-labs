@@ -29,3 +29,12 @@ Checks observe only HTTP, SQL-visible state, exact request and decision
 histories, process lifecycle, query plans, metrics, and the submitted
 evidence. They do not require a particular schema, transaction structure, or
 coordination primitive.
+
+## What a weak design gets wrong
+
+A simple design fails this lab at its scale target: one process
+deciding claims one at a time holds the invariant but cannot hold 2,000
+submissions per second from 500 clients, while a design that decides claims
+concurrently on what it has read has its work handed back at a rate that
+climbs with concurrency, so its delivered rate stops following its offered
+rate well below the target.

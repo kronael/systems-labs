@@ -29,3 +29,11 @@ Checks observe only HTTP, SQL-visible state, the request recorder's history,
 process lifecycle, query plans, metrics, and the submitted evidence. They do
 not require a particular schema, adoption structure, or coordination
 primitive.
+
+## What a weak design gets wrong
+
+A simple design fails this lab at its scale target: adopting a
+declared change against 25 million items as one operation runs for minutes,
+and every request arriving while it runs waits behind it, so the change a
+small catalog absorbs invisibly becomes an outage the request recorder writes
+down.
