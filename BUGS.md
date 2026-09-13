@@ -43,3 +43,43 @@ Each entry names the smallest change that closes it.
   `1/5` and `1/1` findings re-verified against the file text
 - **Status:** open
 - **Fix:**
+
+## S34 — four phase 2 labs lack the supplier or the barrier their own gate needs (2026-09-13, open)
+
+The same review against phase 2, where the environment hides its limits and the
+controller has to supply them. `2/2` and `2/3` support the method; the rest have
+gaps, and one is shared.
+
+- **Shared.** `2/5:44` names the controller as the thing that "throttles above
+  the declared ceiling". `2/1:49`, `2/3:156-157` and `2/4:130-131` all demand a
+  rejected fraction under load, and `01:604-606` says the emulators do not model
+  throttling, so in three labs nothing local supplies it. The `2/5` sentence,
+  once per lab, closes it.
+- `2/5:78-80` tells the learner that "an expiry judged from anything the process
+  itself recorded is not evidence", which rules out the naive design before the
+  learner commits to it. It belongs in `HINTS.md`. The lab also schedules no
+  thaw held past a named quote's expiry, so its own subject never fires.
+- `2/4:105` and `2/4:161-162` ask for contention the controller's transport
+  layer recorded at hot accounts; the scaffold sets up no transport layer, and
+  DynamoDB Local applies no per-key limit. `2/4:67-68` requires correctness
+  under every arrival order while the schedule never reorders. `2/4:127` places
+  a freeze "between the ledger write and the audit publication", a point a
+  design that publishes before responding does not have.
+- `2/1:92-93` forbids one account's data leaking into another's response with
+  no barrier that forces the reuse, and `2/1:132-133` names a two-request
+  logical operation the public API does not have.
+- `2/3:57-58` has the controller record "the resource key that request
+  addresses" while the store's data layout is the learner's, and nothing says
+  how the controller finds the resource inside a request.
+- `2/2` names no fault layer, which the fault injection contract requires.
+
+The review also flagged `HOWTO.md` for promising a fault the learner can move.
+Fixed in `bdd3f83` before this entry was written.
+
+- **Severity:** high — three labs demand evidence the environment cannot produce
+- **Scope:** phase 2 specs
+- **Affected:** `specs/2/1`, `2/2`, `2/3`, `2/4`, `2/5`
+- **Source:** review of specs/2/ against the learner method, 2026-09-13; the
+  `2/5` leak and the throttling gap re-verified against the file text
+- **Status:** open
+- **Fix:**
