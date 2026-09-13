@@ -213,9 +213,12 @@ restoration, answer age — is a component of the service level the learner
 declares and records in the report. Bounds named above are judged against
 those values as the calibration reference; the reaction allowance, the answer
 age, and the registered cutoff interval carry no course value and are
-defended against the run's own observed histories. A looser declaration is
-not itself a failure, but it widens the exposure the evidence must account
-for, transmission by transmission, and the report must defend it. Latency and
+defended against the run's own observed histories. Each of the three has a
+ceiling, and the ceiling is the run: a declaration the evidence run is too
+short to violate is not a declaration, and the report must show the bound
+being pressed. A looser declaration inside that ceiling is not itself a
+failure, but it widens the exposure the evidence must account for,
+transmission by transmission, and the report must defend it. Latency and
 coverage are judged against the configured fraction and the declared service
 level, never a fixed number.
 

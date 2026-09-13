@@ -11,13 +11,18 @@ hands you the boundary you were meant to find.
 
 The failure schedule adopts each declared change while the full workload runs.
 It starts one change at the moment a long-running listing request is open and
-holds that request open across it; it kills the application process when a
-named item identity has been published in the new shape and its neighbour has
-not; it restarts PostgreSQL mid-adoption; it submits writes at named item
+holds that request open across it; it kills the application process at the
+first recorder answer that states the new shape for a named item identity,
+while other named identities are still answered in the old one; it restarts
+PostgreSQL mid-adoption; it submits writes at named item
 identities on both sides of that boundary while the change runs; it applies a
 second change while one is in progress; it withdraws a change after it has
 partly landed; and it repeats publications of already-acknowledged revisions
 throughout.
+
+The gate depends on a limit the environment does not impose on its own, and
+the controller supplies it at the process layer: it holds the process at the
+recorder boundary named above until the fault has applied and been confirmed.
 
 At the end the full catalog is read. Every item is published in exactly one
 shape, every acknowledged publication is present exactly once at its

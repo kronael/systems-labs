@@ -79,7 +79,10 @@ declared scope.
 
 ## Acceptance evidence
 
-Accepted activity produces the correct current and aggregate views. The
+Accepted activity produces the current and aggregate views that the check
+recomputes independently from the retained records under the declared
+ordering scope; a rebuild is compared against that recomputation and never
+against another of the service's own answers. The
 declared ordering scope is shown holding where the workload makes it hardest —
 on the contended keys and at the skewed customer — not only in aggregate.
 Repeated delivery has one logical effect while remaining visible in history.

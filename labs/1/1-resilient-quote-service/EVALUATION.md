@@ -11,7 +11,8 @@ hands you the boundary you were meant to find.
 
 Every fault fires at a named barrier, never on a timer and never at random.
 The failure schedule applies a sustained latency increase to one provider at a
-named request, injects provider errors at named requests, drives a burst above
+named request, sized so that the delay exceeds the validity left on the quote
+that request returns, injects provider errors at named requests, drives a burst above
 measured capacity beginning at a named request, cancels the client of a named
 in-flight request, and sends SIGTERM once a named request has been
 acknowledged and while its work is still active. It runs both open-loop and
