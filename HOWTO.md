@@ -38,13 +38,21 @@ Every lab runs the same seven steps.
 
 1. **Predict.** Before you build, write down how you expect the named
    technology to behave at the boundary case the brief points at. Name the
-   state that would prove you right.
+   state that would prove you right. Then list the ways your design can fail,
+   all of them, not the one you find first. Beside each, write what you would
+   show someone to prove it happened: which record, which stored state, which
+   number moved. A failure mode you cannot demonstrate is a guess, and you
+   will not notice when it is the one that bites you.
 2. **Build.** Make one thin path that is complete end to end: input arrives,
    state changes, something useful comes out, and it survives a restart.
 3. **Test.** Test that path across the real public boundary with the real
    dependencies. Do not test private functions.
 4. **Break.** Run the failure scenario. It fires at a named record, not on a
-   timer, so it lands at the same place every run.
+   timer, so it lands at the same place every run. Then play with it. Run it
+   again, start it earlier, hold it longer, restart something in the middle,
+   and watch how the same failure shows up differently each time. One run
+   tells you the gate passed. Several tell you how the failure actually
+   manifests, which is the thing you are here to learn.
 5. **Inspect.** Read the evidence the dependency itself keeps, not the logs
    your own code wrote: its stored state, its record of what it has handed
    out, and its own measurement of what it did.
@@ -61,9 +69,10 @@ Every lab runs the same seven steps.
 | failure | 2–4 h | the deterministic scenario, with the stated invariant holding |
 | evidence | 1–2 h | a load or deployment run recording one tradeoff and one remaining limitation |
 
-A lab takes six to twenty-five focused hours, which is much more than the gates
-add up to. The difference is the redesign between them. That is not overhead;
-that is the lab.
+A lab takes six to twenty-five focused hours. The gates add up to between four
+and eight, and the rest is the redesign between them, which is not overhead but
+the lab itself. Treat all of these numbers as estimates: nothing has been built
+yet, so nothing has been measured.
 
 ## What you write down
 
