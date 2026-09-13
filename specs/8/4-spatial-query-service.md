@@ -134,7 +134,7 @@ index, projection, store role, or consistency mechanism.
 
 Every answer matches the independently computed exact identity set for its
 stated horizon at every query point, including the antimeridian region, the
-high-latitude radius, and the pair around edit 4711. The named near-boundary
+high-latitude radius, and the pair around a named edit. The named near-boundary
 features fall on the correct side in every run. A query in flight across a
 store restart either completes exactly or fails loudly; no partial or silently
 degraded answer is accepted, and the first query after recovery answers

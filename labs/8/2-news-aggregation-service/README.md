@@ -121,7 +121,7 @@ modes and one residual limitation.
 ## Acceptance evidence
 
 Correctness is asserted as exact membership histories for named items, never
-as counts alone. `wire-4711` shows the full transition: grouped, served,
+as counts alone. A named item shows the full transition: grouped, served,
 edited in place, regrouped or deliberately retained under the declared
 policy, and the served view reflects the outcome within the declared
 visibility bound. `syn-0114` appears exactly once in the served view,

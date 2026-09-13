@@ -168,3 +168,34 @@ fix belongs in `specs/0/5-shared-scaffold.md`, not in the labs.
   re-verified against the file text
 - **Status:** open
 - **Fix:**
+
+## S37 — the learner tree drifts from the specs, and three labs still leak (2026-09-13, open)
+
+`labs/` was generated from `specs/` once and is now edited by hand, so a spec
+change no longer reaches the learner. `4/1` proved it within the hour: the
+requirements paragraph added in `c94c8f1` never appeared in
+`labs/4/1-market-history-api/README.md` until it was copied across by hand.
+Either the tree is generated and the hints move into the specs, or it is
+authored and every spec change needs a paired edit. Today it is neither.
+
+Still open in the learner tree:
+
+- `7/6` publishes the IPNS 48-hour expiry and 4-hour republish interval in its
+  README while its spec marks that source solution-bearing.
+- `8/2` and `8/3` each name one neighbour in the README where the spec
+  develops three, so two thirds of the landscape never reaches the learner.
+- Three hint files hold a question and no answer: `1/2`, `2/4` and `6/5`. They
+  are honest as questions, but a hint that spoils nothing helps nobody, and
+  each needs the reading that answers it.
+
+Fixed in the same pass, recorded so the cause is not repeated: the acceptance
+evidence of `8/2` and `8/4` named compiled schedule record identities, which
+reached the learner README directly. Acceptance evidence publishes; only the
+adversarial section may name a record.
+
+- **Severity:** high — the drift silently reverts learner-facing fixes
+- **Scope:** `labs/`, phase 7 and 8 specs
+- **Affected:** `labs/` as a whole, `specs/7/6`, `specs/8/2`, `specs/8/3`
+- **Source:** review of the hints split against the tree, 2026-09-13
+- **Status:** open
+- **Fix:**
