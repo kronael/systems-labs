@@ -51,13 +51,14 @@ evidence writer fails before any lab does.
 The failure schedule IS the lab. A learner who reads it before designing has
 been handed the design.
 
-- Fault schedules are NEVER readable files in the learner distribution. Their
-  seeded recipes are compiled into the shared Go fault controller.
-- `make fault` materializes the schedule it runs, runs it, and removes it, so a
-  readable form exists only while a run is in flight.
+- The schedule lives in `EVALUATION.md` and nowhere else in the lab. That file
+  opens with the spoiler warning and is opened by choice.
+- What runs is the compiled recipe, not that text. `make fault` materializes
+  the schedule it runs and removes it, so a readable form exists only while a
+  run is in flight.
 - A frozen aggregate digest over every materialized schedule is checked under
   `make test-all`, so a recipe cannot drift silently.
-- The spec's `Adversarial evaluation` section NEVER propagates into `README.md`.
+- The schedule NEVER appears in `README.md`.
 
 The standard is deterrence, not impossibility. The learner owns the machine and
 can disassemble the controller or fetch the recipe sources from the public
@@ -113,9 +114,9 @@ choice is their only protection. Do not add secrecy machinery around them, and
 do not weaken them to make them safe to open early — a hint that spoils nothing
 is a hint that helps nobody.
 
-Hints are a directory, `hints/`, one file per hint, with `hints/README.md`
-listing what each file answers and nothing more. Fixed wording, never
-paraphrased: every hint file and that index opens with the exact line
+Fixed wording, never
+paraphrased: every hint file, the hints index, and `EVALUATION.md` open with
+the exact line
 `> Spoilers. Open only when stuck.` and every lab `README.md` ends with the
 exact line ``Stuck? See `hints/`.``
 
@@ -286,14 +287,14 @@ RDS, and ElastiCache are excluded — each bills continuously.
    rule: state what the naive small tool would fail at this scale. If nothing,
    raise the scale target or drop the dependency.
 4. Name the domain and cite the fact that makes its numbers and its invariant
-   inevitable. If the spec reads the same with the domain swapped out, the
+   inevitable. If the lab reads the same with the domain swapped out, the
    domain is decoration; ground it or drop the pretence.
-5. Split `Architecture questions`. A question stated at the level of the
-   property the design must defend publishes into `README.md`. A question that
-   presupposes a mechanism is solution-bearing: mark it `hints/`-bound, or
+5. Split the architecture questions. A question stated at the level of the
+   property the design must defend stays in `README.md`. A question that
+   presupposes a mechanism is solution-bearing: move it into `hints/`, or
    rewrite it until it names only the property.
-6. Every `Code pointers` citation is solution-bearing and lands in `hints/`
-   or `EVALUATION.md`. NEVER put a quirk source in `README.md`: the document
+6. Every citation is solution-bearing and lands in `hints/` or
+   `EVALUATION.md`. NEVER put a quirk source in `README.md`: the document
    that reports the behaviour states the behaviour, so citing it hands over
    the reading the learner is meant to do. `README.md` carries the
    requirements, the dataset provenance, and the neighbour documentation
@@ -311,8 +312,8 @@ Lab files carry **solution-neutral product names**. The file name states what
 the product does, never the technology that solves it. `1/2` is
 `reservation-fulfillment`, not `postgres-durable-jobs`.
 
-`labs/README.md` carries the product names in both its core catalog and its full
-specification list. Before editing a link, read the real file name from disk
+`labs/README.md` carries the product names in both its core catalog and its
+full list. Before editing a link, read the real file name from disk
 rather than copying one from a table.
 
 ## Phases
@@ -356,7 +357,7 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
   documentation link for every neighbour. `1/7` names no neighbour at all:
   every genuine candidate carries the answer in its name, so all three sit in
   `hints/`, and the lab records that deviation where it happens.
-- `BUGS.md` holds `S33` to `S37`. The fault injection contract in
+- `BUGS.md` holds `S33` to `S38`. The fault injection contract in
   `docs/contract.md`
   states the two rules every lab's gate now rests on: a barrier holds execution
   rather than being noticed once it has passed, and the controller supplies the
