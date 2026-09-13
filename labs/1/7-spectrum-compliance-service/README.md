@@ -260,15 +260,6 @@ The submitted `ARCHITECTURE.md` must explain:
 - what holding the coverage requirement costs while knowledge comes and goes
   — measured, not asserted.
 
-Two further questions presuppose part of a design and are solution-bearing;
-they publish to `HINTS.md`, never to the task:
-
-- why a freshness check made immediately before an instruction protects
-  nothing, and which side of the instruction must make the late one harmless;
-- why the process whose knowledge is in doubt cannot be the only party able
-  to silence what it left on the air, and what must already be arranged
-  before the doubt begins.
-
 The document must compare at least two viable designs without turning a known
 product's name into the argument, and state one residual limitation.
 
@@ -305,6 +296,6 @@ and one residual limitation.
 
 This lab names none. Every genuine neighbour carries the answer in its
 name or on its landing page, so naming one would solve the lab instead
-of orienting you. They are in `HINTS.md`.
+of orienting you. They are in `hints/`.
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

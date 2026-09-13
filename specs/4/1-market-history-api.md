@@ -132,7 +132,7 @@ hosted-capacity estimate clearly separated from local evidence.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Apache Cassandra** — [documentation](https://cassandra.apache.org/doc/latest/)
@@ -164,7 +164,7 @@ production AWS are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   DynamoDB, real-data, cost, and evidence contracts.

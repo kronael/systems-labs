@@ -152,7 +152,7 @@ The submitted `ARCHITECTURE.md` must explain:
   and what it costs at the declared volume.
 
 Two further questions presuppose part of a design and are solution-bearing;
-they publish to `HINTS.md`, never to the task:
+they publish to `hints/`, never to the task:
 
 - why the time a declared change takes and the time it makes the catalog
   unavailable are not the same quantity, and which property of a declared
@@ -209,7 +209,7 @@ at once and the limit of the chosen adoption design.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **MongoDB** — [documentation](https://www.mongodb.com/docs/manual/data-modeling/).
@@ -247,7 +247,7 @@ problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   PostgreSQL, evidence, and verification contracts.
@@ -267,11 +267,11 @@ Every citation below is solution-bearing. None of it publishes into
   identity column, or a column with a domain data type that has constraints
   will cause the entire table and its indexes to be rewritten."
   Solution-bearing: the same page lists which subforms take a weaker lock, so
-  it belongs in `HINTS.md`, never in `README.md`.
+  it belongs in `hints/`, never in `README.md`.
 - [PostgreSQL explicit locking](https://www.postgresql.org/docs/current/explicit-locking.html)
   — the mode taken by a change "Conflicts with locks of all modes", including
   the mode every plain read acquires, and "a transaction seeking either a
   table-level or row-level lock will wait indefinitely for conflicting locks
   to be released". Solution-bearing: this is why a waiting change stops
-  arriving readers, so it belongs in `HINTS.md`, never in `README.md`.
+  arriving readers, so it belongs in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

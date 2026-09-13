@@ -123,7 +123,7 @@ The submitted `ARCHITECTURE.md` must explain:
   asserted — and where that cost is paid.
 
 Two further questions presuppose part of a design and are solution-bearing;
-they publish to `HINTS.md`, never to the task:
+they publish to `hints/`, never to the task:
 
 - why a store's refusal to complete a unit of work is a different kind of
   failure from a write it rejects as invalid, and what the application must
@@ -182,7 +182,7 @@ boundary.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **FoundationDB** — [documentation](https://apple.github.io/foundationdb/developer-guide.html).
@@ -219,7 +219,7 @@ problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   PostgreSQL, evidence, and retry contracts.
@@ -233,6 +233,6 @@ Every citation below is solution-bearing. None of it publishes into
   results read during a transaction that later aborted; instead, they should
   retry the transaction until it succeeds". It also fixes that a sequential
   scan "will always necessitate a relation-level predicate lock", which raises
-  the rate of refusals. Solution-bearing: this belongs in `HINTS.md`, never in
+  the rate of refusals. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

@@ -130,10 +130,10 @@ than to an observed maximum.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Yellowstone gRPC (Dragon's Mouth)** — [documentation](https://github.com/rpcpool/yellowstone-grpc)
 - **RPC WebSocket subscriptions** — [documentation](https://solana.com/docs/rpc/websocket)
 - **JSON-RPC polling** — [documentation](https://solana.com/docs/rpc/http)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

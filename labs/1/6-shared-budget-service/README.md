@@ -116,15 +116,6 @@ The submitted `ARCHITECTURE.md` must explain:
 - what holding the invariant costs in delivered throughput — measured, not
   asserted — and where that cost is paid.
 
-Two further questions presuppose part of a design and are solution-bearing;
-they publish to `HINTS.md`, never to the task:
-
-- why a store's refusal to complete a unit of work is a different kind of
-  failure from a write it rejects as invalid, and what the application must
-  own for the first kind that it does not own for the second;
-- why a decision that reads a set of records and writes into that same set can
-  be refused even when every individual write it made was legal on its own.
-
 The document must compare at least two viable decision designs without turning
 a known library name into the argument, and state one residual limitation.
 
@@ -153,10 +144,10 @@ boundary.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **FoundationDB** — [documentation](https://apple.github.io/foundationdb/developer-guide.html)
 - **MySQL with InnoDB** — [documentation](https://dev.mysql.com/doc/refman/8.4/en/innodb-transaction-isolation-levels.html)
 - **DynamoDB transactions** — [documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

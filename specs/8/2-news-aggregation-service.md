@@ -176,7 +176,7 @@ calibrated during warm-up, structural, or learner-declared.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **PostgreSQL full-text search** keeps retrieval inside the transactional
@@ -221,7 +221,7 @@ multi-node OpenSearch operation are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -231,12 +231,12 @@ Every citation below is solution-bearing. None of it publishes into
   — resemblance is a number between 0 and 1 computed from a document's
   shingle set, so "roughly the same" is a continuous measure and any
   duplicate boundary is a chosen point on it. Solution-bearing: this belongs
-  in `HINTS.md`, never in `README.md`.
+  in `hints/`, never in `README.md`.
 - [Manku, Jain, Das Sarma, *Detecting Near-Duplicates for Web Crawling*](https://research.google.com/pubs/archive/33026.pdf)
   — 64-bit fingerprints over billions of pages, where near-duplicates differ
   in small fragments such as advertisements, counters, and timestamps, and
   the distance parameter trades false positives against false negatives with
-  no natural sharp value. Solution-bearing: this belongs in `HINTS.md`,
+  no natural sharp value. Solution-bearing: this belongs in `hints/`,
   never in `README.md`.
 - [RSS 2.0 specification](https://www.rssboard.org/rss-specification) — an
   item's `pubDate` and `guid` are both optional, guid uniqueness is left to

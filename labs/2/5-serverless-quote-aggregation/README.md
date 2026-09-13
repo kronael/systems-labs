@@ -148,10 +148,10 @@ one.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Google Cloud Run** — [documentation](https://cloud.google.com/run/docs)
 - **Amazon API Gateway caching** — [documentation](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-caching.html)
 - **Istio** — [documentation](https://istio.io/latest/docs/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

@@ -88,10 +88,10 @@ runner and `kind` cluster cannot prove about AWS or managed Kubernetes.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Knative** — [documentation](https://knative.dev/docs/)
 - **Temporal** — [documentation](https://docs.temporal.io/)
 - **Pulumi** — [documentation](https://www.pulumi.com/docs/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

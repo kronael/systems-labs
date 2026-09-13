@@ -133,7 +133,7 @@ must be labelled as such.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Kafka** — [documentation](https://kafka.apache.org/documentation/).
@@ -168,7 +168,7 @@ retried, or held — it never invents a value.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, queue,
   Lambda, cost, and evidence contracts.
@@ -193,5 +193,5 @@ Every citation below is solution-bearing. None of it publishes into
   — delivery is at-least-once even inside the visibility window, extension
   stops at a hard twelve-hour limit measured from first receipt, and a
   standard queue caps in-flight messages and then returns `OverLimit`.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

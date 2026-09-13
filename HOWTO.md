@@ -19,18 +19,18 @@ algorithm, the cache policy, the recovery mechanism, or the deployment shape.
 Those are the exercise. Your first design is meant to fail at a boundary you
 did not think about, and the redesign after it fails is the lesson.
 
-You get four files, and you choose which of them you open.
+You get four artifacts, and you choose which of them you open.
 
 | file | holds | you open it |
 |------|-------|-------------|
 | `README.md` | the task and the technology landscape | by default |
-| `HINTS.md` | the design reading | by choice, when stuck |
+| `hints/` | the design reading, one file per hint | by choice, when stuck |
 | `EVALUATION.md` | the answer key | by choice, when checking |
 | `ARCHITECTURE.md` | your own reasoning | you write it |
 
-Open `HINTS.md` and `EVALUATION.md` whenever you decide to. They are not
-locked, and nothing marks you down for reading them. They are separate files so
-that avoiding the answer costs you nothing.
+Open `hints/` and `EVALUATION.md` whenever you decide to. They are not
+locked, and nothing marks you down for reading them. They are separate
+artifacts so that avoiding the answer costs you nothing.
 
 ## The loop
 
@@ -108,7 +108,7 @@ make clean      remove generated artifacts, keep cached source data
 `make fault` writes the failure schedule out, runs it, and deletes it, so the
 schedule exists in readable form only while a run is in flight. You own the
 machine and you can go and read it. Doing so hands you the design, the same way
-opening `HINTS.md` does, so decide deliberately rather than by accident.
+opening `hints/` does, so decide deliberately rather than by accident.
 
 ## When you are stuck
 
@@ -122,7 +122,7 @@ In this order:
 3. Run a small experiment against the running system and look at the native
    state. The lab is built around real reported behaviour, so the system will
    tell you.
-4. Open `HINTS.md`. It holds the architecture reading, what the neighbouring
+4. Open `hints/`. It holds the architecture reading, what the neighbouring
    systems do differently at this lab's boundary, and the designs that were
    rejected.
 

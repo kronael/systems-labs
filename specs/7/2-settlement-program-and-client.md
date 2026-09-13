@@ -176,7 +176,7 @@ that would bind next beyond the scale target.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Ethereum (an EVM contract)** —
@@ -214,7 +214,7 @@ and any mainnet or public-RPC dependency are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -229,7 +229,7 @@ Every citation below is solution-bearing. None of it publishes into
   transaction may consume at most 1,400,000 compute units, an instruction
   defaults to 200,000, and a transaction that would exceed a limit is not
   included in a block; the page also names the instruction that requests a
-  different limit. Solution-bearing: this belongs in `HINTS.md`, never in
+  different limit. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - [Program limitations](https://solana.com/docs/programs/limitations) — the
   runtime bounds a deployed program beyond compute: a 64-frame call stack,

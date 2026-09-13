@@ -119,7 +119,7 @@ The submitted `ARCHITECTURE.md` must explain:
 Alternative designs must be compared. The chosen design needs stated failure
 modes and one residual limitation.
 
-`HINTS.md`-bound, because each presupposes a mechanism: what a retrieval stage
+`hints/`-bound, because each presupposes a mechanism: what a retrieval stage
 guarantees about a candidate set, how an incomplete candidate set is detected,
 and which of two stores is authoritative for corpus membership.
 
@@ -175,7 +175,7 @@ to trade answer completeness for latency, and one residual limitation.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **NCBI BLAST+** is the reference product as a batch command: the database is
@@ -221,7 +221,7 @@ operations, and any user interface are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -237,17 +237,17 @@ Every citation below is solution-bearing. None of it publishes into
   number of chance matches is proportional to the search space, a database
   search multiplies the pairwise expectation by `N/n` with `N` the total
   database length, and a normalized score plus the search space size is all
-  significance needs. Solution-bearing: this belongs in `HINTS.md`, never in
+  significance needs. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - [NCBI BLAST FAQ](https://blast.ncbi.nlm.nih.gov/doc/blast-help/FAQ.html) —
   the vendor's own definition: the Expect value is "the number of hits one can
   'expect' to see by chance when searching a database of a particular size".
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [How BLAST E-values are calculated](https://sequenceserver.com/blog/blast-e-value-meaning/)
   — the same amount of similarity gets a weaker significance as the database
   grows, because larger databases have
   more chances of producing the alignment by chance. Solution-bearing: this
-  belongs in `HINTS.md`, never in `README.md`.
+  belongs in `hints/`, never in `README.md`.
 - [UniProt FTP license](https://ftp.uniprot.org/pub/databases/uniprot/LICENSE)
   — CC BY 4.0; the databases may be copied and redistributed freely provided
   the copyright statement is reproduced with each copy.
@@ -262,10 +262,10 @@ Every citation below is solution-bearing. None of it publishes into
 - [OpenSearch n-gram tokenizer](https://docs.opensearch.org/latest/analyzers/tokenizers/ngram/)
   — splits text into overlapping fixed-length substrings for partial matching,
   with `min_gram`, `max_gram`, and the `index.max_ngram_diff` bound.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [OpenSearch script score](https://docs.opensearch.org/latest/query-dsl/specialized/script-score/)
   — custom score computation applied to the documents a cheaper query already
-  filtered. Solution-bearing: this belongs in `HINTS.md`, never in
+  filtered. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - [OpenSearch refresh API](https://docs.opensearch.org/latest/api-reference/index-apis/refresh/)
   — a document is not searchable until a refresh converts in-memory structures

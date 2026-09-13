@@ -133,10 +133,10 @@ improvement claim this harness still cannot check.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **trec_eval** — [documentation](https://github.com/usnistgov/trec_eval)
 - **Quepid** — [documentation](https://github.com/o19s/quepid)
 - **Elasticsearch's ranking evaluation endpoint** — [documentation](https://www.elastic.co/docs/reference/elasticsearch/rest-apis/search-rank-eval)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

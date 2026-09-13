@@ -111,10 +111,10 @@ comparison between recovery paths.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Kafka Streams** — [documentation](https://kafka.apache.org/documentation/streams/)
 - **Spark Structured Streaming** — [documentation](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html)
 - **Materialize** — [documentation](https://materialize.com/docs/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

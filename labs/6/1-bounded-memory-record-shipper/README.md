@@ -98,10 +98,10 @@ rather than to an observed maximum.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Fluent Bit** — [documentation](https://docs.fluentbit.io/manual/)
 - **Vector** — [documentation](https://vector.dev/docs/)
 - **Filebeat** — [documentation](https://www.elastic.co/docs/reference/beats/filebeat)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

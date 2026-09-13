@@ -80,10 +80,10 @@ cached balance or row count.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **ActiveMQ** — [documentation](https://activemq.apache.org/components/classic/documentation)
 - **Temporal** — [documentation](https://docs.temporal.io/)
 - **CockroachDB** — [documentation](https://www.cockroachlabs.com/docs/stable/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

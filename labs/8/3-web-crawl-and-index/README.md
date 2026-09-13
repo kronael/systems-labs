@@ -194,8 +194,8 @@ that cost the crawl, and it names one residual limitation.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Common Crawl** — [documentation](https://nutch.apache.org/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

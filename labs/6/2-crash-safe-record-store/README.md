@@ -86,10 +86,10 @@ cannot prove about real hardware.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **SQLite** — [documentation](https://www.sqlite.org/docs.html)
 - **LMDB** — [documentation](http://www.lmdb.tech/doc/)
 - **RocksDB** — [documentation](https://rocksdb.org/docs/getting-started.html)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

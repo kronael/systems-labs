@@ -77,7 +77,7 @@ The submitted `ARCHITECTURE.md` must explain:
 
 At least two cache policies must be compared with the supplied access pattern.
 
-`HINTS.md`-bound, because it presupposes a mechanism: which of the store's
+`hints/`-bound, because it presupposes a mechanism: which of the store's
 durability, eviction, and availability properties the design relies on.
 
 ## Adversarial evaluation
@@ -112,7 +112,7 @@ dependency-failure runs. It ties each result to the chosen policy.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Memcached** — [documentation](https://memcached.org/). A cache and
@@ -143,7 +143,7 @@ problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Valkey,
   evidence, and failure contracts.
@@ -151,11 +151,11 @@ Every citation below is solution-bearing. None of it publishes into
 - [Key eviction](https://valkey.io/topics/lru-cache/) — at `maxmemory` Valkey
   evicts by the configured policy, and its LRU and LFU are approximations
   that sample a handful of keys per decision rather than track exact recency.
-  Solution-bearing: this belongs in HINTS.md, never in README.md.
+  Solution-bearing: this belongs in hints/, never in README.md.
 - [`EXPIRE`](https://valkey.io/commands/expire/) — expired keys are reclaimed
   on access plus a background sampling cycle that tolerates a fraction of
   expired keys lingering in memory, so a TTL is not an exact deadline.
-  Solution-bearing: this belongs in HINTS.md, never in README.md.
+  Solution-bearing: this belongs in hints/, never in README.md.
 - [Get OHLC data](https://docs.kraken.com/api/docs/rest-api/get-ohlc-data) —
   "The last entry in the OHLC array is for the current, not-yet-committed
   timeframe": the venue's own contract makes the newest candle provisional,

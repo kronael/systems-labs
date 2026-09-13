@@ -172,10 +172,10 @@ services.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Amazon Aurora Serverless v2** — [documentation](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html)
 - **AWS Step Functions** — [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 - **AWS Fargate** — [documentation](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

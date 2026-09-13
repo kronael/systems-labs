@@ -168,7 +168,7 @@ improvement claim this harness still cannot check.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **trec_eval** is the TREC community's standard scorer: it judges a frozen run
@@ -215,7 +215,7 @@ the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -229,18 +229,18 @@ Every citation below is solution-bearing. None of it publishes into
   ranking, a logarithmic discount devalues documents retrieved late, and
   normalisation against the ideal ordering makes results comparable across
   queries and admits statistical testing of differences. Solution-bearing: this
-  belongs in `HINTS.md`, never in `README.md`.
+  belongs in `hints/`, never in `README.md`.
 - [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
   (Introduction to Information Retrieval, ch. 8) — the textbook treatment of
   ranked measures for graded relevance, with the logarithmic position discount
   and the normalisation factor that makes a perfect ranking score 1.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [Information retrieval system evaluation](https://nlp.stanford.edu/IR-book/html/htmledition/information-retrieval-system-evaluation-1.html)
   (Introduction to Information Retrieval, ch. 8) — states that reporting
   results obtained by tuning parameters on the same collection is wrong, that
   tuning belongs on development collections with performance reported on a
   held-out set, and that around fifty information needs is the usual minimum
-  for a stable evaluation. Solution-bearing: this belongs in `HINTS.md`, never
+  for a stable evaluation. Solution-bearing: this belongs in `hints/`, never
   in `README.md`.
 - Buckley, Dimmick, Soboroff, and Voorhees,
   [Bias and the limits of pooling for large collections](https://www.nist.gov/publications/bias-and-limits-pooling-large-collections)
@@ -262,7 +262,7 @@ Every citation below is solution-bearing. None of it publishes into
 - [OpenSearch ranking evaluation API](https://docs.opensearch.org/latest/api-reference/search-apis/rank-eval/)
   — the engine's `_rank_eval` endpoint runs rated queries against the live
   index, returns a metric score, and lists each query's returned-but-unrated
-  documents. Solution-bearing: this belongs in `HINTS.md`, never in
+  documents. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - [OpenSearch keyword search](https://docs.opensearch.org/latest/search-plugins/keyword-search/)
   — scores come from BM25 over term frequency, inverse document frequency, and

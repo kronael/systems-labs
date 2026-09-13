@@ -134,10 +134,10 @@ to trade answer completeness for latency, and one residual limitation.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **NCBI BLAST+** — [documentation](https://www.ncbi.nlm.nih.gov/books/NBK279690/)
 - **DIAMOND** — [documentation](https://github.com/bbuchfink/diamond)
 - **OpenSearch k-NN vector search** — [documentation](https://docs.opensearch.org/latest/vector-search/vector-search-techniques/approximate-knn/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

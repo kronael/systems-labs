@@ -123,7 +123,7 @@ The submitted `ARCHITECTURE.md` must explain:
   declared volume.
 
 One further question presupposes part of a design and is solution-bearing; it
-publishes to `HINTS.md`, never to the task:
+publishes to `hints/`, never to the task:
 
 - why a worker that is merely slow sees its work delivered again, and what
   makes the second delivery harmless when the first has already begun.
@@ -171,7 +171,7 @@ durable and not yet fulfilled, and the limit of the chosen recovery design.
 
 A practitioner might have reached for one of these instead. The names and their
 documentation links publish into `README.md`; the boundary difference stated
-with each publishes into `HINTS.md`, because naming what a neighbour does
+with each publishes into `hints/`, because naming what a neighbour does
 differently here points at this lab's quirk.
 
 - **RabbitMQ** — [documentation](https://www.rabbitmq.com/docs/confirms).
@@ -205,7 +205,7 @@ cloud databases, and external network calls inside database transactions.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   PostgreSQL, evidence, and retry contracts.
@@ -221,9 +221,9 @@ Every citation below is solution-bearing. None of it publishes into
 - [JetStream acknowledgement](https://docs.nats.io/learn/jetstream/acknowledgment)
   — the acknowledgement window is a timer, and a delivery not resolved before it
   expires is treated as a silent failure and redelivered. Solution-bearing:
-  this belongs in `HINTS.md`, never in `README.md`.
+  this belongs in `hints/`, never in `README.md`.
 - [JetStream reliable delivery](https://www.synadia.com/blog/jetstream-reliable-delivery-dlq-replay)
   — what this broker does when a consumer keeps failing a message, and what it
-  leaves to the application. Solution-bearing: this belongs in `HINTS.md`,
+  leaves to the application. Solution-bearing: this belongs in `hints/`,
   never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

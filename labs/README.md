@@ -8,7 +8,7 @@ gives you, the requirements, the scale target, what your `ARCHITECTURE.md` has
 to explain, the acceptance evidence, and the systems a practitioner might have
 reached for instead. Nothing in it names a solution.
 
-`HINTS.md` and `EVALUATION.md` join each directory when the lab is built. Until
+`hints/` and `EVALUATION.md` join each directory when the lab is built. Until
 then this tree is the task and nothing else runs. [`../HOWTO.md`](../HOWTO.md)
 is the method, and [`../specs/index.md`](../specs/index.md) is the catalog with
 the labs in course order.

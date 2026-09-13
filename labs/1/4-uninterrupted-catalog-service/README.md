@@ -145,16 +145,6 @@ The submitted `ARCHITECTURE.md` must explain:
 - which query answers "which shape is item X published in, and since when",
   and what it costs at the declared volume.
 
-Two further questions presuppose part of a design and are solution-bearing;
-they publish to `HINTS.md`, never to the task:
-
-- why the time a declared change takes and the time it makes the catalog
-  unavailable are not the same quantity, and which property of a declared
-  change decides whether the catalog's size affects the second one;
-- why a change that must wait for the catalog's longest-running reader also
-  stops every request arriving after it, including requests that need nothing
-  that reader is holding.
-
 The document must compare at least two viable adoption designs without turning
 a known tool name into the argument, and state one residual limitation.
 
@@ -180,10 +170,10 @@ at once and the limit of the chosen adoption design.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **MongoDB** — [documentation](https://www.mongodb.com/docs/manual/data-modeling/)
 - **MySQL with InnoDB** — [documentation](https://dev.mysql.com/doc/refman/8.4/en/innodb-online-ddl-operations.html)
 - **CockroachDB** — [documentation](https://docs.cockroachlabs.com/docs/stable/online-schema-changes)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

@@ -116,12 +116,6 @@ The submitted `ARCHITECTURE.md` must explain:
 - which query answers "what happened to reservation X" and what it costs at the
   declared volume.
 
-One further question presupposes part of a design and is solution-bearing; it
-publishes to `HINTS.md`, never to the task:
-
-- why a worker that is merely slow sees its work delivered again, and what
-  makes the second delivery harmless when the first has already begun.
-
 The document must compare at least two viable worker designs without turning a
 known library name into the argument, and state one residual limitation.
 
@@ -146,10 +140,10 @@ durable and not yet fulfilled, and the limit of the chosen recovery design.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **RabbitMQ** — [documentation](https://www.rabbitmq.com/docs/confirms)
 - **Kafka** — [documentation](https://kafka.apache.org/documentation/#design)
 - **Temporal** — [documentation](https://docs.temporal.io/encyclopedia)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

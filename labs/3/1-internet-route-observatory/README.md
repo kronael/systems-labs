@@ -102,10 +102,10 @@ freshness. It documents the limits of what the vantage points can support.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **RouteViews** — [documentation](https://www.routeviews.org/routeviews/)
 - **CAIDA BGPStream** — [documentation](https://bgpstream.caida.org/)
 - **RIPE Atlas** — [documentation](https://atlas.ripe.net/docs/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

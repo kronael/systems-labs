@@ -112,7 +112,7 @@ cached balance or row count.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **ActiveMQ** —
@@ -144,7 +144,7 @@ distributed transaction coordinator service.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   transaction, Kafka, evidence, and retry contracts.
@@ -164,5 +164,5 @@ Every citation below is solution-bearing. None of it publishes into
   only, and do not extend to a system outside Kafka; the PostgreSQL page
   reserves prepared transactions for an external transaction manager and
   warns that leaving one open holds its locks and blocks vacuum.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

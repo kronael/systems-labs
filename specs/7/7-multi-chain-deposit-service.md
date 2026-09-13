@@ -141,7 +141,7 @@ The document must compare at least two designs for what a stated balance
 counts, and must say what each costs the depositor when an unattributed
 authorization resolves the other way.
 
-`HINTS.md`-bound, because each presupposes a mechanism: how a composed
+`hints/`-bound, because each presupposes a mechanism: how a composed
 transaction is bound to a single destination chain so it cannot be accepted
 elsewhere; how an outbound transfer is made self-identifying to its own
 sender without a reply channel.
@@ -202,7 +202,7 @@ would have been told at each of those points.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **NEAR Intents** —
@@ -245,7 +245,7 @@ only.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.

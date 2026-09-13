@@ -162,10 +162,10 @@ would have been told at each of those points.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **NEAR Intents** — [documentation](https://docs.near-intents.org/near-intents)
 - **Wormhole Portal** — [documentation](https://wormhole.com/docs/protocol/introduction/)
 - **THORChain** — [documentation](https://docs.thorchain.org/how-it-works/technology)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

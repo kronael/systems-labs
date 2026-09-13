@@ -107,12 +107,6 @@ The submitted `ARCHITECTURE.md` must explain:
 - what the residual window is between ledger durability and audit availability,
   and what bounds it.
 
-One further question presupposes part of a design and is solution-bearing; it
-publishes to `HINTS.md`, never to the task:
-
-- why the audit consumer cannot assume it sees an atomic write as a unit, and
-  what it does instead.
-
 The document must compare the local design and this one directly, and name the
 guarantee that became weaker.
 
@@ -148,10 +142,10 @@ what bounds that window.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Amazon DynamoDB Streams** — [documentation](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html)
 - **AWS Step Functions** — [documentation](https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html)
 - **PostgreSQL with a self-run Kafka** — [documentation](https://www.postgresql.org/docs/current/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

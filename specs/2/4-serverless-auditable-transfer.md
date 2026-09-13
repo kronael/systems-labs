@@ -114,7 +114,7 @@ The submitted `ARCHITECTURE.md` must explain:
   and what bounds it.
 
 One further question presupposes part of a design and is solution-bearing; it
-publishes to `HINTS.md`, never to the task:
+publishes to `hints/`, never to the task:
 
 - why the audit consumer cannot assume it sees an atomic write as a unit, and
   what it does instead.
@@ -169,7 +169,7 @@ what bounds that window.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Amazon DynamoDB Streams** —
@@ -205,7 +205,7 @@ artifacts the required evidence cannot be produced.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, execution
   shape policy, cost, grading, and evidence contracts.
@@ -220,11 +220,11 @@ Every citation below is solution-bearing. None of it publishes into
 - [DynamoDB transactions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html)
   — an atomic write's changes propagate gradually to indexes and streams, so
   records from one transaction may appear at different times and interleave
-  with records from others. Solution-bearing: this belongs in `HINTS.md`,
+  with records from others. Solution-bearing: this belongs in `hints/`,
   never in `README.md`.
 - [Queue event source mapping](https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
   and [batch failure reporting](https://docs.aws.amazon.com/lambda/latest/dg/services-sqs-errorhandling.html)
   — batches arrive at least once, and the outcome of a batch containing a
   failed item is governed by a documented reporting contract.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

@@ -104,7 +104,7 @@ The submitted `ARCHITECTURE.md` must explain:
 Alternative designs must be compared. The chosen design needs stated failure
 modes and one residual limitation.
 
-`HINTS.md`-bound, because it names a rejected design: what a sender that waits
+`hints/`-bound, because it names a rejected design: what a sender that waits
 for each answer before sending the next would report instead.
 
 ## Adversarial evaluation
@@ -168,7 +168,7 @@ explains where it comes from.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **wrk** — [documentation](https://github.com/wg/wrk). Saturates a fixed set
@@ -198,7 +198,7 @@ capture of new recordings are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -222,5 +222,5 @@ Every citation below is solution-bearing. None of it publishes into
 - [wrk2](https://github.com/giltene/wrk2) and
   [HdrHistogram](https://github.com/HdrHistogram/HdrHistogram) — the
   corrective generator and the correction it records. Solution-bearing: both
-  belong in `HINTS.md`, never in `README.md`.
+  belong in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

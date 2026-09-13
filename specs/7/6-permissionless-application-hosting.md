@@ -202,7 +202,7 @@ one; the report is graded on naming it, not on pretending it is absent.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **GitHub Pages** — [documentation](https://docs.github.com/en/pages). Static
@@ -253,7 +253,7 @@ packaging are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.
@@ -271,7 +271,7 @@ Every citation below is solution-bearing. None of it publishes into
   record's validity; Kubo republishes every 4 hours by default while it runs;
   resolution is slower than a content address because multiple records must
   be found. Solution-bearing for the pointer design: this belongs in
-  `HINTS.md`, never in `README.md`.
+  `hints/`, never in `README.md`.
 - [Deploying programs](https://solana.com/docs/programs/deploying) — the
   upgrade authority defaults to the deploying wallet and can update or close
   the program; `--final` removes it; once a program is immutable it can never
@@ -279,7 +279,7 @@ Every citation below is solution-bearing. None of it publishes into
 - [Solana name service records](https://guide.sns.id/domain-name/records.html)
   — the record convention the prepared registry follows: web3 record types
   including an IPFS content identifier and an Arweave address bound to a
-  name. Solution-bearing for the pointer design: this belongs in `HINTS.md`,
+  name. Solution-bearing for the pointer design: this belongs in `hints/`,
   never in `README.md`.
 - [ENSIP-7 contenthash](https://docs.ens.domains/ensip/7/) — the on-chain
   pointer as practiced on Ethereum: a multicodec content address in a

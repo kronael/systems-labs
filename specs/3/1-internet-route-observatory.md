@@ -123,7 +123,7 @@ freshness. It documents the limits of what the vantage points can support.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **RouteViews** — [documentation](https://www.routeviews.org/routeviews/).
@@ -156,7 +156,7 @@ verdicts, alert delivery, and a map UI is outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Kafka,
   real-data, source, and evidence contracts.
@@ -179,14 +179,14 @@ Every citation below is solution-bearing. None of it publishes into
   - [RouteViews](https://www.routeviews.org/routeviews/) — an independent
     collector fleet with its own peer population of over a thousand peers;
     the vantage-point coverage contrast in the neighbouring-systems reading.
-  - Solution-bearing, for `HINTS.md` and never `README.md`: [Labovitz, Ahuja,
+  - Solution-bearing, for `hints/` and never `README.md`: [Labovitz, Ahuja,
     Bose, and Jahanian, *Delayed Internet Routing Convergence*, SIGCOMM
     2000](https://conferences.sigcomm.org/sigcomm/2000/conf/paper/sigcomm2000-5-2.pdf)
     — measured failovers averaged three minutes, oscillations ran up to
     fifteen minutes and tens of minutes at worst, and the rate-limiting
     advertisement timer shapes the bursts, so a burst of updates is
     exploration through transient paths rather than change.
-  - Solution-bearing, for `HINTS.md` and never `README.md`: [Oliveira, Pei,
+  - Solution-bearing, for `hints/` and never `README.md`: [Oliveira, Pei,
     Willinger, Zhang, and Zhang, *Quantifying the Completeness of the
     Observed Internet AS-level Structure*, UCLA TR-080026,
     2008](https://web.cs.ucla.edu/~lixia/papers/08completeness-TR.pdf) — the
@@ -194,7 +194,7 @@ Every citation below is solution-bearing. None of it publishes into
     connectivity of only 4 percent of ASes, because export policy bounds what
     any vantage point can see; this is what the observatory can never
     conclude.
-  - Solution-bearing, for `HINTS.md` and never `README.md`: [Sermpezis et
+  - Solution-bearing, for `hints/` and never `README.md`: [Sermpezis et
     al., *Bias in Internet Measurement Infrastructure*, RIPE
     Labs](https://labs.ripe.net/author/pavlos_sermpezis/bias-in-internet-measurement-infrastructure/)
     — RIS and RouteViews collect feeds from roughly 300 and 500 peering ASes

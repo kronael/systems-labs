@@ -117,7 +117,7 @@ the scale target, and the evidence must make that visible.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Envoy** — [documentation](https://www.envoyproxy.io/docs/envoy/latest/).
@@ -147,7 +147,7 @@ Kubernetes, and browser UI.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -162,6 +162,6 @@ Every citation below is solution-bearing. None of it publishes into
 - [wrk2](https://github.com/giltene/wrk2) — a closed-loop generator sends its
   next request only after the previous response arrives, so it coordinates
   with the server and stops measuring during exactly the slow periods it
-  exists to find. Solution-bearing: this belongs in HINTS.md, never in
+  exists to find. Solution-bearing: this belongs in hints/, never in
   README.md.
 - Implementation pointers do not exist while the spec is `draft`.

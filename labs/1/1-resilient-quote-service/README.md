@@ -96,10 +96,10 @@ the scale target, and the evidence must make that visible.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Envoy** — [documentation](https://www.envoyproxy.io/docs/envoy/latest/)
 - **resilience4j** — [documentation](https://resilience4j.readme.io/docs/getting-started)
 - **HAProxy** — [documentation](https://docs.haproxy.org/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

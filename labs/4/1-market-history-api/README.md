@@ -82,10 +82,10 @@ hosted-capacity estimate clearly separated from local evidence.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Apache Cassandra** — [documentation](https://cassandra.apache.org/doc/latest/)
 - **MongoDB** — [documentation](https://www.mongodb.com/docs/manual/)
 - **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

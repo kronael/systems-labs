@@ -94,10 +94,10 @@ states the residual limitation.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **jemalloc** — [documentation](https://jemalloc.net/)
 - **tcmalloc** — [documentation](https://google.github.io/tcmalloc/)
 - **mimalloc** — [documentation](https://github.com/microsoft/mimalloc)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

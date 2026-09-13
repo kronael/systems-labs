@@ -143,8 +143,8 @@ calibrated during warm-up, structural, or learner-declared.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **pgvector** — [documentation](https://www.postgresql.org/docs/current/textsearch-intro.html)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

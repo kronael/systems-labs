@@ -80,9 +80,7 @@ are produced is the learner's choice; that the report contains them is not.
 
 The submitted `ARCHITECTURE.md` must explain:
 
-- what the declared rate promises when the target stops answering, and what a
-  design that waits for each answer before sending the next would silently
-  report instead;
+- what the declared rate promises when the target stops answering;
 - whose delay the reported latency of each event contains, and how the
   replayer's own contribution is separated and shown;
 - what limits how precisely a process can wait for a short interval, and how
@@ -123,10 +121,10 @@ explains where it comes from.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **wrk** — [documentation](https://github.com/wg/wrk)
 - **tcpreplay** — [documentation](https://tcpreplay.appneta.com/)
 - **k6** — [documentation](https://grafana.com/docs/k6/latest/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

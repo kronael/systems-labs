@@ -117,10 +117,10 @@ on.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **The Graph** — [documentation](https://thegraph.com/docs/en/)
 - **TrueBlocks** — [documentation](https://trueblocks.io/docs/)
 - **Etherscan** — [documentation](https://docs.etherscan.io/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

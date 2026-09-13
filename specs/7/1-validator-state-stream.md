@@ -162,7 +162,7 @@ than to an observed maximum.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Yellowstone gRPC (Dragon's Mouth)** —
@@ -198,7 +198,7 @@ fork-choice analysis, and token-program decoding are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -211,7 +211,7 @@ Every citation below is solution-bearing. None of it publishes into
   arrive asynchronously to each other; startup accounts are streamed with a
   flag and an end-of-startup signal. The page's reference-plugin sections
   describe a working persistence design. Solution-bearing: this belongs in
-  `HINTS.md`, never in `README.md`.
+  `hints/`, never in `README.md`.
 - [`SlotStatus`](https://docs.rs/agave-geyser-plugin-interface/latest/agave_geyser_plugin_interface/geyser_plugin_interface/enum.SlotStatus.html)
   — the full status set includes `Dead`, and processed-slot state "is not
   derived from a confirmed or finalized block".
@@ -224,5 +224,5 @@ Every citation below is solution-bearing. None of it publishes into
 - [solana-labs/solana#31242](https://github.com/solana-labs/solana/issues/31242)
   — a plugin cannot request account state from the validator outside the
   update stream; closed unimplemented. The discussion names the workaround.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

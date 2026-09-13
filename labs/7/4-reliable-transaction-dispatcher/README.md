@@ -107,10 +107,10 @@ resubmission means on each chain and why the safe moment to give up differs.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **OpenZeppelin Relayer** — [documentation](https://docs.openzeppelin.com/relayer/)
 - **Flashbots Protect** — [documentation](https://docs.flashbots.net/flashbots-protect/overview)
 - **Temporal** — [documentation](https://docs.temporal.io/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

@@ -261,7 +261,7 @@ that cost the crawl, and it names one residual limitation.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Apache Nutch** ships the entire crawl loop — pending-URL state, fetch
@@ -308,7 +308,7 @@ and full-web scale are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -325,11 +325,11 @@ Every citation below is solution-bearing. None of it publishes into
   `Last-Modified` is implicitly weak because one-second resolution cannot
   distinguish two changes within the same second (§8.8.2.2) — which is why a
   truthful 304 is not proof the bytes are unchanged. Solution-bearing: this
-  belongs in `HINTS.md`, never in `README.md`.
+  belongs in `hints/`, never in `README.md`.
 - [RFC 9111](https://www.rfc-editor.org/rfc/rfc9111.html) — HTTP caching:
   freshness lifetime and the heuristic of a fraction of the age since
   `Last-Modified` (§4.2.2), and updating a stored response on 304 (§4.3.4).
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [RFC 6585](https://www.rfc-editor.org/rfc/rfc6585.html) — additional HTTP
   status codes: 429 means the client has sent too many requests in a given
   amount of time, and the response may carry a `Retry-After` header saying how
@@ -339,7 +339,7 @@ Every citation below is solution-bearing. None of it publishes into
   a significant number of 500, 503, or 429 responses, warns that sustaining
   them longer than one to two days can harm how the site appears in Google
   products, and raises the rate again automatically once the errors fall.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [SEC EDGAR access policy](https://www.sec.gov/os/accessing-edgar-data) — a
   ceiling published as live policy: a current maximum request rate of ten
   requests per second, a declared user agent expected in request headers, and
@@ -348,10 +348,10 @@ Every citation below is solution-bearing. None of it publishes into
   — an indexed document becomes searchable only after a refresh, which runs
   every second by default, so the index lags its own writes and that lag is
   part of any honest staleness statement. Solution-bearing: this belongs in
-  `HINTS.md`, never in `README.md`.
+  `hints/`, never in `README.md`.
 - [OpenSearch pagination](https://docs.opensearch.org/latest/search-plugins/searching-data/paginate/)
   — result windows cap at ten thousand documents by default, and paginating
   deeper or consistently while the index changes requires the mechanisms this
-  page names. Solution-bearing: this belongs in `HINTS.md`, never in
+  page names. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

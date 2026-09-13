@@ -116,7 +116,7 @@ rather than to an observed maximum.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Fluent Bit** — [documentation](https://docs.fluentbit.io/manual/). Caps
@@ -147,7 +147,7 @@ coordination are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -158,18 +158,18 @@ Every citation below is solution-bearing. None of it publishes into
   source "can buffer to memory", pauses the input when that limit is
   reached, and "some input plugins are prone to data loss after
   `mem_buf_limit` capacity is reached during memory-only buffering".
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [`epoll`](https://man7.org/linux/man-pages/man7/epoll.7.html) — the
   readiness half of the readiness-versus-completion distinction: an event
   says the "file descriptor is ready for the requested I/O operation", the
   application still performs the transfer itself, and the buffer never
-  leaves its hands. Solution-bearing: this belongs in `HINTS.md`, never in
+  leaves its hands. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - [`io_uring`](https://man7.org/linux/man-pages/man7/io_uring.7.html) — a
   submitted operation owns its buffer until its completion is reaped, so
   in-flight work, not the application's queue, sets the memory floor.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [Efficient IO with io_uring](https://kernel.dk/io_uring.pdf) — the ring
   design and what submission and completion mean for ownership and ordering.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

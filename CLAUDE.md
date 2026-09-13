@@ -20,7 +20,7 @@ the spec wins and this file is wrong.
 
 When a learner works a lab here, act as a teacher, not an answer key. NEVER
 state the design, name the technique, list the edge cases, or reproduce a hint
-from `HINTS.md` unless the learner has explicitly asked for a hint or the
+from `hints/` unless the learner has explicitly asked for a hint or the
 solution **twice** — two separate, explicit requests, not implied by frustration
 or a vague "I'm stuck". Before that threshold: ask guiding questions, name a
 concept worth reviewing, or explain why a proposed approach fails. Never write
@@ -61,19 +61,19 @@ been handed the design.
 
 The standard is deterrence, not impossibility. The learner owns the machine and
 can disassemble the controller or fetch the recipe sources from the public
-source repository — each a deliberate act, like opening `HINTS.md`.
+source repository — each a deliberate act, like opening `hints/`.
 
-## Four files, four audiences — never spoil the lab
+## Four artifacts, four audiences — never spoil the lab
 
 One rule governs everything below: **a learner who wants the exercise must be
-able to avoid the answer without effort.** That is why these are separate files
-and never sections of one. Anything solution-bearing that lands in `README.md`
+able to avoid the answer without effort.** That is why these are separate
+artifacts and never sections of one. Anything solution-bearing that lands in `README.md`
 cannot be unseen.
 
 | file | holds | opened |
 |------|-------|--------|
 | `README.md` | the task and the landscape | by default |
-| `HINTS.md` | the design reading | by choice, when stuck |
+| `hints/` | the design reading, one file per hint | by choice, when stuck |
 | `EVALUATION.md` | the answer key | by choice, when checking |
 | `ARCHITECTURE.md` | the learner's own reasoning | written, not read |
 
@@ -86,7 +86,7 @@ practitioner would have reached for instead, with links to their documentation.
 Naming a neighbour orients a learner who would otherwise not know the
 alternatives exist, and a name alone solves nothing. Saying what that neighbour
 does *differently at this lab's boundary* is the comparison, and it points
-straight at the quirk — that sentence belongs in `HINTS.md`.
+straight at the quirk — that sentence belongs in `hints/`.
 
 Beyond the task and the landscape, `README.md` must not name, describe,
 compare, or rule out any solution method. The ban imports the `challenges/`
@@ -100,15 +100,15 @@ design's internal ones; the product invariants the task must hold are the task.
 **Names are part of the prompt.** Lab titles, directory slugs, catalog rows, and
 source labels are solution-neutral too.
 
-**`HINTS.md`** holds the architecture guidance, the neighbour boundary
-differences, the rejected designs, and the solution-bearing citations. Nothing
-in `README.md` summarizes it.
+**`hints/`** holds the architecture guidance, the neighbour boundary
+differences, the rejected designs, and the solution-bearing citations, one file
+per hint, indexed by `hints/README.md`. Nothing in `README.md` summarizes it.
 
 **`EVALUATION.md`** is the answer key. It states what a strong design holds,
 what a weak one gets wrong, the boundaries to observe, and any independently
 computed result a check compares against. The ban does not bind it.
 
-`HINTS.md` and `EVALUATION.md` are solution-bearing **by choice**, and that
+`hints/` and `EVALUATION.md` are solution-bearing **by choice**, and that
 choice is their only protection. Do not add secrecy machinery around them, and
 do not weaken them to make them safe to open early — a hint that spoils nothing
 is a hint that helps nobody.
@@ -127,7 +127,7 @@ learner's first task.
 — prescribed, disclaimed, or merely mentioned — a barrier name, a neighbour
 boundary-difference sentence, a dependency configuration-parameter name, or any
 `Code pointers` citation in any course-authored learner-facing text other than
-`HINTS.md` and `EVALUATION.md`. Every quirk source is solution-bearing, because
+`hints/` and `EVALUATION.md`. Every quirk source is solution-bearing, because
 the page that reports the behaviour states it, so a `README.md` that cites the
 page has handed over the reading. The only links `README.md` carries are the
 neighbour documentation pointers and the dataset provenance.
@@ -197,7 +197,7 @@ survives with nothing to check is entertainment, not a gate.
 NN-solution-neutral-name/
   README.md         task, no solution
   ARCHITECTURE.md   learner-owned
-  HINTS.md          architecture reading, opened by choice
+  hints/            architecture reading, one file per hint, opened by choice
   lab.toml
   compose.yml       learner-owned application topology
   app/  tests/      learner-owned
@@ -290,9 +290,9 @@ RDS, and ElastiCache are excluded — each bills continuously.
    domain is decoration; ground it or drop the pretence.
 5. Split `Architecture questions`. A question stated at the level of the
    property the design must defend publishes into `README.md`. A question that
-   presupposes a mechanism is solution-bearing: mark it `HINTS.md`-bound, or
+   presupposes a mechanism is solution-bearing: mark it `hints/`-bound, or
    rewrite it until it names only the property.
-6. Every `Code pointers` citation is solution-bearing and lands in `HINTS.md`
+6. Every `Code pointers` citation is solution-bearing and lands in `hints/`
    or `EVALUATION.md`. NEVER put a quirk source in `README.md`: the document
    that reports the behaviour states the behaviour, so citing it hands over
    the reading the learner is meant to do. `README.md` carries the
@@ -354,7 +354,7 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
   target, and a fetched documentation link for every neighbour it names. `1/7`
   is the one lab whose `README.md` names no neighbour at all: every genuine
   candidate carries the answer in its name, so all three publish into
-  `HINTS.md`, and the spec records that deviation where it happens.
+  `hints/`, and the spec records that deviation where it happens.
 - `BUGS.md` is empty. The fault injection contract in `01-systems-labs.md`
   states the two rules every lab's gate now rests on: a barrier holds execution
   rather than being noticed once it has passed, and the controller supplies the

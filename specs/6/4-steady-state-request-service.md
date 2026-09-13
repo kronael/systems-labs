@@ -116,7 +116,7 @@ states the residual limitation.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **jemalloc** — [documentation](https://jemalloc.net/). Makes returning
@@ -147,7 +147,7 @@ distributed operation.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -156,14 +156,14 @@ Every citation below is solution-bearing. None of it publishes into
 - [`mallopt(3)`](https://man7.org/linux/man-pages/man3/mallopt.3.html) —
   `M_TRIM_THRESHOLD` releases only contiguous free space at the top of the
   heap, `M_MMAP_THRESHOLD` rises dynamically as large blocks are freed, and
-  the arena count grows with lock contention. Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  the arena count grows with lock contention. Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [`malloc_trim(3)`](https://man7.org/linux/man-pages/man3/malloc_trim.3.html)
   — only whole free pages can be released, and thread heaps ignore the pad.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [`malloc(3)`](https://man7.org/linux/man-pages/man3/malloc.3.html) — the
   main heap grows through `sbrk`, and additional arenas appear when mutex
   contention is detected.
 - [Transparent hugepage support](https://www.kernel.org/doc/html/latest/admin-guide/mm/transhuge.html)
   — a 2 MB page can back a region of which one byte is touched, so resident
-  size rises without any new allocation. Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  size rises without any new allocation. Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - Implementation pointers do not exist while the spec is `draft`.

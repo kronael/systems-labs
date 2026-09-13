@@ -133,7 +133,7 @@ comparison between recovery paths.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **Kafka Streams** — [documentation](https://kafka.apache.org/documentation/streams/).
@@ -168,7 +168,7 @@ multi-cluster Kafka, and RPKI logic are outside the problem.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, Flink,
   Kafka, evidence, and failure contracts.
@@ -186,7 +186,7 @@ Every citation below is solution-bearing. None of it publishes into
   external system observes across recovery depends on that system's own
   coordination with the checkpoint; and that an element arriving after the
   watermark has passed its window is dropped by default. Solution-bearing:
-  this belongs in HINTS.md, never in README.md.
+  this belongs in hints/, never in README.md.
 - Domain grounding, judged neutral — it reports the numbers a real churn
   report publishes and touches no recovery design: [Geoff Huston, *BGP
   updates in 2025*, APNIC Blog, 9 January

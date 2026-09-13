@@ -71,12 +71,12 @@ citation is the lab's ground truth, and I fetch the page before I cite it.
 ## Keeping the answer away from yourself
 
 If you want the exercise, you have to be able to avoid the answer without
-effort. That is why each lab is four files and not four sections of one.
+effort. That is why each lab is four artifacts and not four sections of one.
 
 | file | holds | you open it |
 |------|-------|-------------|
 | `README.md` | the task and the technology landscape | by default |
-| `HINTS.md` | the design reading | by choice, when stuck |
+| `hints/` | the design reading, one file per hint | by choice, when stuck |
 | `EVALUATION.md` | the answer key | by choice, when checking |
 | `ARCHITECTURE.md` | your own reasoning | you write it |
 
@@ -88,7 +88,7 @@ no score.
 The failure schedule is never a readable file. Its recipes compile into the
 shared fault controller, and `make fault` materializes a schedule only while a
 run is in flight. The standard is deterrence, not impossibility: you own the
-machine, and reading it is a deliberate act, like opening `HINTS.md`.
+machine, and reading it is a deliberate act, like opening `hints/`.
 
 ## Where to start
 

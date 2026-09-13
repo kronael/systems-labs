@@ -95,10 +95,10 @@ phrase "exactly once" as a substitute for evidence.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Apache Flink** — [documentation](https://nightlies.apache.org/flink/flink-docs-stable/)
 - **Kafka Streams** — [documentation](https://kafka.apache.org/documentation/streams/)
 - **RabbitMQ** — [documentation](https://www.rabbitmq.com/docs)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

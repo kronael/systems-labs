@@ -85,10 +85,10 @@ names the point at which exactness would have to be traded for latency.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/)
 - **Apache Druid** — [documentation](https://druid.apache.org/docs/latest/design/)
 - **Elasticsearch or OpenSearch** — [documentation](https://opensearch.org/docs/latest/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

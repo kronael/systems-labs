@@ -98,7 +98,7 @@ The submitted `ARCHITECTURE.md` must explain:
 Alternative designs must be compared. The chosen design needs stated failure
 modes and one residual limitation.
 
-`HINTS.md`-bound, because each presupposes a mechanism: what a store's fast
+`hints/`-bound, because each presupposes a mechanism: what a store's fast
 spatial lookup returns before a correct answer is formed, and which of two
 stores is authoritative for which fact.
 
@@ -150,7 +150,7 @@ residual limitation.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **MongoDB** interprets GeoJSON on the WGS84 sphere through its `2dsphere`
@@ -195,7 +195,7 @@ use generated seeded input only and run locally with no cloud account.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   submission, evidence, and verification contracts.
@@ -208,30 +208,30 @@ Every citation below is solution-bearing. None of it publishes into
   workshop](https://postgis.net/workshops/postgis-intro/indexing.html) —
   spatial indexes index the bounding boxes of features, not the features; an
   index-only query over one neighbourhood counts 49,821 people where the exact
-  answer is 26,718. Solution-bearing: this belongs in `HINTS.md`, never in
+  answer is 26,718. Solution-bearing: this belongs in `hints/`, never in
   `README.md`.
 - [`ST_Intersects`](https://postgis.net/docs/ST_Intersects.html) — the exact
   intersection predicate, which "automatically includes a bounding box
   comparison that makes use of any spatial indexes". Solution-bearing: this
-  belongs in `HINTS.md`, never in `README.md`.
+  belongs in `hints/`, never in `README.md`.
 - [`ST_Contains`](https://postgis.net/docs/ST_Contains.html) — containment
   means every point of B lies in A and the interiors share a point, with the
   same automatic index comparison. Solution-bearing: this belongs in
-  `HINTS.md`, never in `README.md`.
+  `hints/`, never in `README.md`.
 - [`ST_DWithin`](https://postgis.net/docs/ST_DWithin.html) — the radius
   predicate whose distance is in spatial-reference units for `geometry` and in
-  metres for `geography`. Solution-bearing: this belongs in `HINTS.md`, never
+  metres for `geography`. Solution-bearing: this belongs in `hints/`, never
   in `README.md`.
 - [`ST_Distance`](https://postgis.net/docs/ST_Distance.html) — `geometry`
   distance comes back in the units of the spatial reference system, so SRID
   4326 yields degrees, while `geography` yields geodesic metres.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [Geography
   workshop](https://postgis.net/workshops/postgis-intro/geography.html) — "a
   distance of 122 degrees" between coordinates "is a nonsense number", degree
   squares shrink toward the poles, and the shortest Cartesian route from Los
   Angeles to Tokyo crosses the Atlantic. Solution-bearing: this belongs in
-  `HINTS.md`, never in `README.md`.
+  `hints/`, never in `README.md`.
 - [EPSG:3857](https://epsg.io/3857) — pseudo-Mercator is "not a recognised
   geodetic system", is defined only between 85.06°S and 85.06°N, differs from
   true Mercator by errors of 0.7 percent in scale and up to 21 km on the
@@ -240,12 +240,12 @@ Every citation below is solution-bearing. None of it publishes into
   5.2](https://datatracker.ietf.org/doc/html/rfc7946) — a geometry crossing
   the antimeridian should be cut in two, and a bounding box spanning it has a
   western edge numerically greater than its eastern edge. Solution-bearing:
-  this belongs in `HINTS.md`, never in `README.md`.
+  this belongs in `hints/`, never in `README.md`.
 - [OpenSearch geodistance
   query](https://docs.opensearch.org/latest/query-dsl/geo-and-xy/geodistance/)
   — `distance_type` is `arc` by default; `plane` is "faster but inaccurate for
   long distances or points close to the poles". Solution-bearing: this belongs
-  in `HINTS.md`, never in `README.md`.
+  in `hints/`, never in `README.md`.
 - [OpenSearch geoshape
   query](https://docs.opensearch.org/latest/query-dsl/geo-and-xy/geoshape/) —
   the spatial relations the search engine evaluates (`INTERSECTS`, `DISJOINT`,
@@ -254,7 +254,7 @@ Every citation below is solution-bearing. None of it publishes into
   API](https://docs.opensearch.org/latest/api-reference/index-apis/refresh/) —
   a written document "is not searchable until a refresh operation converts
   these in-memory structures into searchable segments on disk".
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [OpenStreetMap copyright](https://www.openstreetmap.org/copyright) — the
   data is ODbL: "If you alter or build upon our data, you may distribute the
   result only under the same license."

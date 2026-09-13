@@ -140,7 +140,7 @@ resubmission means on each chain and why the safe moment to give up differs.
 
 A practitioner might have reached for one of these instead. The names and
 their documentation links publish into `README.md`; the boundary difference
-stated with each publishes into `HINTS.md`, because naming what a neighbour
+stated with each publishes into `hints/`, because naming what a neighbour
 does differently here points at this lab's quirk.
 
 - **OpenZeppelin Relayer** —
@@ -180,7 +180,7 @@ request path. CI and checks use the local nodes only.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold, fault,
   evidence, and verification contracts.
@@ -200,7 +200,7 @@ Every citation below is solution-bearing. None of it publishes into
 - [Durable nonces](https://solana.com/docs/core/transactions/durable-nonces)
   — replaces the expiring blockhash with a stored value that a transaction's
   required first instruction advances, removing the validity window.
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [Ethereum accounts](https://ethereum.org/en/developers/docs/accounts/) —
   only one transaction with a given nonce can be executed for each account,
   the replay protection that makes per-account order a hard constraint.

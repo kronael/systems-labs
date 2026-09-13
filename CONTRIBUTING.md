@@ -50,7 +50,7 @@ complexity analysis, and none of the phrases "the trick", "the trap", "the
 catch", or "the hard part". Lab titles and directory slugs are solution-neutral
 too — names are part of the prompt.
 
-Every `Code pointers` citation is solution-bearing and belongs in `HINTS.md` or
+Every `Code pointers` citation is solution-bearing and belongs in `hints/` or
 `EVALUATION.md`. The page that reports a behaviour states the behaviour, so
 citing it in `README.md` hands over the reading.
 
@@ -92,7 +92,7 @@ requirement is the whole of it.
    domain swapped out, ground it or drop the pretence.
 5. Split `Architecture questions`: a question stated at the level of a property
    publishes into `README.md`; one that presupposes a mechanism is
-   `HINTS.md`-bound.
+   `hints/`-bound.
 6. Write `EVALUATION.md`. Never write a worked solution.
 7. Add the fault schedule recipe to the controller and update the frozen
    digest.

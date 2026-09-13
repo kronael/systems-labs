@@ -144,10 +144,10 @@ that would bind next beyond the scale target.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Ethereum (an EVM contract)** — [documentation](https://ethereum.org/en/developers/docs/smart-contracts/)
 - **Stellar Soroban** — [documentation](https://developers.stellar.org/docs/build/smart-contracts/overview)
 - **PostgreSQL** — [documentation](https://www.postgresql.org/docs/current/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

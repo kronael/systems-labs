@@ -226,7 +226,7 @@ documentation links, because a learner who never learns what the alternatives
 are cannot defend the choice the lab forced on them, and a name on its own
 solves nothing. The one thing each neighbour does differently at this lab's
 boundary is the comparison, and it points straight at the quirk, so it belongs
-to `HINTS.md`.
+to `hints/`.
 
 This is also where excluded technologies belong. RabbitMQ, NATS, Cassandra, and
 the rest stay out of the dependency set and appear here as reading. A named
@@ -236,7 +236,7 @@ comparison the exclusion policy otherwise denies.
 Every submission contains an `ARCHITECTURE.md` that explains system boundaries,
 state ownership, invariants, failure model, capacity assumptions, alternatives,
 selected tradeoffs, and known limits. Pattern names do not substitute for the
-reasoning. `HINTS.md` is the only learner-facing place for optional
+reasoning. `hints/` is the only learner-facing place for optional
 solution-bearing guidance.
 
 ## Teaching contract
@@ -249,15 +249,16 @@ lab teachable:
   three technologies a practitioner would have reached for instead, with links
   to their documentation. Nothing about how, and nothing about where it breaks.
   Naming a neighbour orients; saying what it does differently at this lab's
-  boundary points at the quirk, so that sentence stays in `HINTS.md`.
-- `HINTS.md` — the design reading, opened deliberately. What each neighbouring
-  system does differently at this lab's boundary, rejected designs, and the
+  boundary points at the quirk, so that sentence stays in `hints/`.
+- `hints/` — the design reading, opened deliberately, one file per hint,
+  indexed by `hints/README.md`. What each neighbouring system does
+  differently at this lab's boundary, rejected designs, and the
   solution-bearing citations.
 - `EVALUATION.md` — what a strong solution looks like and how to check one,
   opened deliberately. It is the answer key: the properties a good design
   holds, the boundaries to observe, the independently computed results a check
   needs, and what separates a working demo from a reliable system. It is
-  protected exactly as `HINTS.md` is — by the learner choosing not to open it
+  protected exactly as `hints/` is — by the learner choosing not to open it
   while they are still solving — and by nothing else.
 - The fault schedules — the edge cases, as executable failure
   schedules. The learner meets them by running `make fault`, after committing
@@ -274,7 +275,7 @@ lab teachable:
   deterrence, not impossibility: the learner owns the machine and can read a
   materialized schedule mid-run, disassemble the controller, or fetch the
   recipe sources from the source repository, but each is a
-  deliberate act. The standard is the same as `HINTS.md` — recovering the
+  deliberate act. The standard is the same as `hints/` — recovering the
   answer takes a deliberate act, and nothing hands it over by accident.
 - `specs/` — author-facing. The reasoning about what is optimal and why lives
   here, and this directory is not part of the learner tree.
@@ -283,9 +284,9 @@ A lab spec's `Architecture questions` section splits across the first two
 artifacts. A question stated at the level of the property the design must
 defend belongs to the task and publishes into `README.md`. A question that
 presupposes a mechanism — where a thing lives, how a component establishes
-something — is solution-bearing: it publishes into `HINTS.md`, or it is
+something — is solution-bearing: it publishes into `hints/`, or it is
 rewritten until it names only the property. Each lab spec marks which of its
-questions are `HINTS.md`-bound.
+questions are `hints/`-bound.
 
 The hints are a directory, `hints/`, holding one file per hint, because a
 learner who needs one answer should not have to read past four others to reach
@@ -701,9 +702,10 @@ keeping its unit-sized submission model:
   limits.
 - `ARCHITECTURE.md` is learner-owned and records the chosen boundaries, state,
   invariants, failure model, capacity assumptions, and rejected alternatives.
-- `HINTS.md` contains architecture guidance, rejected designs, and
-  solution-bearing citations. It is opened by choice, never by default, and
-  nothing in `README.md` summarizes it.
+- `hints/` contains architecture guidance, rejected designs, and
+  solution-bearing citations, one file per hint, indexed by `hints/README.md`.
+  It is opened by choice, never by default, and nothing in `README.md`
+  summarizes it.
 - `compose.yml` is learner-owned and declares the application processes and
   their connection to the prepared laboratory network.
 - `app/` is learner-owned and contains a complete runnable product, including
@@ -733,7 +735,7 @@ keeping its unit-sized submission model:
   replays bounded cached recordings without storing huge fixtures in Git.
 - `EVALUATION.md` is the answer key: what a strong solution holds, how to check
   it, and the independently computed results a check needs. Opened by choice,
-  like `HINTS.md`. There is no grader binary. See
+  like `hints/`. There is no grader binary. See
   [Verification](#verification).
 - `infra/compose/dependencies.yml` starts only the fixed external systems,
   simulators, and telemetry services. Specialized labs add prepared Kubernetes
@@ -748,7 +750,7 @@ Proposed shape:
 NN-solution-neutral-name/
   README.md
   ARCHITECTURE.md
-  HINTS.md
+  hints/
   EVALUATION.md
   lab.toml
   compose.yml
@@ -821,7 +823,7 @@ Every lab exposes the same root vocabulary:
   merely mentioned. Ruling a candidate out names it as surely as ruling it
   in, so "no worker pool is required" fails the lint exactly as "use a
   worker pool" does. The same checks cover every course-authored
-  learner-facing text except `HINTS.md` and `EVALUATION.md`, which are
+  learner-facing text except `hints/` and `EVALUATION.md`, which are
   solution-bearing by choice. The check is cheap by construction, because every `Code pointers`
   bullet is solution-bearing and none of them may appear, each lab's
   dependency set bounds the parameter vocabulary to scan for, and the
@@ -888,8 +890,8 @@ the task.
 **A skill was the wrong shape.** An agent loads a skill by default, so a
 verification skill discloses its contents to anyone working in the directory,
 without the learner ever choosing to see them. `EVALUATION.md` is a file, and
-opening it is an act. That is the same standard `HINTS.md` has always had, and
-it is the only protection either file gets or needs: a learner who wants the
+opening it is an act. That is the same standard `hints/` has always had, and
+it is the only protection either one gets or needs: a learner who wants the
 exercise does not open them.
 
 This is honest about how these labs will be used. A learner working them has an
@@ -916,7 +918,7 @@ The attribution model is stricter than a source pool:
    citation is solution-bearing: the document that reports the behaviour a
    lab rests on states the behaviour, and stating it is the reading the
    learner is meant to do.
-2. Each `HINTS.md` lists the exact architecture and solution sources used by
+2. Each lab's `hints/README.md` lists the exact architecture and solution sources used by
    that lab, with title, author or project, URL, license, and whether the source
    is cited, adapted, or copied.
 3. No source marked "citation only" contributes copied prose, code, fixtures,
@@ -958,7 +960,7 @@ route, and that route stays equivalent in access to the distribution itself.
 The teaching contract survives this because its standard is deterrence, not
 impossibility. No failure schedule is readable inside the learner tree, and
 fetching the source repository to read a recipe is a deliberate act, exactly
-like opening `HINTS.md`. A publish step that severed the source route would
+like opening `hints/`. A publish step that severed the source route would
 not strengthen the teaching contract; it would violate the licence.
 
 ## Research ledger

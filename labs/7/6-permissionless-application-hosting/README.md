@@ -169,10 +169,10 @@ one; the report is graded on naming it, not on pretending it is absent.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **GitHub Pages** — [documentation](https://docs.github.com/en/pages)
 - **Arweave** — [documentation](https://docs.arweave.org/)
 - **ENS with `contenthash`** — [documentation](https://docs.ens.domains/)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.

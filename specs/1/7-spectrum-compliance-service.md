@@ -267,7 +267,7 @@ The submitted `ARCHITECTURE.md` must explain:
   — measured, not asserted.
 
 Two further questions presuppose part of a design and are solution-bearing;
-they publish to `HINTS.md`, never to the task:
+they publish to `hints/`, never to the task:
 
 - why a freshness check made immediately before an instruction protects
   nothing, and which side of the instruction must make the late one harmless;
@@ -424,7 +424,7 @@ orient without solving, and here no candidate does the first without the
 second: each of the three below is one search away from the whole design.
 This lab's `README.md` therefore names no neighbouring system — a deliberate,
 recorded deviation from the landscape contract — and all three entries
-publish, names, links, and boundary differences together, into `HINTS.md`
+publish, names, links, and boundary differences together, into `hints/`
 only.
 
 - **CME Globex** — [documentation](https://cmegroupclientsite.atlassian.net/wiki/display/EPICSANDBOX/Cancel+on+Disconnect).
@@ -457,7 +457,7 @@ plan, the workloads, telemetry, and faults are prepared. No store is
 required: the state that must survive restart is the service's own account,
 and how it is kept is the data-layout decision the lab judges. A simple
 design fails this lab at its scale target, and both failure narratives that
-follow are solution-bearing: they publish into `HINTS.md`, never into
+follow are solution-bearing: they publish into `hints/`, never into
 `README.md`. One process that takes the stream, renews authorizations,
 instructs transmitters, keeps its account, and maintains the session in a
 single line of work holds together while the stream is quiet, but through a
@@ -480,7 +480,7 @@ operators' fleets, and running against more than one coordinator.
 ## Code pointers
 
 Every citation below is solution-bearing. None of it publishes into
-`README.md`; it belongs in `HINTS.md` or `EVALUATION.md`.
+`README.md`; it belongs in `hints/` or `EVALUATION.md`.
 
 - [`../01-systems-labs.md`](../01-systems-labs.md) — shared scaffold,
   workload, fault, and evidence contracts.
@@ -510,7 +510,7 @@ Every citation below is solution-bearing. None of it publishes into
   transmission any time after receiving this HeartbeatResponse object"; and
   "SAS to CBSD connectivity is considered to be lost when during a seven-day
   period there is no successful Heartbeat procedure between the SAS and the
-  CBSD." Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  CBSD." Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [47 CFR § 15.711](https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15/subpart-H/section-15.711)
   — the same obligation in the neighbouring white-space regime, at the
   opposite timescale: "If a device fails to successfully contact the white
@@ -526,14 +526,14 @@ Every citation below is solution-bearing. None of it publishes into
   test whether their systems were relying on stale data"; the 2011 incident
   the order records was remediated by "changing the control so that this
   system would stop providing quotes after receiving an execution".
-  Solution-bearing: this belongs in `HINTS.md`, never in `README.md`.
+  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [Binance, how to manage a local order book correctly](https://raw.githubusercontent.com/binance/binance-spot-api-docs/master/web-socket-streams.md)
   — the gap barrier's origination. The update procedure opens: "If the event
   first update ID (`U`) is greater than the update ID of your local order
   book + 1, you have missed some events. Discard your local order book and
   restart the process from the beginning." A missed record invalidates the
   whole derived view, not the record. Solution-bearing: this belongs in
-  `HINTS.md`, never in `README.md`.
+  `hints/`, never in `README.md`.
 - [CME Globex Cancel on Disconnect](https://cmegroupclientsite.atlassian.net/wiki/display/EPICSANDBOX/Cancel+on+Disconnect)
   — "If a lost connection is detected, COD cancels all resting futures and
   options orders for the disconnected registered iLink user", excluding GTC

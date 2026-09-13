@@ -88,10 +88,10 @@ dependency-failure runs. It ties each result to the chosen policy.
 
 A practitioner might have reached for one of these instead. The lab does
 not run them. What each does differently at this lab's boundary is in
-`HINTS.md`, because saying it here would point straight at the answer.
+`hints/`, because saying it here would point straight at the answer.
 
 - **Memcached** — [documentation](https://memcached.org/)
 - **groupcache** — [documentation](https://github.com/golang/groupcache)
 - **Amazon ElastiCache** — [documentation](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/WhatIs.html)
 
-Stuck? See `HINTS.md`.
+Stuck? See `hints/`.
