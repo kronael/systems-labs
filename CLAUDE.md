@@ -28,33 +28,23 @@ the solving code.
 
 ## No worked solutions — the source is the ground truth
 
-**No lab has a golden or rotten implementation.** Not in the lab directory, not
-at repository root, not anywhere. A challenge has one correct answer, so a
-worked reference is well defined. A systems lab admits many correct designs, so
-no implementation is canonical, and a "rotten" one is only one of countless ways
-to be wrong. Authoring a worked design would also answer every
-`Architecture questions` bullet at once, in a document whose only protection is
-that nobody reads it.
+**No lab has a golden or rotten implementation**, anywhere. A systems lab
+admits many correct designs, so no implementation is canonical, and a worked
+one would answer every `Architecture questions` bullet at once.
 
-Two things stand in its place:
+Two things stand in its place. **The cited source**: every lab names the public
+document reporting the behaviour its quirk rests on, and that citation is the
+lab's ground truth. Fetch the page and confirm it says what you claim; a URL
+recalled from memory is not a citation, and NEVER invent a quirk and then look
+for a source. **`EVALUATION.md`**: the answer key, opened by choice, no grader
+binary and no framework.
 
-- **The cited source.** Every lab names the public document describing the real
-  reported behaviour its quirk rests on — a manual page, a post-mortem, a paper,
-  a vendor limit. That citation is the lab's ground truth. Fetch the page and
-  confirm it says what you claim; a URL recalled from memory is not a citation.
-  NEVER invent a quirk and then look for a source.
-- **`EVALUATION.md`.** The answer key: what a strong solution holds, how to
-  check it, and any independently computed result a check needs. Opened by
-  choice, like `HINTS.md`. No grader binary, no framework. A lab that needs
-  elaborate checking machinery to be interesting has the wrong task.
+Verification needs no oracle. It asserts invariants over observed histories
+instead of comparing output to a reference run.
 
-Verification needs no oracle: it asserts invariants over observed histories
-rather than comparing output to a reference run.
-
-`template/` is the one exception, and it is not a lab. It carries a working
-implementation of a trivial domain — one record type, one operation, one
-invariant, one fault — as the scaffold's regression test, so a broken generator,
-controller, or evidence writer fails before any lab does.
+`template/` is the one exception and is not a lab. It implements a trivial
+domain as the scaffold's regression test, so a broken generator, controller, or
+evidence writer fails before any lab does.
 
 ## Never leak the failure schedule
 
@@ -156,55 +146,36 @@ second dependency belongs to the fixed environment, not to a second product.
 
 ## The three gates
 
-Every lab passes all three. They time the passes; the lab's budget is larger
-than their sum, because the redesign between them is the teaching.
-
-| gate | duration | delivers |
-|------|----------|----------|
-| product | 60–120 min | an end-to-end slice that accepts input, persists or transforms it, exposes a useful result, and survives restart |
-| failure | 2–4 h | a deterministic scenario that falsifies the naive design and forces the stated invariant to hold |
-| evidence | 1–2 h | a load or deployment run recording the operational tradeoff and one remaining limitation |
-
-Individual labs run six to twenty-five focused hours. The seventeen core labs
-run to roughly 200 to 300 focused hours; their stated budgets sum to 203 at the
-low end and 294 at the high one.
+Every lab passes three: product, 60–120 min; failure, 2–4 h; evidence, 1–2 h.
+`HOWTO.md` states what each delivers. A lab's own budget runs six to twenty-five
+focused hours, and the seventeen core labs sum to 203 at the low end of their
+stated budgets and 294 at the high end. Every one of these numbers is an
+estimate: nothing has been built, so nothing has been measured.
 
 ## Difficulty, scale, and the earned dependency
 
 **The task carries the lab.** Judge a brief by whether it sends the learner to
-the primary documentation, to a post-mortem, to their own experiment on the
-running system — and by whether the first design they commit to teaches them
-something when it fails. A lab that needs elaborate checking machinery to be
-interesting has the wrong task. Spend the effort there.
+primary documentation, to a post-mortem, or to their own experiment, and by
+whether their first design teaches them something when it fails.
 
-Difficulty comes from the quirk of the system under study — a notification that
-never replays, a lease that is not a deadline, an index that is not yet
-consistent. NEVER make a lab hard through input formats, parsing chores, or
-boilerplate volume. A lab that is merely laborious has failed, and so has one
-whose product path is obvious once the environment is running.
+Difficulty comes from the quirk of the system under study. NEVER make a lab
+hard through input formats, parsing chores, or boilerplate volume. A lab that is
+merely laborious has failed, and so has one whose product path is obvious once
+the environment runs.
 
-**The domain supplies the reasons, never the difficulty.** A lab names a real
-subject, and that subject must explain why the invariant exists and why the
-scale target's numbers are the size they are. A domain that could be swapped
-for any other without changing a requirement is decoration: the learner
-finishes knowing the technology and nothing else. Ground it in a public source
-the same way a quirk is grounded — fetch the page, quote the sentence.
+**The domain supplies the reasons, never the difficulty.** The subject must
+explain why the invariant exists and why the scale numbers are that size, and it
+is grounded like a quirk: fetch the page, quote the sentence. It must never
+become something to learn — no formats to parse, no vocabulary, no regulation to
+interpret. One sentence of fact that explains an existing requirement is enough.
 
-The opposite failure is worse, because it is invisible. The domain must never
-become something to learn: no formats to parse, no vocabulary to memorize, no
-regulation to interpret. One sentence of fact that explains an existing
-requirement is the whole of it. If a learner would need the domain to pass
-rather than to understand, cut it back.
+Every lab states a **scale target**: a speed, a load, an amount. They size the
+problem so a toy design fails on its own terms. They are NOT pass thresholds;
+thresholds stay relative, calibrated, structural, or learner-declared.
 
-Every lab states a **scale target**: a speed, a load, and an amount. Those three
-numbers size the problem so a toy design fails on its own terms. They are NOT
-pass thresholds — thresholds stay relative, calibrated, structural, or
-learner-declared, because absolute latency numbers flake across machines.
-
-**A heavyweight dependency must be earned.** The lab must drive it into the
-regime where its quirk actually fires and show that firing in the evidence. If
-the naive small tool would pass the same gates at the same scale, the lab has
-not earned its dependency and the scale target is too low.
+**A heavyweight dependency must be earned.** Drive it into the regime where its
+quirk fires and show that firing in the evidence. If the naive small tool would
+pass the same gates at the same scale, the scale target is too low.
 
 ## Faults fire at named barriers
 
@@ -256,40 +227,29 @@ make clean      remove generated artifacts, keep cached source data
 Correctness gates assert exact record identities and histories, never counts
 alone. Performance gates NEVER hard-code a number.
 
-**There is no grader binary and no verification skill.** Each lab carries
-`EVALUATION.md` — the answer key, read by whoever checks the work. It states
-what a strong solution holds, the boundaries to observe, the selectors a check
-ranges over, and the independently computed result a check needs where no
-invariant shape supplies one.
+**There is no grader binary and no verification skill.** An agent loads a skill
+by default, so a skill would disclose itself without the learner choosing to see
+it; a file is opened by an act. `EVALUATION.md` states what a strong solution
+holds, the boundaries to observe, the selectors a check ranges over, and any
+independently computed result a check needs.
 
-A skill was the wrong shape: an agent loads one by default, so it discloses
-itself without the learner ever choosing to see it. A file is opened by an act
-— the same standard `HINTS.md` has always had, and the only protection either
-file gets or needs.
-
-No part of the judgement is compiled. Two parts of the run still are, because
-neither can be described away: the fault controller, which must fire at exact
-barriers, and the workload generator, which must hold an offered rate under
-load. The run stays reproducible; the judgement over it does not, and a lab
-whose correctness cannot be stated clearly enough for that to be reliable has
-an unclear invariant.
+No part of the judgement is compiled. Two parts of the run are, because neither
+can be described away: the fault controller, which fires at exact barriers, and
+the workload generator, which holds an offered rate under load.
 
 ## Languages
 
-- **Python** — tooling: fixtures, TOML, evidence reports, provenance
-  manifests, repository automation. `uv` projects and PEP 723 scripts.
+- **Python** — tooling: fixtures, TOML, evidence reports, provenance manifests,
+  repository automation. `uv` projects and PEP 723 scripts.
 - **Go** — anything that must keep time under load: the open-loop generator,
-  fault controller, provider simulators. NEVER move these to
-  Python; a generator that slows with the system under test destroys the
-  measurement the labs teach.
-- **Go** — the learner starter, and every brief names one starter, never a
-  menu. The exceptions are dictated by the environment, never by taste:
-  **Rust and C** for phase 6, the low-level track; the chain's own language
-  for an on-chain program; TypeScript for a browser bundle.
-- **HCL** — infrastructure, OpenTofu. Pulumi and CDK are out, because a
-  general-purpose language computes resources at run time instead of declaring
-  them, and drift needs a plan that states every change in advance.
-- SQL and PL/pgSQL stay in the database boundary; Java is confined to the Flink job.
+  fault controller, provider simulators. NEVER move these to Python.
+- **Go** — the learner starter, and every brief names one, never a menu. The
+  environment dictates the exceptions: Rust and C in phase 6, the chain's own
+  language for an on-chain program, TypeScript for a browser bundle.
+- **HCL** — infrastructure, OpenTofu. Pulumi and CDK are out: a general-purpose
+  language computes resources at run time instead of declaring them.
+- SQL and PL/pgSQL stay in the database boundary; Java is confined to the Flink
+  job.
 
 ## Config, data, and cost
 
@@ -354,33 +314,22 @@ rather than copying one from a table.
 The digit directory under `specs/` is the curriculum **phase**, not a version:
 1 local runtime and delivery; 2 the same problems serverless; 3 real Internet
 streaming; 4 NoSQL, analytics, portability; 6 low-level; 7 blockchain;
-8 search, retrieval, spatial. The `7/5` slot is empty too: its candidate was
-cut for repeating `7/3`'s lesson, and the numbering does not close.
-**Phase 5 no longer exists** — its lab became
-`4/5`, and the gap stays open on purpose. Do not renumber to close it.
+8 search, retrieval, spatial. **Phase 5 no longer exists** and the `7/5` slot is
+empty; both gaps stay open, so do not renumber to close them.
 
 **Phase 1 runs software the learner operates; phase 2 runs an execution model
 the learner cannot.** That is why phase 2 exists, and it is the one place a
-product may be repeated. A port across languages stays forbidden — it inherits
-the original's checks, failure schedule, and answer. A port across execution
-models confiscates the answer.
+product may be repeated: a port across languages inherits the original's answer,
+a port across execution models confiscates it. Phases 6, 7 and 8 are separate
+catalogs, and each track's labs must expose a failure the others cannot reach.
 
-Phases 6, 7, and 8 are **separate catalogs**, not ports. Each track's labs must
-expose a failure the others cannot reach; see the track files under `docs/`.
-
-The core catalog in `specs/index.md` holds each lab's system, architecture
-pressure, and prepared environment. Read it there; do not restate it elsewhere,
-because a second copy drifts. `01-systems-labs.md` specifies the shared
-contracts and carries no per-lab detail except the source map that indexes its
-own research ledger. `docs/` holds the selection record and the track
-catalogs; `specs/<phase>/README.md` orients a phase; `BUGS.md` is the review
-queue and `TODO.md` the forward backlog; `.diary/` is the shipping log. Root
-`HOWTO.md` is the learner's method —
-the loop, the gates, what they write, when they open which file — and
-`CONTRIBUTING.md` is its author-side counterpart.
-
-`specs/` is author-facing and is NOT part of the learner tree. The reasoning
-about what is optimal and why belongs there.
+Where things live: `specs/index.md` is the core catalog, per-lab detail lives
+there and nowhere else; `01-systems-labs.md` is the shared contracts;
+`docs/` holds the selection record and the track catalogs;
+`specs/<phase>/README.md` orients a phase; `HOWTO.md` is the learner's method
+and `CONTRIBUTING.md` its author-side counterpart; `BUGS.md` is the queue,
+`TODO.md` the backlog, `.diary/` the log. `specs/` is author-facing and is NOT
+part of the learner tree.
 
 ## Approval boundary
 
