@@ -15,8 +15,9 @@ accepting writes for thirty seconds while the generator keeps driving
 transfers. When the update for account 4711 at slot S arrives, the fault hook
 delays every subsequent notification by a fixed interval, so the plugin
 itself is the slow party. When the update for account 4711 at slot S has been
-delivered, the controller freezes the validator long enough that slots in the
-frozen window are skipped when it resumes; verification reads the
+delivered, the controller kills the validator and restarts it against the
+preserved ledger, so the cluster moves on without it and the slots it missed
+come back marked skipped or dead; verification reads the
 slot-status stream to learn which slots were skipped or marked dead and
 asserts that no confirmed answer ever reflected them. The controller also
 kills the validator after a named slot is rooted and restarts it against the

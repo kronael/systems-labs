@@ -7,3 +7,5 @@
   eviction and coherence boundary.
 - [`02-where-this-comes-from.md`](02-where-this-comes-from.md) — the pages that report the
   behaviour this lab rests on.
+- [`03-what-the-store-promises.md`](03-what-the-store-promises.md) — which store properties the
+  design may lean on.

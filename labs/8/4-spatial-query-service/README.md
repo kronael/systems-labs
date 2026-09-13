@@ -63,8 +63,8 @@ thresholds stay relative, calibrated, structural, or learner-declared.
 
 The evidence must show the sustained query rate, latency by query class
 against the learner's declared service level, the lag from an edit's
-acceptance to its visibility in each query class, and the divergence between a
-trusting answer and the exact answer at the named placements. How those
+acceptance to its visibility in each query class, and the answer set at the
+named placements against the independently computed exact set. How those
 measurements are produced is the learner's choice; no telemetry stack is
 required.
 

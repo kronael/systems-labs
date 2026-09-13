@@ -17,7 +17,9 @@ competing transfer takes its place. It repeats the fork at depth 32, past
 the safe head and short of the finalized boundary. It delivers one named
 transfer, waits until the fast view serves it, and withdraws it; verification
 asserts that no settled answer ever contained it. The schedule kills the
-indexer at a named block mid-range and restarts it, and halts finality at a named block while
+indexer at a named block mid-range, forks the head while it is down so the
+blocks it wrote about last are withdrawn before it returns, and restarts it;
+it halts finality at a named block while
 the head keeps growing, then verification queries the settled view. Balance
 and history queries run against both views in every window: before the fork,
 inside the contested range, and after finality passes it.

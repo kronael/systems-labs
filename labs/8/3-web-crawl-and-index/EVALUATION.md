@@ -50,8 +50,9 @@ against the harness ledger.
   reflected within the declared bound; after restoration, the host's pages
   must be reflected again within the declared bound without the ledger
   showing the host refetched from the start.
-- A named page changes twice within one second, keeps its `Last-Modified`,
-  and truthfully answers 304 to a conditional request. The changed content
+- A named page changes twice within one second, keeps its `Last-Modified` and
+  its weak `ETag`, and truthfully answers 304 to a conditional request on
+  either validator. The changed content
   must still be reflected eventually, and the staleness statement must never
   treat that 304 as a confirmation of the bytes.
 - The harness installs a redirect chain that makes two named URLs one page.

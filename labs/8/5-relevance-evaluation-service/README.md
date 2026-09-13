@@ -50,8 +50,10 @@ that report.
 
 Given a candidate ranking configuration, the service produces a verdict:
 improvement, no improvement, or cannot say — with the evidence the verdict
-rests on. A verdict of improvement must be supported by queries that did not
-influence the candidate, and the report must state which queries influenced it.
+rests on. A verdict of improvement must be supported by queries that did not influence
+the candidate. Each candidate submission names the queries that shaped it, and
+the report states them, because a harness that cannot tell which queries shaped
+a candidate cannot hold any of them back.
 
 Reports are reproducible: the same candidate evaluated against the same corpus
 and the same judgement set yields the same score, every time. Every reported
