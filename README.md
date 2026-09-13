@@ -4,10 +4,10 @@ A curriculum of end-to-end systems labs. Each lab gives you a brief, *design
 and build a system that does X under these requirements*, and then it breaks
 what you built. 34 labs across seven phases, seventeen of them the core.
 
-Nothing here runs yet. This repository holds the specifications and no code:
-no `Makefile`, no lab directory, no starter. You can read what every lab will
-ask of you. You cannot do one yet. Read [Status](#status) before you plan time
-around it.
+Nothing here runs yet. Every lab exists as text and none of them as code: no
+`Makefile`, no starter, no environment to bring up. You can read what every lab
+will ask of you. You cannot do one yet. Read [Status](#status) before you plan
+time around it.
 
 ## Who writes this, and how
 
@@ -96,23 +96,22 @@ machine, and reading it is a deliberate act, like opening `hints/`.
 what you write down, and how you know you are finished. Read it first.
 
 There is no learner tree yet, so the only thing to read after it is the
-author's own catalog, and that comes with a warning.
+catalog.
 
-Reading a lab specification spends that lab. The specifications are written
-for whoever builds the labs, not for whoever does them, and each one carries
-the failure schedule: the exact records at which the lab breaks your design.
-That schedule is the lab. A finished lab keeps it in a compiled controller for
-the same reason.
+[`labs/README.md`](labs/README.md) lists the seventeen core labs in course
+order, and lab 01 is the intended entry point. Read the rows to see what each
+lab asks, then open that lab's `README.md`, which is the task and holds no
+answer.
 
-Knowing that, [`labs/README.md`](labs/README.md) is the catalog. It lists the
-seventeen core labs in course order, and lab 01 is the intended entry point.
-Read the catalog rows to see what each lab asks. Open a specification only if
-you have decided you are an author rather than a learner.
+Two files in every lab directory do hold answers, and both say so on their
+first line: `hints/` and `EVALUATION.md`. The schedule in `EVALUATION.md` names
+the exact records at which the lab breaks your design, so opening it before you
+have a design spends the lab.
 
 Three things are worth doing while no lab runs, and none of them spoils
 anything. Check that you meet [what you will need](#what-you-will-need). Read
 one phase's rows in the catalog and pick the product you want to build first.
-Read [`docs/cloud-access.md`](docs/cloud-access.md) if you expect to take the
+Read [`docs/cloud-access.md`](labs/cloud-access.md) if you expect to take the
 optional cloud path. You are ready when you can start a container on your own
 machine and name the lab you mean to do first.
 
@@ -157,7 +156,7 @@ Go is the starter language unless the environment dictates otherwise: Rust and
 C in phase 6, the chain's own language for an on-chain program, TypeScript for
 a browser bundle.
 
-[`docs/cloud-access.md`](docs/cloud-access.md) covers the optional cloud path.
+[`docs/cloud-access.md`](labs/cloud-access.md) covers the optional cloud path.
 Phases 2 and 4 are the only ones that can bill, and only there.
 
 ## Status

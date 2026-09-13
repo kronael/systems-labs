@@ -108,7 +108,7 @@ Spec: [`../6/5-rate-accurate-replayer.md`](../labs/6/5-rate-accurate-replayer/RE
 ## Scale contract
 
 Each low-level lab carries a speed, a load, and an amount, per the
-[lab brief contract](docs/contract.md#lab-brief-contract). The numbers are
+[lab brief contract](contract.md#lab-brief-contract). The numbers are
 set when the lab is specced; they are chosen so the naive design fails on size
 rather than on a reviewer's judgment.
 

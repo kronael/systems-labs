@@ -140,4 +140,4 @@ DynamoDB on-demand smoke run with short-retention logs, and the portable
 ingestion lab's bounded real deployment through the OpenTofu account shell.
 Both stay within the permitted services — Lambda, SQS, DynamoDB on-demand,
 short-retention logs — and the by-the-hour exclusions listed in
-[cloud access](../../docs/cloud-access.md).
+[cloud access](../cloud-access.md).

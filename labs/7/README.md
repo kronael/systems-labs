@@ -16,7 +16,7 @@ deployment actually buys. The track admits five shapes only — validator
 enhancement, chain data processing, end-to-end program development,
 permissionless deployment and delivery, and the chain transaction client that
 authors no program — and every candidate is one of them. Each lab is grounded in a documented, publicly reported behavior
-recorded in the [track record](../../docs/blockchain-track.md).
+recorded in the track record `CONTRIBUTING.md` points to.
 
 The `7/5` slot is empty. Its candidate was a cross-chain settlement audit, cut
 because its finality lesson repeated `7/3`'s; the track record states the
@@ -117,4 +117,4 @@ required gate runs on the local `solana-test-validator` and a local
 Ethereum development node, with no mainnet funds anywhere in the
 curriculum. The one optional path is non-AWS — public RPC provider free
 tiers for bounded recordings — and it is opt-in, bounded, cached, and
-never on a request path. See [cloud access](../../docs/cloud-access.md).
+never on a request path. See [cloud access](../cloud-access.md).

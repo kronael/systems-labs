@@ -26,7 +26,7 @@ that boundary until the fault has applied and been confirmed. An effect that is
 atomic takes a fault immediately before it or immediately after it and admits
 no point inside it. A barrier that the run never maps, never reaches, or
 crosses before its fault applies fails the run. The mechanism is the
-[fault injection contract](../01-systems-labs.md#fault-injection-contract)'s,
+[fault injection contract](../../../docs/contract.md#fault-injection-contract)'s,
 and this lab's required gate depends on its process layer.
 
 Checks observe public APIs, SQL and Kafka state, exact histories,

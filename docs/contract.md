@@ -426,7 +426,7 @@ serverless, two on real Internet streaming, and four on NoSQL, analytics, and
 portability. Phase 5 no longer exists and its lab became `4/5`; the gap stays
 open on purpose.
 
-[`index.md`](index.md#core-catalog) is the single catalog. It names every lab
+[`labs/README.md`](../labs/README.md#core-catalog) is the single catalog. It names every lab
 with its system, architecture pressure, and prepared environment, together
 with the selection record that produced it. That mapping is written there and
 nowhere else, because a second copy drifts.
@@ -1080,10 +1080,10 @@ and transaction-isolation pages — are carried in each lab's own
   generator, fault controller, evidence writer, and the build order.
 - [`../docs/serverless-contrast-track.md`](../docs/serverless-contrast-track.md)
   — the phase 1 and phase 2 pairing catalog and the rejected pairing.
-- [`docs/cloud-access.md`](../docs/cloud-access.md) — how to obtain the
+- [`docs/cloud-access.md`](../labs/cloud-access.md) — how to obtain the
   optional cloud account, the verified free-tier allowances, and the
   zero-spend guardrail that comes before the first deployed function.
-- The seventeen entries in the [core catalog](index.md#core-catalog) are the
+- The seventeen entries in the [core catalog](../labs/README.md#core-catalog) are the
   governing lab specs. Implementation pointers do not exist while they
   remain `draft`.
 

@@ -85,4 +85,4 @@ to its documentation. They appear as reading rather than as dependencies.
 This phase needs no cloud account. Everything runs locally in Compose;
 RIPE RIS Live is a public stream, and recording it is opt-in and needs no
 account, as the per-phase table in
-[cloud access](../../docs/cloud-access.md) records.
+[cloud access](../cloud-access.md) records.

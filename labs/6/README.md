@@ -15,7 +15,7 @@ durability, virtual memory, memory allocation, and time. A port of a phase
 1–5 lab is not a low-level lab, because it inherits the original's
 checks, failure schedule, and answer; every lab here exposes a failure
 the other tracks cannot reach, and each is grounded in a documented, publicly
-reported behavior recorded in the [track record](../../docs/low-level-track.md).
+reported behavior recorded in the track record `CONTRIBUTING.md` points to.
 
 ## The labs
 
@@ -99,4 +99,4 @@ Linux kernel is the laboratory, and every gate runs on it. The curriculum's
 optional cloud path — Lambda, SQS, DynamoDB on-demand, and short-retention
 logs, with MSK, EKS, NAT gateways, RDS, and ElastiCache excluded by policy
 because they bill by the hour — belongs to phase 4, not here. See
-[cloud access](../../docs/cloud-access.md).
+[cloud access](../cloud-access.md).

@@ -17,7 +17,7 @@ lesson, not either system alone. This is the track that admits OpenSearch,
 which the core catalog excludes; it earns entry here because retrieval is
 the subject rather than a second representative of an existing category.
 Each candidate is grounded in a documented public source recorded in the
-[track record](../../docs/search-and-retrieval-track.md).
+track record `CONTRIBUTING.md` points to.
 
 ## The labs
 
@@ -97,4 +97,4 @@ required gate runs entirely on local OpenSearch and its domain stores in
 Compose. The real corpora are downloaded once, opt-in, bounded,
 checksummed, and cached — never fetched on a request path — and no
 optional step uses a hosted service. See
-[cloud access](../../docs/cloud-access.md).
+[cloud access](../cloud-access.md).

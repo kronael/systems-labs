@@ -8,7 +8,7 @@ status: reference
 
 This record selected ten labs from twenty expanded candidates. It scores that
 round and nothing else. The catalog now holds thirty-four labs, seventeen of
-them core. The [core catalog](labs/README.md#core-catalog) table is
+them core. The [core catalog](../labs/README.md#core-catalog) table is
 authoritative for what exists, and every lab admitted after this round is
 recorded there.
 Selection favors durable system judgment over product count: every survivor

@@ -88,10 +88,7 @@ learned something.
 
 ## Working the commands
 
-Each lab exposes the same small vocabulary, and no other. The verification
-contract in [`docs/contract.md`](docs/contract.md) is where
-this list is defined; that file is the governing spec and carries no lab's
-failure schedule.
+Each lab exposes the same small vocabulary, and no other.
 
 ```
 make up         start the environment (make down stops it)
@@ -173,6 +170,6 @@ phase 2 labs recast a phase 1 product onto an execution model you cannot
 operate, and each one needs your phase 1 design and evidence to compare
 against.
 
-The catalog is in [`labs/README.md`](labs/README.md). Read the rows. Warning:
-the specifications those rows link to are author material, and each one carries
-the failure schedule, so opening a specification spends that lab for you.
+The catalog is in [`labs/README.md`](labs/README.md). Read the rows, then open
+the lab's `README.md`. Its `EVALUATION.md` carries the failure schedule, so
+open that one only when you are checking finished work.

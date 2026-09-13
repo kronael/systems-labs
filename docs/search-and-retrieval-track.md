@@ -123,7 +123,7 @@ Spec: [`../8/5-relevance-evaluation-service.md`](../labs/8/5-relevance-evaluatio
 ## Scale contract
 
 Each lab carries a speed, a load, and an amount, per the
-[lab brief contract](docs/contract.md#lab-brief-contract). The amount is
+[lab brief contract](contract.md#lab-brief-contract). The amount is
 what forces the quirk here: 8/1 needs a corpus large enough that significance
 shifts, 8/3 needs more pages than the crawl budget covers, and 8/4 needs an
 extent large enough that the index cannot be scanned.

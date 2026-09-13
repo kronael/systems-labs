@@ -42,7 +42,7 @@ holding a product constant.
 `1/3` has no counterpart here. Replaying a retained log through metered
 invocations teaches the same lesson at higher cost, and a recast must reach a
 failure the original could not. The reasoning is in the
-[serverless contrast track](../../docs/serverless-contrast-track.md).
+the serverless contrast record, which `CONTRIBUTING.md` points to.
 
 ## The labs
 
@@ -99,7 +99,7 @@ except the import lab is falsified locally without a cloud account. Its
 transport layer supplies the limits the local store leaves out, in front of
 that store. Each lab names the layer its required gate depends on and states
 that the gate proves a declared model; the mechanism is in
-[the shared scaffold](../../docs/shared-scaffold.md).
+the shared scaffold.
 
 ## What this phase does not use, and why that is interesting
 
@@ -133,4 +133,4 @@ prerequisite.
 
 Every required gate runs locally on the runtime emulator. The optional smoke run
 compares the modelled freeze and the modelled limits against the service,
-and stays inside the guardrails in [cloud access](../../docs/cloud-access.md).
+and stays inside the guardrails in [cloud access](../cloud-access.md).

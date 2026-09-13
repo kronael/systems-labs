@@ -40,7 +40,7 @@ that imports it inherits the answer.
 
 There is no shared grader. Each lab carries `EVALUATION.md`, the answer key
 whoever checks the work reads, as fixed by the
-[verification section](../01-systems-labs.md#verification).
+[verification section](contract.md#verification).
 
 What the scaffold owes every lab here is **vocabulary**, so thirty-four answer
 keys describe their checks the same way rather than each inventing a phrasing.
@@ -98,7 +98,7 @@ provider.
 
 One controller, driven by each lab's fault schedules, implementing the
 mechanisms fixed by the
-[fault injection contract](../01-systems-labs.md#fault-injection-contract):
+[fault injection contract](contract.md#fault-injection-contract):
 process lifecycle including freeze and thaw, network shaping and asymmetric
 partitions and a fault proxy, each dependency's own control surface, clock
 skew, and the fault block device.
@@ -118,7 +118,7 @@ which is what lets a failure land at the same point on every run and lets the
 history record where it landed.
 
 `README.md` does not share it. The task is learner-facing text, and the
-[teaching contract](../01-systems-labs.md#teaching-contract) forbids it from
+[teaching contract](contract.md#teaching-contract) forbids it from
 naming the failure schedule. It names the boundaries the product exposes, and
 the barrier is read out of the history at run time; the teaching lint fails on a
 barrier name written into the file.
@@ -134,7 +134,7 @@ withheld: the controller is conveyed as object code under GPL-3.0, so the
 learner distribution names the public source repository as the no-charge
 route to its complete corresponding source, recipe sources included, per the
 master spec's
-[licence contract](../01-systems-labs.md#licence-and-corresponding-source).
+[licence contract](contract.md#licence-and-corresponding-source).
 `make fault`
 — exactly as available to the learner as every other target — materializes
 the schedule it runs, runs it, and removes it, so the readable form exists
@@ -162,9 +162,9 @@ measurement method is the learner's choice.
 ## Teaching lint
 
 `make teaching-lint` is the mechanical enforcement of the
-[teaching contract](../01-systems-labs.md#teaching-contract), and CI runs it.
+[teaching contract](contract.md#teaching-contract), and CI runs it.
 What the lint rejects is stated once, in the
-[verification contract](../01-systems-labs.md#verification-contract).
+[verification contract](contract.md#verification-contract).
 
 The check is cheap by construction: the barrier vocabulary is shared, each
 lab's neighbour boundary-difference sentences stay in its own spec, every `Code pointers`
@@ -178,7 +178,7 @@ repository tooling, so it is Python per the language policy.
 
 A complete lab directory that runs before any learner code exists. It is the
 executable form of the
-[per-lab directory shape](../01-systems-labs.md#repository-contract), with a
+[per-lab directory shape](contract.md#repository-contract), with a
 trivial domain: one record type, one operation, one invariant, one fault.
 
 The template carries a working implementation of its trivial domain, and it
@@ -230,4 +230,4 @@ Lab 01 is authored against the finished scaffold, not alongside it.
 - [`../01-systems-labs.md`](contract.md) — the contracts this
   scaffold implements.
 - [`lab-selection.md`](lab-selection.md) — the scored selection.
-- [`../index.md`](../labs/README.md) — authoritative list and lifecycle status.
+- [`../labs/README.md`](../labs/README.md) — authoritative list and lifecycle status.

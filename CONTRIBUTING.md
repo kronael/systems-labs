@@ -13,6 +13,15 @@ solution-bearing about the curriculum's design.
   spec disagree, the spec wins.
 - [`labs/<phase>/`](labs/) — the labs, one directory per lab, plus a
   `README.md` orienting the phase.
+- [`docs/`](docs/) — author material, and the one rule that keeps it safe: no
+  learner-facing page links into it. Every track record names the quirk its
+  labs turn on, and the contract lists what each lab's schedule does, so a
+  learner who follows a link from a task has been handed part of the answer.
+  The records are [`lab-selection.md`](docs/lab-selection.md),
+  [`low-level-track.md`](docs/low-level-track.md),
+  [`blockchain-track.md`](docs/blockchain-track.md),
+  [`search-and-retrieval-track.md`](docs/search-and-retrieval-track.md), and
+  [`serverless-contrast-track.md`](docs/serverless-contrast-track.md).
 - [`docs/shared-scaffold.md`](docs/shared-scaffold.md) — the one
   generator, fault controller, evidence writer, and template all 34 labs share.
 - [`docs/`](docs/) — the selection record and the track catalogs: which labs

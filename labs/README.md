@@ -14,7 +14,8 @@ what each scenario must leave true. Both are spoilers, and both are opened by
 choice rather than by default. Nothing runs yet.
 
 [`../HOWTO.md`](../HOWTO.md) is the method and
-[`../docs/contract.md`](../docs/contract.md) is the contract every lab obeys.
+The contract every lab obeys is author material, and `CONTRIBUTING.md` points
+to it.
 
 Every row is a lab you can read today. No lab is built yet: each directory
 holds the task and its reading, and nothing runs.
@@ -44,57 +45,48 @@ architecture pressure it applies, and the environment prepared for it.
 | 16 | [Exact trade analytics](4/3-exact-trade-analytics/README.md) | Exact aggregates over full trade history | Background merges, asynchronous mutation, insert frequency, freshness | ClickHouse, trade generator, cached recordings |
 | 17 | [Portable market ingestion](4/5-portable-market-ingestion/README.md) | One domain contract across two compute environments | Lifecycle, delivery, rollout, drift, secrets, cost | Compose, `kind`, Lambda runner, OpenTofu |
 
-The [selection record](../docs/lab-selection.md) expands all twenty candidates,
-scores them, and preserves the ten cuts. ClickHouse was named there as the
-strongest first addition and became entry 16. CRDTs remain the strongest
-alternative conceptual branch, still out.
+Why these seventeen and not others is an author question, and the record that
+answers it names the quirk each lab turns on. `CONTRIBUTING.md` points to it.
 
 Phases 6, 7, and 8 are separate catalogs recorded under `0/`. They enter the
 curriculum only after the core is `accepted`.
 
-## All specifications
+## Every lab
 
 | Lab | Status | Summary |
 |------|--------|---------|
-| [01-systems-labs.md](../docs/contract.md) | draft | Governing course spec: every cross-lab contract for scaffold, verification, faults, evidence, data, cost, and licensing |
-| [../docs/lab-selection.md](../docs/lab-selection.md) | reference | Twenty expanded candidates, scoring model, ten retained labs, and ten explicit cuts |
-| [../docs/low-level-track.md](../docs/low-level-track.md) | reference | Phase 6 in Rust and C: five specced kernel-quirk candidates with origination notes |
-| [../docs/blockchain-track.md](../docs/blockchain-track.md) | reference | Phase 7 on Solana and Ethereum: validator, chain data, program, and permissionless delivery |
-| [../docs/search-and-retrieval-track.md](../docs/search-and-retrieval-track.md) | reference | Phase 8 on OpenSearch: proteins, news, web crawl, spatial, and relevance evaluation |
-| [0/5-shared-scaffold.md](../docs/shared-scaffold.md) | draft | The one generator, fault controller, evidence writer, and template that all 34 labs share, the verification vocabulary their evaluation keys are written in, and the build order |
-| [../docs/serverless-contrast-track.md](../docs/serverless-contrast-track.md) | reference | Phase 2 paired against phase 1: what the execution model removes, which pairings earn a lab, and which model is useful where |
-| [1/1-resilient-quote-service.md](1/1-resilient-quote-service/README.md) | draft | Fare-search aggregation under overload and partial provider failure, where a quote past its expiry is worse than none |
-| [1/2-reservation-fulfillment.md](1/2-reservation-fulfillment/README.md) | draft | Stay reservation architecture whose asynchronous fulfillment arrives on a lease that expires while work is still in flight |
-| [1/3-order-activity-dashboard.md](1/3-order-activity-dashboard/README.md) | draft | Queryable, replayable order activity architecture in a Kafka environment |
-| [1/4-uninterrupted-catalog-service.md](1/4-uninterrupted-catalog-service/README.md) | draft | Retail catalog architecture that keeps answering while a mandated price-display change reshapes 25 million records, with no maintenance window |
-| [1/5-auditable-transfer-service.md](1/5-auditable-transfer-service/README.md) | draft | Transfer and audit architecture spanning PostgreSQL and Kafka failure boundaries |
-| [1/6-shared-budget-service.md](1/6-shared-budget-service/README.md) | draft | Shared budget architecture whose conflicting decisions the store declines to complete, leaving the retry boundary to the application |
-| [1/7-spectrum-compliance-service.md](1/7-spectrum-compliance-service/README.md) | draft | Radio fleet kept legally on the air, where an authorization that outlives the evidence for it is a violation and staying dark is its own failure |
-| [2/1-metered-billing-api.md](2/1-metered-billing-api/README.md) | draft | Subscriptions, metered usage, and period-close invoicing on an execution environment that freezes between invocations |
-| [2/2-reliable-record-import.md](2/2-reliable-record-import/README.md) | draft | Interval meter readings imported on functions, in a leased-delivery environment the learner configures but does not run; one of the two phase 2 labs with no phase 1 partner |
-| [2/3-serverless-reservation-fulfillment.md](2/3-serverless-reservation-fulfillment/README.md) | draft | The same reservation product on functions, with a partitioned key-value store as the system of record |
-| [2/4-serverless-auditable-transfer.md](2/4-serverless-auditable-transfer/README.md) | draft | The same transfer product on functions, carrying the commit gap onto an environment where nothing runs between events |
-| [2/5-serverless-quote-aggregation.md](2/5-serverless-quote-aggregation/README.md) | draft | The same fare-search product on functions, where admission is a platform ceiling rather than the design's own decision |
-| [3/1-internet-route-observatory.md](3/1-internet-route-observatory/README.md) | draft | Route observations answered with the scope they rest on, where vantage points disagree and a burst is exploration |
-| [3/2-recoverable-route-analytics.md](3/2-recoverable-route-analytics/README.md) | draft | Stateful route analytics with checkpoint and history-based recovery requirements |
-| [4/1-market-history-api.md](4/1-market-history-api/README.md) | draft | Trade and candle query architecture over DynamoDB-compatible storage |
-| [4/2-low-latency-market-api.md](4/2-low-latency-market-api/README.md) | draft | Freshness-aware market API with Valkey and DynamoDB as available components |
-| [4/3-exact-trade-analytics.md](4/3-exact-trade-analytics/README.md) | draft | Exact aggregates over a growing trade history that duplicates and corrections must never distort |
-| [4/5-portable-market-ingestion.md](4/5-portable-market-ingestion/README.md) | draft | One ingestion contract across local Kubernetes and Lambda-shaped environments |
-| [6/1-bounded-memory-record-shipper.md](6/1-bounded-memory-record-shipper/README.md) | draft | Ordered record shipping to a stalled consumer inside a fixed memory ceiling |
-| [6/2-crash-safe-record-store.md](6/2-crash-safe-record-store/README.md) | draft | Record store whose acknowledgement survives power loss and a one-shot flush error |
-| [6/3-large-index-query-service.md](6/3-large-index-query-service/README.md) | draft | Query service over an index far larger than memory, where a pointer dereference is an I/O |
-| [6/4-steady-state-request-service.md](6/4-steady-state-request-service/README.md) | draft | Request service whose resident memory must not drift upward across a long run |
-| [6/5-rate-accurate-replayer.md](6/5-rate-accurate-replayer/README.md) | draft | Workload replayer that holds a declared rate and reports the latency the caller saw |
-| [7/1-validator-state-stream.md](7/1-validator-state-stream/README.md) | draft | Account and slot updates streamed out of a validator that pays for the plugin's latency |
-| [7/2-settlement-program-and-client.md](7/2-settlement-program-and-client/README.md) | draft | Settlement program and client bounded by the runtime rather than by their own logic |
-| [7/3-finality-aware-transfer-index.md](7/3-finality-aware-transfer-index/README.md) | draft | Transfer index whose settled view stays free of logs the chain later withdrew |
-| [7/4-reliable-transaction-dispatcher.md](7/4-reliable-transaction-dispatcher/README.md) | draft | Queued payments landed exactly once across two chains that disagree about retry |
-| [7/6-permissionless-application-hosting.md](7/6-permissionless-application-hosting/README.md) | draft | An application delivered with no server, domain, or account its publisher operates |
-| [7/7-multi-chain-deposit-service.md](7/7-multi-chain-deposit-service/README.md) | draft | Customer deposits held at addresses on two chains the service cannot sign for, where a movement never names the request that caused it |
-| [8/1-protein-similarity-search.md](8/1-protein-similarity-search/README.md) | draft | Ranked sequence matches whose confidence belongs to the corpus, not to the match |
-| [8/2-news-aggregation-service.md](8/2-news-aggregation-service/README.md) | draft | Feed items grouped under a declared policy, with a freshness the system can actually vouch for |
-| [8/3-web-crawl-and-index.md](8/3-web-crawl-and-index/README.md) | draft | Polite bounded crawl whose real product is the revisit decision under a budget |
-| [8/4-spatial-query-service.md](8/4-spatial-query-service/README.md) | draft | Exact area and proximity answers where the spatial index is only a filter |
-| [8/5-relevance-evaluation-service.md](8/5-relevance-evaluation-service/README.md) | draft | A ranking plus the harness that proves a change to it survives unseen queries |
+| [1/1-resilient-quote-service](1/1-resilient-quote-service/README.md) | draft | Fare-search aggregation under overload and partial provider failure, where a quote past its expiry is worse than none |
+| [1/2-reservation-fulfillment](1/2-reservation-fulfillment/README.md) | draft | Stay reservation architecture whose asynchronous fulfillment arrives on a lease that expires while work is still in flight |
+| [1/3-order-activity-dashboard](1/3-order-activity-dashboard/README.md) | draft | Queryable, replayable order activity architecture in a Kafka environment |
+| [1/4-uninterrupted-catalog-service](1/4-uninterrupted-catalog-service/README.md) | draft | Retail catalog architecture that keeps answering while a mandated price-display change reshapes 25 million records, with no maintenance window |
+| [1/5-auditable-transfer-service](1/5-auditable-transfer-service/README.md) | draft | Transfer and audit architecture spanning PostgreSQL and Kafka failure boundaries |
+| [1/6-shared-budget-service](1/6-shared-budget-service/README.md) | draft | Shared budget architecture whose conflicting decisions the store declines to complete, leaving the retry boundary to the application |
+| [1/7-spectrum-compliance-service](1/7-spectrum-compliance-service/README.md) | draft | Radio fleet kept legally on the air, where an authorization that outlives the evidence for it is a violation and staying dark is its own failure |
+| [2/1-metered-billing-api](2/1-metered-billing-api/README.md) | draft | Subscriptions, metered usage, and period-close invoicing on an execution environment that freezes between invocations |
+| [2/2-reliable-record-import](2/2-reliable-record-import/README.md) | draft | Interval meter readings imported on functions, in a leased-delivery environment the learner configures but does not run; one of the two phase 2 labs with no phase 1 partner |
+| [2/3-serverless-reservation-fulfillment](2/3-serverless-reservation-fulfillment/README.md) | draft | The same reservation product on functions, with a partitioned key-value store as the system of record |
+| [2/4-serverless-auditable-transfer](2/4-serverless-auditable-transfer/README.md) | draft | The same transfer product on functions, carrying the commit gap onto an environment where nothing runs between events |
+| [2/5-serverless-quote-aggregation](2/5-serverless-quote-aggregation/README.md) | draft | The same fare-search product on functions, where admission is a platform ceiling rather than the design's own decision |
+| [3/1-internet-route-observatory](3/1-internet-route-observatory/README.md) | draft | Route observations answered with the scope they rest on, where vantage points disagree and a burst is exploration |
+| [3/2-recoverable-route-analytics](3/2-recoverable-route-analytics/README.md) | draft | Stateful route analytics with checkpoint and history-based recovery requirements |
+| [4/1-market-history-api](4/1-market-history-api/README.md) | draft | Trade and candle query architecture over DynamoDB-compatible storage |
+| [4/2-low-latency-market-api](4/2-low-latency-market-api/README.md) | draft | Freshness-aware market API with Valkey and DynamoDB as available components |
+| [4/3-exact-trade-analytics](4/3-exact-trade-analytics/README.md) | draft | Exact aggregates over a growing trade history that duplicates and corrections must never distort |
+| [4/5-portable-market-ingestion](4/5-portable-market-ingestion/README.md) | draft | One ingestion contract across local Kubernetes and Lambda-shaped environments |
+| [6/1-bounded-memory-record-shipper](6/1-bounded-memory-record-shipper/README.md) | draft | Ordered record shipping to a stalled consumer inside a fixed memory ceiling |
+| [6/2-crash-safe-record-store](6/2-crash-safe-record-store/README.md) | draft | Record store whose acknowledgement survives power loss and a one-shot flush error |
+| [6/3-large-index-query-service](6/3-large-index-query-service/README.md) | draft | Query service over an index far larger than memory, where a pointer dereference is an I/O |
+| [6/4-steady-state-request-service](6/4-steady-state-request-service/README.md) | draft | Request service whose resident memory must not drift upward across a long run |
+| [6/5-rate-accurate-replayer](6/5-rate-accurate-replayer/README.md) | draft | Workload replayer that holds a declared rate and reports the latency the caller saw |
+| [7/1-validator-state-stream](7/1-validator-state-stream/README.md) | draft | Account and slot updates streamed out of a validator that pays for the plugin's latency |
+| [7/2-settlement-program-and-client](7/2-settlement-program-and-client/README.md) | draft | Settlement program and client bounded by the runtime rather than by their own logic |
+| [7/3-finality-aware-transfer-index](7/3-finality-aware-transfer-index/README.md) | draft | Transfer index whose settled view stays free of logs the chain later withdrew |
+| [7/4-reliable-transaction-dispatcher](7/4-reliable-transaction-dispatcher/README.md) | draft | Queued payments landed exactly once across two chains that disagree about retry |
+| [7/6-permissionless-application-hosting](7/6-permissionless-application-hosting/README.md) | draft | An application delivered with no server, domain, or account its publisher operates |
+| [7/7-multi-chain-deposit-service](7/7-multi-chain-deposit-service/README.md) | draft | Customer deposits held at addresses on two chains the service cannot sign for, where a movement never names the request that caused it |
+| [8/1-protein-similarity-search](8/1-protein-similarity-search/README.md) | draft | Ranked sequence matches whose confidence belongs to the corpus, not to the match |
+| [8/2-news-aggregation-service](8/2-news-aggregation-service/README.md) | draft | Feed items grouped under a declared policy, with a freshness the system can actually vouch for |
+| [8/3-web-crawl-and-index](8/3-web-crawl-and-index/README.md) | draft | Polite bounded crawl whose real product is the revisit decision under a budget |
+| [8/4-spatial-query-service](8/4-spatial-query-service/README.md) | draft | Exact area and proximity answers where the spatial index is only a filter |
+| [8/5-relevance-evaluation-service](8/5-relevance-evaluation-service/README.md) | draft | A ranking plus the harness that proves a change to it survives unseen queries |
 
