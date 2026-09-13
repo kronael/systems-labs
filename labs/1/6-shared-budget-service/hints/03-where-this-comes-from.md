@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   PostgreSQL, evidence, and retry contracts.
 - [PostgreSQL transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html)
   — the page carries both halves of the quirk. A transaction refused for a

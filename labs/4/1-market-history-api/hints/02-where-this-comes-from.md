@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   DynamoDB, real-data, cost, and evidence contracts.
-- [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
+- [`docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - [Partition key design](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html)
   — each DynamoDB partition serves a fixed per-second budget of read and
   write units, so one hot key throttles while the table sits far below its

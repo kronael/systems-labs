@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../../docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
+- [`docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [`mallopt(3)`](https://man7.org/linux/man-pages/man3/mallopt.3.html) —
   `M_TRIM_THRESHOLD` releases only contiguous free space at the top of the

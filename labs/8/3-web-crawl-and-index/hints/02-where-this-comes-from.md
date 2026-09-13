@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../../docs/search-and-retrieval-track.md`](../../../../docs/search-and-retrieval-track.md)
+- [`docs/search-and-retrieval-track.md`](../../../../docs/search-and-retrieval-track.md)
   — the track record where this candidate and its origination are recorded.
 - [RFC 9309](https://www.rfc-editor.org/rfc/rfc9309.html) — the Robots
   Exclusion Protocol: a cached `robots.txt` should not be used beyond 24 hours

@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, Valkey,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, Valkey,
   evidence, and failure contracts.
-- [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
+- [`docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - [Key eviction](https://valkey.io/topics/lru-cache/) — at `maxmemory` Valkey
   evicts by the configured policy, and its LRU and LFU are approximations
   that sample a handful of keys per decision rather than track exact recency.

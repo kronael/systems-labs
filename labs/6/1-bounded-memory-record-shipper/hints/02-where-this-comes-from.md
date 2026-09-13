@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../../docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
+- [`docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [Fluent Bit: Backpressure](https://docs.fluentbit.io/manual/administration/backpressure)
   — the real reported behaviour behind the brief: an agent limits how much a

@@ -5,12 +5,12 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, queue,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, queue,
   Lambda, cost, and evidence contracts.
-- [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
-- [`../../docs/serverless-contrast-track.md`](../../../../docs/serverless-contrast-track.md) —
+- [`docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
+- [`docs/serverless-contrast-track.md`](../../../../docs/serverless-contrast-track.md) —
   the pairing this lab belongs to and what the platform supplies instead.
-- [`../1/2-reservation-fulfillment.md`](../../../../labs/1/2-reservation-fulfillment/README.md) —
+- [`labs/1/2-reservation-fulfillment`](../../../../labs/1/2-reservation-fulfillment/README.md) —
   the self-run form of the leased-delivery model this lab receives as a hosted
   contract. The products differ; the delivery model is the contrast.
 - [California VEE rules](https://www.sdge.com/sites/default/files/documents/VEE.pdf)

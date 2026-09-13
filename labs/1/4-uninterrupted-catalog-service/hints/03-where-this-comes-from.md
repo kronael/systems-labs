@@ -5,7 +5,7 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   PostgreSQL, evidence, and verification contracts.
 - [Directive 98/6/EC](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:31998L0006)
   — Article 3: "The selling price and the unit price shall be indicated for

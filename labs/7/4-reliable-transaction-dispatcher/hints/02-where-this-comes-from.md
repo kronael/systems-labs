@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, fault,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, fault,
   evidence, and verification contracts.
-- [`../../docs/blockchain-track.md`](../../../../docs/blockchain-track.md) — track record
+- [`docs/blockchain-track.md`](../../../../docs/blockchain-track.md) — track record
   and the origination of this candidate.
 - [`7-multi-chain-deposit-service.md`](../../../../labs/7/7-multi-chain-deposit-service/README.md) — the
   neighbouring lab in this phase. It holds no key on the chains it moves

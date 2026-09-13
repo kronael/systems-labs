@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../../docs/blockchain-track.md`](../../../../docs/blockchain-track.md) — blockchain
+- [`docs/blockchain-track.md`](../../../../docs/blockchain-track.md) — blockchain
   track rationale and candidates.
 - [Agave Geyser plugin docs](https://docs.anza.xyz/validator/geyser) — the
   validator calls the plugin during transaction processing and the plugin

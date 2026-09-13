@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../../docs/search-and-retrieval-track.md`](../../../../docs/search-and-retrieval-track.md)
+- [`docs/search-and-retrieval-track.md`](../../../../docs/search-and-retrieval-track.md)
   — the track record where this candidate and its origination are recorded.
 - [NCBI BLAST homepage](https://blast.ncbi.nlm.nih.gov/Blast.cgi) — what a
   ranked match is for: "BLAST can be used to infer functional and evolutionary

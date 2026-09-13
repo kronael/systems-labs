@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, Kafka,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, Kafka,
   evidence, and verification contracts.
-- [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
+- [`docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - [KIP-429](https://cwiki.apache.org/confluence/display/KAFKA/KIP-429%3A+Kafka+Consumer+Incremental+Rebalance+Protocol)
   — under the eager protocol a healthy consumer revokes every assigned
   partition before rejoining the group, because no partition may be

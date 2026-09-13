@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../../docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
+- [`docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [fsyncgate](https://danluu.com/fsyncgate/) — the PostgreSQL thread showing
   that a failed `fsync` can clear the error and the dirty page, so the next

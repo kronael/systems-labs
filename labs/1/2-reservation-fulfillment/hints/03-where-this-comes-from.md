@@ -5,10 +5,10 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   PostgreSQL, evidence, and retry contracts.
-- [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
-- [`../../docs/serverless-contrast-track.md`](../../../../docs/serverless-contrast-track.md) —
+- [`docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
+- [`docs/serverless-contrast-track.md`](../../../../docs/serverless-contrast-track.md) —
   the serverless recast of this product and what it removes.
 - [RFC 5545, section 3.6.1](https://www.rfc-editor.org/rfc/rfc5545.html#section-3.6.1)
   — the calendar standard fixes the stay's interval convention in one sentence:

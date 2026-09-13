@@ -5,11 +5,11 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, execution
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, execution
   shape policy, cost, grading, and evidence contracts.
-- [`../../docs/serverless-contrast-track.md`](../../../../docs/serverless-contrast-track.md) —
+- [`docs/serverless-contrast-track.md`](../../../../docs/serverless-contrast-track.md) —
   why this pairing earns a lab and what the platform removes.
-- [`../1/5-auditable-transfer-service.md`](../../../../labs/1/5-auditable-transfer-service/README.md)
+- [`labs/1/5-auditable-transfer-service`](../../../../labs/1/5-auditable-transfer-service/README.md)
   — the local lab this one recasts.
 - [Execution environment lifecycle](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html)
   — the environment freezes when the runtime and each extension have completed

@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold,
   submission, evidence, and verification contracts.
-- [`../../docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
+- [`docs/low-level-track.md`](../../../../docs/low-level-track.md) — low-level track
   rationale and candidates.
 - [Are You Sure You Want to Use MMAP in Your Database Management System?](https://db.cs.cmu.edu/papers/2022/cidr2022-p13-crotty.pdf)
   — CIDR 2022. Blocking page faults with no asynchronous path, uncontrollable

@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, Flink,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, Flink,
   Kafka, evidence, and failure contracts.
-- [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
+- [`docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - Quirk origination: the Flink documentation on [checkpoints versus
   savepoints](https://nightlies.apache.org/flink/flink-docs-stable/docs/ops/state/checkpoints_vs_savepoints/),
   [fault-tolerance guarantees of sources and

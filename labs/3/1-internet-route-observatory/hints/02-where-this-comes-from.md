@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, Kafka,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, Kafka,
   real-data, source, and evidence contracts.
-- [`../../docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
+- [`docs/lab-selection.md`](../../../../docs/lab-selection.md) — selection rationale.
 - Quirk origination. The falsified belief is that the collector's view is the
   Internet's state and that an update means the routing changed. Both halves
   have primary sources:

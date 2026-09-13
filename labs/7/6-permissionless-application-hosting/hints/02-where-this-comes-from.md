@@ -5,9 +5,9 @@
 Each page below reports the real behaviour this lab rests on. Reading one
 answers part of the design, which is why they are here and not in the task.
 
-- [`../01-systems-labs.md`](../../../../docs/contract.md) — shared scaffold, fault,
+- [`docs/contract.md`](../../../../docs/contract.md) — shared scaffold, fault,
   evidence, and verification contracts.
-- [`../../docs/blockchain-track.md`](../../../../docs/blockchain-track.md) — track record
+- [`docs/blockchain-track.md`](../../../../docs/blockchain-track.md) — track record
   and the origination of this candidate.
 - [IPFS persistence and pinning](https://docs.ipfs.tech/concepts/persistence/)
   — the network guarantees content is discoverable, not persistently
