@@ -21,6 +21,11 @@ Where a claim rests on a source I fetched the page and read it. Where it rests
 on judgement, the judgement is mine and you may disagree with it. It gets
 better as I go, and the parts I have argued with hardest are the ones I trust.
 
+Doing a lab is the opposite case. Use a model to research and to scaffold, and
+write the design and the code yourself, because a model will hand you a working
+slice in ten minutes and the ten minutes are what you came for.
+[`HOWTO.md`](HOWTO.md#using-a-model) says where I think the line sits.
+
 ## What a lab asks of you
 
 A lab is not an exercise with an answer. The brief fixes the product, its
@@ -40,8 +45,17 @@ Every lab passes three gates:
 | failure | 2–4 h | a deterministic scenario that falsifies your first design and forces the stated invariant to hold |
 | evidence | 1–2 h | a load or deployment run recording the operational tradeoff and one remaining limitation |
 
-A single lab runs six to twenty-five focused hours. The seventeen core labs
-run to roughly 200 to 300 focused hours in total.
+A single lab runs six to twenty-five focused hours, and the seventeen core
+labs come to 203 hours at the low end of their stated budgets and 294 at the
+high end.
+
+Those are estimates and nothing behind them was measured, because no lab has
+been built or run yet. Read them as the size I am aiming at. Two of them I
+already distrust: the product gate's hour assumes you know the dependency you
+are wiring up, which is exactly what a first lab cannot assume, and the three
+gate durations add to four hours at best and eight at worst, which leaves the
+six-hour labs no room for the redesign that is supposed to sit between the
+gates.
 
 ## Where the difficulty comes from
 

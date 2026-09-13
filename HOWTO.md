@@ -115,6 +115,29 @@ In this order:
    systems do differently at this lab's boundary, and the designs that were
    rejected.
 
+## Using a model
+
+Use one for research and for scaffolding. Do not use one for the design or for
+the code.
+
+Research is where it pays. Ask which vendor document describes a behaviour,
+then open that document and read the sentence yourself. Ask for a summary of a
+post-mortem you are about to read. Ask what a dependency's failure modes are
+called, so that you know what to search for. Check every answer against the
+primary source, because a confident wrong answer costs you a whole redesign.
+
+Scaffolding is the other safe use: a Compose file, a client stub, a test
+harness, the boring shape around the work. Difficulty here never comes from
+boilerplate, so handing the boilerplate away costs you nothing.
+
+The design and the code are the exercise. A model will hand you a working
+slice in ten minutes and you will have skipped the part that teaches. The
+design that fails at the failure gate has to be yours, or nothing is falsified
+when it breaks. `ARCHITECTURE.md` is the same: you cannot defend a decision you
+did not make, and the gate asks you to defend it.
+
+Nobody enforces this and nobody is checking. It is your time.
+
 ## When you are finished
 
 All three gates pass, and:
