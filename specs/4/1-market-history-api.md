@@ -44,6 +44,13 @@ for a symbol and interval, one trade by provider identity, and ingestion
 freshness. Results remain complete across DynamoDB pagination. Duplicate or
 overlapping source pages produce one logical trade and correct candles.
 
+The store refuses work above a declared per-partition capacity budget, and it
+refuses it unevenly, because the budget is per partition and the traffic is
+not. The design states what an ingest refusal does to the trade that provoked
+it and what a client sees while a partition is refusing. A read through a
+secondary access path may not return the write it follows, and the design
+states what a client sees in that window.
+
 The design has a stated logical retention policy. Physical TTL timing cannot
 change query correctness. Every access pattern has a bounded request shape, and the cost of a public
 query must not grow with the retained history.
@@ -73,10 +80,12 @@ symbol distribution and public queries.
 
 ## Adversarial evaluation
 
+Every fault fires at a named barrier, never on a timer and never at random.
 The failure schedule sends a concentrated symbol burst, overlaps provider
-cursors, repeats identities, kills ingestion around a durable write, forces
-multi-page queries, reads through a secondary access path immediately after
-a write, retains physically expired items, and introduces malformed
+cursors, repeats identities, kills ingestion immediately before a named
+trade's durable write and again immediately after it, forces multi-page
+queries, reads a named trade through a secondary access path immediately after
+its write, retains physically expired items, and introduces malformed
 precision data.
 
 The concentrated burst falsifies a key design only because the controller
@@ -88,7 +97,10 @@ on. In front of the store it reads each request's table and index keys,
 operation type, and item size, holds the request before dispatch, applies the
 scenario's declared partition mapping and per-partition capacity budget,
 forwards what that budget admits, and refuses the rest with the store's own
-throttling outcome, applying none of what it refused. Injection ends at its
+throttling outcome, applying none of what it refused. The same layer supplies
+the propagation delay the local store also omits: it holds a named trade's
+secondary-index read behind the write it follows, for the interval the
+scenario declares. Injection ends at its
 declared release boundary, and a run in which it never activates fails rather
 than passes.
 
