@@ -25,7 +25,7 @@ You get four artifacts, and you choose which of them you open.
 |------|-------|-------------|
 | `README.md` | the task and the technology landscape | by default |
 | `hints/` | the design reading, one file per hint | by choice, when stuck |
-| `EVALUATION.md` | the answer key | by choice, when checking |
+| `EVALUATION.md` | the failure schedule and what it must leave true | by choice, when checking |
 | `ARCHITECTURE.md` | your own reasoning | you write it |
 
 Open `hints/` and `EVALUATION.md` whenever you decide to. They are not

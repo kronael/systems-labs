@@ -110,7 +110,7 @@ one at all.
 | Phase | Subject | Cloud account | Optional services touched | Local substitute satisfying required gates |
 |-------|---------|---------------|---------------------------|--------------------------------------------|
 | 1 | Local runtime, delivery, and cross-system atomicity | No | None. Every dependency is software the learner runs | PostgreSQL, Kafka, NATS JetStream in Compose |
-| 2 | The same products on a serverless execution model | Optional | Every lab: a hosted run confirms that the emulated freeze and concurrency behaviour match the service. Permitted services only — Lambda, SQS, DynamoDB on-demand, short-retention logs | Lambda-compatible runner, ElasticMQ, DynamoDB Local in Compose |
+| 2 | The same products on a serverless execution model | Optional | Every lab: a hosted run confirms that the emulated execution model matches the service. Permitted services only — Lambda, SQS, DynamoDB on-demand, short-retention logs | Lambda-compatible runner, ElasticMQ, DynamoDB Local in Compose |
 | 3 | Real Internet streaming | No | None (RIPE RIS Live is a public stream; recording is opt-in and needs no account) | Kafka, Flink, PostgreSQL, checkpoint storage in Compose; generated or cached recordings |
 | 4 | NoSQL, analytics, and platform portability | Optional | Lab 4/1: bounded hosted DynamoDB on-demand smoke, short-retention logs. Lab 4/5: the same permitted services through the bounded OpenTofu account shell | DynamoDB Local, Valkey, ClickHouse, Kafka, ElasticMQ in Compose; `kind`, Lambda-compatible runner, OpenTofu local sandboxes (ElastiCache is excluded, so the cache lab is local-only) |
 | 6 | Low-level (Rust and C, kernel quirks) | No | None | The local Linux kernel is the laboratory |
