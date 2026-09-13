@@ -409,10 +409,10 @@ move that spec to `accepted` first. Editing and expanding the specs is open work
   what does not exist yet.
 - No code exists. The shared scaffold is specified in `specs/0/5-shared-scaffold.md`,
   and it is the first thing built once `01-systems-labs.md` is `accepted`.
-- Root carries `LICENSE` (verbatim GPL-3.0 from gnu.org), `README.md`,
-  `CONTRIBUTING.md`, and `THIRD_PARTY.md`, which discharges the licensing
-  contract in `01-systems-labs.md`. `THIRD_PARTY.md` lists only `LICENSE`
-  itself; nothing else here is copied.
+- Root carries `LICENSE` (verbatim GPL-3.0 from gnu.org), `README.md`, and
+  `CONTRIBUTING.md`. `LICENSE` is the one copied file here; the licensing
+  contract in `01-systems-labs.md` adds a root ledger with the first commit
+  that copies anything else.
 - `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
   short-lived credentials, per-phase account table. Phases 2 and 4 are the only
   ones that can bill, and only on the optional path.

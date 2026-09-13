@@ -901,19 +901,22 @@ which is a defect in the lab rather than a reason to build a framework.
 
 The attribution model is stricter than a source pool:
 
-1. Root `NOTICE` credits the repository and lists broad influences.
-2. Each lab `README.md` lists dataset provenance and the neighbour
+1. Each lab `README.md` lists dataset provenance and the neighbour
    documentation links, and no quirk source at all. Every `Code pointers`
    citation is solution-bearing: the document that reports the behaviour a
    lab rests on states the behaviour, and stating it is the reading the
    learner is meant to do.
-3. Each `HINTS.md` lists the exact architecture and solution sources used by
+2. Each `HINTS.md` lists the exact architecture and solution sources used by
    that lab, with title, author or project, URL, license, and whether the source
    is cited, adapted, or copied.
-4. Root `THIRD_PARTY.md` lists every copied file or embedded asset by path,
-   upstream revision, copyright notice, and license.
-5. No source marked "citation only" contributes copied prose, code, fixtures,
+3. No source marked "citation only" contributes copied prose, code, fixtures,
    tests, or diagrams.
+
+The repository copies one file, `LICENSE`, and the GPL-3.0 text carries its own
+notice. The first commit that copies or embeds anything else adds a root
+ledger in the same commit, recording path, upstream revision, copyright
+notice, and licence. A dependency that is only run keeps its own licence and
+its notice travels with distributed copies.
 
 All lab prose, answer keys, fixtures, and workload generators are
 original GPL-3.0 work. Apache-2.0, MIT, MIT-0,
@@ -1034,9 +1037,6 @@ and transaction-isolation pages — are carried in each lab's own
   step into the root of every learner distribution together with the pointer
   to the source repository fixed by the
   [licence contract](#licence-and-corresponding-source).
-- `systems-labs/NOTICE` — source-pool attribution and project credit.
-- `systems-labs/THIRD_PARTY.md` — file-level copied-material and dependency
-  ledger.
 - `systems-labs/Makefile` — stable root test, fault, benchmark, smoke, and clean
   contract.
 - `systems-labs/shared/workload/` — seeded open-loop generators and cached data

@@ -160,6 +160,5 @@ behind which labs exist and why.
 GPL-3.0. The full text is in [`LICENSE`](LICENSE).
 
 All lab prose, fixtures, and workload generators are original work. External
-sources are cited and never copied; [`THIRD_PARTY.md`](THIRD_PARTY.md) records
-anything copied or embedded. Dependencies keep their own licences, and their
-notices travel with distributed copies.
+sources are cited and never copied. Dependencies keep their own licences, and
+their notices travel with distributed copies.
