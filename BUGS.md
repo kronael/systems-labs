@@ -83,3 +83,45 @@ Fixed in `bdd3f83` before this entry was written.
   `2/5` leak and the throttling gap re-verified against the file text
 - **Status:** open
 - **Fix:**
+
+## S35 — five separate-catalog labs cannot provoke the failure they name (2026-09-13, open)
+
+The same method review across phases 6, 7 and 8. Eight of the sixteen labs are
+clean: `6/1`, `6/3`, `6/4`, `6/5`, `7/2`, `7/4`, `7/6`, `8/2`.
+
+- `8/1:44` starts one OpenSearch, `8/1:217-218` puts multi-node operation
+  outside the problem, and `8/1:143-146` restarts "one OpenSearch node" and
+  forbids "a quietly smaller answer assembled from the shards that survived".
+  On one node there are no surviving shards, so the partial answer the lab is
+  about cannot happen. Issue the named query while the restarted node's shards
+  recover, or fail one named shard.
+- `7/1:126-127` freezes the validator "long enough that slots in the frozen
+  window are skipped when it resumes". The `SlotStatus` citation supplies the
+  vocabulary of skipped and dead slots; no cited page reports that a freeze
+  produces them. Cite the causation or provoke the invariant with the
+  kill-and-restart case that issue 27842 already grounds.
+- `6/2:81-82` returns one I/O error to a flush and then resumes, and only
+  `6/2:93-94` checks that the error reached the caller. No data is dropped
+  behind the failed flush, so a design that retries into a false success still
+  serves every record.
+- `7/7:172-173` keys a barrier on the service "having written that
+  authorization off", a state the requirements never demand, so a design that
+  waits forever never reaches it and the run fails a correct design.
+- `8/5:59-60` asks which queries influenced a report while `8/5:36-37` keeps
+  candidates' true effects hidden from the harness, so the held-out check
+  cannot be provoked on the prepared overfit candidate.
+- Smaller: `7/3:113-114` never forks across the indexer's downtime, so the
+  withdrawal it warns about at `7/3:93-94` never fires; `8/3:214-215` and
+  `8/3:48` disagree about whether a page's `ETag` changes, which decides
+  whether the fault fires at all; `8/4:72-73` hands the learner the naive
+  shape instead of asking for the comparison.
+
+- **Severity:** medium — no correct design fails a run except in `7/7`, but
+  four labs cannot show the failure they are built around
+- **Scope:** phase 6, 7 and 8 specs
+- **Affected:** `specs/8/1`, `7/1`, `6/2`, `7/7`, `8/5`, `7/3`, `8/3`, `8/4`
+- **Source:** review of specs/6, /7, /8 against the learner method, 2026-09-13;
+  the `8/1` contradiction and the `7/1` citation gap re-verified against the
+  file text
+- **Status:** open
+- **Fix:**
