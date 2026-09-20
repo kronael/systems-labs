@@ -59,6 +59,41 @@ serving, with both versions live and neither able to assume it wrote what it
 reads. The fault fires when a named record is written by one version and read
 by the other. Phase 4, beside `4/5`, which already owns the deployment surface.
 
+Two studies were run against existing labs on 2026-09-20 and both were
+rejected: `4/5` and `7/6` each already carry one falsified model and sit at
+the top of their hour budgets, and each proposed barrier could be left
+unreached by a correct design. What the studies produced belongs to this lab
+instead.
+
+- The envelope does not carry the contract's version. CloudEvents defines
+  `specversion` as "The version of the CloudEvents specification which the
+  event uses", and producers "MUST use a value of `1.0`", so it reads the
+  same on both contract versions and a receiver keying on it sees no change.
+  The primer states that the specification "does not mandate any particular
+  pattern to be used, or even the use or consideration of versioning at all",
+  and that a backwards-incompatible data change should generally change the
+  `type`, with the producer "encouraged to produce both the old event and the
+  new event for some time".
+- The two compute models make the skew asymmetric by their own documents. A
+  Kubernetes rolling update keeps both replica sets serving, and "Each
+  rollback updates the revision of the Deployment". A published Lambda
+  version is immutable, an unqualified call reaches `$LATEST`, which "any
+  time you deploy your function code, you overwrite", and a weighted alias
+  points at "a maximum of two Lambda function versions" and splits between
+  them probabilistically.
+- Where a lab holds the traffic share, it needs a supplier: no vendor page
+  ties alias weights to an event source mapping, so the share is a declared
+  model on a layer the fault contract does not yet name. That gap is the
+  lab's to state, not to assume.
+
+A second candidate sits beside it and should stay separate: continuous
+asynchronous rollout, where nobody can force a client to upgrade. Its facts
+are that a fetched bundle can never change because "Any difference in the
+content will produce a different CID", that a resolved name is remembered for
+the record's own TTL hint, and that a program upgrade replaces the bytes for
+every caller with a documented visibility delay. The asymmetry is the lesson:
+one party moves once for everyone, the other moves once per user.
+
 ### Accepted work discarded to make room — grounded
 
 No lab has a dependency that throws away work it already accepted and
