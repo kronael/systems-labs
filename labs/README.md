@@ -74,6 +74,7 @@ curriculum only after the core is `accepted`.
 | [4/2-low-latency-market-api](4/2-low-latency-market-api/README.md) | draft | Freshness-aware market API with Valkey and DynamoDB as available components |
 | [4/3-exact-trade-analytics](4/3-exact-trade-analytics/README.md) | draft | Exact aggregates over a growing trade history that duplicates and corrections must never distort |
 | [4/5-portable-market-ingestion](4/5-portable-market-ingestion/README.md) | draft | One ingestion contract across local Kubernetes and Lambda-shaped environments |
+| [4/6-dataset-release-service](4/6-dataset-release-service/README.md) | draft | Versioned dataset releases on object storage, where bytes the store holds are not yet an object a reader can fetch |
 | [6/1-bounded-memory-record-shipper](6/1-bounded-memory-record-shipper/README.md) | draft | Ordered record shipping to a stalled consumer inside a fixed memory ceiling |
 | [6/2-crash-safe-record-store](6/2-crash-safe-record-store/README.md) | draft | Record store whose acknowledgement survives power loss and a one-shot flush error |
 | [6/3-large-index-query-service](6/3-large-index-query-service/README.md) | draft | Query service over an index far larger than memory, where a pointer dereference is an I/O |

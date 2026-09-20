@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Curriculum of end-to-end systems labs. Each lab prompts a complete, useful
 product that a learner designs, breaks, recovers, and defends with evidence.
-35 labs across seven phases; seventeen are the core.
+36 labs across seven phases; seventeen are the core.
 
 **Today the repository holds the labs as text only** — no code, no `Makefile`,
 no scaffold. Every target below is described, not implemented. Do not report a
@@ -347,8 +347,8 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
 
 ## State of the repo
 
-- Thirty-five labs exist under `labs/`: eight in phase 1, five in phase 2, two
-  in phase 3, four in phase 4, five in phase 6, six in phase 7, five in phase 8.
+- Thirty-six labs exist under `labs/`: eight in phase 1, five in phase 2, two
+  in phase 3, five in phase 4, five in phase 6, six in phase 7, five in phase 8.
   The seventeen core labs are the phase 1 to 4 rows of the core catalog in
   `labs/README.md`. `1/7` sits in phase 1 and outside the core; phases 6, 7
   and 8 are separate catalogs.

@@ -74,27 +74,19 @@ the record's own TTL hint, and that a program upgrade replaces the bytes for
 every caller with a documented visibility delay. The asymmetry is the lesson:
 one party moves once for everyone, the other moves once per user.
 
-### Multi-tenant fairness — NOT grounded, do not author yet
-
-No lab has more than one customer. Every scale target describes aggregate load,
-so no design is ever punished for letting one tenant consume the whole budget.
-`1/6` rations a shared budget but does not attribute it.
-
-This needs a real reported behaviour before it becomes a spec: a documented
-per-tenant limit, or a published incident where one tenant starved the rest.
-Find that first, or drop the idea.
-
-### Deletion that must reach every derived copy — NOT grounded, do not author yet
-
-No lab deletes anything. Records enter, are corrected, expire by policy, and
-are read back. None must be provably gone from a cache, a search index, a
-materialised view and a replica, with the system able to say when it finished.
-
-Same rule: find the documented behaviour or the published obligation first.
-A regulation is a fact about why a requirement exists, never a thing to learn
-— see `CLAUDE.md`, "The domain supplies the reasons, never the difficulty".
-
 ## Closed
+
+- **Deletion that must reach every derived copy** became two facets rather
+  than a lab. `4/3` gains a withdrawn trade that must be gone from the store
+  and not merely hidden, and `8/3` gains a removed page that no answer may
+  return inside the declared bound. `1/3` was rejected: a tombstone needs a
+  per-event compacted topic, and that lab keys by order for its ordering
+  scope, so the fault would never activate.
+- **Multi-tenant fairness** became one facet. `1/8` names the caller on every
+  request and reports attainment per caller; `4/1` states what one client's
+  queries cost another's. `2/1` was rejected because the platform's refusal
+  happens before the learner's code runs and knows nothing about accounts, so
+  no design could answer it.
 
 - **Time that goes backwards** became a fault rather than a lab. `1/1` steps
   the clock backwards inside the comparison that decides whether a quote is
