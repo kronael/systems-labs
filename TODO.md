@@ -20,26 +20,6 @@ Each entry below names a failure no existing lab reaches. The first three
 carry a documented, publicly reported behaviour, fetched and quoted. The last
 two do not, and must not be authored until they do.
 
-### Time that goes backwards — grounded
-
-No lab makes a system depend on comparing two clock readings, and none has a
-fault that moves the clock. Thirty-four labs measure latency, rank backends by
-observed speed, and expire leases, all on the belief that the difference
-between two readings cannot be negative.
-
-Cloudflare's 2017 outage is that belief failing in production: "The root cause
-of the bug that affected our DNS service was the belief that *time cannot go
-backwards*." A leap second made a round-trip time negative, and "`rand.Int63n`
-promptly panics if its argument is negative"
-([Cloudflare](https://blog.cloudflare.com/how-and-why-the-leap-second-affected-cloudflare-dns/),
-read 2026-09-12).
-
-The product: a service that dispatches each request to whichever of several
-interchangeable backends has been answering fastest, and keeps serving while
-the measurement itself becomes untrustworthy. The fault fires at a named
-request, not a timer: the clock steps backwards between two readings the
-design compares. Phase 1, because the learner operates the clock source.
-
 ### Two versions of the same service at once — grounded
 
 No lab runs the learner's own code at two versions simultaneously. Every
@@ -94,28 +74,6 @@ the record's own TTL hint, and that a program upgrade replaces the bytes for
 every caller with a documented visibility delay. The asymmetry is the lesson:
 one party moves once for everyone, the other moves once per user.
 
-### Accepted work discarded to make room — grounded
-
-No lab has a dependency that throws away work it already accepted and
-committed compute to. The closest, `6/1`, bounds memory by refusing new work;
-this refuses nothing and destroys what is in flight.
-
-vLLM documents it as normal operation: a request is "preempted by
-PreemptionMode.RECOMPUTE mode because there is not enough KV cache space", and
-preempted requests "get recomputed when sufficient KV cache space becomes
-available again"
-([vLLM](https://docs.vllm.ai/en/latest/configuration/optimization.html), read
-2026-09-12). Cached blocks are evicted least-recently-used from a fixed pool
-([vLLM](https://docs.vllm.ai/en/latest/design/v1/prefix_caching.html), read
-2026-09-12).
-
-The product: a streaming generation API that promises a first-token bound and
-a completion bound to every accepted request, over a fixed memory pool where
-one long request can cause another's finished work to be thrown away. The
-lesson is that admission control cannot be a queue length when the resource is
-reclaimed after admission. Its own phase, or phase 4 — the placement is a
-decision.
-
 ### Multi-tenant fairness — NOT grounded, do not author yet
 
 No lab has more than one customer. Every scale target describes aggregate load,
@@ -135,6 +93,18 @@ materialised view and a replica, with the system able to say when it finished.
 Same rule: find the documented behaviour or the published obligation first.
 A regulation is a fact about why a requirement exists, never a thing to learn
 — see `CLAUDE.md`, "The domain supplies the reasons, never the difficulty".
+
+## Closed
+
+- **Time that goes backwards** became a fault rather than a lab. `1/1` steps
+  the clock backwards inside the comparison that decides whether a quote is
+  still valid, and `1/2` inside the one that decides whether an
+  acknowledgement window has passed. Commit `8a02696`.
+- **Accepted work discarded to make room** became
+  `labs/1/8-streaming-completion-service`, in phase 1 because the learner
+  operates the engine and the service in front of it, and beside `1/1`
+  because the contrast is the lesson: `1/1` refuses before it admits, `1/8`
+  has the resource taken back after it admitted.
 
 ## Not gaps
 

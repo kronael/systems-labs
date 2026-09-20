@@ -62,6 +62,7 @@ curriculum only after the core is `accepted`.
 | [1/5-auditable-transfer-service](1/5-auditable-transfer-service/README.md) | draft | Transfer and audit architecture spanning PostgreSQL and Kafka failure boundaries |
 | [1/6-shared-budget-service](1/6-shared-budget-service/README.md) | draft | Shared budget architecture whose conflicting decisions the store declines to complete, leaving the retry boundary to the application |
 | [1/7-spectrum-compliance-service](1/7-spectrum-compliance-service/README.md) | draft | Radio fleet kept legally on the air, where an authorization that outlives the evidence for it is a violation and staying dark is its own failure |
+| [1/8-streaming-completion-service](1/8-streaming-completion-service/README.md) | draft | Streamed generation under two declared promises, where the engine reclaims space from work it already accepted |
 | [2/1-metered-billing-api](2/1-metered-billing-api/README.md) | draft | Subscriptions, metered usage, and period-close invoicing on an execution environment that freezes between invocations |
 | [2/2-reliable-record-import](2/2-reliable-record-import/README.md) | draft | Interval meter readings imported on functions, in a leased-delivery environment the learner configures but does not run; one of the two phase 2 labs with no phase 1 partner |
 | [2/3-serverless-reservation-fulfillment](2/3-serverless-reservation-fulfillment/README.md) | draft | The same reservation product on functions, with a partitioned key-value store as the system of record |
