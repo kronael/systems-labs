@@ -5,8 +5,9 @@ aggregate questions — volume by symbol and interval, top movers, and the
 largest trades in a window — while new trades arrive continuously and the same
 trade can be delivered more than once.
 
-Every answer must be exact. A duplicate delivery must not inflate a volume, and
-a corrected trade must not leave its earlier version in the result. The service
+Every answer must be exact. A duplicate delivery must not inflate a volume, a
+corrected trade must not leave its earlier version in the result, and a
+withdrawn trade must leave no trace in any result. The service
 states the age of the data behind each answer.
 
 The assignment is the whole service: ingestion path, table design, write
@@ -18,7 +19,8 @@ has not yet reconciled are the learner's decisions.
 
 The supplied Compose stack starts ClickHouse, the trade generator, the source
 replay for cached Kraken recordings, and the fault controller. The generator
-emits duplicates, late arrivals, and corrections at declared ratios, and every
+emits duplicates, late arrivals, corrections, and withdrawals at declared
+ratios, and every
 record carries a stable identity so checks can assert exact histories.
 
 The learner owns the ingestion service, the schema, and the query API. No cloud
@@ -29,6 +31,13 @@ account is required.
 The service answers aggregate queries over the full retained history and over
 recent windows. Every answer is exact with respect to the accepted input: each
 trade contributes once, and a correction supersedes the trade it corrects.
+
+A venue can take a trade back after it has printed, and a withdrawal is input
+like any other. From the moment it is acknowledged the withdrawn trade
+contributes to no answer, over the full history and every window. The service
+also states, per withdrawal, when the trade was gone from the store itself
+rather than only from the answers, and the evidence checks that statement
+against the store through every path that can still return a hidden row.
 
 Answers carry a freshness statement. If the service cannot yet answer exactly
 for the most recent interval, it says so rather than returning an approximate

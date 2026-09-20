@@ -41,7 +41,8 @@ groups that must be merged for the crawler's own product token, one file
 large enough to exercise the standard's minimum parse size, and a
 `robots.txt` reached only through redirects. Pages carry `ETag` and
 `Last-Modified` validators and answer conditional requests. The harness
-rewrites named pages at named barriers, and the prepared schedules fix the
+rewrites named pages at named barriers, removes named pages and answers 410 to
+every later request for them, and the prepared schedules fix the
 evidence window and the overlap window whose demands — updates to
 already-served pages, `robots.txt` requests, post-error retries — a declared
 freshness bound must cover.
@@ -65,6 +66,10 @@ documents are being added and replaced underneath them, and what a client
 walking the full result set is promised — what it can never see twice, what
 it can never miss — is a contract the learner declares and the evidence shows
 holding.
+
+A page the site has removed is a change like any other: within the declared
+bound no answer returns a removed page, and no answer after the fetch that saw
+it gone claims a confirmation newer than the last fetch that saw the content.
 
 Every answer carries the staleness statement. The statement is never
 optimistic: it never claims a confirmation newer than a fetch that actually

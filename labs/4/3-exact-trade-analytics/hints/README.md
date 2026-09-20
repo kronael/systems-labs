@@ -7,3 +7,5 @@
   from this lab at the freshness and exactness boundary.
 - [`02-where-this-comes-from.md`](02-where-this-comes-from.md) — the pages that report the
   behaviour this lab rests on.
+- [`03-hidden-is-not-gone.md`](03-hidden-is-not-gone.md) — what the store does
+  with a deleted row, and when it forgets that it finished.

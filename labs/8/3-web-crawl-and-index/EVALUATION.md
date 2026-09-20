@@ -55,6 +55,12 @@ against the harness ledger.
   either validator. The changed content
   must still be reflected eventually, and the staleness statement must never
   treat that 304 as a confirmation of the bytes.
+- When a named page is acknowledged as indexed, the harness removes it and
+  answers 410 to every later request for it. Within the declared bound no
+  answer returns the page, and no answer after the fetch that saw the 410
+  claims a confirmation newer than the last fetch that saw the content. The
+  removal's fetch spends the host's allowance like any revisit, and the
+  ledger shows it.
 - The harness installs a redirect chain that makes two named URLs one page.
   The index must converge on one document for that page, and no query may
   return both identities.
