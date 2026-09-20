@@ -13,8 +13,9 @@ Every fault fires at a named barrier, never on a timer and never at random.
 The schedule drives the declared prompt distribution and then:
 
 - when a named request's first token has been streamed to its caller, it
-  admits the declared burst of long-prompt requests, so the pool the engine
-  works from is claimed by arrivals that came later;
+  admits the declared burst of long-prompt requests from one other named
+  caller, so the pool the engine works from is claimed by one caller's later
+  arrivals;
 - when a named long request's prompt has been accepted by the engine, it holds
   every subsequent completion for that request at the transport layer until a
   second named request has been accepted, so the two occupy the pool together;
@@ -38,6 +39,13 @@ the engine repeated is not reported twice and does not receive two answers. A
 request the service can no longer serve ends early with a stated reason
 through the public interface, never by a dropped connection and never by a
 silent truncation that reads as a finished answer.
+
+Bound attainment is reported for each caller separately, so the burst appears
+both as its own caller's cost and as what it cost the callers already
+promised. The named request admitted before the burst keeps its promise or
+ends early with a stated reason; a run in which no caller's attainment moves
+relative to another's fails, because the pressure the lab is about was never
+applied.
 
 Answers match the independently produced ones by identity. The run reports the
 observed pool occupancy and the work the engine repeated; a run in which the

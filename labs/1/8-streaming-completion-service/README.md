@@ -30,9 +30,13 @@ are required.
 ## Requirements
 
 The service accepts a generation request and streams its answer. Every
-accepted request has a stable identity, and every identity reaches exactly one
-reported outcome: completed with its answer, or ended early with a stated
-reason. An outcome, once reported, is final.
+accepted request has a stable identity and names the caller that sent it, and
+every identity reaches exactly one reported outcome: completed with its
+answer, or ended early with a stated reason. An outcome, once reported, is
+final.
+
+Bound attainment is reported per caller, and the design states what one
+caller's requests may cost the promises already made to other callers.
 
 The two promises are the service's own, declared in its configuration and
 reported in its evidence: a first-token bound and a completion bound. The
@@ -71,6 +75,8 @@ The submitted `ARCHITECTURE.md` must explain:
   actually runs out of;
 - what the service does with a request whose work has already been paid for
   once;
+- what the admission decision knows about the caller, and what one caller's
+  burst may cost another caller's promise;
 - which properties of the engine the design relies on, and which it
   explicitly does not.
 
@@ -86,7 +92,7 @@ the fraction of accepted requests that met them, and the report defends both
 bounds against the calibrated capacity rather than against a fixed number.
 
 The evidence report includes offered and accepted rates, first-token and
-completion distributions, the observed occupancy of the engine's pool, the
+completion distributions per caller, the observed occupancy of the engine's pool, the
 work the engine repeated, and the fraction of accepted requests that ended
 early with a stated reason. It explains the relationship between the accepted
 rate and the two bounds, and ties the admission decision to the measurements.
