@@ -13,8 +13,11 @@ The failure schedule freezes a worker past the acknowledgement window while a
 fulfillment effect is in flight, kills one of several workers mid-effect,
 delays the store until the window expires, restarts the broker with work
 unacknowledged, repeats the declared share of deliveries, injects work that
-fails permanently at known reservation identities, repeats client requests, and
-restarts PostgreSQL. Its workload throughout includes many clients contending
+fails permanently at known reservation identities, repeats client requests,
+restarts PostgreSQL, and on the clock layer steps the wall clock backwards
+between the two readings that decide whether a named reservation's
+acknowledgement window has passed, so the remaining time reads longer than it
+was. Its workload throughout includes many clients contending
 on one room with deliberately overlapping night ranges, back-to-back stays
 meeting at a boundary day among them, so the schedule that falsifies the
 delivery design also exercises both halves of the conflict rule. At the end
