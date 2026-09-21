@@ -18,7 +18,7 @@ answers part of the design, which is why they are here and not in the task.
 - [Concurrency](https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html)
   — one in-flight request per environment, and throttling once concurrency is
   exhausted.
-- [DynamoDB transactions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html)
-  — the store's transaction and condition contract, and the limits that bound
-  both. Solution-bearing: this belongs in `hints/`, never in `README.md`.
-- Implementation pointers do not exist while the spec is `draft`.
+- [DynamoDB
+  transactions](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html)
+  — the store's transaction and condition contract, and the limits that
+  bound both.

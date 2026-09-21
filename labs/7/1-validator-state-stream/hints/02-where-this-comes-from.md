@@ -15,8 +15,7 @@ answers part of the design, which is why they are here and not in the task.
   cause the validator to fall behind"; processed and confirmed slot statuses
   arrive asynchronously to each other; startup accounts are streamed with a
   flag and an end-of-startup signal. The page's reference-plugin sections
-  describe a working persistence design. Solution-bearing: this belongs in
-  `hints/`, never in `README.md`.
+  describe a working persistence design.
 - [`SlotStatus`](https://docs.rs/agave-geyser-plugin-interface/latest/agave_geyser_plugin_interface/geyser_plugin_interface/enum.SlotStatus.html)
   — the full status set includes `Dead`, and processed-slot state "is not
   derived from a confirmed or finalized block".
@@ -29,5 +28,3 @@ answers part of the design, which is why they are here and not in the task.
 - [solana-labs/solana#31242](https://github.com/solana-labs/solana/issues/31242)
   — a plugin cannot request account state from the validator outside the
   update stream; closed unimplemented. The discussion names the workaround.
-  Solution-bearing: this belongs in `hints/`, never in `README.md`.
-- Implementation pointers do not exist while the spec is `draft`.

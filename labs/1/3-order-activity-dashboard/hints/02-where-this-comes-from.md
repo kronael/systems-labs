@@ -11,6 +11,4 @@ answers part of the design, which is why they are here and not in the task.
 - [KIP-429](https://cwiki.apache.org/confluence/display/KAFKA/KIP-429%3A+Kafka+Consumer+Incremental+Rebalance+Protocol)
   — under the eager protocol a healthy consumer revokes every assigned
   partition before rejoining the group, because no partition may be
-  reassigned before it is revoked. Solution-bearing: this belongs in
-  `hints/`, never in `README.md`.
-- Implementation pointers do not exist while the spec is `draft`.
+  reassigned before it is revoked.

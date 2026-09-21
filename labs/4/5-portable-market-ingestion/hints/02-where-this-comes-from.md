@@ -16,4 +16,3 @@ answers part of the design, which is why they are here and not in the task.
 - [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html)
   — an invocation runs at most 900 seconds, `/tmp` offers 512 MB to 10 GB,
   and concurrent executions default to 1,000 per account per Region.
-- Implementation pointers do not exist while the spec is `draft`.

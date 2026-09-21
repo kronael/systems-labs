@@ -39,4 +39,3 @@ answers part of the design, which is why they are here and not in the task.
   obtaining, reviewing, and reconciling Synapse's records", and "the deposits
   at the IDIs appear to be insufficient to cover the amounts owed by the
   fintech companies to their customers".
-- Implementation pointers do not exist while the spec is `draft`.

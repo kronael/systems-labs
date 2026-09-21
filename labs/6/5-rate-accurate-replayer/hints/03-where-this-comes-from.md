@@ -26,6 +26,4 @@ answers part of the design, which is why they are here and not in the task.
   periods are countable rather than lost.
 - [wrk2](https://github.com/giltene/wrk2) and
   [HdrHistogram](https://github.com/HdrHistogram/HdrHistogram) — the
-  corrective generator and the correction it records. Solution-bearing: both
-  belong in `hints/`, never in `README.md`.
-- Implementation pointers do not exist while the spec is `draft`.
+  corrective generator and the correction it records.

@@ -22,12 +22,11 @@ answers part of the design, which is why they are here and not in the task.
   `DEFAULT` (e.g., `clock_timestamp()`), a stored generated column, an
   identity column, or a column with a domain data type that has constraints
   will cause the entire table and its indexes to be rewritten."
-  Solution-bearing: the same page lists which subforms take a weaker lock, so
-  it belongs in `hints/`, never in `README.md`.
+  The same page lists which subforms take a weaker
+  lock.
 - [PostgreSQL explicit locking](https://www.postgresql.org/docs/current/explicit-locking.html)
   — the mode taken by a change "Conflicts with locks of all modes", including
   the mode every plain read acquires, and "a transaction seeking either a
   table-level or row-level lock will wait indefinitely for conflicting locks
-  to be released". Solution-bearing: this is why a waiting change stops
-  arriving readers, so it belongs in `hints/`, never in `README.md`.
-- Implementation pointers do not exist while the spec is `draft`.
+  to be released". This is why a waiting change stops arriving
+  readers.

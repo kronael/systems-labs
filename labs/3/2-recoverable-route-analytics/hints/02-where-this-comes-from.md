@@ -15,13 +15,12 @@ answers part of the design, which is why they are here and not in the task.
   and [window
   lateness](https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/datastream/operators/windows/).
   The falsified belief is that a checkpoint is a backup and an exactly-once
-  switch makes results exactly-once everywhere. The pages fix that checkpoints
-  are Flink-owned recovery state, dropped by default when a job terminates;
-  that the exactly-once guarantee covers state inside Flink, while what an
-  external system observes across recovery depends on that system's own
-  coordination with the checkpoint; and that an element arriving after the
-  watermark has passed its window is dropped by default. Solution-bearing:
-  this belongs in hints/, never in README.md.
+  switch makes results exactly-once everywhere. The pages fix that
+  checkpoints are Flink-owned recovery state, dropped by default when a job
+  terminates; that the exactly-once guarantee covers state inside Flink,
+  while what an external system observes across recovery depends on that
+  system's own coordination with the checkpoint; and that an element
+  arriving after the watermark has passed its window is dropped by default.
 - Domain grounding, judged neutral — it reports the numbers a real churn
   report publishes and touches no recovery design: [Geoff Huston, *BGP
   updates in 2025*, APNIC Blog, 9 January
@@ -36,4 +35,3 @@ answers part of the design, which is why they are here and not in the task.
   with their published values. The article's explanation of the convergence
   timescale is the observation lab's hint territory and never publishes into
   this lab's learner-facing text; the figures ground the product.
-- Implementation pointers do not exist while the spec is `draft`.

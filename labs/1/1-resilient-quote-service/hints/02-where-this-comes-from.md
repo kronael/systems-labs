@@ -15,9 +15,7 @@ answers part of the design, which is why they are here and not in the task.
   available to create an order for a limited time by the traveller before it
   expires, typically within 30 minutes", and past its stated expiry an offer
   "can no longer be used to create an order".
-- [wrk2](https://github.com/giltene/wrk2) — a closed-loop generator sends its
-  next request only after the previous response arrives, so it coordinates
-  with the server and stops measuring during exactly the slow periods it
-  exists to find. Solution-bearing: this belongs in hints/, never in
-  README.md.
-- Implementation pointers do not exist while the spec is `draft`.
+- [wrk2](https://github.com/giltene/wrk2) — a closed-loop generator sends
+  its next request only after the previous response arrives, so it
+  coordinates with the server and stops measuring during exactly the slow
+  periods it exists to find.

@@ -21,4 +21,3 @@ answers part of the design, which is why they are here and not in the task.
   speed of your computer", and "when you run DynamoDB locally, there is no
   table partitioning", so this lab's ceiling comes from the controller and
   never from the store.
-- Implementation pointers do not exist while the spec is `draft`.

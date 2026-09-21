@@ -24,9 +24,8 @@ answers part of the design, which is why they are here and not in the task.
   ([R.18-12-006, Attachment A](https://docs.cpuc.ca.gov/PublishedDocs/Published/G000/M496/K420/496420292.PDF))
   states the billing consequence: "If the file fails any of the above checks,
   the file will be rejected and not used for billing purposes."
-- [Visibility timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
+- [Visibility
+  timeout](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html)
   — delivery is at-least-once even inside the visibility window, extension
   stops at a hard twelve-hour limit measured from first receipt, and a
   standard queue caps in-flight messages and then returns `OverLimit`.
-  Solution-bearing: this belongs in `hints/`, never in `README.md`.
-- Implementation pointers do not exist while the spec is `draft`.

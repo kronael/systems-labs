@@ -26,14 +26,14 @@ answers part of the design, which is why they are here and not in the task.
   - [RouteViews](https://www.routeviews.org/routeviews/) — an independent
     collector fleet with its own peer population of over a thousand peers;
     the vantage-point coverage contrast in the neighbouring-systems reading.
-  - Solution-bearing, for `hints/` and never `README.md`: [Labovitz, Ahuja,
+  - [Labovitz, Ahuja,
     Bose, and Jahanian, *Delayed Internet Routing Convergence*, SIGCOMM
     2000](https://conferences.sigcomm.org/sigcomm/2000/conf/paper/sigcomm2000-5-2.pdf)
     — measured failovers averaged three minutes, oscillations ran up to
     fifteen minutes and tens of minutes at worst, and the rate-limiting
     advertisement timer shapes the bursts, so a burst of updates is
     exploration through transient paths rather than change.
-  - Solution-bearing, for `hints/` and never `README.md`: [Oliveira, Pei,
+  - [Oliveira, Pei,
     Willinger, Zhang, and Zhang, *Quantifying the Completeness of the
     Observed Internet AS-level Structure*, UCLA TR-080026,
     2008](https://web.cs.ucla.edu/~lixia/papers/08completeness-TR.pdf) — the
@@ -41,10 +41,9 @@ answers part of the design, which is why they are here and not in the task.
     connectivity of only 4 percent of ASes, because export policy bounds what
     any vantage point can see; this is what the observatory can never
     conclude.
-  - Solution-bearing, for `hints/` and never `README.md`: [Sermpezis et
+  - [Sermpezis et
     al., *Bias in Internet Measurement Infrastructure*, RIPE
     Labs](https://labs.ripe.net/author/pavlos_sermpezis/bias-in-internet-measurement-infrastructure/)
     — RIS and RouteViews collect feeds from roughly 300 and 500 peering ASes
     out of more than 70,000, skewed toward large networks and exchange
     points, so the sample is biased as well as small.
-- Implementation pointers do not exist while the spec is `draft`.

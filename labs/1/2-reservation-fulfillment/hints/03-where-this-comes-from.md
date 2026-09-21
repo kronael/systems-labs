@@ -16,12 +16,11 @@ answers part of the design, which is why they are here and not in the task.
   non-inclusive end of the event.' Section 3.8.2.2 defines the property itself
   and adds only that its value 'MUST be later in time than the value of the
   "DTSTART" property'; the non-inclusive sentence is section 3.6.1's.
-- [JetStream acknowledgement](https://docs.nats.io/learn/jetstream/acknowledgment)
-  — the acknowledgement window is a timer, and a delivery not resolved before it
-  expires is treated as a silent failure and redelivered. Solution-bearing:
-  this belongs in `hints/`, never in `README.md`.
-- [JetStream reliable delivery](https://www.synadia.com/blog/jetstream-reliable-delivery-dlq-replay)
-  — what this broker does when a consumer keeps failing a message, and what it
-  leaves to the application. Solution-bearing: this belongs in `hints/`,
-  never in `README.md`.
-- Implementation pointers do not exist while the spec is `draft`.
+- [JetStream
+  acknowledgement](https://docs.nats.io/learn/jetstream/acknowledgment) —
+  the acknowledgement window is a timer, and a delivery not resolved before
+  it expires is treated as a silent failure and redelivered.
+- [JetStream reliable
+  delivery](https://www.synadia.com/blog/jetstream-reliable-delivery-dlq-replay)
+  — what this broker does when a consumer keeps failing a message, and what
+  it leaves to the application.

@@ -20,4 +20,3 @@ answers part of the design, which is why they are here and not in the task.
 - [MergeTree settings](https://clickhouse.com/docs/en/operations/settings/merge-tree-settings)
   — `parts_to_throw_insert` defaults to 3000, which is the ceiling small
   frequent inserts reach when they outrun merging.
-- Implementation pointers do not exist while the spec is `draft`.

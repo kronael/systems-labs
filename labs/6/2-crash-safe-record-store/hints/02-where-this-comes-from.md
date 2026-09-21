@@ -14,4 +14,3 @@ answers part of the design, which is why they are here and not in the task.
   `fsync` reports success over data that never reached the disk.
 - [PostgreSQL error handling in fsync](https://lwn.net/Articles/752063/) — the
   kernel-side account of where the error is reported and where it is lost.
-- Implementation pointers do not exist while the spec is `draft`.

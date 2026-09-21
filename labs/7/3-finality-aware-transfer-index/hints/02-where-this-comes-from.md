@@ -32,4 +32,3 @@ answers part of the design, which is why they are here and not in the task.
   before it becomes finalized, and finality arrives roughly two epochs of 32
   twelve-second slots — about thirteen minutes — behind the head. Reverting
   a finalized block costs an attacker at least one-third of all staked ETH.
-- Implementation pointers do not exist while the spec is `draft`.

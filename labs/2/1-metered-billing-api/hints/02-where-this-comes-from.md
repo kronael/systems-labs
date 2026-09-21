@@ -24,4 +24,3 @@ answers part of the design, which is why they are here and not in the task.
 - [Concurrency](https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html)
   — one in-flight request per environment, and throttling once concurrency
   is exhausted.
-- Implementation pointers do not exist while the spec is `draft`.

@@ -23,7 +23,6 @@ answers part of the design, which is why they are here and not in the task.
 - [Durable nonces](https://solana.com/docs/core/transactions/durable-nonces)
   — replaces the expiring blockhash with a stored value that a transaction's
   required first instruction advances, removing the validity window.
-  Solution-bearing: this belongs in `hints/`, never in `README.md`.
 - [Ethereum accounts](https://ethereum.org/en/developers/docs/accounts/) —
   only one transaction with a given nonce can be executed for each account,
   the replay protection that makes per-account order a hard constraint.
@@ -32,4 +31,3 @@ answers part of the design, which is why they are here and not in the task.
   default, and a non-executable transaction stays queued for up to three
   hours by default, so an abandoned transaction can still be mined long
   after its sender stopped watching.
-- Implementation pointers do not exist while the spec is `draft`.

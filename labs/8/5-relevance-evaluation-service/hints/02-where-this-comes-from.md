@@ -9,27 +9,26 @@ answers part of the design, which is why they are here and not in the task.
   submission, evidence, and verification contracts.
 - [`docs/search-and-retrieval-track.md`](../../../../docs/search-and-retrieval-track.md)
   — the track record where this candidate is recorded.
-- Järvelin and Kekäläinen,
-  [Cumulated gain-based evaluation of IR techniques](https://dl.acm.org/doi/10.1145/582415.582418)
-  (ACM TOIS 20(4), 2002;
-  [PDF mirror](https://faculty.cc.gatech.edu/~zha/CS8803WST/dcg.pdf)) — defines
-  the cumulated-gain family: gains from graded judgements are summed down the
-  ranking, a logarithmic discount devalues documents retrieved late, and
-  normalisation against the ideal ordering makes results comparable across
-  queries and admits statistical testing of differences. Solution-bearing: this
-  belongs in `hints/`, never in `README.md`.
-- [Evaluation of ranked retrieval results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
+- Järvelin and Kekäläinen, [Cumulated gain-based evaluation of IR
+  techniques](https://dl.acm.org/doi/10.1145/582415.582418) (ACM TOIS 20(4),
+  2002; [PDF mirror](https://faculty.cc.gatech.edu/~zha/CS8803WST/dcg.pdf))
+  — defines the cumulated-gain family: gains from graded judgements are
+  summed down the ranking, a logarithmic discount devalues documents
+  retrieved late, and normalisation against the ideal ordering makes results
+  comparable across queries and admits statistical testing of differences.
+- [Evaluation of ranked retrieval
+  results](https://nlp.stanford.edu/IR-book/html/htmledition/evaluation-of-ranked-retrieval-results-1.html)
   (Introduction to Information Retrieval, ch. 8) — the textbook treatment of
-  ranked measures for graded relevance, with the logarithmic position discount
-  and the normalisation factor that makes a perfect ranking score 1.
-  Solution-bearing: this belongs in `hints/`, never in `README.md`.
-- [Information retrieval system evaluation](https://nlp.stanford.edu/IR-book/html/htmledition/information-retrieval-system-evaluation-1.html)
+  ranked measures for graded relevance, with the logarithmic position
+  discount and the normalisation factor that makes a perfect ranking score
+  1.
+- [Information retrieval system
+  evaluation](https://nlp.stanford.edu/IR-book/html/htmledition/information-retrieval-system-evaluation-1.html)
   (Introduction to Information Retrieval, ch. 8) — states that reporting
-  results obtained by tuning parameters on the same collection is wrong, that
-  tuning belongs on development collections with performance reported on a
-  held-out set, and that around fifty information needs is the usual minimum
-  for a stable evaluation. Solution-bearing: this belongs in `hints/`, never
-  in `README.md`.
+  results obtained by tuning parameters on the same collection is wrong,
+  that tuning belongs on development collections with performance reported
+  on a held-out set, and that around fifty information needs is the usual
+  minimum for a stable evaluation.
 - Buckley, Dimmick, Soboroff, and Voorhees,
   [Bias and the limits of pooling for large collections](https://www.nist.gov/publications/bias-and-limits-pooling-large-collections)
   — judgement sets are built by judging only a pooled sample of each
@@ -47,13 +46,12 @@ answers part of the design, which is why they are here and not in the task.
 - [usnistgov/trec_eval](https://github.com/usnistgov/trec_eval) — the standard
   TREC evaluation tool: a judgement file plus a run file in, more than fifty
   retrieval measures out.
-- [OpenSearch ranking evaluation API](https://docs.opensearch.org/latest/api-reference/search-apis/rank-eval/)
+- [OpenSearch ranking evaluation
+  API](https://docs.opensearch.org/latest/api-reference/search-apis/rank-eval/)
   — the engine's `_rank_eval` endpoint runs rated queries against the live
   index, returns a metric score, and lists each query's returned-but-unrated
-  documents. Solution-bearing: this belongs in `hints/`, never in
-  `README.md`.
+  documents.
 - [OpenSearch keyword search](https://docs.opensearch.org/latest/search-plugins/keyword-search/)
   — scores come from BM25 over term frequency, inverse document frequency, and
   document-length normalisation, so a hit's score is a property of the corpus
   statistics as much as of the match, and moves when the corpus changes.
-- Implementation pointers do not exist while the spec is `draft`.

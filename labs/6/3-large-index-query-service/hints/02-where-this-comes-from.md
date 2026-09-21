@@ -18,4 +18,3 @@ answers part of the design, which is why they are here and not in the task.
   reaches the file at a time the process does not choose.
 - [`madvise(2)`](https://man7.org/linux/man-pages/man2/madvise.2.html) —
   the access-pattern advices are hints the kernel may ignore.
-- Implementation pointers do not exist while the spec is `draft`.

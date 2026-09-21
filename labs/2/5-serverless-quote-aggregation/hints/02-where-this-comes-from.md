@@ -27,4 +27,3 @@ answers part of the design, which is why they are here and not in the task.
 - [Lambda quotas](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html)
   — the 900-second ceiling, the payload limits, and the default account
   concurrency.
-- Implementation pointers do not exist while the spec is `draft`.

@@ -18,8 +18,7 @@ answers part of the design, which is why they are here and not in the task.
   transaction may consume at most 1,400,000 compute units, an instruction
   defaults to 200,000, and a transaction that would exceed a limit is not
   included in a block; the page also names the instruction that requests a
-  different limit. Solution-bearing: this belongs in `hints/`, never in
-  `README.md`.
+  different limit.
 - [Program limitations](https://solana.com/docs/programs/limitations) — the
   runtime bounds a deployed program beyond compute: a 64-frame call stack,
   cross-program invocation depth of 4, and no access to most of `std`.
@@ -33,4 +32,3 @@ answers part of the design, which is why they are here and not in the task.
 - [`MAX_PERMITTED_DATA_INCREASE`](https://docs.rs/solana-program-entrypoint/latest/solana_program_entrypoint/constant.MAX_PERMITTED_DATA_INCREASE.html)
   — the maximum number of bytes a program may add to an account during a
   single realloc is 10,240.
-- Implementation pointers do not exist while the spec is `draft`.
