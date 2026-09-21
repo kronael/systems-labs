@@ -357,7 +357,7 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
   documentation link for every neighbour. `1/7` names no neighbour at all:
   every genuine candidate carries the answer in its name, so all three sit in
   `hints/`, and the lab records that deviation where it happens.
-- `BUGS.md` is empty. The fault injection contract in
+- `BUGS.md` holds the 2026-09-21 review. The fault injection contract in
   `docs/contract.md`
   states the two rules every lab's gate now rests on: a barrier holds execution
   rather than being noticed once it has passed, and the controller supplies the
@@ -371,7 +371,7 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
   `CONTRIBUTING.md`. `LICENSE` is the one copied file here; the licensing
   contract in `docs/contract.md` adds a root ledger with the first commit
   that copies anything else.
-- `docs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
+- `labs/cloud-access.md` is the single cloud-onboarding page: zero-spend budget,
   short-lived credentials, per-phase account table. Phases 2 and 4 are the only
   ones that can bill, and only on the optional path.
 
