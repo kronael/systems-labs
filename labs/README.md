@@ -13,9 +13,8 @@ each file answers, and `EVALUATION.md`, which carries the failure schedule and
 what each scenario must leave true. Both are spoilers, and both are opened by
 choice rather than by default. Nothing runs yet.
 
-[`../HOWTO.md`](../HOWTO.md) is the method and
-The contract every lab obeys is author material, and `CONTRIBUTING.md` points
-to it.
+[`../HOWTO.md`](../HOWTO.md) is the method. The contract every lab obeys is
+author material, and [`../CONTRIBUTING.md`](../CONTRIBUTING.md) points to it.
 
 Every row is a lab you can read today. No lab is built yet: each directory
 holds the task and its reading, and nothing runs.
@@ -48,7 +47,7 @@ architecture pressure it applies, and the environment prepared for it.
 Why these seventeen and not others is an author question, and the record that
 answers it names the quirk each lab turns on. `CONTRIBUTING.md` points to it.
 
-Phases 6, 7, and 8 are separate catalogs recorded under `0/`. They enter the
+Phases 6, 7, and 8 are separate catalogs recorded under `docs/`. They enter the
 curriculum only after the core is `accepted`.
 
 ## Every lab

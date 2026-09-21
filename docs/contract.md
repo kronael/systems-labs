@@ -33,13 +33,13 @@ solutions, fixtures, or checks.
 
 Each section below fixes one thing. This list is the index, not a substitute.
 
-**Rationale** — **Decision**: seventeen core labs, three further catalogs under `0/`, GPL-3.0, sources cited and never copied. **Problem**: bounded exercises cannot teach boundary failure. **Critique**: the first draft rewarded tool exposure; the fix gave each technology room for its failure model.
+**Rationale** — **Decision**: seventeen core labs, three further catalogs under `docs/`, GPL-3.0, sources cited and never copied. **Problem**: bounded exercises cannot teach boundary failure. **Critique**: the first draft rewarded tool exposure; the fix gave each technology room for its failure model.
 
 **Pedagogy** — **Learning model**: predict, build, test, break, inspect, correct, prove, across three gates whose sum is less than the lab's budget, because the redesign between them is the teaching. **Lab brief contract**: one system, no mechanism named even to disclaim it, difficulty from the quirk, a scale target that is not a pass threshold, named neighbouring systems. **Teaching contract**: separate files hold the task, the hints, the answer key, and the author reasoning, so a learner can avoid the answer without effort; an assistant must be asked twice.
 
 **Harness** — **Standard laboratory scaffold**: one dependency-only Compose profile, runnable before learner code exists; specialized labs extend it. **Fault injection contract**: one shared controller, faults at named barriers only, every scenario declaring what must survive.
 
-**Catalog** — **Selected labs**: seventeen labs, four phases, catalog in `index.md`. **Local and serverless phases**: phase 2 rebuilds phase 1 products on an execution model the learner cannot operate. **Scope boundaries**: no consensus implementation, no console navigation, no parity claim; Lambda only where the brief fixes that shape.
+**Catalog** — **Selected labs**: seventeen labs, four phases, catalog in `labs/README.md`. **Local and serverless phases**: phase 2 rebuilds phase 1 products on an execution model the learner cannot operate. **Scope boundaries**: no consensus implementation, no console navigation, no parity claim; Lambda only where the brief fixes that shape.
 
 **Technology** — **Technology spine**: a fixed small set, the heavier tool per category, driven into the regime where its quirk fires or the dependency is unearned. **Zero-cost and AWS contract**: every required gate runs locally with no account.
 
@@ -268,7 +268,7 @@ lab teachable:
   removes it, so a readable form exists only while the run is in flight. What
   the learner receives is an executable that produces the schedule, never a
   source that describes it; the recipe sources stay outside the learner
-  distribution with `labs/`, published in the source
+  distribution with the author tree under `docs/`, published in the source
   repository that the
   [licence contract](#licence-and-corresponding-source) requires the
   distribution to name. What this achieves is
@@ -1080,7 +1080,7 @@ and transaction-isolation pages — are carried in each lab's own
   generator, fault controller, evidence writer, and the build order.
 - [`../docs/serverless-contrast-track.md`](../docs/serverless-contrast-track.md)
   — the phase 1 and phase 2 pairing catalog and the rejected pairing.
-- [`docs/cloud-access.md`](../labs/cloud-access.md) — how to obtain the
+- [`labs/cloud-access.md`](../labs/cloud-access.md) — how to obtain the
   optional cloud account, the verified free-tier allowances, and the
   zero-spend guardrail that comes before the first deployed function.
 - The seventeen entries in the [core catalog](../labs/README.md#core-catalog) are the

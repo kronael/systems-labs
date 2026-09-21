@@ -9,7 +9,7 @@ The labs themselves are the directories beside it.
 
 ## What this phase is about
 
-Phase 1 built seven systems on software the learner operates. This phase takes
+Phase 1 built eight systems on software the learner operates. This phase takes
 three of those products and rebuilds them on an execution model that runs one
 request per instance and freezes when its runtime and every extension have
 completed with no events pending. Nothing runs between events. Process memory

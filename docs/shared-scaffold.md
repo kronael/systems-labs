@@ -4,17 +4,17 @@ status: draft
 
 # Shared scaffold
 
-This file is author-facing. Like everything under `labs/`, it is not part of
+This file is author-facing. Like everything under `docs/`, it is not part of
 the learner tree; any learner-facing orientation is derived from it later.
 
 ## Decision
 
-Thirty-four labs cannot each own a generator, a fault controller,
+Thirty-six labs cannot each own a generator, a fault controller,
 and an evidence format. They share one implementation of each, and a lab
 contributes only its own declarative files. This document specifies those
 shared components and the boundary between shared and per-lab.
 
-The scaffold is the first thing built once `01-systems-labs.md` is `accepted`.
+The scaffold is the first thing built once `contract.md` is `accepted`.
 Nothing else can be authored against a contract that does not exist: a lab
 written before the five invariant shapes are fixed will encode different words.
 
@@ -42,7 +42,7 @@ There is no shared grader. Each lab carries `EVALUATION.md`, the answer key
 whoever checks the work reads, as fixed by the
 [verification section](contract.md#verification).
 
-What the scaffold owes every lab here is **vocabulary**, so thirty-four answer
+What the scaffold owes every lab here is **vocabulary**, so thirty-six answer
 keys describe their checks the same way rather than each inventing a phrasing.
 Five recurring shapes cover most lab invariants, and a key names the one it
 means:
@@ -129,11 +129,11 @@ controller binary — Go, per the language policy — rather than shipped as
 readable files beside it, so what the learner receives is an executable that
 produces the schedule, not a source that describes it. The recipe sources
 live with the author tree, excluded from the learner distribution by the same
-publish step that excludes `labs/`. Excluded is not
+publish step that excludes `docs/`. Excluded is not
 withheld: the controller is conveyed as object code under GPL-3.0, so the
 learner distribution names the public source repository as the no-charge
 route to its complete corresponding source, recipe sources included, per the
-master spec's
+contract's
 [licence contract](contract.md#licence-and-corresponding-source).
 `make fault`
 — exactly as available to the learner as every other target — materializes
@@ -218,7 +218,7 @@ Lab 01 is authored against the finished scaffold, not alongside it.
   events are pending, which a returned response alone does not mark — on the
   Lambda-compatible runner.
   Every phase 2 failure schedule except the import lab's depends on that
-  barrier; the proposal is `BUGS.md` S1 and needs sign-off.
+  barrier; the proposal is `BUGS.md` S43 and needs sign-off.
 - Whether the five invariant shapes survive contact with phases 7 and 8, whose
   identities are chain transactions and documents rather than records.
 - Closed 2026-08-30: `template/` carries Go only, because the course now
@@ -227,7 +227,7 @@ Lab 01 is authored against the finished scaffold, not alongside it.
 
 ## Governing references
 
-- [`../01-systems-labs.md`](contract.md) — the contracts this
+- [`contract.md`](contract.md) — the contracts this
   scaffold implements.
 - [`lab-selection.md`](lab-selection.md) — the scored selection.
 - [`../labs/README.md`](../labs/README.md) — authoritative list and lifecycle status.

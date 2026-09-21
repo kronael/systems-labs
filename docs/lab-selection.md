@@ -7,7 +7,7 @@ status: reference
 ## Decision
 
 This record selected ten labs from twenty expanded candidates. It scores that
-round and nothing else. The catalog now holds thirty-four labs, seventeen of
+round and nothing else. The catalog now holds thirty-six labs, seventeen of
 them core. The [core catalog](../labs/README.md#core-catalog) table is
 authoritative for what exists, and every lab admitted after this round is
 recorded there.

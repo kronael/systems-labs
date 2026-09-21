@@ -23,7 +23,7 @@ solution-bearing about the curriculum's design.
   [`search-and-retrieval-track.md`](docs/search-and-retrieval-track.md), and
   [`serverless-contrast-track.md`](docs/serverless-contrast-track.md).
 - [`docs/shared-scaffold.md`](docs/shared-scaffold.md) — the one
-  generator, fault controller, evidence writer, and template all 34 labs share.
+  generator, fault controller, evidence writer, and template all 36 labs share.
 - [`docs/`](docs/) — the selection record and the track catalogs: which labs
   were chosen, which were cut, and the candidates behind phases 6, 7 and 8.
 - [`HOWTO.md`](HOWTO.md) — the learner's method: the loop, the gates, what
@@ -34,8 +34,8 @@ solution-bearing about the curriculum's design.
 - [`.diary/`](.diary/) — the shipping log, dated. History lives here and is
   never narrated into the specs.
 
-`labs/` is the authoring source. The learner tree is derived from it, and no
-learner reads a spec directly.
+`labs/` is the learner tree. `docs/` is the author tree, and no learner reads
+it directly.
 
 ## The teaching contract
 

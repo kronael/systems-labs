@@ -144,7 +144,7 @@ not run them. What each does differently at this lab's boundary is in
 ## What is outside the problem
 
 The expected focused time is twenty to twenty-four hours, denser than a phase
-1-5 lab by design: the interaction between the engine and the durable store is
+1 to 4 lab by design: the interaction between the engine and the durable store is
 the lesson, and the statistical rigor a defensible verdict requires — real
 difference from noise, reproducible lineage across a 200-run ledger, an
 overfit candidate that must be caught rather than rewarded — prices out well

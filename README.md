@@ -2,7 +2,7 @@
 
 A curriculum of end-to-end systems labs. Each lab gives you a brief, *design
 and build a system that does X under these requirements*, and then it breaks
-what you built. 34 labs across seven phases, seventeen of them the core.
+what you built. 36 labs across seven phases, seventeen of them the core.
 
 Nothing here runs yet. Every lab exists as text and none of them as code: no
 `Makefile`, no starter, no environment to bring up. You can read what every lab
@@ -111,7 +111,7 @@ have a design spends the lab.
 Three things are worth doing while no lab runs, and none of them spoils
 anything. Check that you meet [what you will need](#what-you-will-need). Read
 one phase's rows in the catalog and pick the product you want to build first.
-Read [`docs/cloud-access.md`](labs/cloud-access.md) if you expect to take the
+Read [`labs/cloud-access.md`](labs/cloud-access.md) if you expect to take the
 optional cloud path. You are ready when you can start a container on your own
 machine and name the lab you mean to do first.
 
@@ -124,10 +124,10 @@ stand alone.
 
 The digit directory under `labs/` is the curriculum phase, not a version.
 
-- **1** local runtime and delivery (7 labs)
+- **1** local runtime and delivery (8 labs)
 - **2** the same problems on an execution model you cannot operate (5)
 - **3** real Internet streaming (2)
-- **4** NoSQL, analytics, portability (4)
+- **4** NoSQL, analytics, portability (5)
 - **6** low-level, in Rust and C (5)
 - **7** blockchain, on Solana and Ethereum (6)
 - **8** search, retrieval, spatial (5)
@@ -156,7 +156,7 @@ Go is the starter language unless the environment dictates otherwise: Rust and
 C in phase 6, the chain's own language for an on-chain program, TypeScript for
 a browser bundle.
 
-[`docs/cloud-access.md`](labs/cloud-access.md) covers the optional cloud path.
+[`labs/cloud-access.md`](labs/cloud-access.md) covers the optional cloud path.
 Phases 2 and 4 are the only ones that can bill, and only there.
 
 ## Status
@@ -166,10 +166,10 @@ into a lab directory, pinning dependency versions, and building the first lab
 all wait on it moving to `accepted`.
 
 Open defects go in [`BUGS.md`](BUGS.md) rather than getting fixed silently.
-The queue is empty today. The last sweep read every lab against one question —
-can a learner predict how their design fails, provoke it, and watch it
-manifest — and nineteen of the thirty-four could not. They can now: the
-resolutions and their commits are in `.diary/`.
+Ten entries are open there today, most of them raised by the review of
+2026-09-21: the contract still defines its own learner tree two ways, the
+catalog column states the lesson it should withhold, and the clock layer the
+fault contract requires cannot be built on Linux as written.
 
 ## Contributing
 
