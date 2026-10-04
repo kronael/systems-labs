@@ -58,9 +58,9 @@ against a relative baseline on the same host, and the memory ceiling is a
 structural bound.
 
 The evidence must separate bytes accepted by the kernel from bytes
-acknowledged by the collector, and must show buffer occupancy over time. How
-that measurement is produced is the learner's choice; no telemetry stack is
-required.
+acknowledged by the collector, and must show buffer occupancy over time. The
+shared telemetry harness carries that measurement into the evidence report;
+the shipper decides what it exposes.
 
 ## What your ARCHITECTURE.md must explain
 

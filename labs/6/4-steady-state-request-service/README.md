@@ -48,9 +48,9 @@ remainder. These numbers size the problem; the pass thresholds stay relative,
 structural, or learner-declared, per the course contract.
 
 The evidence must show resident memory and live entry data as two aligned
-curves over the whole run, and the response-time distribution per phase. How
-that measurement is produced is the learner's choice; no telemetry stack is
-required.
+curves over the whole run, and the response-time distribution per phase. The
+shared telemetry harness produces that measurement; the learner decides what
+the service exposes to it.
 
 ## What your ARCHITECTURE.md must explain
 

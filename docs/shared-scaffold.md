@@ -159,6 +159,23 @@ Where a lab does not require instrumentation, this component still supplies the
 evidence report writer, because the report schema is shared even when the
 measurement method is the learner's choice.
 
+Phase 6 requires it. Its labs demand evidence a learner cannot produce by
+reading a counter: time waiting for data separated from time executing, a cost
+that grows with cores rather than with data, resident memory beside live data.
+For those the component supplies three harness pieces, and the learner decides
+only what the design exposes to them:
+
+- a trace with per-span busy and idle time, so the wait/execute split in the
+  tail is measured rather than argued;
+- a deterministic cost runner over Callgrind, instruction counts rather than
+  wall time, so a per-core cost survives a noisy host;
+- a residency sampler that records resident memory, live data as the service
+  reports it, and host steal and CPU pressure on one clock.
+
+The runner and the sampler need no `perf_event_open`; sampling profilers that
+do are not part of the contract, because the target environment cannot promise
+them.
+
 ## Teaching lint
 
 `make teaching-lint` is the mechanical enforcement of the
