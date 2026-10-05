@@ -159,8 +159,8 @@ Where a lab does not require instrumentation, this component still supplies the
 evidence report writer, because the report schema is shared even when the
 measurement method is the learner's choice.
 
-Phase 6 requires it. The component supplies three harness pieces, and the
-learner decides only what the design exposes to them:
+For `6/1`, `6/3` and `6/4` the component supplies three harness pieces, and
+the learner decides only what the design exposes to them:
 
 - a trace with per-span busy and idle time, so the wait/execute split in the
   tail is measured rather than argued;

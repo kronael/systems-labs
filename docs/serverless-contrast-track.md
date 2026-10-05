@@ -4,7 +4,7 @@ status: reference
 
 # Serverless contrast track
 
-This file is author-facing. Like everything under `labs/`, it is not part of
+This file is author-facing. Like everything under `docs/`, it is not part of
 the learner tree, and its pairing analysis is solution-bearing on purpose:
 naming what each phase 1 answer rested on is the analysis. Nothing in it may
 be quoted into a learner-facing artifact.

@@ -95,9 +95,6 @@ machine, and reading it is a deliberate act, like opening `hints/`.
 [`HOWTO.md`](HOWTO.md) is the method. What you do in a lab, in what order,
 what you write down, and how you know you are finished. Read it first.
 
-There is no learner tree yet, so the only thing to read after it is the
-catalog.
-
 [`labs/README.md`](labs/README.md) lists the seventeen core labs in course
 order, and lab 01 is the intended entry point. Read the rows to see what each
 lab asks, then open that lab's `README.md`, which is the task and holds no

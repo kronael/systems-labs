@@ -29,15 +29,15 @@ This is a contract change and needs sign-off.
 ## S41 — the catalog and the phase pages state the quirk (2026-09-21, proposed)
 
 `docs/contract.md:429` requires `labs/README.md` to name every lab with its
-"architecture pressure". That column states the lesson: `labs/README.md:44`
-"Cache authority, eviction, stampede, degradation", `:45` "Background merges,
-asynchronous mutation, insert frequency", `:92` "the spatial index is only a
-filter", `:37` "a freeze that strands the publish".
+"architecture pressure". That column states the lesson: `labs/README.md:43`
+"Cache authority, eviction, stampede, degradation", `:44` "Background merges,
+asynchronous mutation, insert frequency", `:91` "the spatial index is only a
+filter", `:36` "a freeze that strands the publish".
 
 The phase pages do the same. `labs/1/README.md:29` names a pause barrier and
 `1/2`'s freeze past acknowledgement; `labs/2/README.md:94` gives the freeze
 barrier and the controller layer for the whole phase; `labs/6/README.md:58`
-links `mallopt(3)`.
+names `epoll` and `io_uring` and `:74` links `mallopt(3)`.
 
 Both files are learner-facing and opened by default, before any lab. The
 contract binds the lab `README.md` and says nothing about either. No lab edit
@@ -93,7 +93,9 @@ layout. A proxy on the PostgreSQL or Kafka wire cannot tell which `COMMIT` or
 
 Two labs show the shape of a fix. `4/1/EVALUATION.md:24` reads keys the
 store's own `DescribeTable` exposes. `4/6/EVALUATION.md:13` holds "the store's
-acknowledgement of a write the service made", with no identity inside it.
+acknowledgement of a write the service made", with no identity inside it;
+its own scenarios at `:17-28` then key on release and increment identities
+the learner lays out, so the shape holds at `:13-15` and not below it.
 
 - **Severity:** high — the gate rests on a mechanism no file specifies
 - **Scope:** `docs/contract.md:359-369`, twelve labs
@@ -114,12 +116,12 @@ pressure column, `labs/4/README.md:94` "visibility timeouts",
 identities, and a second `hints/` sentence in 36 of 36 lab READMEs against
 `:296` "says nothing else about hints anywhere". The lint also keys on a
 "Neighbouring systems" heading; the heading in every README is "What a
-practitioner might have used instead". `docs/shared-scaffold.md:174` calls the
+practitioner might have used instead". `docs/shared-scaffold.md:188` calls the
 check "a scan rather than a judgment", and the mechanism vocabulary it scans
 for does not exist.
 
 - **Severity:** medium — the gate that protects the boundary cannot be written
-- **Scope:** `docs/contract.md:817-831`, `docs/shared-scaffold.md:174`
+- **Scope:** `docs/contract.md:817-831`, `docs/shared-scaffold.md:188`
 - **Affected:** CI, and the four files named above
 - **Source:** CTO and red reviews, 2026-09-21
 - **Status:** proposed

@@ -321,8 +321,8 @@ rather than copying one from a table.
 The digit directory under `labs/` is the curriculum **phase**, not a version:
 1 local runtime and delivery; 2 the same problems serverless; 3 real Internet
 streaming; 4 NoSQL, analytics, portability; 6 low-level; 7 blockchain;
-8 search, retrieval, spatial. **Phase 5 no longer exists** and the `7/5` slot is
-empty; both gaps stay open, so do not renumber to close them.
+8 search, retrieval, spatial. **Phase 5 no longer exists** and the `4/4` and
+`7/5` slots are empty; the gaps stay open, so do not renumber to close them.
 
 **Phase 1 runs software the learner operates; phase 2 runs an execution model
 the learner cannot.** That is why phase 2 exists, and it is the one place a
@@ -348,8 +348,8 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
 ## State of the repo
 
 - The seventeen core labs are the phase 1 to 4 rows of the core catalog in
-  `labs/README.md`. `1/7` sits in phase 1 and outside the core; phases 6, 7
-  and 8 are separate catalogs.
+  `labs/README.md`. `1/7`, `1/8` and `4/6` sit in phases 1 and 4 outside the
+  core; phases 6, 7 and 8 are separate catalogs.
 - Every lab directory holds `README.md`, `hints/` with its index, and
   `EVALUATION.md`. Each names a scale target and carries a fetched
   documentation link for every neighbour. `1/7` names no neighbour at all:
