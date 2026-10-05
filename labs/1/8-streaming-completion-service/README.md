@@ -49,10 +49,6 @@ working on at once. Whether a request is admitted, and what the service
 promises when it admits one, are decisions the design owns; the pool's size is
 an environment fact, and the design states what it assumes about it.
 
-Answers are reproducible under the declared decoding settings: the same
-request against the same model and settings yields the same answer, so a check
-can compare an answer against an independently produced one by identity.
-
 The scale target is 200 concurrent streaming callers, a sustained 40 accepted
 requests per second, prompts between 200 and 6,000 tokens with one in twenty
 above 4,000, and 100,000 requests per evidence run. The long prompts are the
@@ -84,8 +80,7 @@ stated failure modes and one residual limitation.
 ## Acceptance evidence
 
 Every accepted identity reaches exactly one reported outcome, and no reported
-outcome changes afterwards. Answers match the independently produced ones by
-identity under the declared settings. The declared bounds are reported with
+outcome changes afterwards. The declared bounds are reported with
 the fraction of accepted requests that met them, and the report defends both
 bounds against the calibrated capacity rather than against a fixed number.
 

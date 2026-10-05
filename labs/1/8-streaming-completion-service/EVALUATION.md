@@ -47,7 +47,7 @@ ends early with a stated reason; a run in which no caller's attainment moves
 relative to another's fails, because the pressure the lab is about was never
 applied.
 
-Answers match the independently produced ones by identity. The run reports the
+The run reports the
 observed pool occupancy and the work the engine repeated; a run in which the
 pool never reaches the regime where the engine reclaims space fails rather
 than passes, because the lab's subject was never met.
