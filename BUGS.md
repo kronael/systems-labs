@@ -247,3 +247,60 @@ not about.
 - **Fix:** keep Callgrind for the user-space instruction count and add a lane
   that measures the kernel cost under cores, or restate what the runner
   isolates. It changes the scaffold, so it needs sign-off.
+
+## S51 — 1/8's gate cannot be met on the engine it runs (2026-10-05, proposed)
+
+`labs/1/8-streaming-completion-service/README.md:52-54` requires that the same
+request yields the same answer so a check can compare answers by identity, and
+`EVALUATION.md:50` checks it. The engine's own page says "vLLM does not
+guarantee the reproducibility of the results by default", and the
+batch-invariance mode that makes outputs insensitive to scheduling lists NVIDIA
+GPUs and Intel XPUs as its platforms. The lab runs the engine on CPU
+(`README.md:18`), and the burst the schedule fires is exactly the batching
+change that varies the output.
+
+Two scenarios rest on the engine behaving otherwise. The scheduler preempts the
+most recent arrival first (`vllm/v1/core/sched/scheduler.py`, `preempted_req =
+self.running[-1]`), so the burst at `EVALUATION.md:15-18` is what the engine
+evicts and the named earlier request is protected rather than pressured.
+`EVALUATION.md:19-21` holds completions at the transport layer to keep two
+requests in the pool together, while the engine's output collector merges
+deltas when the producer is ahead of the consumer, so a held stream need not
+hold the request in the engine. `EVALUATION.md:51-53` fails a run in which the
+pool never reaches the reclaim regime, and `:71-72` calls the design that keeps
+it out of that regime strong.
+
+- <https://docs.vllm.ai/en/latest/usage/reproducibility.html>
+- <https://docs.vllm.ai/en/latest/features/batch_invariance.html>
+- <https://github.com/vllm-project/vllm/blob/main/vllm/v1/core/sched/scheduler.py>
+
+- **Severity:** high — a check every design fails, and two scenarios that may
+  never reach their regime
+- **Scope:** `1/8/README.md`, `1/8/EVALUATION.md`
+- **Affected:** `1/8`
+- **Source:** release refine, 2026-10-05, pages and source fetched; the output
+  collector claim is read from source, not run
+- **Status:** proposed
+- **Fix:** compare answers to the engine's own answer under greedy decoding in
+  the same run, or check the outcome contract alone; fire the burst so the
+  engine's eviction order lands on the named request; replace the transport
+  hold with a barrier the engine honours; and let a design that refuses the
+  burst pass with the refusal in its evidence.
+
+## S52 — 4/3's withdrawal has no ratio and no held barrier (2026-10-05, open)
+
+`labs/4/3-exact-trade-analytics/README.md:21-23` says the generator emits
+withdrawals at declared ratios, and the scale target at `:49-51` declares a
+duplicate ratio and a correction ratio and no withdrawal ratio.
+`EVALUATION.md:19` withdraws a named trade "after an aggregate has already
+served it", which names the trade and not the acknowledgement the fault holds
+(`docs/contract.md:359`).
+
+- **Severity:** low
+- **Scope:** `4/3/README.md`, `4/3/EVALUATION.md`
+- **Affected:** `4/3`
+- **Source:** release refine, 2026-10-05
+- **Status:** open
+- **Fix:** declare the withdrawal ratio beside the other two, and fire the
+  withdrawal when a named aggregate answer that includes the trade has been
+  returned.
