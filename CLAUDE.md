@@ -347,9 +347,7 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
 
 ## State of the repo
 
-- Thirty-six labs exist under `labs/`: eight in phase 1, five in phase 2, two
-  in phase 3, five in phase 4, five in phase 6, six in phase 7, five in phase 8.
-  The seventeen core labs are the phase 1 to 4 rows of the core catalog in
+- The seventeen core labs are the phase 1 to 4 rows of the core catalog in
   `labs/README.md`. `1/7` sits in phase 1 and outside the core; phases 6, 7
   and 8 are separate catalogs.
 - Every lab directory holds `README.md`, `hints/` with its index, and
@@ -357,14 +355,12 @@ to move it to `accepted` first. Writing and expanding the labs is open work.
   documentation link for every neighbour. `1/7` names no neighbour at all:
   every genuine candidate carries the answer in its name, so all three sit in
   `hints/`, and the lab records that deviation where it happens.
-- `BUGS.md` holds the 2026-09-21 review. The fault injection contract in
-  `docs/contract.md`
-  states the two rules every lab's gate now rests on: a barrier holds execution
-  rather than being noticed once it has passed, and the controller supplies the
-  limit the environment omits, at a transport, process, or clock layer. A lab
-  whose required gate depends on a limit names its layer and says the gate
-  proves a declared model, with `make smoke` as the comparison. `TODO.md` holds
-  what does not exist yet.
+- The fault injection contract in `docs/contract.md` states the two rules every
+  lab's gate now rests on: a barrier holds execution rather than being noticed
+  once it has passed, and the controller supplies the limit the environment
+  omits, at a transport, process, or clock layer. A lab whose required gate
+  depends on a limit names its layer and says the gate proves a declared model,
+  with `make smoke` as the comparison. `TODO.md` holds what does not exist yet.
 - No code exists. The shared scaffold is specified in `docs/shared-scaffold.md`,
   and it is the first thing built once `docs/contract.md` is `accepted`.
 - Root carries `LICENSE` (verbatim GPL-3.0 from gnu.org), `README.md`, and

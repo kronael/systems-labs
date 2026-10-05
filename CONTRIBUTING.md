@@ -23,7 +23,7 @@ solution-bearing about the curriculum's design.
   [`search-and-retrieval-track.md`](docs/search-and-retrieval-track.md), and
   [`serverless-contrast-track.md`](docs/serverless-contrast-track.md).
 - [`docs/shared-scaffold.md`](docs/shared-scaffold.md) — the one
-  generator, fault controller, evidence writer, and template all 36 labs share.
+  generator, fault controller, evidence writer, and template all labs share.
 - [`docs/`](docs/) — the selection record and the track catalogs: which labs
   were chosen, which were cut, and the candidates behind phases 6, 7 and 8.
 - [`HOWTO.md`](HOWTO.md) — the learner's method: the loop, the gates, what

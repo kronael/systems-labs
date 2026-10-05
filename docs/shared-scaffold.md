@@ -42,8 +42,8 @@ There is no shared grader. Each lab carries `EVALUATION.md`, the answer key
 whoever checks the work reads, as fixed by the
 [verification section](contract.md#verification).
 
-What the scaffold owes every lab here is **vocabulary**, so thirty-six answer
-keys describe their checks the same way rather than each inventing a phrasing.
+What the scaffold owes every lab here is **vocabulary**, so answer keys
+describe their checks the same way rather than each inventing a phrasing.
 Five recurring shapes cover most lab invariants, and a key names the one it
 means:
 
@@ -159,11 +159,8 @@ Where a lab does not require instrumentation, this component still supplies the
 evidence report writer, because the report schema is shared even when the
 measurement method is the learner's choice.
 
-Phase 6 requires it. Its labs demand evidence a learner cannot produce by
-reading a counter: time waiting for data separated from time executing, a cost
-that grows with cores rather than with data, resident memory beside live data.
-For those the component supplies three harness pieces, and the learner decides
-only what the design exposes to them:
+Phase 6 requires it. The component supplies three harness pieces, and the
+learner decides only what the design exposes to them:
 
 - a trace with per-span busy and idle time, so the wait/execute split in the
   tail is measured rather than argued;
@@ -235,7 +232,7 @@ Lab 01 is authored against the finished scaffold, not alongside it.
   events are pending, which a returned response alone does not mark — on the
   Lambda-compatible runner.
   Every phase 2 failure schedule except the import lab's depends on that
-  barrier; the proposal is `BUGS.md` S43 and needs sign-off.
+  barrier.
 - Whether the five invariant shapes survive contact with phases 7 and 8, whose
   identities are chain transactions and documents rather than records.
 - Closed 2026-08-30: `template/` carries Go only, because the course now

@@ -7,14 +7,12 @@ status: reference
 ## Decision
 
 This record selected ten labs from twenty expanded candidates. It scores that
-round and nothing else. The catalog now holds thirty-six labs, seventeen of
-them core. The [core catalog](../labs/README.md#core-catalog) table is
-authoritative for what exists, and every lab admitted after this round is
-recorded there.
-Selection favors durable system judgment over product count: every survivor
-produces a useful end-to-end system, exposes a false mental model through a
-deterministic failure, and fits into six to twenty-five focused hours with supplied
-dependency scaffolding.
+round and nothing else. The [core catalog](../labs/README.md#core-catalog)
+table is authoritative for what exists, and every lab admitted after this round
+is recorded there. Selection favors durable system judgment over product count:
+every survivor produces a useful end-to-end system, exposes a false mental
+model through a deterministic failure, and fits into six to twenty-five focused
+hours with supplied dependency scaffolding.
 
 The scoring dimensions are conceptual leverage, fit with the stated learning
 goals, usefulness of the finished artifact, strength of the falsifiable quirk,

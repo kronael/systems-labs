@@ -9,7 +9,7 @@ The labs themselves are the directories beside it.
 
 ## What this phase is about
 
-The eight labs in this phase put a running process under pressure it cannot
+The labs in this phase put a running process under pressure it cannot
 design away: demand above capacity, a dependency that slows or dies, a restart
 in the middle of accepted work, a record shape that changes while the system
 is serving, and a store that hands work back instead of completing it.

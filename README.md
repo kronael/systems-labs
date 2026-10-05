@@ -166,10 +166,6 @@ into a lab directory, pinning dependency versions, and building the first lab
 all wait on it moving to `accepted`.
 
 Open defects go in [`BUGS.md`](BUGS.md) rather than getting fixed silently.
-Ten entries are open there today, most of them raised by the review of
-2026-09-21: the contract still defines its own learner tree two ways, the
-catalog column states the lesson it should withhold, and the clock layer the
-fault contract requires cannot be built on Linux as written.
 
 ## Contributing
 
