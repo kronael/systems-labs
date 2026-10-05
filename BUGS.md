@@ -166,6 +166,10 @@ against.
 
 ## S47 — 25 labs have no hint that unsticks (2026-09-21, open)
 
+`labs/1/5/EVALUATION.md:29` links into `docs/`, and `4/3/hints/README.md:10-11`
+puts the quirk — "when it forgets that it finished" — in the index that must
+spoil nothing (`docs/contract.md:292-293`).
+
 `HOWTO.md:122` promises `hints/` holds "the architecture reading, what the
 neighbouring systems do differently at this lab's boundary, and the designs
 that were rejected". In 25 of 36 labs `hints/` holds the neighbour file and
@@ -250,14 +254,11 @@ not about.
 
 ## S51 — 1/8's gate cannot be met on the engine it runs (2026-10-05, proposed)
 
-`labs/1/8-streaming-completion-service/README.md:52-54` requires that the same
-request yields the same answer so a check can compare answers by identity, and
-`EVALUATION.md:50` checks it. The engine's own page says "vLLM does not
-guarantee the reproducibility of the results by default", and the
-batch-invariance mode that makes outputs insensitive to scheduling lists NVIDIA
-GPUs and Intel XPUs as its platforms. The lab runs the engine on CPU
-(`README.md:18`), and the burst the schedule fires is exactly the batching
-change that varies the output.
+The identity gate is gone: the lab checks one final outcome per identity, not
+answer equality, because the engine's own page says "vLLM does not guarantee
+the reproducibility of the results by default" and its batch-invariance mode
+lists NVIDIA GPUs and Intel XPUs as its platforms, while the lab runs on CPU
+(`README.md:18`). What remains open is the schedule below.
 
 Two scenarios rest on the engine behaving otherwise. The scheduler preempts the
 most recent arrival first (`vllm/v1/core/sched/scheduler.py`, `preempted_req =
@@ -304,3 +305,21 @@ served it", which names the trade and not the acknowledgement the fault holds
 - **Fix:** declare the withdrawal ratio beside the other two, and fire the
   withdrawal when a named aggregate answer that includes the trade has been
   returned.
+
+## S53 — the approval boundary is stated three ways (2026-10-05, open)
+
+`docs/contract.md:1092-1095` blocks "creating `systems-labs/`, choosing exact
+dependency versions, and authoring lab 01" while the contract is `draft`.
+`CLAUDE.md:344-346` says "writing code into a lab directory", and
+`CONTRIBUTING.md:123-125` says "creating a lab directory" — contradicted by the
+36 directories on disk and by the contract the two files claim to summarize.
+The range obeys the contract's reading: every lab directory is text only.
+
+- **Fix:** make `CLAUDE.md` and `CONTRIBUTING.md` repeat the contract's
+  sentence, or move the sentence into the contract alone and point at it.
+
+## S54 — 4/6 kills "the publisher process" the brief does not define (2026-10-05, open)
+
+`labs/4/6-dataset-release-service/EVALUATION.md:17-19` kills "the publisher
+process", while `README.md:3-5` makes publishers the submitters and `:28` makes
+the service the learner's. The schedule must say which process dies.
