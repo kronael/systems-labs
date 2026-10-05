@@ -220,3 +220,28 @@ only "a machine that runs Linux containers".
 - **Status:** proposed
 - **Fix:** amend the spine and the selection record for both, or gate the two
   labs until it is amended. Then state the CPU requirement `1/8` implies.
+
+## S50 — the phase 6 cost runner cannot see the costs 6/3 asks about (2026-10-05, proposed)
+
+`docs/shared-scaffold.md:167` supplies "a deterministic cost runner over
+Callgrind, instruction counts rather than wall time, so a per-core cost
+survives a noisy host", and `labs/6/3-large-index-query-service/README.md:68`
+asks which costs of the access path grow with the number of cores and how the
+evidence isolates them. Callgrind cannot isolate them. The Valgrind core manual
+runs every thread under one lock "to serialise thread execution", and the
+Cachegrind manual says of its simulation "It doesn't account for kernel
+activity." The costs that grow with cores on a page-cache access path are
+kernel costs under concurrency, so the runner reports a number the question is
+not about.
+
+- <https://valgrind.org/docs/manual/manual-core.html>
+- <https://valgrind.org/docs/manual/cg-manual.html>
+
+- **Severity:** medium — the harness promises a measurement its tool cannot make
+- **Scope:** `docs/shared-scaffold.md`, `6/3`
+- **Affected:** `6/3`; `6/1` and `6/4` name the same harness
+- **Source:** release refine, 2026-10-05, both manual pages fetched
+- **Status:** proposed
+- **Fix:** keep Callgrind for the user-space instruction count and add a lane
+  that measures the kernel cost under cores, or restate what the runner
+  isolates. It changes the scaffold, so it needs sign-off.
