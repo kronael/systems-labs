@@ -16,10 +16,6 @@ comes before any new lab.
 
 ## Gaps in the catalog
 
-Each entry below names a failure no existing lab reaches. The first three
-carry a documented, publicly reported behaviour, fetched and quoted. The last
-two do not, and must not be authored until they do.
-
 ### Two versions of the same service at once — grounded
 
 No lab runs the learner's own code at two versions simultaneously. Every
@@ -39,11 +35,9 @@ serving, with both versions live and neither able to assume it wrote what it
 reads. The fault fires when a named record is written by one version and read
 by the other. Phase 4, beside `4/5`, which already owns the deployment surface.
 
-Two studies were run against existing labs on 2026-09-20 and both were
-rejected: `4/5` and `7/6` each already carry one falsified model and sit at
-the top of their hour budgets, and each proposed barrier could be left
-unreached by a correct design. What the studies produced belongs to this lab
-instead.
+It is its own lab and not an extension of `4/5` or `7/6`: each already carries
+one falsified model and sits at the top of its hour budget, and a barrier added
+to either could be left unreached by a correct design.
 
 - The envelope does not carry the contract's version. CloudEvents defines
   `specversion` as "The version of the CloudEvents specification which the
@@ -74,30 +68,6 @@ the record's own TTL hint, and that a program upgrade replaces the bytes for
 every caller with a documented visibility delay. The asymmetry is the lesson:
 one party moves once for everyone, the other moves once per user.
 
-## Closed
-
-- **Deletion that must reach every derived copy** became two facets rather
-  than a lab. `4/3` gains a withdrawn trade that must be gone from the store
-  and not merely hidden, and `8/3` gains a removed page that no answer may
-  return inside the declared bound. `1/3` was rejected: a tombstone needs a
-  per-event compacted topic, and that lab keys by order for its ordering
-  scope, so the fault would never activate.
-- **Multi-tenant fairness** became one facet. `1/8` names the caller on every
-  request and reports attainment per caller; `4/1` states what one client's
-  queries cost another's. `2/1` was rejected because the platform's refusal
-  happens before the learner's code runs and knows nothing about accounts, so
-  no design could answer it.
-
-- **Time that goes backwards** became a fault rather than a lab. `1/1` steps
-  the clock backwards inside the comparison that decides whether a quote is
-  still valid, and `1/2` inside the one that decides whether an
-  acknowledgement window has passed. Commit `8a02696`.
-- **Accepted work discarded to make room** became
-  `labs/1/8-streaming-completion-service`, in phase 1 because the learner
-  operates the engine and the service in front of it, and beside `1/1`
-  because the contrast is the lesson: `1/1` refuses before it admits, `1/8`
-  has the resource taken back after it admitted.
-
 ## Not gaps
 
 Recorded decisions, listed so nobody proposes them twice.
@@ -109,3 +79,11 @@ Recorded decisions, listed so nobody proposes them twice.
   failover.
 - `7/5` was cut for repeating `7/3`'s lesson, and phase 5 became `4/5`. Both
   gaps stay open on purpose.
+- A deletion lab: `4/3` and `8/3` carry it as faults. `1/3` cannot: a tombstone
+  needs a per-event compacted topic, and that lab keys by order, so the fault
+  would never activate.
+- A multi-tenant fairness lab: `1/8` and `4/1` carry it as a requirement. `2/1`
+  cannot: the platform refuses before the learner's code runs and knows nothing
+  about accounts.
+- A backwards-clock lab: `1/1` and `1/2` carry it as a fault.
+- Accepted work discarded to make room is `1/8`.
