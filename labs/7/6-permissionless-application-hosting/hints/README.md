@@ -8,4 +8,5 @@
 - [`02-where-this-comes-from.md`](02-where-this-comes-from.md) — the pages that report the
   behaviour this lab rests on.
 - [`03-how-long-a-name-lives-without-you.md`](03-how-long-a-name-lives-without-you.md) — the two intervals that
-  decide how long a name resolves after its publisher stops.
+  decide how long a name resolves after its publisher stops, and what an
+  upgrade does to a caller.

@@ -36,8 +36,7 @@ A venue can take a trade back after it has printed, and a withdrawal is input
 like any other. From the moment it is acknowledged the withdrawn trade
 contributes to no answer, over the full history and every window. The service
 also states, per withdrawal, when the trade was gone from the store itself
-rather than only from the answers, and the evidence checks that statement
-against the store through every path that can still return a hidden row.
+rather than only from the answers.
 
 Answers carry a freshness statement. If the service cannot yet answer exactly
 for the most recent interval, it says so rather than returning an approximate

@@ -43,19 +43,18 @@ API, standing in for the paid pinning services of the public network; and one
 user-side node the submission cannot configure, through which every user agent
 resolves and fetches.
 
-The environment's facts are current as of 2026-08-14. On the content network:
-a block no pin protects is removed when a node collects garbage, and the
-network guarantees that content is discoverable, not that it stays available.
-In the node's naming layer, a name is the hash of a key; its record carries a
+The environment's facts are current as of 2026-08-14. On the content network: a
+block no pin protects is removed when a node collects garbage, and the network
+guarantees that content is discoverable, not that it stays available. In the
+node's naming layer, a name is the hash of a key; its record carries a
 validity; copies placed in the network expire on the network's own schedule
 regardless of that validity; the publishing node republishes on its own
 interval and only while it runs; and resolving a name costs round trips that
-resolving a content address does not. The two intervals are stated in
-`hints/`. On the chain: a deployed program carries an upgrade
-authority, by default the deploying wallet, that can replace or close it;
-removing the authority makes the program immutable; an immutable program can
-never be updated or closed; and a closed program's address can never host a
-program again.
+resolving a content address does not. On the chain: a deployed program carries
+an upgrade authority, by default the deploying wallet, that can replace or
+close it; removing the authority makes the program immutable; an immutable
+program can never be updated or closed; and a closed program's address can
+never host a program again.
 
 The course supplies the release plan and payload generator, which emits each
 release's seeded asset payloads at the sizes and deltas the scale target

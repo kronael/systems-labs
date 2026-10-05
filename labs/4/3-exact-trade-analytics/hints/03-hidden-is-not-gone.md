@@ -11,9 +11,10 @@ statement can claim. Three facts decide it.
   data is not actually deleted from storage and is only marked as deleted".
 - A query can be told to read the marked rows anyway, which is how a check
   tells hidden from gone rather than taking the service's word for it.
-- The store's own record of when a mutation finished is "tracked in memory
-  and is reset when the table is reloaded (e.g. on server restart)", so the
-  answer to "when did it finish" disappears exactly when you most want it.
+- For a non-replicated table, the store's own record of when a mutation
+  finished is "tracked in memory and is reset when the table is reloaded (e.g.
+  on server restart)", so the answer to "when did it finish" disappears exactly
+  when you most want it.
 
 A row-versioning engine reaches the same place by another road: a delete is a
 row like any other, and the last row for a key is kept even when it is the

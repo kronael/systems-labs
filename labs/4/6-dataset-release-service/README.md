@@ -19,19 +19,15 @@ and the fault controller. The generator produces reproducible payload streams
 with checksums, so a check can compare bytes by identity without storing a
 second copy.
 
-The store is the environment, and its limits are environment facts. A single
-write request carries at most 5 GB, and a server-side copy is atomic only up
-to 5 GB, so a release above that size arrives in parts. The controller stands
-between the service and the store: it refuses what those limits forbid with
-the store's own error shape, and it admits at most 64 MiB per second, which
-stands in for the network a local store does not have.
+A single write request carries at most 5 GB, and a server-side copy is atomic
+only up to 5 GB. The controller stands between the service and the store: it
+refuses what those limits forbid with the store's own error shape, and it
+admits at most 64 MiB per second, which stands in for the network a local store
+does not have.
 
 The learner owns the service and its Compose layer. The common Makefile starts
 dependencies, validates scaffold health, runs tests, injects faults, runs load,
-and collects evidence. No cloud account is required, and this lab has no
-`make smoke`: the hosted comparison is not part of the course's optional cloud
-surface yet, so the gate proves a declared model with nothing hosted to check
-it against, and `EVALUATION.md` lists what that leaves unverified.
+and collects evidence. No cloud account is required.
 
 ## Requirements
 
@@ -69,8 +65,6 @@ The submitted `ARCHITECTURE.md` must explain:
   happening;
 - what the service knows, after it restarts, about a publication that was
   under way when it stopped;
-- where the knowledge needed to resume a publication lives, and why it
-  survives the process;
 - how two publishers that both believe they are publishing are kept from
   producing a current value that regresses;
 - what the service can say about bytes it has sent to the store but has not
@@ -95,10 +89,6 @@ observed sequence of current values. It explains the relationship between the
 admitted budget and the publication time, and ties the design's resumption
 decision to the measurements.
 
-A design that republishes a release from the beginning after an interruption
-must show what that cost, and the evidence must make the cost visible rather
-than average it away.
-
 ## What a practitioner might have used instead
 
 A practitioner might have reached for one of these instead. The lab does not
@@ -115,7 +105,6 @@ The expected focused time is eight to twelve hours. The learner builds the
 service and its tests. The store, the generator, the admitted budget,
 telemetry, and fault injection are prepared. Dataset formats, compression,
 diff computation, access control, billing, and any user interface are outside
-the problem. Three completed releases occupy 36 GiB of local disk, and a
-design that leaves unfinished work behind occupies more.
+the problem. Three completed releases occupy 36 GiB of local disk.
 
 Stuck? See `hints/`.

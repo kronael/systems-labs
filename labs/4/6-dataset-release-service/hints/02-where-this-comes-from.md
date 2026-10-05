@@ -22,6 +22,9 @@ answers part of the design, which is why they are here and not in the task.
 - [S3 object upload limits](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html)
   — "With a single PUT operation, you can upload a single object up to 5 GB
   in size."
+- [S3 object copy limits](https://docs.aws.amazon.com/AmazonS3/latest/userguide/copy-object.html)
+  — "You can create a copy of an object up to 5 GB in a single atomic
+  operation."
 - [OpenStreetMap planet diffs](https://wiki.openstreetmap.org/wiki/Planet.osm/diffs)
   — "Under no circumstances should you attempt to just fetch diffs by
   incrementing the sequence number as incomplete diffs may be present beyond

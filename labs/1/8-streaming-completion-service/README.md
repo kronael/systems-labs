@@ -7,11 +7,11 @@ within a second, longer bound. The service runs one generation engine over a
 memory pool it cannot grow, and the engine serves many requests at once out of
 that one pool.
 
-The assignment is the whole service: the public streaming interface,
-admission, the queue in front of the engine, the promise accounting, the
-telemetry, and end-to-end tests. How work is admitted, how the promises are
-computed and defended, what the caller is told when a promise cannot be kept,
-and how the service divides into processes are the learner's decisions.
+The assignment is the whole service: the public streaming interface, admission,
+the promise accounting, the telemetry, and end-to-end tests. How work is
+admitted, how the promises are computed and defended, what the caller is told
+when a promise cannot be kept, and how the service divides into processes are
+the learner's decisions.
 
 ## What you are given
 
@@ -42,7 +42,7 @@ The two promises are the service's own, declared in its configuration and
 reported in its evidence: a first-token bound and a completion bound. The
 design states what the caller observes when the service can no longer keep a
 promise it has already made, and that observation is part of the public
-interface rather than a disconnection.
+interface.
 
 The engine's memory pool is fixed and shared by everything the engine is
 working on at once. Whether a request is admitted, and what the service
@@ -71,8 +71,6 @@ The submitted `ARCHITECTURE.md` must explain:
   admission;
 - how the design tells a caller that a promise it already made will not be
   kept, and why that is better than the alternatives it considered;
-- how the queue in front of the engine relates to the resource the engine
-  actually runs out of;
 - what the service does with a request whose work has already been paid for
   once;
 - what the admission decision knows about the caller, and what one caller's
@@ -92,10 +90,11 @@ the fraction of accepted requests that met them, and the report defends both
 bounds against the calibrated capacity rather than against a fixed number.
 
 The evidence report includes offered and accepted rates, first-token and
-completion distributions per caller, the observed occupancy of the engine's pool, the
-work the engine repeated, and the fraction of accepted requests that ended
-early with a stated reason. It explains the relationship between the accepted
-rate and the two bounds, and ties the admission decision to the measurements.
+completion distributions per caller, the observed occupancy of the engine's
+pool, the work the engine repeated, and the fraction of accepted requests that
+ended early with a stated reason. It explains the relationship between the
+accepted rate and the two bounds, and ties the admission decision to the
+measurements.
 
 A design that accepts almost nothing has not met the scale target, and the
 evidence must make that visible.

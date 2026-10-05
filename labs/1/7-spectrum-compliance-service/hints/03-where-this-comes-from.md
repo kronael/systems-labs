@@ -62,9 +62,9 @@ answers part of the design, which is why they are here and not in the task.
 - [CME Globex Cancel on
   Disconnect](https://cmegroupclientsite.atlassian.net/wiki/display/EPICSANDBOX/Cancel+on+Disconnect)
   — "If a lost connection is detected, COD cancels all resting futures and
-  options orders for the disconnected registered iLink user", excluding GTC
-  and GTD orders; a connection that answers no test request within a
-  heartbeat interval "is assumed to be stale and the socket is closed".
+  options orders for the disconnected COD-enabled iLink session", excluding GTC
+  and GTD orders; a connection that answers no test request within a heartbeat
+  interval "is assumed to be stale and the socket is closed".
 - [Deribit Cancel On Disconnect](https://docs.deribit.com/) — "all orders
   created via this connection will be automatically cancelled when the
   connection is closed", while a graceful logout cancels nothing: the void
