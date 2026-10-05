@@ -19,3 +19,7 @@ answers part of the design, which is why they are here and not in the task.
   its next request only after the previous response arrives, so it
   coordinates with the server and stops measuring during exactly the slow
   periods it exists to find.
+- [How and why the leap second affected Cloudflare DNS](https://blog.cloudflare.com/how-and-why-the-leap-second-affected-cloudflare-dns/)
+  — "The root cause of the bug that affected our DNS service was the belief
+  that time cannot go backwards." A leap second made a measured interval
+  negative, and the code that received it had assumed it could not be.

@@ -13,10 +13,11 @@ are here rather than in the task.
 Put the two together and the window where a name resolves without its
 publisher is fixed, and short.
 
-The vendor pages disagree with themselves here. The CLI reference gives the
-publish default as `5m0s` while its own notes and the concept page say one
-hour, and the implementation's `DefaultRecordTTL` is five minutes. Take the
-number from the node you run, not from a page.
+A third number, how long a resolver caches the record, is stated three ways
+by the vendor's own pages. The CLI reference gives the publish default as
+`5m0s` while its own notes and the concept page say one hour, and the
+implementation's `DefaultRecordTTL` is five minutes. Take the number from the
+node you run, not from a page.
 
 ## What an upgrade does to a caller
 

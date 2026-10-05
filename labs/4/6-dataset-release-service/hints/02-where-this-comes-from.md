@@ -12,7 +12,7 @@ answers part of the design, which is why they are here and not in the task.
   The same page says: "Do not use the result of this listing when sending a
   complete multipart upload request. Instead, maintain your own list of the
   part numbers that you specified when uploading parts and the corresponding
-  ETag values." That sentence is the design decision this lab is built on.
+  ETag values". That sentence is the design decision this lab is built on.
 - [S3 conditional writes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/conditional-writes.html)
   — "Conditional writes do not consider any in-progress multipart uploads
   requests since those are not yet fully written objects."

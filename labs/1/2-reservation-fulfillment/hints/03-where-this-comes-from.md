@@ -24,3 +24,7 @@ answers part of the design, which is why they are here and not in the task.
   delivery](https://www.synadia.com/blog/jetstream-reliable-delivery-dlq-replay)
   — what this broker does when a consumer keeps failing a message, and what
   it leaves to the application.
+- [How and why the leap second affected Cloudflare DNS](https://blog.cloudflare.com/how-and-why-the-leap-second-affected-cloudflare-dns/)
+  — "The root cause of the bug that affected our DNS service was the belief
+  that time cannot go backwards." A leap second made a measured interval
+  negative, and the code that received it had assumed it could not be.

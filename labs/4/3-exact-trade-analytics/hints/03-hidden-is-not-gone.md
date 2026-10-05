@@ -22,4 +22,6 @@ delete, unless a cleanup is asked for explicitly.
 
 - <https://clickhouse.com/docs/sql-reference/statements/delete>
 - <https://clickhouse.com/docs/operations/system-tables/mutations>
+- <https://clickhouse.com/docs/reference/settings/session-settings/apply#apply_deleted_mask>
+  — "If disabled, a query will be able to read those rows."
 - <https://clickhouse.com/docs/engines/table-engines/mergetree-family/replacingmergetree>

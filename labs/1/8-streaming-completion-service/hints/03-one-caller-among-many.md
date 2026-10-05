@@ -7,8 +7,7 @@ two facts and then decide what to do about them.
 
 - The default policy is first come, first served: requests are handled in
   order of arrival. Nothing in the engine gives one caller less of the pool
-  than another, and nothing gives a caller who arrived first any protection
-  from one who arrived later.
+  than another.
 - Each iteration has a token budget shared by everything in flight, so a
   caller sending long prompts takes a share of every step, not only a share
   of the pool.
