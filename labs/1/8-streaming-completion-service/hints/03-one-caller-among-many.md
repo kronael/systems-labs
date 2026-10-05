@@ -13,9 +13,6 @@ two facts and then decide what to do about them.
   caller sending long prompts takes a share of every step, not only a share
   of the pool.
 
-Both are engine facts, so attribution is yours: the engine will not tell you
-which caller paid for a step, and it will not hold a share back for anyone.
-
 - <https://docs.vllm.ai/en/latest/api/vllm/config/scheduler/> — the scheduling
   policy and the per-iteration token budget.
 - <https://docs.vllm.ai/en/latest/configuration/optimization.html> — how

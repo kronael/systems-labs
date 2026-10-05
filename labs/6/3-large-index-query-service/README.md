@@ -23,9 +23,8 @@ protocol defines the outcome a retired record must receive.
 
 The course supplies the segment format, the query protocol, the open-loop
 load generator, a tool that records the host device's read capacity as a
-baseline, the shared telemetry harness that separates waiting from executing
-and records per-core cost, and scenario files. The learner owns the service
-and its tests. No cloud account is required.
+baseline, the shared telemetry harness, and scenario files. The learner owns
+the service and its tests. No cloud account is required.
 
 ## Requirements
 

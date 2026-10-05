@@ -68,8 +68,7 @@ it can never miss — is a contract the learner declares and the evidence shows
 holding.
 
 A page the site has removed is a change like any other: within the declared
-bound no answer returns a removed page, and no answer after the fetch that saw
-it gone claims a confirmation newer than the last fetch that saw the content.
+bound no answer returns a removed page.
 
 Every answer carries the staleness statement. The statement is never
 optimistic: it never claims a confirmation newer than a fetch that actually

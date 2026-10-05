@@ -143,14 +143,14 @@ not run them. What each does differently at this lab's boundary is in
 
 ## What is outside the problem
 
-The expected focused time is twenty to twenty-four hours, denser than a phase
-1 to 4 lab by design: the interaction between the engine and the durable store is
+The expected focused time is twenty to twenty-four hours, denser than a phase 1
+to 4 lab by design: the interaction between the engine and the durable store is
 the lesson, and the statistical rigor a defensible verdict requires — real
-difference from noise, reproducible lineage across a 200-run ledger, an
-overfit candidate that must be caught rather than rewarded — prices out well
-above the gates alone. The learner builds the service; OpenSearch, PostgreSQL, the generator,
-and the fault schedules are prepared, and every required gate runs locally with
-no cloud account.
+difference from noise, reproducible lineage across a 200-run ledger, an overfit
+candidate that must be caught rather than rewarded — prices out well above the
+gates alone. The learner builds the service; OpenSearch, PostgreSQL, the
+generator, and the fault schedules are prepared, and every required gate runs
+locally with no cloud account.
 
 CI uses the generated seeded corpus, queries, judgements, and candidates only.
 Real public judgement sets — NIST publishes TREC judgement files — and their

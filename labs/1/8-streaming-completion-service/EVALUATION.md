@@ -68,9 +68,6 @@ A weak design counts an answer as finished because the stream stopped. Work
 that was thrown away and work that completed look the same from the outside
 unless the service distinguishes them itself.
 
-A weak design reports an outcome and then revises it after a restart, which
-the requirements forbid outright.
-
 A strong design decides admission against the resource that is actually
 reclaimed, states a promise it can still defend after later arrivals, and
 gives the caller an explicit ending when it cannot — and it says which of the

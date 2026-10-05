@@ -41,10 +41,11 @@ overlapping source pages produce one logical trade and correct candles.
 The store refuses work above a declared per-partition capacity budget, and it
 refuses it unevenly, because the budget is per partition and the traffic is
 not. Every request names the client that sent it, and the design states what
-one client's queries may cost another client's queries over the same symbol. The design states what an ingest refusal does to the trade that provoked
-it and what a client sees while a partition is refusing. A read through a
-secondary access path may not return the write it follows, and the design
-states what a client sees in that window.
+one client's queries may cost another client's queries over the same symbol.
+The design states what an ingest refusal does to the trade that provoked it and
+what a client sees while a partition is refusing. A read through a secondary
+access path may not return the write it follows, and the design states what a
+client sees in that window.
 
 The design has a stated logical retention policy. Physical TTL timing cannot
 change query correctness. Every access pattern has a bounded request shape, and the cost of a public
